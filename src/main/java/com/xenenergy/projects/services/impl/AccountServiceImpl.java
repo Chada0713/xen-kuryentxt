@@ -9,12 +9,19 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AccountServiceImpl implements CRUDService<Account> {
 
+
     @Autowired
     private AccountDao accountDao;
+
+    public List<Account> getAllAccounts(){
+        return accountDao.findAll();
+    }
 
     @Override
     public Page<Account> findAllPageable(Pageable pageable) {
