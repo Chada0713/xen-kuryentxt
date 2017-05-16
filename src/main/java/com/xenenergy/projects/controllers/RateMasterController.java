@@ -19,6 +19,7 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/ratemaster")
+
 public class RateMasterController {
     private static final int BUTTONS_TO_SHOW = 5;
     private static final int INITIAL_PAGE = 0;

@@ -66,3 +66,51 @@ function changePageAndSizeRemarks() {
         window.location.replace("/remarks/?pageSize=" + this.value + "&page=1");
     });
 }
+$(document).ready(function () {
+    changePageAndSizeRateMaster();
+});
+function changePageAndSizeRateMaster() {
+    $('#pageSizeRateMaster').change(function (evt) {
+        window.location.replace("/ratemaster/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeCoreLoss();
+});
+function changePageAndSizeCoreLoss() {
+    $('#pageSizecoreloss').change(function (evt) {
+        window.location.replace("/coreloss/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeLifeLine();
+});
+function changePageAndSizeLifeLine() {
+    $('#pageSizeLifeLine').change(function (evt) {
+        window.location.replace("/lifeline/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeSeniorCitizen();
+});
+function changePageAndSizeSeniorCitizen() {
+    $('#pageSizeSeniorCitizen').change(function (evt) {
+        window.location.replace("/seniorcitizen/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeAddOnCharge();
+});
+function changePageAndSizeAddOnCharge() {
+    $('#pageSizeAddOnCharge').change(function (evt) {
+        window.location.replace("/addoncharge/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeAddOnKwh();
+});
+function changePageAndSizeAddOnKwh() {
+    $('#pageSizeAddOnKwh').change(function (evt) {
+        window.location.replace("/addonkwh/?pageSize=" + this.value + "&page=1");
+    });
+}

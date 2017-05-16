@@ -118,7 +118,7 @@
                             <div th:if="${seniorCitizenLists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-11 pagination-centered">
                                     <div class="form-group col-md-1">
-                                        <select class="form-control pagination" id="pageSizeRateMaster">
+                                        <select class="form-control pagination" id="pageSizeSeniorCitizen">
                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
                                                     th:value="${pageSize}"
                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>
@@ -127,25 +127,25 @@
                                     <ul class="pagination">
                                         <li th:class="${seniorCitizenLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/seniorcitizen/(pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
                                         <li th:class="${seniorCitizenLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.number})}">Previous</a>
+                                               th:href="@{/seniorcitizen/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.number})}">Previous</a>
                                         </li>
                                         <li th:class="${seniorCitizenLists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/seniorcitizen/(pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
                                         <li th:class="${seniorCitizenLists.number + 1 == seniorCitizenLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.number + 2})}">Next</a>
+                                               th:href="@{/seniorcitizen/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${seniorCitizenLists.number + 1 == seniorCitizenLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.totalPages})}">Last</a>
+                                               th:href="@{/seniorcitizen/(pageSize=${selectedPageSize}, page=${seniorCitizenLists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>
