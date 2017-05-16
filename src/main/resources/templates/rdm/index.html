@@ -104,7 +104,7 @@
                                 <strong>No Record Found!</strong>
                             </div>
                             <div th:if="${rdmlists.totalPages &gt;= 1}">
-                                <div class="form-group col-md-11 pagination-centered">
+                                <div class="form-group col-md-12 pagination-centered">
                                     <div class="form-group col-md-1">
                                         <select class="form-control pagination" id="pageSizeSelect">
                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
@@ -112,7 +112,7 @@
                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>
                                         </select>
                                     </div>
-                                    <ul class="pagination">
+                                    <ul class="pagination pull-right">
                                         <li th:class="${rdmlists.number == 0} ? disabled">
                                             <a class="pageLink"
                                                th:href="@{/rdm/(pageSize=${selectedPageSize}, page=1)}">First</a>

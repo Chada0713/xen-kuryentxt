@@ -110,7 +110,7 @@
                                 <strong>No Record Found!</strong>
                             </div>
                             <div th:if="${arealists.totalPages &gt;= 1}">
-                                <div class="form-group col-md-11 pagination-centered">
+                                <div class="form-group col-md-12 pagination-centered">
                                     <div class="form-group col-md-1">
                                         <select class="form-control pagination" id="pageSizeSelectArea">
                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
@@ -118,7 +118,7 @@
                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>
                                         </select>
                                     </div>
-                                    <ul class="pagination">
+                                    <ul class="pagination pull-right">
                                         <li th:class="${arealists.number == 0} ? disabled">
                                             <a class="pageLink"
                                                th:href="@{/du-area/(pageSize=${selectedPageSize}, page=1)}">First</a>
@@ -135,7 +135,7 @@
                                         </li>
                                         <li th:class="${arealists.number + 1 == arealists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${arealists.number + 2})}">Next;</a>
+                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${arealists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${arealists.number + 1 == arealists.totalPages} ? disabled">
                                             <a class="pageLink"
