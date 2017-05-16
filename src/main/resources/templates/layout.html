@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--  Each token will be replaced by their respective titles in the resulting page. -->
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Kuryentxt</title>
+    <link th:replace="/fragments/styles"/>
+</head>
+<body>
+
+<div th:replace="/fragments/header"></div>
+<div class="container">
+    <div layout:fragment="content">
+
+    </div>
+    <!-- Modal Dialog -->
+    <div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Delete Parmanently</h4>
+                </div>
+                <div class="modal-body">
+                    <span>Are you sure you want to delete </span><strong id="msg"></strong>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn btn-danger" id="deleteBtn">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+<div class="clearboth"><br/></div>
+<div th:replace="/fragments/footer"></div>
+
+<div th:replace="/fragments/js"></div>
+<script th:inline="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#generateCode").click(function () {
+            generator();
+        });
+    });
+
+    function generator() {
+        $("#activationCode").val(Math.floor(Math.random() * 900000 + 100000));
+    }
+
+    $(document).ready(function () {
+        $('#confirmDelete').on('show.bs.modal', function (e) {
+            $url = $(e.relatedTarget).attr('data-url');
+            $message = $(e.relatedTarget).attr('data-message');
+            $('#msg').text($message);
+            $("#deleteBtn").attr("href",  $url); // #deleteBtn(ito po yung id ng hyperlink)
+        });
+
+        <!-- Form confirm (yes/ok) handler, submits form -->
+        $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
+            $(this).data('form').submit();
+        });
+    });
+</script>
+</body>
+</html>

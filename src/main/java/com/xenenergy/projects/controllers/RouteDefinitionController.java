@@ -1,0 +1,103 @@
+package com.xenenergy.projects.controllers;
+
+import com.xenenergy.projects.entities.DuArea;
+import com.xenenergy.projects.entities.Pager;
+import com.xenenergy.projects.entities.Rdm;
+import com.xenenergy.projects.services.RdmService;
+import com.xenenergy.projects.services.ReadersService;
+import com.xenenergy.projects.services.impl.DuAreaServiceImpl;
+import com.xenenergy.projects.services.impl.RouteDefinitionServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
+
+/**
+ * Created by xenuser on 5/10/2017.
+ */
+@Controller
+@RequestMapping("/rdm")
+public class RouteDefinitionController {
+    private static final int BUTTONS_TO_SHOW = 5;
+    private static final int INITIAL_PAGE = 0;
+    private static final int INITIAL_PAGE_SIZE = 10;
+    private static final int[] PAGE_SIZES = {10, 20, 50, 100};
+
+    @Autowired
+    RouteDefinitionServiceImpl definitionService;
+    @Autowired
+    ReadersService readersService;
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
+                                        @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("rdm/index");
+        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+
+        Page<Rdm> rdms = definitionService.findAllPageable(new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(rdms.getTotalPages(), rdms.getNumber(), BUTTONS_TO_SHOW);
+
+        modelAndView.addObject("rdmlists", rdms);
+        modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pager", pager);
+        return modelAndView;
+    }
+
+    @GetMapping("/add")
+    public String addForm(Model model) {
+        model.addAttribute("rdm", new Rdm());
+        model.addAttribute("readers", readersService.getAll());
+        return "rdm/add";
+    }
+
+    @PostMapping("/create")
+    public String save(Rdm rdm, final RedirectAttributes redirectAttributes) {
+        if (definitionService.insert(rdm) != null) {
+            redirectAttributes.addFlashAttribute("save", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("save", "unsuccess");
+        }
+        return "redirect:/rdm";
+    }
+
+    @GetMapping("/{operation}/{id}")
+    public String editDeleteForm(@PathVariable("id") long id, @PathVariable("operation") String operation,
+                                 Model model, final RedirectAttributes redirectAttributes) {
+        if (operation.equals("delete")) {
+            if (definitionService.deleteById(id)) {
+                redirectAttributes.addFlashAttribute("delete", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("delete", "unsuccess");
+            }
+        } else if (operation.equals("edit")) {
+            if (definitionService.getById(id) != null) {
+                model.addAttribute("rdm", definitionService.getById(id));
+                model.addAttribute("readers", readersService.getAll());
+                return "rdm/edit";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        }
+
+        return "redirect:/rdm";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute("duArea") Rdm rdm,
+                         final RedirectAttributes redirectAttributes) {
+        if (definitionService.update(rdm) != null) {
+            redirectAttributes.addFlashAttribute("edit", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("edit", "unsuccess");
+        }
+
+        return "redirect:/rdm";
+    }
+}

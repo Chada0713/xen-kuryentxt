@@ -1,0 +1,59 @@
+html {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 20px;
+    background: #ffffff;
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 95px;
+}
+
+.content {
+    padding-top: 50px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.starter-template {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.table td, .table th {
+    text-align: center;
+}
+.red{
+    color: #b92c28;
+}
+.green{
+    color: #4cae4c;
+}
+#footer {
+    font-size: small;
+    position: fixed;
+    height: 95px;
+    bottom: 0;
+    width: 100%;
+    background: #F8F8F8;
+    border-top: 1px solid #8c8c8c;
+}
+
+.alert {
+    padding: 7px !important;
+}
+.pagination-centered {
+    text-align: center;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pointer-disabled {
+    pointer-events: none;
+}
