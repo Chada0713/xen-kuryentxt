@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html"
+      layout:decorator="layout">
+<head>
+    <title>Life Line</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Life Line - Add </strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Activation code already exist.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md- 12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" th:object="${lifeLine}"
+                                      th:action="@{/lifeline/create}"
+                                      method="post">
+                                    <div class="form-group">
+                                        <label for="effectivity_Date" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                            Effectivity Date</label>
+                                        <div class='col-lg-9 col-md-9 col-sm-9 col-xs-9'>
+                                            <input type='text' class="form-control" id='effectivity_Date' name='effectivity_Date'/>
+                                            <!--<span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <input type="hidden" class="form-control" id="is_Current"
+                                                   name="is_Current"
+                                                   th:value="'N'"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                            <a href="/lifeline" class="btn btn-primary pull-right">Back</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
