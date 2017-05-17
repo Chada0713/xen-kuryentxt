@@ -38,6 +38,8 @@
 <div th:replace="/fragments/js"></div>
 <script th:inline="javascript" type="text/javascript">
     $(document).ready(function () {
+        $("#dateSelectModal").modal('show');
+
         $("#generateCode").click(function () {
             generator();
         });
@@ -46,6 +48,29 @@
     function generator() {
         $("#activationCode").val(Math.floor(Math.random() * 900000 + 100000));
     }
+
+    $(function () {
+        $("#periodFrm").datepicker({
+            numberOfMonths: 2,
+            dateFormat: 'yy-mm-dd',
+            maxDate: 0,
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+                dt.setDate(dt.getDate() + 1);
+                $("#periodTo").datepicker("option", "minDate", dt);
+            }
+        });
+        $("#periodTo").datepicker({
+            numberOfMonths: 2,
+            dateFormat: 'yy-mm-dd',
+            maxDate: 0,
+            onSelect: function (selected) {
+                var dt = new Date(selected);
+                dt.setDate(dt.getDate() - 1);
+                $("#periodFrm").datepicker("option", "maxDate", dt);
+            }
+        });
+    });
 
     $(document).ready(function () {
         $('#confirmDelete').on('show.bs.modal', function (e) {

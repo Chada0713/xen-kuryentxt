@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html"
+      layout:decorator="layout">
+<head>
+    <title>Activation Codes</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="modal fade" id="dateSelectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form class="form-horizontal" role="form" th:action="@{/reports/bill-statement}">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location='bills'">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+
+                                <div class="form-group"> <!-- Date input -->
+                                    <label class="col-sm-2 control-label" for="periodFrm">Period From:</label>
+                                    <div class="col-md-10 col-sm-10">
+                                        <input class="form-control" id="periodFrm" name="periodFrm"
+                                               placeholder="2017-01-01"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"
+                                           for="periodTo">End Date</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" id="periodTo" name="periodTo"
+                                               placeholder="2017-01-01"
+                                               type="text"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="javascript:window.location='bills'">Close</button>
+                                <button type="submit" class="btn btn-primary" id="generate">Generate</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

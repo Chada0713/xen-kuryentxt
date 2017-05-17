@@ -17,7 +17,7 @@ public class Bills {
 
     @Id
     @Column(name = "ID") private long id;
-    @Column(name = "RUN_DATE") private Date runDate;
+    @Column(name = "RUN_DATE") private String runDate;
     @Column(name = "BILL_NO") private String billNo;
     @Column(name = "OLD_ACCT_NO") private String oldAcctNo;
     @Column(name = "ID_ROUTE") private long idRoute;
@@ -48,7 +48,7 @@ public class Bills {
     public Bills() {
     }
 
-    public Bills(long id, Date runDate, String billNo, String oldAcctNo, long idRoute, String routeCode, int sequentNo, String accountName, String meterNo, String accountNo, String consumerType, int currentReading, int previousReading, int consumption, int multiplier, int coreloss, int addOnKwhTotal, int totalConsumption, Date periodFrom, Date periodTo, String billingMo, Double currentBill, Double totalAmountDue, String reader, long deviceId, Date dueDate, String remarks, String isUploaded) {
+    public Bills(long id, String runDate, String billNo, String oldAcctNo, long idRoute, String routeCode, int sequentNo, String accountName, String meterNo, String accountNo, String consumerType, int currentReading, int previousReading, int consumption, int multiplier, int coreloss, int addOnKwhTotal, int totalConsumption, Date periodFrom, Date periodTo, String billingMo, Double currentBill, Double totalAmountDue, String reader, long deviceId, Date dueDate, String remarks, String isUploaded) {
         this.id = id;
         this.runDate = runDate;
         this.billNo = billNo;
@@ -87,11 +87,11 @@ public class Bills {
         this.id = id;
     }
 
-    public Date getRunDate() {
+    public String getRunDate() {
         return runDate;
     }
 
-    public void setRunDate(Date runDate) {
+    public void setRunDate(String runDate) {
         this.runDate = runDate;
     }
 

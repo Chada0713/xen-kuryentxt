@@ -16,12 +16,16 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class BillsServiceImpl implements CRUDService<Bills>{
+public class BillsServiceImpl implements CRUDService<Bills> {
 
     @Autowired
     private BillsDao billsDao;
 
-    public List<Bills> getAllBills(){
+    public int countBills(String dateFrom, String dateTo) {
+        return billsDao.countByRunDateBetween(dateFrom, dateTo);
+    }
+
+    public List<Bills> getAllBills() {
         return billsDao.findAll();
     }
 
