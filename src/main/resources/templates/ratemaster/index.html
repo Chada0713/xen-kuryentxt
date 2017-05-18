@@ -78,11 +78,12 @@
                                 <tbody>
                                 <tr th:each="ratemasterlist : ${rateMasterLists}">
                                     <td>
-                                        <a href="#" data-th-href="@{/ratemaster/{id}/fixedcharge(id=${ratemasterlist.id})}">fixed charge</a>
+                                        <a href="#" data-th-href="@{/ratemaster/{id}/fixedcharge(id=${ratemasterlist.id})}">
+                                            fixed charge</a>
                                         &nbsp;| &nbsp;
                                         <a href="#" data-th-href="@{/ratemaster/{id}/per-kw-charge-master(id=${ratemasterlist.id})}">per kw charge</a>
                                         &nbsp;| &nbsp;
-                                        <a href="#"> <!--data-th-href="@{/rate/{id}/locality(id=${arealist.id})}"-->charge type</a>
+                                        <a href="#" data-th-href="@{/ratemaster/{id}/charge-type(id=${ratemasterlist.id})}">charge type</a>
                                     </td>
                                     <td th:text="${ratemasterlist.rateName}"></td>
                                     <td th:text="${ratemasterlist.totalFixedCharge}"></td>
@@ -98,7 +99,7 @@
                                     </td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                           th:attr="data-url='ratemaster/delete/'+${ratemasterlist.id},
+                                           th:attr="data-url='/ratemaster/delete/'+${ratemasterlist.id},
                                             data-message=${ratemasterlist.rateName}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

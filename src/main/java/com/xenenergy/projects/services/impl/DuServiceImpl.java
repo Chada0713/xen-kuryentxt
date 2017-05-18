@@ -1,4 +1,4 @@
-package com.xenenergy.projects.services;
+package com.xenenergy.projects.services.impl;
 
 import com.xenenergy.projects.dao.DuDao;
 import com.xenenergy.projects.entities.Du;

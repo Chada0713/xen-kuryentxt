@@ -2,7 +2,7 @@ package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.BillingStatementModel;
 import com.xenenergy.projects.entities.Du;
-import com.xenenergy.projects.services.DuServiceImpl;
+import com.xenenergy.projects.services.impl.DuServiceImpl;
 import com.xenenergy.projects.services.impl.BillsServiceImpl;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;

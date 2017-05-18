@@ -115,6 +115,24 @@ function changePageAndSizeAddOnKwh() {
     });
 }
 
+$(document).ready(function () {
+    changePageAndSizePerKwCharge();
+});
+function changePageAndSizePerKwCharge() {
+    $('#pageSizeSelectPerKwChargeMaster').change(function (evt) {
+        window.location.replace("/addonkwh/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeChargeType();
+});
+function changePageAndSizeChargeType() {
+    $('#pageSizeSelectChargeType').change(function (evt) {
+        window.location.replace("/charge-type/?pageSize=" + this.value + "&page=1");
+    });
+}
+
+/* #######################         pagination end            ##############################*/
 
 /* FROM Layout*/
 $(document).ready(function () {

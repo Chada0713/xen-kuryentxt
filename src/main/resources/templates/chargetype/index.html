@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>Per Kw Charge Master</title>
+    <title>Charge Type</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
                         <a th:href="@{/ratemaster}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong>Per Kw Charge Master - </strong>
+                        <strong>Charge Type - </strong>
                         <strong th:text="${rateMaster.rateName}"></strong></div>
                     <div class="panel-body">
                         <div class="row">
@@ -58,121 +58,89 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{per-kw-charge-master/add}"
+                                    <a class="btn btn-primary pull-right" th:href="@{charge-type/add}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
                                 <br/>
                             </div>
                         </div>
-                        <div th:if="!${#lists.isEmpty(perKwChargeMasterLists)}">
+                        <div th:if="!${#lists.isEmpty(chargetypelists)}">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
-                                    <th></th>
-                                    <th>Effectivity Date</th>
-                                    <th>Amount</th>
-                                    <th>Amount STL</th>
-                                    <th>Current</th>
-                                    <th>Locked</th>
+                                    <th>Print Order</th>
+                                    <th>Code</th>
+                                    <th>Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
-                                    <td>detail</td>
-                                    <td th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
-                                    <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"></td>
-                                    <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"></td>
-
+                                <tr th:each="chargetypelist : ${chargetypelists}">
+                                    <td th:text="${chargetypelist.printOrder}"></td>
+                                    <td th:text="${chargetypelist.chargeTypeCode}"></td>
+                                    <td th:text="${chargetypelist.chargeTypeName}"></td>
                                     <td>
-                                        <div th:switch="${perKwChargeMaster.isCurrent}">
-                                               <span th:case="'Y'" class="fa-stack green">
-                                                   <i class="glyphicon glyphicon-ok"></i></span>
-                                            <span th:case="*" class="fa-stack red">
-                                                   <i class="glyphicon glyphicon-remove"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div th:switch="${perKwChargeMaster.isLocked}">
-                                               <span th:case="'Y'" class="fa-stack green">
-                                                   <i class="glyphicon glyphicon-ok"></i></span>
-                                            <span th:case="*" class="fa-stack red">
-                                                   <i class="glyphicon glyphicon-remove"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
                                             <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
-                                            data-message=${perKwChargeMaster.id}">
+                                               th:attr="data-url='charge-type/delete/'+${chargetypelist.id},
+                                            data-message=${chargetypelist.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
                                             </a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <a href="#"
-                                               data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                               data-th-href="@{/ratemaster/{cid}/charge-type/edit/{id}(id=${chargetypelist.id}, cid=${chargetypelist.idRateMaster}) }">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </span>
                                             </a>
-                                        </div>
-                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
-                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
-                                            data-message=${perKwChargeMaster.id}">
-                                             <span class="fa-stack">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </span>
-                                            </a>
-                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div th:if="${#lists.isEmpty(perKwChargeMasterLists)}"
+                        <div th:if="${#lists.isEmpty(chargetypelists)}"
                              class="text-center alert alert-danger alert-dismissible" role="alert">
                             <strong>No Record Found</strong>
                         </div>
 
                         <div class="row">
-                            <div th:if="${perKwChargeMasterLists.totalPages == 0}"
+                            <div th:if="${chargetypelists.totalPages == 0}"
                                  class="text-center alert alert-danger alert-dismissible" role="alert">
                                 <strong>No Record Found!</strong>
                             </div>
-                            <div th:if="${perKwChargeMasterLists.totalPages &gt;= 1}">
+                            <div th:if="${chargetypelists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
                                     <div class="form-group col-md-1">
-                                        <select class="form-control pagination" id="pageSizeSelectPerKwChargeMaster">
+                                        <select class="form-control pagination" id="pageSizeSelectChargeType">
                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
                                                     th:value="${pageSize}"
                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>
                                         </select>
                                     </div>
                                     <ul class="pagination pull-right">
-                                        <li th:class="${perKwChargeMasterLists.number == 0} ? disabled">
+                                        <li th:class="${chargetypelists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/ratemaster/{cid}/charge-type(cid=${rateMaster.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
-                                        <li th:class="${perKwChargeMasterLists.number == 0} ? disabled">
+                                        <li th:class="${chargetypelists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.number})}">Previous</a>
+                                               th:href="@{/ratemaster/{cid}/charge-type(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${chargetypelists.number})}">Previous</a>
                                         </li>
-                                        <li th:class="${perKwChargeMasterLists.number == (page - 1)} ? 'active pointer-disabled'"
+                                        <li th:class="${chargetypelists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/ratemaster/{cid}/charge-type(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
-                                        <li th:class="${perKwChargeMasterLists.number + 1 == perKwChargeMasterLists.totalPages} ? disabled">
+                                        <li th:class="${chargetypelists.number + 1 == chargetypelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.number + 2})}">Next</a>
+                                               th:href="@{/ratemaster/{cid}/charge-type(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${chargetypelists.number + 2})}">Next</a>
                                         </li>
-                                        <li th:class="${perKwChargeMasterLists.number + 1 == perKwChargeMasterLists.totalPages} ? disabled">
+                                        <li th:class="${chargetypelists.number + 1 == chargetypelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.totalPages})}">Last</a>
+                                               th:href="@{/ratemaster/{cid}/charge-type(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${chargetypelists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>

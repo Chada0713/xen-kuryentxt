@@ -90,7 +90,7 @@
                                         </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#"
-                                           data-th-href="@{/du-area/{cid}/locality/edit/{id}(id=${locality.id}, cid=${locality.idArea}) }">
+                                           data-th-href="@{/du-area/{cid}/localityedit/{id}(id=${locality.id}, cid=${locality.idArea}) }">
                          <span class="fa-stack">
                             <i class="glyphicon glyphicon-edit"></i>
                         </span>
@@ -122,25 +122,25 @@
                                     <ul class="pagination pull-right">
                                         <li th:class="${localityLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/{cid}/locality/(cid=${duArea.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/du-area/{cid}/locality(cid=${duArea.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
                                         <li th:class="${localityLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/{cid}/locality/(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.number})}">Previous</a>
+                                               th:href="@{/du-area/{cid}/locality(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.number})}">Previous</a>
                                         </li>
                                         <li th:class="${localityLists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/{cid}/locality/(cid=${duArea.id},pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/du-area/{cid}/locality(cid=${duArea.id},pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
                                         <li th:class="${localityLists.number + 1 == localityLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/{cid}/locality/(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.number + 2})}">Next</a>
+                                               th:href="@{/du-area/{cid}/locality(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${localityLists.number + 1 == localityLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/{cid}/locality/(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.totalPages})}">Last</a>
+                                               th:href="@{/du-area/{cid}/locality(cid=${duArea.id},pageSize=${selectedPageSize}, page=${localityLists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>
