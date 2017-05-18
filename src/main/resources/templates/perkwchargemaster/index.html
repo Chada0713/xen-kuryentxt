@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{/ratemaster/{id}/perKwChargeMaster/add(id=${rateMaster.id})}"
+                                    <a class="btn btn-primary pull-right" th:href="@{per-kw-charge-master/add}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
@@ -80,10 +80,11 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
-                                    <td></td>
+                                    <td>detail</td>
                                     <td th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
                                     <td th:text="${perKwChargeMaster.totalAmount}"></td>
                                     <td th:text="${perKwChargeMaster.totalAmountStl}"></td>
+
                                     <td>
                                         <div th:switch="${perKwChargeMaster.isCurrent}">
                                                <span th:case="'Y'" class="fa-stack green">
@@ -101,20 +102,31 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                           th:attr="data-url='/ratemaster/'+${perKwChargeMaster.idRateMaster}+'/perKwChargeMaster/delete/'+${perKwChargeMaster.id},
+                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
+                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                               th:attr="data-url='/ratemaster/'+${perKwChargeMaster.idRateMaster}+'/perKwChargeMaster/delete/'+${perKwChargeMaster.id},
                                             data-message=${perKwChargeMaster.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
-                                        </a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#"
-                                           data-th-href="@{/ratemaster/{cid}/perKwChargeMaster/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
-                         <span class="fa-stack">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </span>
-                                        </a>
+                                            </a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#"
+                                               data-th-href="@{/ratemaster/{cid}/perKwChargeMaster/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </span>
+                                            </a>
+                                        </div>
+                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
+                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                               th:attr="data-url='/ratemaster/'+${perKwChargeMaster.idRateMaster}+'/perKwChargeMaster/delete/'+${perKwChargeMaster.id},
+                                            data-message=${perKwChargeMaster.id}">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>

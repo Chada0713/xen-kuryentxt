@@ -25,9 +25,9 @@ public class PerKwChargeMaster {
     @Column(name = "TOTAL_AMOUNT_STL")
     private double totalAmountStl;
     @Column(name = "IS_CURRENT")
-    private String isCurrent;
+    private String isCurrent = "N";
     @Column(name = "IS_LOCKED")
-    private String isLocked;
+    private String isLocked  = "N";
 
     public PerKwChargeMaster() {
     }

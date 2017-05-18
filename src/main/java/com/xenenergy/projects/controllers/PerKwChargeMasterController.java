@@ -1,20 +1,24 @@
 package com.xenenergy.projects.controllers;
 
+import com.xenenergy.projects.entities.Locality;
 import com.xenenergy.projects.entities.Pager;
 import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.entities.PerKwChargeMaster;
 import com.xenenergy.projects.services.impl.PerKwChargeMasterServiceImpl;
 import com.xenenergy.projects.services.impl.RateMasterServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -49,5 +53,28 @@ public class PerKwChargeMasterController {
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
+    }
+
+    @GetMapping("/{cid}/per-kw-charge-master/add")
+    public String addForm(Model model, @PathVariable("cid") long cid) {
+        model.addAttribute("ratemaster", rateMasterService.getById(cid));
+        model.addAttribute("perkwchargemaster", new PerKwChargeMaster());
+        return "perkwchargemaster/add";
+    }
+
+    @PostMapping("/{cid}/per-kw-charge-master/create")
+    public String save(@PathVariable("cid") long cid, PerKwChargeMaster perKwChargeMaster, final RedirectAttributes redirectAttributes) {
+        if (perKwChargeMasterService.insert(perKwChargeMaster) != null) {
+            redirectAttributes.addFlashAttribute("save", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("save", "unsuccess");
+        }
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 }
