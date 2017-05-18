@@ -66,16 +66,24 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
+                                    <th></th>
                                     <th>Rate name</th>
-                                    <th>Total Fixed Charge</th>
-                                    <th>Total Per KW Charge</th>
-                                    <th>Total Per KW Charge STL</th>
+                                    <th>Fixed Charge</th>
+                                    <th>Per KW Charge</th>
+                                    <th>Per KW Charge STL</th>
                                     <th>STL</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="ratemasterlist : ${rateMasterLists}">
+                                    <td>
+                                        <a href="#"> <!--data-th-href="@{/rate/{id}/locality(id=${arealist.id})}"-->fixed charge</a>
+                                        &nbsp;| &nbsp;
+                                        <a href="#"> <!--data-th-href="@{/rate/{id}/locality(id=${arealist.id})}"-->per kw charge</a>
+                                        &nbsp;| &nbsp;
+                                        <a href="#"> <!--data-th-href="@{/rate/{id}/locality(id=${arealist.id})}"-->charge type</a>
+                                    </td>
                                     <td th:text="${ratemasterlist.rateName}"></td>
                                     <td th:text="${ratemasterlist.totalFixedCharge}"></td>
                                     <td th:text="${ratemasterlist.totalPerKwCharge}"></td>
@@ -155,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
