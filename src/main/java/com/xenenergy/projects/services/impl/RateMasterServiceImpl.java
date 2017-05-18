@@ -22,6 +22,10 @@ public class RateMasterServiceImpl implements CRUDService<RateMaster> {
         return rateMasterDao.findAllByOrderByIdDesc(pageable);
     }
 
+    public Page<RateMaster> findAllWithFixCharge(Pageable pageable){
+        return rateMasterDao.findAll(pageable);
+    }
+
     @Override
     public RateMaster getById(long id) {
         return rateMasterDao.findOne(id);

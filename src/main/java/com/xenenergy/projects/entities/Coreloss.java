@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by xesi on 16/05/2017.
@@ -16,7 +17,7 @@ public class Coreloss {
     @Column(name = "ID")
     private long id;
     @Column(name = "SERVICE_PERIOD_END")
-    private String service_Period_End;
+    private Date service_Period_End;
     @Column(name = "ACCOUNT_NO")
     private String account_No;
     @Column(name = "CORELOSSKWH")
@@ -27,7 +28,7 @@ public class Coreloss {
     public Coreloss() {
     }
 
-    public Coreloss(long id, String service_Period_End, String account_No, int corelossKwh, long corelossLimitKwh) {
+    public Coreloss(long id, Date service_Period_End, String account_No, int corelossKwh, long corelossLimitKwh) {
         this.id = id;
         this.service_Period_End = service_Period_End;
         this.account_No = account_No;
@@ -43,11 +44,11 @@ public class Coreloss {
         this.id = id;
     }
 
-    public String getService_Period_End() {
+    public Date getService_Period_End() {
         return service_Period_End;
     }
 
-    public void setService_Period_End(String service_Period_End) {
+    public void setService_Period_End(Date service_Period_End) {
         this.service_Period_End = service_Period_End;
     }
 

@@ -66,7 +66,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="corelosslist : ${coreLossLists}">
-                                    <td th:text="${corelosslist.service_Period_End}"></td>
+                                    <td th:text="${#dates.format(corelosslist.service_Period_End, 'yyyy-MM-dd')}"></td>
                                     <td th:text="${corelosslist.account_No}"></td>
                                     <td th:text="${corelosslist.corelossKwh}"></td>
                                     <td th:text="${corelosslist.corelossLimitKwh}"></td>

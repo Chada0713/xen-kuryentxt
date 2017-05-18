@@ -30,7 +30,7 @@ $(document).ready( function () {
         responsive: true,
         "order": [[ 0, "asc" ]],
         "aoColumns": [
-            { "mData": "runDate", "sType": 'date' },
+            { "mData": "runDate" },
             { "mData": "billNo" },
             { "mData": "oldAcctNo" },
             { "mData": "accountName" },
