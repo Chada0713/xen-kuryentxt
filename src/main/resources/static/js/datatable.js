@@ -3,7 +3,7 @@
  */
 $(document).ready( function () {
     var table = $('#accountsTable').DataTable({
-        "sAjaxSource": "/api/accounts",
+        "sAjaxSource": "api/accounts",
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],
@@ -25,7 +25,7 @@ $(document).ready( function () {
 /*Bills Report Table*/
 $(document).ready( function () {
     var table = $('#billsTable').DataTable({
-        "sAjaxSource": "/api/bills",
+        "sAjaxSource": "api/bills",
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],

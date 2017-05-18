@@ -13,36 +13,36 @@
                  aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">Select Billing Period</h4>
+                        </div>
                         <form class="form-horizontal" role="form" th:action="@{/reports/bill-statement}">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="javascript:window.location='bills'">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
                             <!-- Modal Body -->
                             <div class="modal-body">
-
-                                <div class="form-group"> <!-- Date input -->
-                                    <label class="col-sm-2 control-label" for="periodFrm">Period From:</label>
-                                    <div class="col-md-10 col-sm-10">
-                                        <input class="form-control" id="periodFrm" name="periodFrm"
-                                               placeholder="2017-01-01"
-                                               type="text"/>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"
+                                           for="periodFrm">Start Date</label>
+                                    <div class="col-md-9 col-sm-9 inner-addon right-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                        <input type="text" class="form-control" id="periodFrm" name="periodFrm"
+                                               placeholder="2017-01-01"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"
-                                           for="periodTo">End Date</label>
-                                    <div class="col-sm-10">
-                                        <input class="form-control" id="periodTo" name="periodTo"
-                                               placeholder="2017-01-01"
-                                               type="text"/>
+                                    <label class="col-sm-3 control-label"
+                                           for="periodTo">Start Date</label>
+                                    <div class="col-md-9 col-sm-9 inner-addon right-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                        <input type="text" class="form-control" id="periodTo" name="periodTo"
+                                               placeholder="2017-01-01"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="javascript:window.location='bills'">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        onclick="javascript:window.location='bills'">Close
+                                </button>
                                 <button type="submit" class="btn btn-primary" id="generate">Generate</button>
                             </div>
                         </form>

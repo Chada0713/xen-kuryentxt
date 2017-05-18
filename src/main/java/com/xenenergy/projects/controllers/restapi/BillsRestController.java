@@ -14,7 +14,7 @@ import java.util.List;
  * Created by xesi on 17/05/2017.
  */
 @RestController
-@RequestMapping("api/bills")
+@RequestMapping("/api/bills")
 public class BillsRestController {
 
     @Autowired
