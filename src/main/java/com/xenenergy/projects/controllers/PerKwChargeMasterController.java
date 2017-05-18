@@ -72,6 +72,40 @@ public class PerKwChargeMasterController {
         return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
     }
 
+    @GetMapping("/{cid}/per-kw-charge-master/{operation}/{id}")
+    public String editDeleteForm(@PathVariable("cid") long cid, @PathVariable("id") long id,
+                                 @PathVariable("operation") String operation,
+                                 Model model, final RedirectAttributes redirectAttributes) {
+        if (operation.equals("delete")) {
+            if (perKwChargeMasterService.deleteById(id)) {
+                redirectAttributes.addFlashAttribute("delete", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("delete", "unsuccess");
+            }
+        } else if (operation.equals("edit")) {
+            if (perKwChargeMasterService.getById(id) != null) {
+                model.addAttribute("ratemaster", rateMasterService.getById(cid));
+                model.addAttribute("perkwchargemaster", perKwChargeMasterService.getById(id));
+                return "perkwchargemaster/edit";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        }
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
+    }
+
+    @PostMapping("/{cid}/per-kw-charge-master/update")
+    public String update(@PathVariable("cid") long cid, @ModelAttribute("duArea") PerKwChargeMaster perKwChargeMaster,
+                         final RedirectAttributes redirectAttributes) {
+        if (perKwChargeMasterService.update(perKwChargeMaster) != null) {
+            redirectAttributes.addFlashAttribute("edit", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("edit", "unsuccess");
+        }
+
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
+    }
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

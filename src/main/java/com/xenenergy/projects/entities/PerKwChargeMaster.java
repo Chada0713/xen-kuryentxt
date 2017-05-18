@@ -1,9 +1,8 @@
 package com.xenenergy.projects.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.format.annotation.NumberFormat;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -21,9 +20,11 @@ public class PerKwChargeMaster {
     @Column(name = "EFFECTIVITY_DATE")
     private Date effectivityDate;
     @Column(name = "TOTAL_AMOUNT")
-    private double totalAmount;
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double totalAmount = 0.0000;
     @Column(name = "TOTAL_AMOUNT_STL")
-    private double totalAmountStl;
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double totalAmountStl = 0.0000;;
     @Column(name = "IS_CURRENT")
     private String isCurrent = "N";
     @Column(name = "IS_LOCKED")
