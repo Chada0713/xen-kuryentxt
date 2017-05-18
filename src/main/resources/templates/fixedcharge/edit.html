@@ -1,0 +1,75 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Fixed Charge</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/ratemaster/__${rateMaster.id}__/fixedcharge}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Fixed Charged - Edit</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Updated.
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" method="post" th:object="${fixedcharge}"
+                                      th:action="@{/ratemaster/__${rateMaster.id}__/fixedcharge/update}"
+                                      role="form" name="properties_form"
+                                      id="properties_form">
+
+                                    <input type="hidden" class="form-control" id="inputId" name="inputId"
+                                           th:field="*{id}"/>
+                                    <input type="hidden" class="form-control" id="inputId" name="inputId"
+                                           th:field="*{idRateMaster}"/>
+                                    <div class="form-group">
+                                        <label for="datepick" class="col-sm-3 control-label">Effectivity Date</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control"
+                                                   th:field="*{effectivityDate}"
+                                                   id="datepick" placeholder="Effectivity Date"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="totalAmount" class="col-sm-3 control-label">Amount</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control text-right"
+                                                   th:field="*{totalAmount}"
+                                                   id="totalAmount" placeholder="Amount" readonly="readonly"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success pull-right">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>Locality</title>
+    <title>Rate Master</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -11,24 +11,22 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
-                        <a th:href="@{/ratemaster/__${ratemaster.id}__/per-kw-charge-master}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong>Per Kw Charge Master - Add</strong>
+                        <a th:href="@{/ratemaster/__${rateMaster.id}__/fixedcharge}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Fixed Charge - Add</strong>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <form class="form-horizontal" th:object="${perkwchargemaster}"
-                                      th:action="@{/ratemaster/__${ratemaster.id}__/per-kw-charge-master/create}"
+                                <form class="form-horizontal" th:object="${fixedCharge}"
+                                      th:action="@{/ratemaster/__${rateMaster.id}__/fixedcharge/create}"
                                       method="post">
 
                                     <input type="hidden" class="form-control"
-                                           th:value="${ratemaster.id}" id="idArea" name="idRateMaster"
-                                           placeholder="Id Rate Master"
+                                           th:value="${rateMaster.id}" id="idRateMaster" name="idRateMaster"
                                     />
 
                                     <div class="form-group">
-                                        <label for="datepick" class="col-sm-3 control-label">Effectivity
-                                            Date</label>
+                                        <label for="datepick" class="col-sm-3 control-label">Effectivity Date</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                             <input type="text" class="form-control" th:value="${effectivityDate}"
                                                    id="datepick" name="effectivityDate"
