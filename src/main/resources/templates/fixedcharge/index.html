@@ -79,7 +79,9 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="fixedchargelist : ${fixedchargeList}">
-                                    <td><a href="#">details</a></td>
+                                    <td><a href="#" data-th-href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail(cid=${rateMaster.id}, rid=${fixedchargelist.id})}">
+                                        details</a>
+                                    </td>
                                     <td th:text="${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')}"></td>
                                     <td th:text="${fixedchargelist.totalAmount}"></td>
                                     <td>
@@ -141,7 +143,7 @@
                             <div th:if="${fixedchargeList.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
                                     <div class="form-group col-md-1">
-                                        <select class="form-control pagination" id="pageSizeFixedCharged">
+                                        <select class="form-control pagination" id="pageSizeFixedCharge">
                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
                                                     th:value="${pageSize}"
                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>

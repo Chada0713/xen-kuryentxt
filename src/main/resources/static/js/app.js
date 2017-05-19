@@ -71,7 +71,7 @@ $(document).ready(function () {
 });
 function changePageAndSizeRateMaster() {
     $('#pageSizeRateMaster').change(function (evt) {
-        window.location.replace("/ratemaster/?pageSize=" + this.value + "&page=1");
+        window.location.replace("ratemaster/?pageSize=" + this.value + "&page=1");
     });
 }
 $(document).ready(function () {
@@ -79,7 +79,7 @@ $(document).ready(function () {
 });
 function changePageAndSizeCoreLoss() {
     $('#pageSizecoreloss').change(function (evt) {
-        window.location.replace("/coreloss/?pageSize=" + this.value + "&page=1");
+        window.location.replace("coreloss/?pageSize=" + this.value + "&page=1");
     });
 }
 $(document).ready(function () {
@@ -129,6 +129,22 @@ $(document).ready(function () {
 function changePageAndSizeChargeType() {
     $('#pageSizeSelectChargeType').change(function (evt) {
         window.location.replace("/charge-type/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeFixedCharge();
+});
+function changePageAndSizeFixedCharge() {
+    $('#pageSizeFixedCharge').change(function (evt) {
+        window.location.replace("fixedcharge/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
+    changePageAndSizeFixedChargeDetail();
+});
+function changePageAndSizeFixedChargeDetail() {
+    $('#pageSizeFixedChargeDetail').change(function (evt) {
+        window.location.replace("fixedchargedetails/?pageSize=" + this.value + "&page=1");
     });
 }
 
