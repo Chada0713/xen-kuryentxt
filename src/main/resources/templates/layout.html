@@ -3,11 +3,11 @@
 <head>
     <!--  Each token will be replaced by their respective titles in the resulting page. -->
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Kuryentxt</title>
-    <link th:replace="/fragments/styles"/>
+    <object th:replace="styles :: styles"></object>
 </head>
 <body>
 
-<div th:replace="/fragments/header"></div>
+<div th:replace="header :: navigator"></div>
 <div class="container">
     <div layout:fragment="content">
 
@@ -33,9 +33,7 @@
     <div id="push"></div>
 </div>
 <div class="clearboth"><br/></div>
-<div th:replace="/fragments/footer"></div>
-
-<div th:replace="/fragments/js"></div>
-
+<div th:replace="footer :: footer"></div>
+<div th:replace="js :: js"></div>
 </body>
 </html>
