@@ -63,8 +63,11 @@ public class FixedChargeDetailController {
     }
 
     @GetMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/{operation}/{id}")
-    public String editDeleteForm(@PathVariable("cid") long cid, @PathVariable("rid") long rid, @PathVariable("id") long id,
-                                 @PathVariable("operation") String operation, Model model, final RedirectAttributes redirectAttributes){
+    public String editDeleteForm(@PathVariable("cid") long cid,
+                                 @PathVariable("rid") long rid,
+                                 @PathVariable("id") long id,
+                                 @PathVariable("operation") String operation,
+                                 Model model, final RedirectAttributes redirectAttributes){
         if(operation.equals("delete")){
             if(fixedChargeDetailService.deleteById(id)){
                 redirectAttributes.addFlashAttribute("delete", "success");

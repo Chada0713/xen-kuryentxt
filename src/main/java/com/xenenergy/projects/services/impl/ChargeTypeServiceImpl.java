@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xenuser on 5/18/2017.
  */
@@ -23,6 +25,9 @@ public class ChargeTypeServiceImpl implements CRUDService<ChargeType> {
         return chargeTypeDao.findByIdRateMasterOrderByIdRateMasterAscPrintOrderAsc(idRateMaster, pageable);
     }
 
+    public List<ChargeType> getChargeTypeById(long id){
+        return chargeTypeDao.findByIdRateMaster(id);
+    }
     @Override
     public Page<ChargeType> findAllPageable(Pageable pageable) {
         return chargeTypeDao.findAll(pageable);

@@ -80,7 +80,10 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
-                                    <td>detail</td>
+                                    <td> <a href="#"
+                                            data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/{id}/details(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                            details
+                                    </a></td>
                                     <td th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
                                     <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"></td>
                                     <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"></td>
