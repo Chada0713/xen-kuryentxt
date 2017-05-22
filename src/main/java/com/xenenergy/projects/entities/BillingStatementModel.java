@@ -13,6 +13,24 @@ public class BillingStatementModel {
     private String description;
     private String totalBill;
     private String curDate;
+    private String logoPath;
+    private String signatoryPath;
+
+    public String getLogoPath() {
+        return logoPath;
+    }
+
+    public void setLogoPath(String logoPath) {
+        this.logoPath = logoPath;
+    }
+
+    public String getSignatoryPath() {
+        return signatoryPath;
+    }
+
+    public void setSignatoryPath(String signatoryPath) {
+        this.signatoryPath = signatoryPath;
+    }
 
     public String getCurDate() {
         return curDate;

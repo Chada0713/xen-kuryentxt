@@ -1,9 +1,13 @@
 package com.xenenergy.projects.entities;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "arm_mm_app_id")
@@ -18,6 +22,9 @@ public class ActivationCode {
     private String activationCode;
     @Column(name = "ASSIGNED_TO")
     private String assignedTo;
+
+    @NotNull
+    @Size(min = 4, max = 12)
     @Column(name = "MASTER_KEY")
     private String masterKey;
     @Column(name = "IS_ACTIVE")

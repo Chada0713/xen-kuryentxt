@@ -27,10 +27,31 @@ public class PerKwChargeDetailServiceImpl implements CRUDService<PerKwChargeDeta
     }
 
     public int getMaxPrintOrder(long id) {
-        return perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id);
+        int maxPrintOrder = 0;
+        try {
+            if (perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id) == null) {
+                maxPrintOrder = 0;
+            } else {
+                maxPrintOrder = perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return maxPrintOrder;
     }
+
     public double findSumOfTotalAmount(long id) {
-        return perKwChargeDetailDao.findSumOfTotalAmount(id);
+        double totalAmt = 0.0000;
+        try {
+            if (perKwChargeDetailDao.findSumOfTotalAmount(id) == null) {
+                totalAmt = 0.0000;
+            } else {
+                totalAmt = perKwChargeDetailDao.findSumOfTotalAmount(id);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return totalAmt;
     }
 
     @Override

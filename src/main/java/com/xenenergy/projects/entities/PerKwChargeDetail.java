@@ -23,7 +23,7 @@ public class PerKwChargeDetail {
     @Column(name = "PER_KW_RATE_LONG_NAME")
     private String perKwRateLongName;
     @Column(name = "PRINT_ORDER")
-    private int printOrder;
+    private int printOrder = 0;
     @Column(name = "AMOUNT")
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private double amount = 0.0000;

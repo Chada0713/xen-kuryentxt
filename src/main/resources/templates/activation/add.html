@@ -11,7 +11,11 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Activation Codes - Add </strong></div>
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/activation-code}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Activation Codes - Add </strong>
+                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -24,9 +28,11 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <form class="form-horizontal" th:object="${activationCode}"
+                                <form class="form-horizontal" th:object="${activationCodeObj}"
+                                      action="#"
                                       th:action="@{/activation-code/create}"
                                       method="post">
+                                    <div th:if="${#fields.hasErrors('*')}">errors</div>
                                     <div class="form-group">
                                         <label for="activationCode"
                                                class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">Activation
@@ -47,7 +53,7 @@
                                         <label for="idRdm"
                                                class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">RDM</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <select class="form-control" th:field="*{idRdm}" id="idRdm">
+                                            <select class="form-control" th:field="*{idRdm}" id="idRdm" th:required="required">
                                                 <option th:each="rdm: ${rdmlists}"
                                                         th:value="${rdm.id}"
                                                         th:text="${rdm.rdmName}"
@@ -75,12 +81,12 @@
                                             <input type="text" class="form-control" id="masterKey" name="masterKey"
                                                    th:field="*{masterKey}"
                                                    placeholder="Master Key"/>
+                                            <p th:if="${#fields.hasErrors('masterKey')}" th:errors="*{masterKey}">Incorrect date</p>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-offset-3 col-sm-9">
+                                    <div class="form-group pull-right">
+                                        <div class="col-sm-10">
                                             <button type="submit" class="btn btn-success">Save</button>
-                                            <a href="/activation-code" class="btn btn-primary pull-right">Back</a>
                                         </div>
                                     </div>
                                 </form>

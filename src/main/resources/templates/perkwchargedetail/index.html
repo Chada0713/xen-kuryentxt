@@ -139,7 +139,7 @@
                                     <td><strong>Total</strong></td>
                                     <td colspan="6"></td>
                                     <td>
-                                        <div class="text-right">
+                                        <div class="text-right" th:if="${totalamount &gt; 0}">
                                             <strong th:text="${#numbers.formatDecimal(totalamount, 1, 4)}"></strong>
                                         </div>
                                     </td>

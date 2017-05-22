@@ -83,6 +83,8 @@ public class BillingStatementController {
         String finalAmount = formatter.format(totalbills);
         statementModel.setTotalBill(finalAmount);
         statementModel.setDescription("Reading from " + periodFrm + " to " + periodTo);
+        statementModel.setLogoPath("static/images/xesi_logo.png");
+        statementModel.setSignatoryPath("static/images/signatory.png");
         statementModels.add(statementModel);
         try {
             Map<String, Object> params = new HashMap<String, Object>();

@@ -10,7 +10,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Cut-off Master</strong></div>
+                    <div class="panel-heading text-center panel-relative"><strong>Cut-off Master</strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -83,7 +83,7 @@
                                     <td th:text="${cutoffmaster.cutoffDay}"></td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                           th:attr="data-url='/cut-off/delete/'+${cutoffmaster.id},
+                                           th:attr="data-url='cut-off/delete/'+${cutoffmaster.id},
                                             data-message=${cutoffmaster.cutoffName}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

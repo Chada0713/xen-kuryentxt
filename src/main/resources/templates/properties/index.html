@@ -11,7 +11,7 @@
 
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><strong>DU Properties</strong></div>
+                    <div class="panel-heading text-center panel-relative"><strong>DU Properties</strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -81,7 +81,7 @@
                                     <td th:text="${propertylist.propertyValue}"></td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                           th:attr="data-url='/properties/delete/'+${propertylist.id},
+                                           th:attr="data-url='properties/delete/'+${propertylist.id},
                                             data-message=${propertylist.propertyName}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

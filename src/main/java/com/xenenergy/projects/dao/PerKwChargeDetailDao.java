@@ -17,8 +17,8 @@ public interface PerKwChargeDetailDao extends JpaRepository<PerKwChargeDetail, L
     List<PerKwChargeDetail> findByIdMasterOrderByPrintOrderAsc(long idMaster);
 
     @Query("select max(printOrder) from PerKwChargeDetail where idMaster = ?1")
-    int findTopByPrintOrderOrderByPrintOrderDesc(long id);
+    Integer findTopByPrintOrderOrderByPrintOrderDesc(long id);
 
     @Query("select sum(totalAmt) from PerKwChargeDetail where idMaster = ?1")
-    double findSumOfTotalAmount(long id);
+    Double findSumOfTotalAmount(long id);
 }
