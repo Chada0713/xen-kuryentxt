@@ -53,7 +53,7 @@
                                         <label for="idRdm"
                                                class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">RDM</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <select class="form-control" th:field="*{idRdm}" id="idRdm" th:required="required">
+                                            <select class="form-control" th:field="*{idRdm}" id="idRdm">
                                                 <option th:each="rdm: ${rdmlists}"
                                                         th:value="${rdm.id}"
                                                         th:text="${rdm.rdmName}"
