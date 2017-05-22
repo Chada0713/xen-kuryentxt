@@ -16,7 +16,7 @@ public class LifeLine {
     @Column(name = "EFFECTIVITY_DATE")
     private Date effectivity_Date;
     @Column(name = "IS_CURRENT")
-    private String is_Current;
+    private String is_Current = "N";
 
     public LifeLine() {
     }

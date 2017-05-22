@@ -83,7 +83,7 @@
                                         details</a>
                                     </td>
                                     <td th:text="${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')}"></td>
-                                    <td th:text="${fixedchargelist.totalAmount}"></td>
+                                    <td th:text="${#numbers.formatDecimal(fixedchargelist.totalAmount, 1, 4)}"></td>
                                     <td>
                                         <div th:switch="${fixedchargelist.isCurrent}">
                                                <span th:case="'Y'" class="fa-stack green">
@@ -118,7 +118,7 @@
                                         </div>
                                         <div th:if="${fixedchargelist.isCurrent != 'Y' and fixedchargelist.isLocked == 'Y'}">
                                             <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='/ratemaster/'+fixedchargelist.idRateMaster+'/fixedcharge/delete/'+${fixedchargelist.id},
+                                               th:attr="data-url='ratemaster/'+fixedchargelist.idRateMaster+'/fixedcharge/delete/'+${fixedchargelist.id},
                                             data-message=${fixedchargelist.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

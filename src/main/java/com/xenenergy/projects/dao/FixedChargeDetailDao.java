@@ -16,11 +16,11 @@ import java.util.List;
  */
 @Repository
 public interface FixedChargeDetailDao extends JpaRepository<FixedChargeDetail, Long> {
-    List<FixedChargeDetail> findByIdMasterOrderByPrintOrderDesc(long idMaster);
+    List<FixedChargeDetail> findByIdMasterOrderByPrintOrder(long idMaster);
 
     @Query("select max(printOrder) from FixedChargeDetail where idMaster = ?1")
-    int findTopByPrintOrderOrderByPrintOrderDesc(long id);
+    Integer findTopByPrintOrderOrderByPrintOrderDesc(long id);
 
     @Query("select sum(amount) from FixedChargeDetail where idMaster = ?1")
-    double findSumOfAmount(long id);
+    Double findSumOfAmount(long id);
 }

@@ -1,5 +1,7 @@
 package com.xenenergy.projects.entities;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +23,7 @@ public class FixedChargeMaster {
     @Column(name = "EFFECTIVITY_DATE")
     private Date effectivityDate;
     @Column(name = "TOTAL_AMOUNT")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private Double totalAmount = 0.0000;
     @Column(name = "IS_CURRENT")
     private String isCurrent = "N";

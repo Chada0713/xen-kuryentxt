@@ -10,7 +10,9 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading"><strong>Senior Citizen</strong></div>
+                    <div class="panel-heading text-center panel-relative">
+                        <strong>Senior Citizen</strong>
+                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -75,7 +77,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="seniorCitizenList : ${seniorCitizenLists}">
-                                    <td th:text="${#dates.format(seniorCitizenList.effectivity_Date, 'MMMM dd, yyyy')}"></td>
+                                    <td th:text="${#dates.format(seniorCitizenList.effectivity_Date, 'yyyy-MM-dd')}"></td>
                                     <td th:text="${seniorCitizenList.rate}"></td>
                                     <td th:text="${seniorCitizenList.kw_Limit}"></td>
                                     <td>
@@ -88,7 +90,7 @@
                                     </td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                           th:attr="data-url='/seniorcitizen/delete/'+${seniorCitizenList.id},
+                                           th:attr="data-url='seniorcitizen/delete/'+${seniorCitizenList.id},
                                             data-message=${#dates.format(seniorCitizenList.effectivity_Date, 'MMMM dd, yyyy')}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

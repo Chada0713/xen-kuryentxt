@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class FixedChargeDetailServiceImpl implements CRUDService<FixedChargeDetail>{
+public class FixedChargeDetailServiceImpl implements CRUDService<FixedChargeDetail> {
 
     @Autowired
     private FixedChargeDetailDao fixedChargeDetailDao;
@@ -48,15 +48,35 @@ public class FixedChargeDetailServiceImpl implements CRUDService<FixedChargeDeta
         return fixedChargeDetailDao.save(fixedChargeDetail);
     }
 
-    public List<FixedChargeDetail> findAllByIdFixedChargeDetail(long idMaster){
-        return fixedChargeDetailDao.findByIdMasterOrderByPrintOrderDesc(idMaster);
+    public List<FixedChargeDetail> findAllByIdFixedChargeDetail(long idMaster) {
+        return fixedChargeDetailDao.findByIdMasterOrderByPrintOrder(idMaster);
     }
 
-    public int findTopByPrintOrderOrderByPrintOrderDesc(long idMaster){
-        return fixedChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(idMaster);
+    public int findTopByPrintOrderOrderByPrintOrderDesc(long idMaster) {
+        int printOrder = 0;
+        try {
+            if (fixedChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(idMaster) == null) {
+                printOrder = 0;
+            } else {
+                printOrder = fixedChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(idMaster);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return printOrder;
     }
 
-    public double findSumOfAmount(long idMaster){
-        return fixedChargeDetailDao.findSumOfAmount(idMaster);
+    public double findSumOfAmount(long idMaster) {
+        double sumOfAmount = 0.0000;
+        try {
+            if (fixedChargeDetailDao.findSumOfAmount(idMaster) == null) {
+                sumOfAmount = 0.0000;
+            } else {
+                sumOfAmount = fixedChargeDetailDao.findSumOfAmount(idMaster);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return sumOfAmount;
     }
 }

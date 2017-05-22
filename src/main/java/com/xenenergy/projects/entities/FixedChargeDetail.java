@@ -1,5 +1,7 @@
 package com.xenenergy.projects.entities;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ public class FixedChargeDetail {
     @Column(name = "FIX_CHARGE_NAME")
     private String fixChargeName;
     @Column(name = "PRINT_ORDER")
-    private int printOrder;
+    private int printOrder = 0;
     @Column(name = "AMOUNT")
     private Double amount = 0.0000;
     @Column(name = "VAT_RATE")
@@ -30,6 +32,7 @@ public class FixedChargeDetail {
     @Column(name = "SC_DISCOUNT_RATE")
     private Double scDiscountRate = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private Double totalAmount = 0.0000;
     @Column(name = "IS_SUB_TO_VAT")
     private String isSubToVat = "N";

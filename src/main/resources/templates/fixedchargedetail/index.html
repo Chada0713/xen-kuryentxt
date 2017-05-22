@@ -11,9 +11,11 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
-                        <a th:href="@{/ratemaster/__${fixedChargeMaster.idRateMaster}__/fixedcharge}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <a th:href="@{/ratemaster/__${fixedChargeMaster.idRateMaster}__/fixedcharge}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
                         <strong>Fixed Charge Detail - </strong>
-                        <strong th:text="${#dates.format(fixedChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></strong></div>
+                        <strong th:text="${#dates.format(fixedChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></strong>
+                    </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -58,7 +60,8 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail/add(cid=${fixedChargeMaster.idRateMaster}, rid=${fixedChargeMaster.id})}"
+                                    <a class="btn btn-primary pull-right"
+                                       th:href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail/add(cid=${fixedChargeMaster.idRateMaster}, rid=${fixedChargeMaster.id})}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
@@ -69,10 +72,10 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
-                                    <th>
-                                        <div class="text-left">Rate Name</div>
-                                    </th>
                                     <th>Print Order</th>
+                                    <th>
+                                        <div class="text-left">Fixed Charge Name</div>
+                                    </th>
                                     <th>
                                         <div class="text-right">Amount</div>
                                     </th>
@@ -93,12 +96,12 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="fixedChargeDetailList : ${fixedChargeDetailLists}">
+                                    <td th:text="${fixedChargeDetailList.printOrder}"></td>
                                     <td>
                                         <div class="text-left" th:text="${fixedChargeDetailList.fixChargeName}"></div>
                                     </td>
-                                    <td th:text="${fixedChargeDetailList.printOrder}"></td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeDetailList.amount}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeDetailList.amount, 1, 4)}"></div>
                                     </td>
                                     <td>
                                         <div class="text-right" th:text="${fixedChargeDetailList.vatRate}"></div>
@@ -107,10 +110,10 @@
                                         <div class="text-right" th:text="${fixedChargeDetailList.scDiscountRate}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeDetailList.vatAmt}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeDetailList.vatAmt, 1, 4)}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeDetailList.totalAmount}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeDetailList.totalAmount, 1, 4)}"></div>
                                     </td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
@@ -133,7 +136,7 @@
                                     <td><strong>Total</strong></td>
                                     <td colspan="4"></td>
                                     <td>
-                                        <div class="text-right" >
+                                        <div class="text-right">
                                             <strong th:text="${#numbers.formatDecimal(sumOfAmount, 1, 4)}"></strong>
                                         </div>
                                     </td>
@@ -149,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
