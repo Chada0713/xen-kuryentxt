@@ -2,6 +2,7 @@ package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.CutoffMaster;
 import com.xenenergy.projects.entities.Pager;
+import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.services.impl.CutoffMasterServiceImpl;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("cut-off")
 public class CutoffMasterController {
-    private static final int BUTTONS_TO_SHOW = 5;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 10;
-    private static final int[] PAGE_SIZES = {10, 20, 50, 100};
+    private PaginationProperty property = new PaginationProperty();
 
     @Autowired
     CutoffMasterServiceImpl cutoffMasterService;
@@ -32,15 +30,15 @@ public class CutoffMasterController {
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("cutoff/index");
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
         Page<CutoffMaster> cutoffMasterList = cutoffMasterService.findAllPageable(new PageRequest(evalPage, evalPageSize));
-        Pager pager = new Pager(cutoffMasterList.getTotalPages(), cutoffMasterList.getNumber(), BUTTONS_TO_SHOW);
+        Pager pager = new Pager(cutoffMasterList.getTotalPages(), cutoffMasterList.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("cutoffmasterlist", cutoffMasterList);
         modelAndView.addObject("selectedPageSize", evalPageSize);
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }

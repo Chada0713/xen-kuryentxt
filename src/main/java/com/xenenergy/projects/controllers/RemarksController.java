@@ -1,6 +1,7 @@
 package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.Pager;
+import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.entities.Remarks;
 import com.xenenergy.projects.services.impl.RemarksServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/remarks")
 public class RemarksController {
-    private static final int BUTTONS_TO_SHOW = 5;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 10;
-    private static final int[] PAGE_SIZES = {10, 20, 50, 100};
+
+    private PaginationProperty property = new PaginationProperty();
 
     @Autowired
     RemarksServiceImpl remarksService;
@@ -32,15 +31,15 @@ public class RemarksController {
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("remarks/index");
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
         Page<Remarks> remarkslist = remarksService.findAllPageable(new PageRequest(evalPage, evalPageSize));
-        Pager pager = new Pager(remarkslist.getTotalPages(), remarkslist.getNumber(), BUTTONS_TO_SHOW);
+        Pager pager = new Pager(remarkslist.getTotalPages(), remarkslist.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("remarkslists", remarkslist);
         modelAndView.addObject("selectedPageSize", evalPageSize);
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }

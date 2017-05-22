@@ -58,7 +58,8 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{/du-area/{id}/locality/add(id=${duArea.id})}"
+                                    <a class="btn btn-primary pull-right"
+                                       th:href="@{/du-area/{id}/locality/add(id=${duArea.id})}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
@@ -112,13 +113,7 @@
                             </div>
                             <div th:if="${localityLists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
-                                    <div class="form-group col-md-1">
-                                        <select class="form-control pagination" id="pageSizeSelectLocality">
-                                            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                                                    th:value="${pageSize}"
-                                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
-                                        </select>
-                                    </div>
+
                                     <ul class="pagination pull-right">
                                         <li th:class="${localityLists.number == 0} ? disabled">
                                             <a class="pageLink"

@@ -2,6 +2,7 @@ package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.Locality;
 import com.xenenergy.projects.entities.Pager;
+import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.services.impl.DuAreaServiceImpl;
 import com.xenenergy.projects.services.impl.LocalityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,7 @@ import java.util.Optional;
 @RequestMapping("/du-area")
 public class LocalityController {
 
-    private static final int BUTTONS_TO_SHOW = 5;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 10;
-    private static final int[] PAGE_SIZES = {10, 20, 50, 100};
+    private PaginationProperty property = new PaginationProperty();
 
     @Autowired
     private LocalityServiceImpl localityService;
@@ -37,17 +35,17 @@ public class LocalityController {
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("locality/index");
-        int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
-        int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get() - 1;
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
         Page<Locality> localityList = localityService.findAllByIdArea(cid,
                 new PageRequest(evalPage, evalPageSize));
-        Pager pager = new Pager(localityList.getTotalPages(), localityList.getNumber(), BUTTONS_TO_SHOW);
+        Pager pager = new Pager(localityList.getTotalPages(), localityList.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("localityLists", localityList);
         modelAndView.addObject("duArea", duAreaService.getById(cid));
         modelAndView.addObject("selectedPageSize", evalPageSize);
-        modelAndView.addObject("pageSizes", PAGE_SIZES);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }

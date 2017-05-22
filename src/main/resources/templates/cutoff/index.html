@@ -111,13 +111,6 @@
                             </div>
                             <div th:if="${cutoffmasterlist.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
-                                    <div class="form-group col-md-1">
-                                        <select class="form-control pagination" id="pageSizeSelect">
-                                            <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                                                    th:value="${pageSize}"
-                                                    th:selected="${pageSize} == ${selectedPageSize}"></option>
-                                        </select>
-                                    </div>
                                     <ul class="pagination pull-right">
                                         <li th:class="${cutoffmasterlist.number == 0} ? disabled">
                                             <a class="pageLink"
