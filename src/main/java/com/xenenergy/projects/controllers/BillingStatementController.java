@@ -50,18 +50,9 @@ public class BillingStatementController {
                                HttpServletRequest request, HttpServletResponse response)
             throws ParseException, IOException {
 
-        URL jasperFile = BillingStatementController.class
-                .getClassLoader().getResource("static/jasper/BillingStatement.jasper");
-
         ServletOutputStream servletOutputStream = response.getOutputStream();
-        File file;
-        try {
-            file = new File(jasperFile.toURI());
-            reportStream = new BufferedInputStream(new FileInputStream(file));
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        reportStream = BillingStatementController.class.getClassLoader().getResourceAsStream("static/jasper/BillingStatement.jasper");
+        System.out.println();
         List<BillingStatementModel> statementModels = new ArrayList<>();
         BillingStatementModel statementModel = new BillingStatementModel();
         List<Du> duModels = duService.getDU();
