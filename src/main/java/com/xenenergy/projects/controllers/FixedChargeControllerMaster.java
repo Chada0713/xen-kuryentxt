@@ -26,12 +26,8 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/ratemaster")
 public class FixedChargeControllerMaster {
-    private static final int BUTTONS_TO_SHOW = 5;
-    private static final int INITIAL_PAGE = 0;
-    private static final int INITIAL_PAGE_SIZE = 10;
-    private static final int[] PAGE_SIZES = {10, 20, 50, 100};
-
     private PaginationProperty property = new PaginationProperty();
+
     @Autowired
     private FixedChargeMasterServiceImpl fixedChargeService;
 
