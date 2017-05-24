@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>RDM Details</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/rdm/__${rdm.id}__/rdmdetails}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>RDM Details - Add </strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" th:object="${rdmdetailsLists}"
+                                      th:action="@{/rdm/__${rdm.id}__/rdmdetails/create}"
+                                      method="post">
+
+                                    <input type="hidden" class="form-control"
+                                           th:value="${rdm.id}" id="idRdm" name="idRdm"
+                                    />
+
+                                    <div class="form-group">
+                                        <label for="idArea" class="col-sm-3 control-label">Area Name</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select class="form-control" id="idArea">
+                                                <option th:each="area: ${areaList}"
+                                                        th:value="${area.id}"
+                                                        th:text="${area.areaName}"
+                                                ></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="idRoute" class="col-sm-3 control-label">Route Name</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <select class="form-control" th:field="*{idRoute}" id="idRoute">
+                                               <!-- <option th:each="route: ${routeList}"
+                                                        th:value="${route.id}"
+                                                        th:text="${route.routeName}"
+                                                ></option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="startSequence" class="col-sm-3 control-label">Start Sequence</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="startSequence"
+                                                   th:field="*{startSequence}"
+                                                   placeholder="Start Sequence"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endSequence" class="col-sm-3 control-label">End Sequence</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="endSequence"
+                                                   th:field="*{endSequence}"
+                                                   placeholder="End Sequence"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group pull-right">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript">
+    var a = $("#idArea").text();
+
+    $("#idArea").change(function () {
+        var area = $("#idArea").val();
+
+        $.ajax({
+           type: "GET",
+            url: "api/route",
+            data: {"idarea" : area},
+            success: function (data) {
+                alert(area);
+            },
+            error: function () {
+                alert(area);
+                alert("error");
+            }
+        });
+    });
+</script>
