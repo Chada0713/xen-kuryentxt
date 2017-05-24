@@ -14,6 +14,8 @@ public class Account {
     private long id;
     @Column(name = "SEQUENCE_NO")
     private int seqNo;
+    @Column(name = "ROUTE_CODE")
+    private String routeCode;
     @Column(name = "ACCOUNT_NAME")
     private String accountName;
     @Column(name = "CURRENT_METER_NO")
@@ -26,9 +28,10 @@ public class Account {
     public Account() {
     }
 
-    public Account(long id, int seqNo, String accountName, String meterNo, String accountNo, int curRdg) {
+    public Account(long id, int seqNo, String routeCode, String accountName, String meterNo, String accountNo, int curRdg) {
         this.id = id;
         this.seqNo = seqNo;
+        this.routeCode = routeCode;
         this.accountName = accountName;
         this.meterNo = meterNo;
         this.accountNo = accountNo;
@@ -49,6 +52,14 @@ public class Account {
 
     public void setSeqNo(int seqNo) {
         this.seqNo = seqNo;
+    }
+
+    public String getRouteCode() {
+        return routeCode;
+    }
+
+    public void setRouteCode(String routeCode) {
+        this.routeCode = routeCode;
     }
 
     public String getAccountName() {

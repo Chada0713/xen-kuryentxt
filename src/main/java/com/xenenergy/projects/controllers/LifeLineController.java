@@ -10,11 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
@@ -50,16 +53,17 @@ public class LifeLineController {
     }
 
     @GetMapping("/add")
-    public String addForm(Model model){
+    public String addForm(Model model) {
         model.addAttribute("lifeLine", new LifeLine());
         return "lifeline/add";
     }
 
+    /*public String save(@Valid LifeLine lifeLine, BindingResult bindingResult, RedirectAttributes redirectAttributes){*/
     @PostMapping("/create")
-    public String save(LifeLine lifeLine, RedirectAttributes redirectAttributes){
-        if(lifeLineService.insert(lifeLine) != null){
+    public String save(LifeLine lifeLine, RedirectAttributes redirectAttributes) {
+        if (lifeLineService.insert(lifeLine) != null) {
             redirectAttributes.addFlashAttribute("save", "success");
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
         return "redirect:/lifeline";
@@ -67,18 +71,18 @@ public class LifeLineController {
 
     @GetMapping("/{operation}/{id}")
     public String editDeleteForm(@PathVariable("operation") String operation, @PathVariable("id") int id,
-                                 Model model, final RedirectAttributes redirectAttributes){
-        if(operation.equals("delete")){
-            if (lifeLineService.deleteById(id)){
+                                 Model model, final RedirectAttributes redirectAttributes) {
+        if (operation.equals("delete")) {
+            if (lifeLineService.deleteById(id)) {
                 redirectAttributes.addFlashAttribute("delete", "success");
-            }else{
+            } else {
                 redirectAttributes.addFlashAttribute("delete", "unsuccess");
             }
-        }else if(operation.equals("edit")){
-            if(lifeLineService.getById(id) != null ){
+        } else if (operation.equals("edit")) {
+            if (lifeLineService.getById(id) != null) {
                 model.addAttribute("lifeLine", lifeLineService.getById(id));
                 return "lifeline/edit";
-            }else{
+            } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
         }
@@ -86,10 +90,10 @@ public class LifeLineController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("lifeLine") LifeLine lifeLine, final RedirectAttributes redirectAttributes){
-        if(lifeLineService.update(lifeLine) != null){
+    public String update(@ModelAttribute("lifeLine") LifeLine lifeLine, final RedirectAttributes redirectAttributes) {
+        if (lifeLineService.update(lifeLine) != null) {
             redirectAttributes.addFlashAttribute("edit", "success");
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("edit", "unsuccess");
         }
         return "redirect:/lifeline";

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,6 +15,7 @@ public class LifeLine {
     @Column(name = "ID")
     private long id;
     @Column(name = "EFFECTIVITY_DATE")
+    @NotNull
     private Date effectivity_Date;
     @Column(name = "IS_CURRENT")
     private String is_Current = "N";

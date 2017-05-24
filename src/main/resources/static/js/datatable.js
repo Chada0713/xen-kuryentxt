@@ -8,11 +8,15 @@ $(document).ready( function () {
         responsive: true,
         "order": [[ 0, "asc" ]],
         "aoColumns": [
-            { "mData": "seqNo" },
+            { "mData": "seqNo"},
+            { "mData": "routeCode"},
             { "mData": "accountName" },
             { "mData": "accountNo" },
             { "mData": "meterNo" },
             { "mData": "curRdg" }
+        ],
+        "columnDefs": [
+            {"className": "dt-left", "targets": "0"}
         ],
         dom: "<'row'<'col-sm-12'f>>" +
         "<'row'<'col-sm-12'tr>>" +

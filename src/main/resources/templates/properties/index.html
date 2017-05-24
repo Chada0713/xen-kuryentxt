@@ -68,8 +68,8 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
-                                    <!-- <th>ID</th>-->
                                     <th>Name</th>
+                                    <th>Description</th>
                                     <th>Value</th>
                                     <th>Action</th>
                                 </tr>
@@ -78,6 +78,7 @@
                                 <tr th:each="propertylist : ${propertylists}">
                                     <!-- <td th:text="${propertylist.id}"></td>-->
                                     <td th:text="${propertylist.propertyName}"></td>
+                                    <td th:text="${propertylist.propertyDescription}"></td>
                                     <td th:text="${propertylist.propertyValue}"></td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"

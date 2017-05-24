@@ -211,39 +211,34 @@ $(document).ready(function () {
     $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
     });
+});
 
-    $('#copyTemplate').on('show.bs.modal', function (e) {
-        $url = $(e.relatedTarget).attr('data-url-template');
-        $message = $(e.relatedTarget).attr('data-msgTemplate');
-        $('#msgTemplate').text($message);
-        $("#copyTemplateBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+/*Test*/
+
+/*
+$(document).ready(function () {
+    getRoute();
+});
+function getRoute() {
+    $("idArea").change(function () {
+        alert("idArea");
     });
-
-    <!-- Form confirm (yes/ok) handler, submits form -->
-    $('#copyTemplate').find('.modal-footer #confirm').on('click', function () {
-        $(this).data('form').submit();
-    });
-
-
-    /* Cascading Dropdown*/
-    $("#idArea").change(function () {
+    /!*$("select#idArea").change(function () {
+        var areaL = $this.val();
+        alert(areaL);
         $.ajax({
-            type: "GET",
-            url: "/Kuryentxt/api/route",
-            dataType: 'json',
-            data: {"idarea": $("#idArea").val()},
-            success: function (result) {
-                console.log(result);
-                $('#idRoute').empty();
-                $.each(result, function (index, value) {
-                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
-                    $('#idRoute').trigger("chosen:updated");
-                });
-            },
-            error: function () {
-                alert(area);
-                alert("error");
+            type: "POST",
+            url: "../rdmdetails/getroute",
+            data: {"areaL" : areaL},
+            success: function (data) {
+                var routeList = $("#idRoute"), option="";
+                routeList.empty();
+
+                for(var i = 0; i < data.length; i++){
+                    option = option + "<option value='" + data[i].id + "'>" + data[i].routeName + "</option>";
+                }
+                routeList.append(option);
             }
         });
-    });
-});
+    });*!/
+}*/

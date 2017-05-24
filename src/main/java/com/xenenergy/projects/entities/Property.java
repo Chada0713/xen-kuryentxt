@@ -16,6 +16,9 @@ public class Property {
     @Column(name = "PROPERTY_NAME")
     private String propertyName;
 
+    @Column(name = "PROPERTY_DESCRIPTION")
+    private String propertyDescription;
+
     @Column(name = "PROPERTY_VALUE")
     private String propertyValue;
 
@@ -41,5 +44,13 @@ public class Property {
 
     public void setPropertyValue(String propertyValue) {
         this.propertyValue = propertyValue;
+    }
+
+    public String getPropertyDescription() {
+        return propertyDescription;
+    }
+
+    public void setPropertyDescription(String propertyDescription) {
+        this.propertyDescription = propertyDescription;
     }
 }
