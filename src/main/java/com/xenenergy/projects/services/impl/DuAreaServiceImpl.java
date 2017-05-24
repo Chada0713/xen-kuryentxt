@@ -9,6 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 @Service
 @Transactional
 public class DuAreaServiceImpl implements CRUDService<DuArea> {
@@ -41,5 +45,11 @@ public class DuAreaServiceImpl implements CRUDService<DuArea> {
     @Override
     public DuArea update(DuArea area) {
         return areaDao.save(area);
+    }
+
+    public Collection<DuArea> getAll() {
+        List<DuArea> areaEntities = new ArrayList<>();
+        areaDao.findAll().forEach(areaEntities::add);
+        return areaEntities;
     }
 }
