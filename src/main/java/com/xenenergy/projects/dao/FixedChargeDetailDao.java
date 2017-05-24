@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableArgumentResolver;
 import org.springframework.stereotype.Repository;
 
@@ -23,4 +25,7 @@ public interface FixedChargeDetailDao extends JpaRepository<FixedChargeDetail, L
 
     @Query("select sum(amount) from FixedChargeDetail where idMaster = ?1")
     Double findSumOfAmount(long id);
+
+    @Procedure(name = "spCopyFixChargeTemplate")
+    void copyToTemplate(@Param("idMaster") long idMaster);
 }

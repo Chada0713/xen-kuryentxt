@@ -21,6 +21,9 @@ public class FixedChargeDetailServiceImpl implements CRUDService<FixedChargeDeta
     @Autowired
     private FixedChargeDetailDao fixedChargeDetailDao;
 
+    public void callCopyToTemplate(long id) {
+        fixedChargeDetailDao.copyToTemplate(id);
+    }
 
     @Override
     public Page<FixedChargeDetail> findAllPageable(Pageable pageable) {

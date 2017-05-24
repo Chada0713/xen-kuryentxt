@@ -2,16 +2,19 @@ package com.xenenergy.projects.entities;
 
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by xesi on 19/05/2017.
  */
 @Entity
 @Table(name = "arm_fix_charge_detail")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "spCopyFixChargeTemplate",
+                procedureName = "spCopyFixChargeTemplate",
+                parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "idMaster", type = Long.class)}
+        )})
 public class FixedChargeDetail {
 
     @Id

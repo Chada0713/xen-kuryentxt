@@ -64,7 +64,7 @@ public class RdmDetailController {
     @GetMapping("/{cid}/rdmdetails/add")
     public String addForm(@PathVariable("cid") long cid, Model model){
         model.addAttribute("rdm", routeDefinitionService.getById(cid));
-        model.addAttribute("rdmdetailsLists", new RdmDetail());
+        model.addAttribute("rdmdetail", new RdmDetail());
         /*model.addAttribute("routeList", routeService.getAll());*/
         model.addAttribute("areaList", duAreaService.getAll());
         return "rdmdetails/add";
@@ -103,6 +103,7 @@ public class RdmDetailController {
                 model.addAttribute("rdm", routeDefinitionService.getById(cid));
                 model.addAttribute("rdmdetailsLists", rdmDetailService.getById(id));
                 model.addAttribute("routeList", routeService.getAll());
+                model.addAttribute("areaList", duAreaService.getAll());
                 return "rdmdetails/edit";
             }else{
                 redirectAttributes.addFlashAttribute("status", "notfound");

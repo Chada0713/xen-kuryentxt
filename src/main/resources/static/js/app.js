@@ -211,4 +211,39 @@ $(document).ready(function () {
     $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
     });
+
+    $('#copyTemplate').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url-template');
+        $message = $(e.relatedTarget).attr('data-msgTemplate');
+        $('#msgTemplate').text($message);
+        $("#copyTemplateBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+    });
+
+    <!-- Form confirm (yes/ok) handler, submits form -->
+    $('#copyTemplate').find('.modal-footer #confirm').on('click', function () {
+        $(this).data('form').submit();
+    });
+
+
+    /* Cascading Dropdown*/
+    $("#idArea").change(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Kuryentxt/api/route",
+            dataType: 'json',
+            data: {"idarea": $("#idArea").val()},
+            success: function (result) {
+                console.log(result);
+                $('#idRoute').empty();
+                $.each(result, function (index, value) {
+                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
+                    $('#idRoute').trigger("chosen:updated");
+                });
+            },
+            error: function () {
+                alert(area);
+                alert("error");
+            }
+        });
+    });
 });

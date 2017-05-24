@@ -66,74 +66,76 @@
                             </div>
                         </div>
                         <div th:if="!${#lists.isEmpty(perKwChargeMasterLists)}">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr class="info">
-                                    <th></th>
-                                    <th>Effectivity Date</th>
-                                    <th>Amount</th>
-                                    <th>Amount STL</th>
-                                    <th>Current</th>
-                                    <th>Locked</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
-                                    <td> <a href="#"
-                                            data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/{id}/details(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                            <div id="no-more-tables">
+                                <table class="col-md-12 table table-striped table-condensed cf">
+                                    <thead class="cf">
+                                    <tr class="info">
+                                        <th></th>
+                                        <th>Effectivity Date</th>
+                                        <th>Amount</th>
+                                        <th>Amount STL</th>
+                                        <th>Current</th>
+                                        <th>Locked</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
+                                        <td><a href="#"
+                                               data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/{id}/details(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
                                             details
-                                    </a></td>
-                                    <td th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
-                                    <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"></td>
-                                    <td th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"></td>
+                                        </a></td>
+                                        <td data-title="Effectivity Date" th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
+                                        <td data-title="Amount" th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"></td>
+                                        <td data-title="Amount STL" th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"></td>
 
-                                    <td>
-                                        <div th:switch="${perKwChargeMaster.isCurrent}">
+                                        <td data-title="Current">
+                                            <div th:switch="${perKwChargeMaster.isCurrent}">
                                                <span th:case="'Y'" class="fa-stack green">
                                                    <i class="glyphicon glyphicon-ok"></i></span>
-                                            <span th:case="*" class="fa-stack red">
+                                                <span th:case="*" class="fa-stack red">
                                                    <i class="glyphicon glyphicon-remove"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div th:switch="${perKwChargeMaster.isLocked}">
+                                            </div>
+                                        </td>
+                                        <td data-title="Action">
+                                            <div th:switch="${perKwChargeMaster.isLocked}">
                                                <span th:case="'Y'" class="fa-stack green">
                                                    <i class="glyphicon glyphicon-ok"></i></span>
-                                            <span th:case="*" class="fa-stack red">
+                                                <span th:case="*" class="fa-stack red">
                                                    <i class="glyphicon glyphicon-remove"></i></span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
-                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
+                                            </div>
+                                        </td>
+                                        <td data-title="Locked">
+                                            <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
+                                                <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                                   th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
                                             data-message=${perKwChargeMaster.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
-                                            </a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#"
-                                               data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="#"
+                                                   data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </span>
-                                            </a>
-                                        </div>
-                                        <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
-                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
+                                                </a>
+                                            </div>
+                                            <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
+                                                <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                                   th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
                                             data-message=${perKwChargeMaster.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div th:if="${#lists.isEmpty(perKwChargeMasterLists)}"
                              class="text-center alert alert-danger alert-dismissible" role="alert">

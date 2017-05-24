@@ -52,7 +52,6 @@ public class BillingStatementController {
 
         ServletOutputStream servletOutputStream = response.getOutputStream();
         reportStream = BillingStatementController.class.getClassLoader().getResourceAsStream("static/jasper/BillingStatement.jasper");
-        System.out.println();
         List<BillingStatementModel> statementModels = new ArrayList<>();
         BillingStatementModel statementModel = new BillingStatementModel();
         List<Du> duModels = duService.getDU();

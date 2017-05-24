@@ -18,7 +18,12 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
+                            <div class="col-lg-9 col-md-9 col-sm-9"> <!-- Save Alert Messages -->
+                                <div th:if="${copy eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Template Saved Successfully</i>.
+                                    </div>
+                                </div>
                                 <div th:if="${save eq 'unsuccess'}">
                                     <div class="alert alert-danger alert-dismissible" role="alert">
                                         <strong>Error!</strong> <i>Record Not Saved.</i>
@@ -58,13 +63,24 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-1 col-md-1 col-sm-1">
+                            <div class="col-lg-3 col-md-3 col-sm-3">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right"
+                                    <div th:if="${#lists.isEmpty(fixedChargeDetailLists)}">
+                                        <a class="btn btn-success" data-target="#copyTemplate" data-toggle="modal"
+                                           th:attr="data-url-template='fixedchargedetail/copytemplate',
+                                       data-msgTemplate='Are you sure you want to copy from fixed charge template?'"
+                                           role="button">Copy Template</a>
+                                    <a class="btn btn-primary"
                                        th:href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail/add(cid=${fixedChargeMaster.idRateMaster}, rid=${fixedChargeMaster.id})}"
                                        role="button">Add</a>
+                                    </div>
+                                    <div th:if="!${#lists.isEmpty(fixedChargeDetailLists)}">
+                                        <a href="#" class="btn btn-default disabled" role="button">Copy Template</a>
+                                        <a class="btn btn-primary"
+                                           th:href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail/add(cid=${fixedChargeMaster.idRateMaster}, rid=${fixedChargeMaster.id})}"
+                                           role="button">Add</a>
+                                    </div>
                                 </div>
-                                <br/>
                                 <br/>
                             </div>
                         </div>
@@ -118,7 +134,7 @@
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"
                                            th:attr="data-url='fixedchargedetail/delete/'+${fixedChargeDetailList.id},
-                                            data-message=${fixedChargeDetailList.id}">
+                                            data-message=${fixedChargeDetailList.fixChargeName} + ', '+${fixedChargeDetailList.id}">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
@@ -134,13 +150,13 @@
                                 </tr>
                                 <tr class="info">
                                     <td><strong>Total</strong></td>
-                                    <td colspan="4"></td>
+                                    <td colspan="5"></td>
                                     <td>
                                         <div class="text-right">
                                             <strong th:text="${#numbers.formatDecimal(sumOfAmount, 1, 4)}"></strong>
                                         </div>
                                     </td>
-                                    <td colspan="4"></td>
+                                    <td colspan="5"></td>
                                 </tr>
                                 </tbody>
                             </table>

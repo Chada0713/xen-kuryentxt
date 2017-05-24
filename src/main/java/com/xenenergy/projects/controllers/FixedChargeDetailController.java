@@ -44,7 +44,7 @@ public class FixedChargeDetailController {
     }
 
     @GetMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/add")
-    public String addForm(Model model, @PathVariable("cid") long cid, @PathVariable("rid") long rid){
+    public String addForm(Model model, @PathVariable("cid") long cid, @PathVariable("rid") long rid) {
         model.addAttribute("fixedCharge", fixedChargeMasterService.getById(rid));
         model.addAttribute("fixedChargeDetail", new FixedChargeDetail());
         model.addAttribute("maxPrintOrder", fixedChargeDetailService.findTopByPrintOrderOrderByPrintOrderDesc(rid));
@@ -53,13 +53,13 @@ public class FixedChargeDetailController {
 
     @PostMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/create")
     public String save(@PathVariable("cid") long cid, @PathVariable("rid") long rid,
-                       FixedChargeDetail fixedChargeDetail, final RedirectAttributes redirectAttributes){
-        if(fixedChargeDetailService.insert(fixedChargeDetail) != null){
+                       FixedChargeDetail fixedChargeDetail, final RedirectAttributes redirectAttributes) {
+        if (fixedChargeDetailService.insert(fixedChargeDetail) != null) {
             redirectAttributes.addFlashAttribute("save", "success");
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
-        return "redirect:/ratemaster/"+cid+"/fixedcharge/"+rid+"/fixedchargedetail";
+        return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
     }
 
     @GetMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/{operation}/{id}")
@@ -67,33 +67,43 @@ public class FixedChargeDetailController {
                                  @PathVariable("rid") long rid,
                                  @PathVariable("id") long id,
                                  @PathVariable("operation") String operation,
-                                 Model model, final RedirectAttributes redirectAttributes){
-        if(operation.equals("delete")){
-            if(fixedChargeDetailService.deleteById(id)){
+                                 Model model, final RedirectAttributes redirectAttributes) {
+        if (operation.equals("delete")) {
+            if (fixedChargeDetailService.deleteById(id)) {
                 redirectAttributes.addFlashAttribute("delete", "success");
-            }else{
+            } else {
                 redirectAttributes.addFlashAttribute("delete", "unsuccess");
             }
-        }else if(operation.equals("edit")){
-            if(fixedChargeDetailService.getById(id) != null){
+        } else if (operation.equals("edit")) {
+            if (fixedChargeDetailService.getById(id) != null) {
                 model.addAttribute("fixedCharge", fixedChargeMasterService.getById(rid));
                 model.addAttribute("fixedChargeDetail", fixedChargeDetailService.getById(id));
                 return "fixedchargedetail/edit";
-            }else{
+            } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
         }
-        return "redirect:/ratemaster/"+cid+"/fixedcharge/"+rid+"/fixedchargedetail";
+        return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
     }
 
     @PostMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/update")
     public String update(@PathVariable("cid") long cid, @PathVariable("rid") long rid,
-                         FixedChargeDetail fixedChargeDetail, final RedirectAttributes redirectAttributes){
-        if(fixedChargeDetailService.update(fixedChargeDetail) != null){
+                         FixedChargeDetail fixedChargeDetail, final RedirectAttributes redirectAttributes) {
+        if (fixedChargeDetailService.update(fixedChargeDetail) != null) {
             redirectAttributes.addFlashAttribute("edit", "success");
-        }else{
+        } else {
             redirectAttributes.addFlashAttribute("edit", "unsuccess");
         }
-        return "redirect:/ratemaster/"+cid+"/fixedcharge/"+rid+"/fixedchargedetail";
+        return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
+    }
+
+    @GetMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/copytemplate")
+    public String copyTemplate(@PathVariable("cid") long cid,
+                               @PathVariable("rid") long rid,
+                               Model model, final RedirectAttributes redirectAttributes) {
+        fixedChargeDetailService.callCopyToTemplate(rid);
+        redirectAttributes.addFlashAttribute("copy", "success");
+
+        return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
     }
 }

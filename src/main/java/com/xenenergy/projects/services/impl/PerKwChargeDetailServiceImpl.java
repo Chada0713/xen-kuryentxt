@@ -21,6 +21,9 @@ public class PerKwChargeDetailServiceImpl implements CRUDService<PerKwChargeDeta
     @Autowired
     PerKwChargeDetailDao perKwChargeDetailDao;
 
+    public void callCopyToTemplate(long id) {
+        perKwChargeDetailDao.copyToTemplate(id);
+    }
 
     public List<PerKwChargeDetail> findAllPageable(long id) {
         return perKwChargeDetailDao.findByIdMasterOrderByPrintOrderAsc(id);

@@ -9,6 +9,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "arm_per_kw_charge_detail")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "spCopyPerKWChargeTemplate",
+                procedureName = "spCopyPerKWChargeTemplate",
+                parameters = {@StoredProcedureParameter(mode = ParameterMode.IN, name = "idMaster", type = Long.class)}
+        )})
 public class PerKwChargeDetail {
 
     @Id

@@ -67,7 +67,7 @@ public class PerKwChargeDetailController {
         } else {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
-        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/"+rid+"/details";
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
     }
 
     @GetMapping("/{cid}/per-kw-charge-master/{rid}/details/{operation}/{id}")
@@ -93,10 +93,10 @@ public class PerKwChargeDetailController {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
         }
-        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/"+rid+"/details";
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
     }
 
- @PostMapping("/{cid}/per-kw-charge-master/{rid}/details/update")
+    @PostMapping("/{cid}/per-kw-charge-master/{rid}/details/update")
     public String update(@PathVariable("cid") long cid,
                          @PathVariable("rid") long rid,
                          @ModelAttribute("duArea") PerKwChargeDetail perKwChargeDetail,
@@ -107,6 +107,15 @@ public class PerKwChargeDetailController {
             redirectAttributes.addFlashAttribute("edit", "unsuccess");
         }
 
-     return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/"+rid+"/details";
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
+    }
+
+    @GetMapping("/{cid}/per-kw-charge-master/{rid}/details/copytemplate")
+    public String copyTemplate(@PathVariable("cid") long cid,
+                               @PathVariable("rid") long rid,
+                               Model model, final RedirectAttributes redirectAttributes) {
+        perKwChargeDetailService.callCopyToTemplate(rid);
+        redirectAttributes.addFlashAttribute("copy", "success");
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
     }
 }
