@@ -68,6 +68,7 @@
                                 <thead>
                                 <tr class="info">
                                     <!-- <th>ID</th>-->
+                                    <th></th>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -75,6 +76,10 @@
                                 <tbody>
                                 <tr th:each="rdmlist : ${rdmlists}">
                                     <!-- <td th:text="${rdmlist.id}"></td>-->
+                                    <td>
+                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails(cid=${rdmlist.id})}">
+                                            Manage Routes</a>
+                                    </td>
                                     <td th:text="${rdmlist.rdmName}"></td>
                                     <td>
                                         <a href="#" data-target="#confirmDelete" data-toggle="modal"

@@ -92,7 +92,7 @@
         $.ajax({
            type: "GET",
             url: "api/route",
-            data: {"idarea" : area},
+            data: JSON.stringify({"idarea" : area}),
             success: function (data) {
                 alert(area);
             },
