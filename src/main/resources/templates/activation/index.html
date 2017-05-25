@@ -12,7 +12,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
                         <strong>Activation
-                        Code</strong></div>
+                            Code</strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -95,9 +95,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='activation-code/delete/'+${activationlist.id},
-                                            data-message=${activationlist.activationCode}">
+                                            data-message='Are you sure you want to delete ' + ${activationlist.activationCode},
+                                             data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>

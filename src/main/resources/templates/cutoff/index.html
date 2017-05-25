@@ -82,9 +82,10 @@
                                     </td>
                                     <td th:text="${cutoffmaster.cutoffDay}"></td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='cut-off/delete/'+${cutoffmaster.id},
-                                            data-message=${cutoffmaster.cutoffName}">
+                                           data-message='Are you sure you want to delete ' + ${cutoffmaster.cutoffName},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>

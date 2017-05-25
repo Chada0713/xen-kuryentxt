@@ -81,8 +81,6 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="rdmdetailList : ${rdmDetailLists}">
-                                    <!--<td th:text="${#numbers.formatInteger(rdmdetailList.idRoute, 4)}"></td>
-                                    <td th:text="${rdmdetailList.idRoute}"></td>-->
                                     <td>
                                         <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
                                               th:text="${route.routeCode}"></span>
@@ -96,9 +94,10 @@
                                     <td th:text="${rdmdetailList.startSequence}"></td>
                                     <td th:text="${rdmdetailList.endSequence}"></td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='rdmdetails/delete/'+${rdmdetailList.id},
-                                           data-message=${rdmdetailList.id}">
+                                          data-message='Are you sure you want to delete ' +${rdmdetailList.id},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>

@@ -89,9 +89,10 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='seniorcitizen/delete/'+${seniorCitizenList.id},
-                                            data-message=${#dates.format(seniorCitizenList.effectivity_Date, 'MMMM dd, yyyy')}">
+                                            data-message='Are you sure you want to delete ' + ${#dates.format(seniorCitizenList.effectivity_Date, 'MMMM dd, yyyy')},
+                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>

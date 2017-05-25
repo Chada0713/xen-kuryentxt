@@ -1,64 +1,68 @@
 <div th:fragment="navigator">
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/Kuryentxt"><img style="max-width:180px; margin-top: -9px;" class="" th:src="@{/images/xen_logo.png}"/></a>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Kuryentxt"><img style="max-width:180px; margin-top: -9px;" class=""
+                                                               th:src="@{/images/xen_logo.png}"/></a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-haspopup="false" aria-expanded="false">Masterlist Management <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu  dropdown-menu-left">
+                            <li><a href="/Kuryentxt/accounts">Accounts</a></li>
+                            <li><a href="/Kuryentxt/activation-code">Activation Device</a></li>
+                            <li><a href="/Kuryentxt/du-area">Area</a></li>
+                            <li><a href="/Kuryentxt/cut-off">Cut-off</a></li>
+                            <li><a href="/Kuryentxt/readers">Meter Readers</a></li>
+                            <li><a href="/Kuryentxt/properties">Properties</a></li>
+                            <li><a href="/Kuryentxt/rdm">Route Definition Management</a></li>
+                            <li><a href="/Kuryentxt/remarks">Remarks</a></li>
+                            <!--<li role="separator" class="divider"></li>
+                           <li class="dropdown-header">Accounts</li>-->
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                            role="button" aria-haspopup="false" aria-expanded="false">Rate Management
+                        <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li><a href="/Kuryentxt/ratemaster">Rate Master</a></li>
+                            <li><a href="/Kuryentxt/lifeline">Lifeline</a></li>
+                            <li><a href="/Kuryentxt/seniorcitizen">Senior Citizen</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                            role="button" aria-haspopup="false" aria-expanded="false">Add-on Transaction
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li><a href="/Kuryentxt/coreloss">Coreloss</a></li>
+                            <li><a href="/Kuryentxt/addoncharge">Add-on Charges</a></li>
+                            <li><a href="/Kuryentxt/addonkwh">Add-on Kwh</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                            role="button" aria-haspopup="false" aria-expanded="false">Reports
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-left">
+                            <li><a href="/Kuryentxt/bills">Bills Report</a></li>
+                            <li><a href="/Kuryentxt/reports">Billing Statement</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" data-target="#genericModal" data-toggle="modal"
+                    th:attr="data-url='/Kuryentxt', data-title='Logout',
+                    data-message='Are you sure you want to logout?', data-btn-value='Logout', data-class='btn-primary'">Logout</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                       role="button" aria-haspopup="false" aria-expanded="false">Masterlist Management <span
-                            class="caret"></span></a>
-                    <ul class="dropdown-menu  dropdown-menu-left">
-                        <li><a href="/Kuryentxt/accounts">Accounts</a></li>
-                        <li><a href="/Kuryentxt/activation-code">Activation Device</a></li>
-                        <li><a href="/Kuryentxt/du-area">Area</a></li>
-                        <li><a href="/Kuryentxt/cut-off">Cut-off</a></li>
-                        <li><a href="/Kuryentxt/readers">Meter Readers</a></li>
-                        <li><a href="/Kuryentxt/properties">Properties</a></li>
-                        <li><a href="/Kuryentxt/rdm">Route Definition Management</a></li>
-                        <li><a href="/Kuryentxt/remarks">Remarks</a></li>
-                        <!--<li role="separator" class="divider"></li>
-                       <li class="dropdown-header">Accounts</li>-->
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        role="button" aria-haspopup="false" aria-expanded="false">Rate Management <span
-                        class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-left">
-                        <li><a href="/Kuryentxt/ratemaster">Rate Master</a></li>
-                        <li><a href="/Kuryentxt/lifeline">Lifeline</a></li>
-                        <li><a href="/Kuryentxt/seniorcitizen">Senior Citizen</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        role="button" aria-haspopup="false" aria-expanded="false">Add-on Transaction
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-left">
-                        <li><a href="/Kuryentxt/coreloss">Coreloss</a></li>
-                        <li><a href="/Kuryentxt/addoncharge">Add-on Charges</a></li>
-                        <li><a href="/Kuryentxt/addonkwh">Add-on Kwh</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                        role="button" aria-haspopup="false" aria-expanded="false">Reports
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-left">
-                        <li><a href="/Kuryentxt/bills">Bills Report</a></li>
-                        <li><a href="/Kuryentxt/reports">Billing Statement</a></li>
-                    </ul>
-                </li>
-                <li><a href="/Kuryentxt">Logout</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</nav>
+    </nav>
 </div>

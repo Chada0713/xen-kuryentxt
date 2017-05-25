@@ -219,6 +219,18 @@ $(document).ready(function () {
         $("#copyTemplateBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
     });
 
+    $('#genericModal').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url');
+        $message = $(e.relatedTarget).attr('data-message');
+        $title = $(e.relatedTarget).attr('data-title');
+        $btnValue = $(e.relatedTarget).attr('data-btn-value');
+        $btnClass = $(e.relatedTarget).attr('data-class');
+        $('#title').text($title);
+        $('#msgs').text($message);
+        $("#btnSubmit").attr("href", $url).addClass($btnClass);
+        $("#btnSubmit").text($btnValue);
+    });
+
     <!-- Form confirm (yes/ok) handler, submits form -->
     $('#copyTemplate').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
@@ -239,34 +251,6 @@ $(document).ready(function () {
                     $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
                     $('#idRoute').trigger("chosen:updated");
                 });
-            },
-            error: function () {
-                alert("error");
-            }
-        });
-    });
-
-    $('#viewaccount').on('show.bs.modal', function (e) {
-        $url = $(e.relatedTarget).attr('data-url');
-        $param = $(e.relatedTarget).attr('data-param');
-       // $message = $(e.relatedTarget).attr('data-message');
-        //$('#url').text($url);
-        $("#deleteBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
-        var infoModal = $('#url');
-        $.ajax({
-            type: "GET",
-            url:  $url,
-            dataType: 'json',
-            data: {"oldaccountno": $param},
-            success: function (result) {
-                console.log(result);
-                htmlData = '<ul><li>id: '+result.id+'</li><li>seqNo: '+result.seqNo+'</li></ul>';
-                //alert(result);
-               /* $('#idRoute').empty();
-                $.each(result, function (index, value) {
-                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
-                    $('#idRoute').trigger("chosen:updated");
-                });*/
             },
             error: function () {
                 alert("error");

@@ -58,7 +58,8 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{/ratemaster/{id}/fixedcharge/add(id=${rateMaster.id})}"
+                                    <a class="btn btn-primary pull-right"
+                                       th:href="@{/ratemaster/{id}/fixedcharge/add(id=${rateMaster.id})}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
@@ -79,7 +80,8 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="fixedchargelist : ${fixedchargeList}">
-                                    <td><a href="#" data-th-href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail(cid=${rateMaster.id}, rid=${fixedchargelist.id})}">
+                                    <td><a href="#"
+                                           data-th-href="@{/ratemaster/{cid}/fixedcharge/{rid}/fixedchargedetail(cid=${rateMaster.id}, rid=${fixedchargelist.id})}">
                                         details</a>
                                     </td>
                                     <td th:text="${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')}"></td>
@@ -102,24 +104,27 @@
                                     </td>
                                     <td>
                                         <div th:if="${fixedchargelist.isCurrent != 'Y' and fixedchargelist.isLocked != 'Y'}">
-                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                            <a href="#" data-target="#genericModal" data-toggle="modal"
                                                th:attr="data-url='fixedcharge/delete/'+${fixedchargelist.id},
-                                            data-message=${fixedchargelist.id}">
+                                            data-message='Are you sure you want to delete ' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
                                             </a>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="#" data-th-href="@{/ratemaster/{cid}/fixedcharge/edit/{id}(id=${fixedchargelist.id}, cid=${fixedchargelist.idRateMaster})}">
+                                            <a href="#"
+                                               data-th-href="@{/ratemaster/{cid}/fixedcharge/edit/{id}(id=${fixedchargelist.id}, cid=${fixedchargelist.idRateMaster})}">
                                             <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                             </span>
                                             </a>
                                         </div>
                                         <div th:if="${fixedchargelist.isCurrent != 'Y' and fixedchargelist.isLocked == 'Y'}">
-                                            <a href="#" data-target="#confirmDelete" data-toggle="modal"
-                                               th:attr="data-url='ratemaster/'+fixedchargelist.idRateMaster+'/fixedcharge/delete/'+${fixedchargelist.id},
-                                            data-message=${fixedchargelist.id}">
+                                            <a href="#" data-target="#genericModal" data-toggle="modal"
+                                               th:attr="data-url='fixedcharge/delete/'+${fixedchargelist.id},
+                                            data-message='Are you sure you want to delete ' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
@@ -171,7 +176,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>

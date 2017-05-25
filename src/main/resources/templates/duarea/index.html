@@ -80,9 +80,10 @@
                                     <td th:text="${arealist.areaCode}"></td>
                                     <td th:text="${arealist.areaName}"></td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='delete/'+${arealist.id},
-                                            data-message=${arealist.areaName}">
+                                            data-message='Are you sure you want to delete ' + ${arealist.areaName},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>

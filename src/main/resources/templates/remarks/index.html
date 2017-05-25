@@ -74,9 +74,10 @@
                                 <tr th:each="remarks : ${remarkslists}">
                                     <td th:text="${remarks.sRemarks}"></td>
                                     <td>
-                                        <a href="#" data-target="#confirmDelete" data-toggle="modal"
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='remarks/delete/'+${remarks.id},
-                                           data-message=${remarks.sRemarks}">
+                                           data-message='Are you sure you want to delete ' +${remarks.sRemarks},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </span>
