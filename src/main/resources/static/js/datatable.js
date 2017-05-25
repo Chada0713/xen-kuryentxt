@@ -11,12 +11,12 @@ $(document).ready( function () {
             { "mData": "seqNo"},
             { "mData": "routeCode"},
             { "mData": "accountName" },
-            { "mData": "accountNo" },
+            { "mData": "oldAccountNo",
+                render: function ( data, type, row, meta ) {
+                    return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";
+            }},
             { "mData": "meterNo" },
-            { "mData": "curRdg" }
-        ],
-        "columnDefs": [
-            {"className": "dt-left", "targets": "0"}
+            { "mData": "curRdg" },
         ],
         dom: "<'row'<'col-sm-12'f>>" +
         "<'row'<'col-sm-12'tr>>" +

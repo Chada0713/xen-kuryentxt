@@ -48,4 +48,9 @@ public class AccountServiceImpl implements CRUDService<Account> {
     public Account update(Account account) {
         return accountDao.save(account);
     }
+
+    public Account getByAccountNo(String oldAccountNo) {
+        return accountDao.findByOldAccountNo(oldAccountNo);
+    }
+
 }
