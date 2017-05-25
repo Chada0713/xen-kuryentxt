@@ -19,9 +19,6 @@ public class Locality {
     @Column(name = "ID_AREA")
     private long idArea;
 
-    @Column(name = "AREA_CODE")
-    private String areaCode;
-
     @Column(name = "LOCALITY_CODE")
     private String localityCode;
 
@@ -50,14 +47,6 @@ public class Locality {
 
     public void setIdArea(long idArea) {
         this.idArea = idArea;
-    }
-
-    public String getAreaCode() {
-        return areaCode;
-    }
-
-    public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
     }
 
     public String getLocalityCode() {
