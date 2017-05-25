@@ -200,6 +200,25 @@ $(function () {
 });
 
 $(document).ready(function () {
+    $('#confirmDelete').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url');
+        $message = $(e.relatedTarget).attr('data-message');
+        $('#msg').text($message);
+        $("#deleteBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+    });
+
+    <!-- Form confirm (yes/ok) handler, submits form -->
+    $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
+        $(this).data('form').submit();
+    });
+
+    $('#copyTemplate').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url-template');
+        $message = $(e.relatedTarget).attr('data-msgTemplate');
+        $('#msgTemplate').text($message);
+        $("#copyTemplateBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+    });
+
     $('#genericModal').on('show.bs.modal', function (e) {
         $url = $(e.relatedTarget).attr('data-url');
         $message = $(e.relatedTarget).attr('data-message');
@@ -213,7 +232,7 @@ $(document).ready(function () {
     });
 
     <!-- Form confirm (yes/ok) handler, submits form -->
-    $('#btnSubmit').find('.modal-footer #confirm').on('click', function () {
+    $('#copyTemplate').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
     });
 
