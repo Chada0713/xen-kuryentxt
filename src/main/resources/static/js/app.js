@@ -191,11 +191,11 @@ $(function () {
         numberOfMonths: 1,
         dateFormat: 'yy-mm-dd',
         minDate: 0
-      /*  onSelect: function (selected) {
-            var dt = new Date(selected);
-            dt.setDate(dt.getDate() + 1);
-            $("#effectivityDate").datepicker("option", "minDate", dt);
-        }*/
+        /*  onSelect: function (selected) {
+         var dt = new Date(selected);
+         dt.setDate(dt.getDate() + 1);
+         $("#effectivityDate").datepicker("option", "minDate", dt);
+         }*/
     });
 });
 
@@ -211,34 +211,66 @@ $(document).ready(function () {
     $('#confirmDelete').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
     });
-});
 
-/*Test*/
-
-/*
-$(document).ready(function () {
-    getRoute();
-});
-function getRoute() {
-    $("idArea").change(function () {
-        alert("idArea");
+    $('#copyTemplate').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url-template');
+        $message = $(e.relatedTarget).attr('data-msgTemplate');
+        $('#msgTemplate').text($message);
+        $("#copyTemplateBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
     });
-    /!*$("select#idArea").change(function () {
-        var areaL = $this.val();
-        alert(areaL);
-        $.ajax({
-            type: "POST",
-            url: "../rdmdetails/getroute",
-            data: {"areaL" : areaL},
-            success: function (data) {
-                var routeList = $("#idRoute"), option="";
-                routeList.empty();
 
-                for(var i = 0; i < data.length; i++){
-                    option = option + "<option value='" + data[i].id + "'>" + data[i].routeName + "</option>";
-                }
-                routeList.append(option);
+    <!-- Form confirm (yes/ok) handler, submits form -->
+    $('#copyTemplate').find('.modal-footer #confirm').on('click', function () {
+        $(this).data('form').submit();
+    });
+
+
+    /* Cascading Dropdown*/
+    $("#idArea").change(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Kuryentxt/api/route",
+            dataType: 'json',
+            data: {"idarea": $("#idArea").val()},
+            success: function (result) {
+                console.log(result);
+                $('#idRoute').empty();
+                $.each(result, function (index, value) {
+                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
+                    $('#idRoute').trigger("chosen:updated");
+                });
+            },
+            error: function () {
+                alert("error");
             }
         });
-    });*!/
-}*/
+    });
+
+    $('#viewaccount').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url');
+        $param = $(e.relatedTarget).attr('data-param');
+       // $message = $(e.relatedTarget).attr('data-message');
+        //$('#url').text($url);
+        $("#deleteBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+        var infoModal = $('#url');
+        $.ajax({
+            type: "GET",
+            url:  $url,
+            dataType: 'json',
+            data: {"oldaccountno": $param},
+            success: function (result) {
+                console.log(result);
+                htmlData = '<ul><li>id: '+result.id+'</li><li>seqNo: '+result.seqNo+'</li></ul>';
+                //alert(result);
+               /* $('#idRoute').empty();
+                $.each(result, function (index, value) {
+                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
+                    $('#idRoute').trigger("chosen:updated");
+                });*/
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
+});
