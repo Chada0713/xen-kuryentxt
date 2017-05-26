@@ -1,9 +1,6 @@
 package com.xenenergy.projects.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "arm_account")
@@ -64,6 +61,10 @@ public class Account {
     private String isPrivate;
     @Column(name = "IS_DOWNLOADED")
     private String isDownloaded;
+
+    /*@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ID_AREA")
+    private DuArea duArea;*/
 
     public Account() {
     }
@@ -313,4 +314,12 @@ public class Account {
     public void setIsDownloaded(String isDownloaded) {
         this.isDownloaded = isDownloaded;
     }
+
+    /*public DuArea getDuArea() {
+        return duArea;
+    }
+
+    public void setDuArea(DuArea duArea) {
+        this.duArea = duArea;
+    }*/
 }

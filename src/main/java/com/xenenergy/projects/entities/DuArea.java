@@ -18,6 +18,9 @@ public class DuArea {
     @Column(name = "AREA_NAME")
     private String areaName;
 
+    /*@OneToOne(mappedBy = "duArea")
+    private Account account;*/
+
     public DuArea() {
     }
 
@@ -50,4 +53,12 @@ public class DuArea {
     public void setAreaName(String areaName) {
         this.areaName = areaName;
     }
+
+    /*public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }*/
 }

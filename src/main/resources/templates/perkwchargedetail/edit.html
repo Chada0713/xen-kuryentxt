@@ -11,7 +11,8 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
-                        <a th:href="@{/ratemaster/__${perkwchargemaster.idRateMaster}__/per-kw-charge-master/__${perkwchargemaster.id}__/details}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <a th:href="@{/ratemaster/__${perkwchargemaster.idRateMaster}__/per-kw-charge-master/__${perkwchargemaster.id}__/details}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
                         <strong>Per Kw Charge Detail - Edit</strong>
                     </div>
                     <div class="panel-body">
@@ -46,13 +47,10 @@
                                     <div class="form-group">
                                         <label for="printOrder" class="col-sm-4 control-label">Print Order</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-
-                                            <div th:with="result=${printordermax + 1}">
-                                                <input type="text" class="form-control"
-                                                       th:value="${result}"
-                                                       id="printOrder" name="printOrder"
-                                                       placeholder="Print Order" readonly="readonly"/>
-                                            </div>
+                                            <input type="text" class="form-control"
+                                                   th:field="*{printOrder}"
+                                                   id="printOrder" name="printOrder"
+                                                   placeholder="Print Order" readonly="readonly"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -131,9 +129,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isSubToVat"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To VAT</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To
+                                            VAT</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isSubToVat}" id="isSubToVat">
+                                            <select class="form-control text-right" th:field="*{isSubToVat}"
+                                                    id="isSubToVat">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -141,9 +141,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isSubToLifeLine"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To Lifeline</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To
+                                            Lifeline</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isSubToLifeLine}" id="isSubToLifeLine">
+                                            <select class="form-control text-right" th:field="*{isSubToLifeLine}"
+                                                    id="isSubToLifeLine">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -151,9 +153,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isSubToScDisc"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To SC Discount</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To SC
+                                            Discount</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isSubToScDisc}" id="isSubToScDisc">
+                                            <select class="form-control text-right" th:field="*{isSubToScDisc}"
+                                                    id="isSubToScDisc">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -161,9 +165,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isRoundedOff"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Rounded Off</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Rounded
+                                            Off</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isRoundedOff}" id="isRoundedOff">
+                                            <select class="form-control text-right" th:field="*{isRoundedOff}"
+                                                    id="isRoundedOff">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -171,9 +177,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isSubToVat"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To VAT</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To
+                                            VAT</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isSubToVat}" id="isSubToVat">
+                                            <select class="form-control text-right" th:field="*{isSubToVat}"
+                                                    id="isSubToVat">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -181,9 +189,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isZeroSC"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Zero if Senior</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Zero if
+                                            Senior</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isZeroSC}" id="isZeroSC">
+                                            <select class="form-control text-right" th:field="*{isZeroSC}"
+                                                    id="isZeroSC">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>
@@ -191,9 +201,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="isSubToVatOthers"
-                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub to VAT-Others</label>
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub to
+                                            VAT-Others</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control text-right" th:field="*{isSubToVatOthers}" id="isSubToVatOthers">
+                                            <select class="form-control text-right" th:field="*{isSubToVatOthers}"
+                                                    id="isSubToVatOthers">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>DU Area</title>
+    <title>Routes</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -10,7 +10,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center panel-relative"><strong>DU Area</strong></div>
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/du-area}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Route - </strong>
+                        <strong th:text="${duarea.areaName}"></strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -55,40 +58,30 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1">
                                 <div class="text-right">
-                                    <a class="btn btn-primary pull-right" th:href="@{/du-area/add}"
+                                    <a class="btn btn-primary pull-right" th:href="@{/du-area/{cid}/routes/add(cid=${duarea.id})}"
                                        role="button">Add</a>
                                 </div>
                                 <br/>
                                 <br/>
                             </div>
                         </div>
-                        <div th:if="!${#lists.isEmpty(arealists)}">
+                        <div th:if="!${#lists.isEmpty(routelists)}">
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
-                                    <th></th>
-                                    <th>Area Code</th>
-                                    <th>Area Name</th>
+                                    <th>Route Code</th>
+                                    <th>route Name</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="arealist : ${arealists}">
-                                    <td>
-                                        <a href="#" data-th-href="@{/du-area/{id}/locality(id=${arealist.id})}">
-                                            locality
-                                        </a>
-                                        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-                                        <a href="#" data-th-href="@{/du-area/{id}/routes(id=${arealist.id})}">
-                                            routes
-                                        </a>
-                                    </td>
-                                    <td th:text="${arealist.areaCode}"></td>
-                                    <td th:text="${arealist.areaName}"></td>
+                                <tr th:each="routelist : ${routelists}">
+                                    <td th:text="${routelist.routeCode}"></td>
+                                    <td th:text="${routelist.routeName}"></td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
-                                           th:attr="data-url='delete/'+${arealist.id},
-                                            data-message='Are you sure you want to delete ' + ${arealist.areaName},
+                                           th:attr="data-url='routes/delete/'+${routelist.id},
+                                            data-message='Are you sure you want to delete ' + ${routelist.routeName},
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
@@ -96,7 +89,7 @@
                                         </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#"
-                                           data-th-href="@{/du-area/edit/{id}(id=${arealist.id})}">
+                                           data-th-href="@{/du-area/{cid}/routes/edit/{id}(id=${routelist.id}, cid=${duarea.id})}">
                          <span class="fa-stack">
                             <i class="glyphicon glyphicon-edit"></i>
                         </span>
@@ -106,41 +99,41 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div th:if="${#lists.isEmpty(arealists)}"
+                        <div th:if="${#lists.isEmpty(routelists)}"
                              class="text-center alert alert-danger alert-dismissible" role="alert">
                             <strong>No Record Found</strong>
                         </div>
 
                         <div class="row">
-                            <div th:if="${arealists.totalPages == 0}"
+                            <div th:if="${routelists.totalPages == 0}"
                                  class="text-center alert alert-danger alert-dismissible" role="alert">
                                 <strong>No Record Found!</strong>
                             </div>
-                            <div th:if="${arealists.totalPages &gt;= 1}">
+                            <div th:if="${routelists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
 
                                     <ul class="pagination pull-right">
-                                        <li th:class="${arealists.number == 0} ? disabled">
+                                        <li th:class="${routelists.number == 0} ? disabled">
                                             <a class="pageLink"
                                                th:href="@{/du-area/(pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
-                                        <li th:class="${arealists.number == 0} ? disabled">
+                                        <li th:class="${routelists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${arealists.number})}">Previous</a>
+                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.number})}">Previous</a>
                                         </li>
-                                        <li th:class="${arealists.number == (page - 1)} ? 'active pointer-disabled'"
+                                        <li th:class="${routelists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
                                                th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
-                                        <li th:class="${arealists.number + 1 == arealists.totalPages} ? disabled">
+                                        <li th:class="${routelists.number + 1 == routelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${arealists.number + 2})}">Next</a>
+                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.number + 2})}">Next</a>
                                         </li>
-                                        <li th:class="${arealists.number + 1 == arealists.totalPages} ? disabled">
+                                        <li th:class="${routelists.number + 1 == routelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${arealists.totalPages})}">Last</a>
+                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>
