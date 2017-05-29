@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.BillsDao;
 import com.xenenergy.projects.entities.arm.Bills;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.BillsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,18 +16,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class BillsServiceImpl implements CRUDService<Bills> {
+public class BillsServiceImpl implements BillsService {
 
     @Autowired
     private BillsDao billsDao;
-
-    public int countBills(String dateFrom, String dateTo) {
-        return billsDao.countByRunDateBetween(dateFrom, dateTo);
-    }
-
-    public List<Bills> getAllBills() {
-        return billsDao.findAll();
-    }
 
     @Override
     public Page<Bills> findAllPageable(Pageable pageable) {
@@ -53,5 +45,15 @@ public class BillsServiceImpl implements CRUDService<Bills> {
     @Override
     public Bills update(Bills bills) {
         return billsDao.save(bills);
+    }
+
+    @Override
+    public int countBills(String dateFrom, String dateTo) {
+        return billsDao.countByRunDateBetween(dateFrom, dateTo);
+    }
+
+    @Override
+    public List<Bills> getAllBills() {
+        return billsDao.findAll();
     }
 }

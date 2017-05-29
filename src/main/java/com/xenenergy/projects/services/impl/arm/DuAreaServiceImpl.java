@@ -1,8 +1,7 @@
 package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.AreaDao;
-import com.xenenergy.projects.entities.DuArea;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.entities.arm.DuArea;
 import com.xenenergy.projects.services.interfaces.arm.DuAreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,10 +49,9 @@ public class DuAreaServiceImpl implements DuAreaService {
 
     @Override
     public Collection<DuArea> getAll() {
-        List<DuArea> areaEntities = new ArrayList<>();
+        //List<DuArea> areaEntities = new ArrayList<>();
         //areaDao.findAll().forEach(areaEntities::add);
-        areaDao.findAllByOrderByAreaName().forEach(areaEntities::add);
-        return areaEntities;
+        return areaDao.findAllByOrderByAreaName(); /*.forEach(areaEntities::add);*/
     }
 
 

@@ -3,8 +3,7 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.ChargeType;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.services.impl.arm.ChargeTypeServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RateMasterServiceImpl;
+import com.xenenergy.projects.entities.arm.RateMaster;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import com.xenenergy.projects.services.interfaces.arm.ChargeTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class ChargeTypeController {
     private ChargeTypeService chargeTypeService;
 
     @Autowired
-    private RateMasterServiceImpl rateMasterService;
+    private CRUDService<RateMaster> rateMasterService;
 
     @RequestMapping(value = "/{cid}/charge-type", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,

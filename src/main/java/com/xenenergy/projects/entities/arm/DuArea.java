@@ -1,4 +1,4 @@
-package com.xenenergy.projects.entities;
+package com.xenenergy.projects.entities.arm;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.xenenergy.projects.services.interfaces.arm;
 
-import com.xenenergy.projects.entities.DuArea;
+import com.xenenergy.projects.entities.arm.DuArea;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 
 import java.util.Collection;

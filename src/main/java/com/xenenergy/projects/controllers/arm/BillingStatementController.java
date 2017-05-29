@@ -2,9 +2,7 @@ package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.BillingStatementModel;
 import com.xenenergy.projects.entities.arm.Du;
-import com.xenenergy.projects.services.impl.arm.DuServiceImpl;
-import com.xenenergy.projects.services.impl.arm.BillsServiceImpl;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.BillsService;
 import com.xenenergy.projects.services.interfaces.arm.DuService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -37,7 +35,7 @@ public class BillingStatementController {
     private DuService duService;
 
     @Autowired
-    private BillsServiceImpl billsService;
+    private BillsService billsService;
     private InputStream reportStream;
 
     @RequestMapping(method = RequestMethod.GET)

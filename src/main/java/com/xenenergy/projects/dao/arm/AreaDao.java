@@ -1,6 +1,6 @@
 package com.xenenergy.projects.dao.arm;
 
-import com.xenenergy.projects.entities.DuArea;
+import com.xenenergy.projects.entities.arm.DuArea;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 

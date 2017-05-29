@@ -1,7 +1,7 @@
 package com.xenenergy.projects.controllers.arm.restapi;
 
 import com.xenenergy.projects.entities.arm.Bills;
-import com.xenenergy.projects.services.impl.arm.BillsServiceImpl;
+import com.xenenergy.projects.services.interfaces.arm.BillsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ import java.util.List;
 public class BillsRestController {
 
     @Autowired
-    private BillsServiceImpl billsService;
+    private BillsService billsService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Bills> getAllBills() {
