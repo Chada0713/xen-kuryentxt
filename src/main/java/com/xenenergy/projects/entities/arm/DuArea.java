@@ -1,6 +1,8 @@
-package com.xenenergy.projects.entities.arm;
+package com.xenenergy.projects.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "arm_du_area")
@@ -15,6 +17,18 @@ public class DuArea {
 
     @Column(name = "AREA_NAME")
     private String areaName;
+
+    /*@OneToOne(mappedBy = "duArea")
+    private Account account;*/
+
+    public DuArea() {
+    }
+
+    public DuArea(long id, String areaCode, String areaName) {
+        this.id = id;
+        this.areaCode = areaCode;
+        this.areaName = areaName;
+    }
 
     public long getId() {
         return id;
@@ -39,4 +53,12 @@ public class DuArea {
     public void setAreaName(String areaName) {
         this.areaName = areaName;
     }
+
+    /*public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }*/
 }

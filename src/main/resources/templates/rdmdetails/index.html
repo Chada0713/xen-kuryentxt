@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <head>
-    <title>Route Definition Master Details</title>
+    <title>Route Definition Details</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -12,8 +12,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
                         <a th:href="@{/rdm}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong>Route Definition Master
-                            Details</strong>
+                        <strong>(Route Definition Master - </strong>
+                        <strong th:text="${rdm.rdmName} + ')'"></strong>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -72,6 +72,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
+                                    <!--<th></th>-->
                                     <th>Route Code</th>
                                     <th>Route Name</th>
                                     <th>Start Sequence</th>
@@ -81,6 +82,10 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="rdmdetailList : ${rdmDetailLists}">
+                                    <!--<td>
+                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails/{id}/viewaccount/{rid}(cid=${rdm.id}, id=${rdmdetailList.id}, rid=${rdmdetailList.idRoute})}">
+                                            View Accounts</a>
+                                    </td>-->
                                     <td>
                                         <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
                                               th:text="${route.routeCode}"></span>

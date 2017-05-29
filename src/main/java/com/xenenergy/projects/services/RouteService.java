@@ -42,6 +42,7 @@ public class RouteService {
     }
 
     public List<Route> findByIdArea(long idArea) {
-        return routeDao.findByIdArea(idArea);
+        //return routeDao.findByIdArea(idArea);
+        return routeDao.findByIdAreaOrderByRouteName(idArea);
     }
 }

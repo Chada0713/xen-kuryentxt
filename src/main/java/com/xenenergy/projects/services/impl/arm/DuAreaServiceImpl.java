@@ -51,7 +51,10 @@ public class DuAreaServiceImpl implements DuAreaService {
     @Override
     public Collection<DuArea> getAll() {
         List<DuArea> areaEntities = new ArrayList<>();
-        areaDao.findAll().forEach(areaEntities::add);
+        //areaDao.findAll().forEach(areaEntities::add);
+        areaDao.findAllByOrderByAreaName().forEach(areaEntities::add);
         return areaEntities;
     }
+
+
 }

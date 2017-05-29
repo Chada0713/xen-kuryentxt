@@ -1,12 +1,10 @@
-package com.xenenergy.projects.controllers.arm;
+package com.xenenergy.projects.controllers;
 
-import com.xenenergy.projects.entities.arm.Pager;
-import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.entities.arm.RdmDetail;
+import com.xenenergy.projects.entities.*;
 import com.xenenergy.projects.services.RouteService;
-import com.xenenergy.projects.services.impl.arm.DuAreaServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RdmDetailServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RouteDefinitionServiceImpl;
+import com.xenenergy.projects.services.impl.DuAreaServiceImpl;
+import com.xenenergy.projects.services.impl.RdmDetailServiceImpl;
+import com.xenenergy.projects.services.impl.RouteDefinitionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 /**

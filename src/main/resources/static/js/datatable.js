@@ -2,14 +2,18 @@
  * Created by xenuser on 5/16/2017.
  */
 $(document).ready( function () {
+    //noinspection JSAnnotator
     var table = $('#accountsTable').DataTable({
         "sAjaxSource": "api/accounts",
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],
+        "columnDefs": [
+            { className: "dt-body-right", "targets": [ 5 ] }
+        ],
         "aoColumns": [
-            { "mData": "seqNo"},
-            { "mData": "routeCode"},
+            { "mData": "seqNo" },
+            { "mData": "routeCode" },
             { "mData": "accountName" },
             { "mData": "oldAccountNo",
                 render: function ( data, type, row, meta ) {
@@ -41,6 +45,35 @@ $(document).ready( function () {
             { "mData": "meterNo" },
             { "mData": "accountNo" },
             { "mData": "totalConsumption" }
+        ],
+        dom: "<'row'<'col-sm-12'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+        "lengthMenu": [20],
+        "sPaginationType": "full_numbers"
+    })
+});
+
+$(document).ready( function () {
+    //noinspection JSAnnotator
+    var table = $('#viewAccountsTable').DataTable({
+        "bProcessing": true,
+        "bServerSide": true,
+        "sAjaxSource": "api/viewaccounts",
+        "fnServerParams":function ( aoData ) {
+            aoData.push( { "name": "idRoute", "value": $('#idRoute').val() } );
+        },
+        "bServerSide": true,
+        "sAjaxDataProp": "",
+        responsive: true,
+        "order": [[ 0, "asc" ]],
+        "aoColumns": [
+            { "mData": "seqNo" },
+            { "mData": "routeCode" },
+            { "mData": "accountName" },
+            { "mData": "oldAccountNo"},
+            { "mData": "meterNo" },
+            { "mData": "curRdg" },
         ],
         dom: "<'row'<'col-sm-12'f>>" +
         "<'row'<'col-sm-12'tr>>" +
