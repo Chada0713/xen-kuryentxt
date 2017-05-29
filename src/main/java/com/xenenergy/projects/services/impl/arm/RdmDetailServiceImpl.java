@@ -3,6 +3,7 @@ package com.xenenergy.projects.services.impl.arm;
 import com.xenenergy.projects.dao.arm.RdmDetailDao;
 import com.xenenergy.projects.entities.arm.RdmDetail;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.RdmDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class RdmDetailServiceImpl implements CRUDService<RdmDetail> {
+public class RdmDetailServiceImpl implements RdmDetailService {
 
     @Autowired
     private RdmDetailDao rdmDetailDao;
-
 
     @Override
     public Page<RdmDetail> findAllPageable(Pageable pageable) {
@@ -46,6 +46,7 @@ public class RdmDetailServiceImpl implements CRUDService<RdmDetail> {
         return rdmDetailDao.save(rdmDetail);
     }
 
+    @Override
     public Page<RdmDetail> findAllByIdRdm(long idRdm, Pageable pageable){
         return rdmDetailDao.findByIdRdm(idRdm, pageable);
     }

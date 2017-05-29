@@ -4,7 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.Rdm;
 import com.xenenergy.projects.services.ReadersService;
-import com.xenenergy.projects.services.impl.arm.RouteDefinitionServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,9 +25,9 @@ public class RouteDefinitionController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    RouteDefinitionServiceImpl definitionService;
+    private CRUDService<Rdm> definitionService;
     @Autowired
-    ReadersService readersService;
+    private ReadersService readersService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

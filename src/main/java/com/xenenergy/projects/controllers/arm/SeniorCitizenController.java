@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.SeniorCitizen;
 import com.xenenergy.projects.services.impl.arm.SeniorCitizenServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -28,7 +29,7 @@ public class SeniorCitizenController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    SeniorCitizenServiceImpl seniorCitizenService;
+    private CRUDService<SeniorCitizen> seniorCitizenService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

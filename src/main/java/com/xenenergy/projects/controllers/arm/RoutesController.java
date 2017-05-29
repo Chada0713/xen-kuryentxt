@@ -1,10 +1,11 @@
-package com.xenenergy.projects.controllers;
+package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.Route;
-import com.xenenergy.projects.services.impl.RoutesServiceImpl;
+import com.xenenergy.projects.services.impl.arm.RoutesServiceImpl;
 import com.xenenergy.projects.services.impl.arm.DuAreaServiceImpl;
+import com.xenenergy.projects.services.interfaces.arm.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import sun.awt.ModalityListener;
 
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public class RoutesController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    RoutesServiceImpl routesService;
+    private RoutesService routesService;
 
     @Autowired
     DuAreaServiceImpl duAreaService;
