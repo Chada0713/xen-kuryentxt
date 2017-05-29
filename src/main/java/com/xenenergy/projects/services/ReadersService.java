@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services;
 
-import com.xenenergy.projects.dao.dependence.ReadersDao;
-import com.xenenergy.projects.entities.Reader;
+import com.xenenergy.projects.dao.arm.dependence.ReadersDao;
+import com.xenenergy.projects.entities.arm.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services.impl;
 
-import com.xenenergy.projects.dao.RoutesDao;
-import com.xenenergy.projects.entities.Route;
+import com.xenenergy.projects.dao.arm.RoutesDao;
+import com.xenenergy.projects.entities.arm.Route;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class RoutesServiceImpl implements CRUDService<Route>{
+public class RoutesServiceImpl implements CRUDService<Route> {
     @Autowired
     private RoutesDao routesDao;
 

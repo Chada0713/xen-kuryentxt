@@ -1,13 +1,13 @@
 package com.xenenergy.projects.services.interfaces;
 
+import com.xenenergy.projects.entities.arm.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 /**
- * Created by xenuser on 5/11/2017.
+ * Created by Daryll Sabate on 5/29/2017.
  */
 public interface CRUDService<T> {
-
     Page<T> findAllPageable(Pageable pageable);
 
     T getById(long id);
@@ -17,4 +17,5 @@ public interface CRUDService<T> {
     T insert(T t);
 
     T update(T t);
+
 }
