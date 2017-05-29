@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.Remarks;
 import com.xenenergy.projects.services.impl.arm.RemarksServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class RemarksController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    RemarksServiceImpl remarksService;
+    private CRUDService<Remarks> remarksService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

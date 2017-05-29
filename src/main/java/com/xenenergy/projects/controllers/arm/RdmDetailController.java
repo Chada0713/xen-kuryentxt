@@ -2,11 +2,12 @@ package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
+import com.xenenergy.projects.entities.arm.Rdm;
 import com.xenenergy.projects.entities.arm.RdmDetail;
 import com.xenenergy.projects.services.RouteService;
-import com.xenenergy.projects.services.impl.arm.DuAreaServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RdmDetailServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RouteDefinitionServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.DuAreaService;
+import com.xenenergy.projects.services.interfaces.arm.RdmDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,16 +32,16 @@ public class RdmDetailController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private RdmDetailServiceImpl rdmDetailService;
+    private RdmDetailService rdmDetailService;
 
     @Autowired
-    private RouteDefinitionServiceImpl routeDefinitionService;
+    private CRUDService<Rdm> routeDefinitionService;
 
     @Autowired
     private RouteService routeService;
 
     @Autowired
-    private DuAreaServiceImpl duAreaService;
+    private DuAreaService duAreaService;
 
     @RequestMapping(value = "/{cid}/rdmdetails", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,

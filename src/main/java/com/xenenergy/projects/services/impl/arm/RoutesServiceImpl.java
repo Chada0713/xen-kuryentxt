@@ -1,8 +1,9 @@
-package com.xenenergy.projects.services.impl;
+package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.RoutesDao;
 import com.xenenergy.projects.entities.arm.Route;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class RoutesServiceImpl implements CRUDService<Route> {
+public class RoutesServiceImpl implements RoutesService {
     @Autowired
     private RoutesDao routesDao;
 
@@ -45,6 +46,7 @@ public class RoutesServiceImpl implements CRUDService<Route> {
         return routesDao.save(route);
     }
 
+    @Override
     public Page<Route> findByIdArea(long idArea, Pageable pageable){
         return routesDao.findByIdAreaOrderByRouteName(idArea, pageable);
     }
