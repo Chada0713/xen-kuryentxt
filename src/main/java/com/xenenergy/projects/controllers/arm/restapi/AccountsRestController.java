@@ -32,8 +32,8 @@ public class AccountsRestController {
         return accountService.getByAccountNo(oldAccountNo);
     }
 
-    @RequestMapping(value = "/viewaccounts", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/viewaccounts", method = RequestMethod.GET)
     public List<Account> findAccountsByIdRoute(@RequestParam("idRoute") long idRoute){
         return accountService.findByIdRoute(idRoute);
-    }
+    }*/
 }

@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "arm_du_meter_readers")
-public class Reader {
+public class MeterReader {
 
     @Id
     @Column(name = "ID")

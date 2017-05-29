@@ -1,7 +1,7 @@
-package com.xenenergy.projects.services.impl;
+package com.xenenergy.projects.services.impl.arm;
 
-import com.xenenergy.projects.dao.AccountDao;
-import com.xenenergy.projects.entities.Account;
+import com.xenenergy.projects.dao.arm.AccountDao;
+import com.xenenergy.projects.entities.arm.Account;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

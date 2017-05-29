@@ -3,6 +3,7 @@ package com.xenenergy.projects.services.impl.arm;
 import com.xenenergy.projects.dao.arm.PerKwChargeDetailDao;
 import com.xenenergy.projects.entities.arm.PerKwChargeDetail;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.PerKwChargeDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,46 +17,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class PerKwChargeDetailServiceImpl implements CRUDService<PerKwChargeDetail> {
+public class PerKwChargeDetailServiceImpl implements PerKwChargeDetailsService {
 
     @Autowired
     PerKwChargeDetailDao perKwChargeDetailDao;
-
-    public void callCopyToTemplate(long id) {
-        perKwChargeDetailDao.copyToTemplate(id);
-    }
-
-    public List<PerKwChargeDetail> findAllPageable(long id) {
-        return perKwChargeDetailDao.findByIdMasterOrderByPrintOrderAsc(id);
-    }
-
-    public int getMaxPrintOrder(long id) {
-        int maxPrintOrder = 0;
-        try {
-            if (perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id) == null) {
-                maxPrintOrder = 0;
-            } else {
-                maxPrintOrder = perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return maxPrintOrder;
-    }
-
-    public double findSumOfTotalAmount(long id) {
-        double totalAmt = 0.0000;
-        try {
-            if (perKwChargeDetailDao.findSumOfTotalAmount(id) == null) {
-                totalAmt = 0.0000;
-            } else {
-                totalAmt = perKwChargeDetailDao.findSumOfTotalAmount(id);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return totalAmt;
-    }
 
     @Override
     public Page<PerKwChargeDetail> findAllPageable(Pageable pageable) {
@@ -81,5 +46,45 @@ public class PerKwChargeDetailServiceImpl implements CRUDService<PerKwChargeDeta
     @Override
     public PerKwChargeDetail update(PerKwChargeDetail perKwChargeDetail) {
         return perKwChargeDetailDao.save(perKwChargeDetail);
+    }
+
+    @Override
+    public void callCopyToTemplate(long id) {
+        perKwChargeDetailDao.copyToTemplate(id);
+    }
+
+    @Override
+    public List<PerKwChargeDetail> findAllPageable(long id) {
+        return perKwChargeDetailDao.findByIdMasterOrderByPrintOrderAsc(id);
+    }
+
+    @Override
+    public int getMaxPrintOrder(long id) {
+        int maxPrintOrder = 0;
+        try {
+            if (perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id) == null) {
+                maxPrintOrder = 0;
+            } else {
+                maxPrintOrder = perKwChargeDetailDao.findTopByPrintOrderOrderByPrintOrderDesc(id);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return maxPrintOrder;
+    }
+
+    @Override
+    public double findSumOfTotalAmount(long id) {
+        double totalAmt = 0.0000;
+        try {
+            if (perKwChargeDetailDao.findSumOfTotalAmount(id) == null) {
+                totalAmt = 0.0000;
+            } else {
+                totalAmt = perKwChargeDetailDao.findSumOfTotalAmount(id);
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return totalAmt;
     }
 }

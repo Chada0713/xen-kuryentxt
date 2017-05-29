@@ -5,6 +5,8 @@ import com.xenenergy.projects.entities.arm.PerKwChargeDetail;
 import com.xenenergy.projects.services.impl.arm.ChargeTypeServiceImpl;
 import com.xenenergy.projects.services.impl.arm.PerKwChargeDetailServiceImpl;
 import com.xenenergy.projects.services.impl.arm.PerKwChargeMasterServiceImpl;
+import com.xenenergy.projects.services.interfaces.arm.PerKwChargeDetailsService;
+import com.xenenergy.projects.services.interfaces.arm.PerKwChargeMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +23,10 @@ public class PerKwChargeDetailController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private PerKwChargeDetailServiceImpl perKwChargeDetailService;
+    private PerKwChargeDetailsService perKwChargeDetailService;
 
     @Autowired
-    private PerKwChargeMasterServiceImpl perKwChargeMasterService;
+    private PerKwChargeMasterService perKwChargeMasterService;
 
     @Autowired
     private ChargeTypeServiceImpl chargeTypeService;

@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.Property;
 import com.xenenergy.projects.services.impl.arm.PropertyServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +23,7 @@ public class PropertyController {
    private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private PropertyServiceImpl propertyService;
+    private CRUDService<Property> propertyService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

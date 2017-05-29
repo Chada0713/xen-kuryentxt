@@ -1,6 +1,6 @@
 package com.xenenergy.projects.controllers.arm;
 
-import com.xenenergy.projects.entities.arm.DuArea;
+import com.xenenergy.projects.entities.DuArea;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.services.impl.arm.DuAreaServiceImpl;

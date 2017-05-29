@@ -5,6 +5,7 @@ import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.PerKwChargeMaster;
 import com.xenenergy.projects.services.impl.arm.PerKwChargeMasterServiceImpl;
 import com.xenenergy.projects.services.impl.arm.RateMasterServiceImpl;
+import com.xenenergy.projects.services.interfaces.arm.PerKwChargeMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public class PerKwChargeMasterController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private PerKwChargeMasterServiceImpl perKwChargeMasterService;
+    private PerKwChargeMasterService perKwChargeMasterService;
 
     @Autowired
     private RateMasterServiceImpl rateMasterService;

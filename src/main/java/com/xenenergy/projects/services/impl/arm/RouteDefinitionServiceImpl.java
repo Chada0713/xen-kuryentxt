@@ -1,6 +1,6 @@
 package com.xenenergy.projects.services.impl.arm;
 
-import com.xenenergy.projects.dao.arm.RouteDefinitionDao;
+import com.xenenergy.projects.dao.RouteDefinitionDao;
 import com.xenenergy.projects.entities.arm.Rdm;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;

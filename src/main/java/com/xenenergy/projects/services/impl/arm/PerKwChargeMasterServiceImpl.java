@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.PerKwChargeMasterDao;
 import com.xenenergy.projects.entities.arm.PerKwChargeMaster;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.PerKwChargeMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,14 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class PerKwChargeMasterServiceImpl implements CRUDService<PerKwChargeMaster> {
+public class PerKwChargeMasterServiceImpl implements PerKwChargeMasterService {
 
     @Autowired
     private PerKwChargeMasterDao perKwChargeMasterDao;
 
-    public Page<PerKwChargeMaster> findAllByIdRateMaster(long id, Pageable pageable) {
-        return perKwChargeMasterDao.findByIdRateMasterOrderByIdDesc(id,pageable);
-    }
     @Override
     public Page<PerKwChargeMaster> findAllPageable(Pageable pageable) {
         return perKwChargeMasterDao.findAll(pageable);
@@ -46,5 +43,10 @@ public class PerKwChargeMasterServiceImpl implements CRUDService<PerKwChargeMast
     @Override
     public PerKwChargeMaster update(PerKwChargeMaster perKwChargeMaster) {
         return perKwChargeMasterDao.save(perKwChargeMaster);
+    }
+
+    @Override
+    public Page<PerKwChargeMaster> findAllByIdRateMaster(long id, Pageable pageable) {
+        return perKwChargeMasterDao.findByIdRateMasterOrderByIdDesc(id,pageable);
     }
 }

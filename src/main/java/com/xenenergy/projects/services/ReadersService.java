@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services;
 
 import com.xenenergy.projects.dao.arm.dependence.ReadersDao;
-import com.xenenergy.projects.entities.arm.Reader;
+import com.xenenergy.projects.entities.arm.MeterReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +15,8 @@ public class ReadersService {
     @Autowired
     private ReadersDao readersDao;
 
-    public Collection<Reader> getAll() {
-        List<Reader> readersEntities = new ArrayList<>();
+    public Collection<MeterReader> getAll() {
+        List<MeterReader> readersEntities = new ArrayList<>();
         readersDao.findAll().forEach(readersEntities::add);
         return readersEntities;
     }
@@ -26,15 +26,15 @@ public class ReadersService {
         return true;
     }
 
-    public Reader insert(Reader reader) {
+    public MeterReader insert(MeterReader reader) {
         return readersDao.save(reader);
     }
 
-    public Reader getById(long id) {
+    public MeterReader getById(long id) {
         return readersDao.findOne(id);
     }
 
-    public Reader update(Reader reader) {
+    public MeterReader update(MeterReader reader) {
         return readersDao.save(reader);
     }
 }

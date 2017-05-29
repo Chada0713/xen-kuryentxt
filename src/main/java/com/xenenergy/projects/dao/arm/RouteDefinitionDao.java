@@ -1,6 +1,6 @@
 package com.xenenergy.projects.dao;
 
-import com.xenenergy.projects.entities.Rdm;
+import com.xenenergy.projects.entities.arm.Rdm;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

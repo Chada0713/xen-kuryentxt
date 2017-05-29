@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.AreaDao;
-import com.xenenergy.projects.entities.arm.DuArea;
+import com.xenenergy.projects.entities.DuArea;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import com.xenenergy.projects.services.interfaces.arm.DuAreaService;
 import org.springframework.beans.factory.annotation.Autowired;

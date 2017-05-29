@@ -1,9 +1,10 @@
 package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.Pager;
+import com.xenenergy.projects.entities.arm.MeterReader;
+
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.entities.arm.Reader;
-import com.xenenergy.projects.services.impl.arm.MeterReaderServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class MeterReadersController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    MeterReaderServiceImpl readerService;
+    private CRUDService<MeterReader> readerService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
@@ -34,7 +35,7 @@ public class MeterReadersController {
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<Reader> readers = readerService.findAllPageable(new PageRequest(evalPage, evalPageSize));
+        Page<MeterReader> readers = readerService.findAllPageable(new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(readers.getTotalPages(), readers.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("readerslist", readers);
@@ -46,12 +47,12 @@ public class MeterReadersController {
 
     @GetMapping("/add")
     public String addForm(Model model) {
-        model.addAttribute("reader", new Reader());
+        model.addAttribute("reader", new MeterReader());
         return "readers/add";
     }
 
     @PostMapping("/create")
-    public String save(Reader reader, final RedirectAttributes redirectAttributes) {
+    public String save(MeterReader reader, final RedirectAttributes redirectAttributes) {
         if (readerService.insert(reader) != null) {
             redirectAttributes.addFlashAttribute("save", "success");
         } else {
@@ -82,7 +83,7 @@ public class MeterReadersController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("duArea") Reader reader,
+    public String update(@ModelAttribute("duArea") MeterReader reader,
                          final RedirectAttributes redirectAttributes) {
         if (readerService.update(reader) != null) {
             redirectAttributes.addFlashAttribute("edit", "success");

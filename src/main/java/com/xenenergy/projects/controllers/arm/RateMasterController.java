@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.RateMaster;
 import com.xenenergy.projects.services.impl.arm.RateMasterServiceImpl;
+import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,7 +26,7 @@ public class RateMasterController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    RateMasterServiceImpl rateMasterService;
+    private CRUDService<RateMaster> rateMasterService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
