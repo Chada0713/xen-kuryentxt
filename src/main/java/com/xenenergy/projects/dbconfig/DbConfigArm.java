@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -36,12 +37,13 @@ public class DbConfigArm {
         return new DataSourceProperties();
     }
 
-    @Bean
+    @Bean(name = "dsArm")
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.url")
     public DataSource armDataSource() {
         return armDataSourceProperties().initializeDataSourceBuilder().build();
     }
+
 
     @Primary
     @Bean(name = "armEntityManager")

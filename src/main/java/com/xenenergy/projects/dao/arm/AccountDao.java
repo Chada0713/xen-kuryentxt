@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface AccountDao extends JpaRepository<Account, Long> {
     Account findByOldAccountNo(String oldAccountNo);
-    List<Account> findByIdRoute(long idRoute);
+    //List<Account> findByIdRoute(long idRoute);
 
     /*@Query("select a, b.areaCode from Account a, DuArea b where a.oldAccountNo = ?1 and a.idArea = b.id")
     Account findByOldAccountNo(String oldAccountNo);*/

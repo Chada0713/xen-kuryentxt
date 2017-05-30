@@ -2,9 +2,7 @@ package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.PerKwChargeDetail;
-import com.xenenergy.projects.services.impl.arm.ChargeTypeServiceImpl;
-import com.xenenergy.projects.services.impl.arm.PerKwChargeDetailServiceImpl;
-import com.xenenergy.projects.services.impl.arm.PerKwChargeMasterServiceImpl;
+import com.xenenergy.projects.services.interfaces.arm.ChargeTypeService;
 import com.xenenergy.projects.services.interfaces.arm.PerKwChargeDetailsService;
 import com.xenenergy.projects.services.interfaces.arm.PerKwChargeMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +27,7 @@ public class PerKwChargeDetailController {
     private PerKwChargeMasterService perKwChargeMasterService;
 
     @Autowired
-    private ChargeTypeServiceImpl chargeTypeService;
+    private ChargeTypeService chargeTypeService;
 
     @RequestMapping(value = "/{cid}/per-kw-charge-master/{rid}/details", method = RequestMethod.GET)
     public String showDetails(@PathVariable("cid") long cid,

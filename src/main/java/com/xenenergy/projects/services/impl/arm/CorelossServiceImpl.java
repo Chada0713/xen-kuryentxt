@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.CorelossDao;
 import com.xenenergy.projects.entities.arm.Coreloss;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.CorelossService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class CorelossServiceImpl implements CRUDService<Coreloss> {
+public class CorelossServiceImpl implements CorelossService {
 
     @Autowired
     private CorelossDao corelossDao;

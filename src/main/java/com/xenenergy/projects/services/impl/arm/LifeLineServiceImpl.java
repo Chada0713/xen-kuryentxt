@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.LifeLineDao;
 import com.xenenergy.projects.entities.arm.LifeLine;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.LifelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class LifeLineServiceImpl implements CRUDService<LifeLine> {
+public class LifeLineServiceImpl implements LifelineService {
 
     @Autowired
     private LifeLineDao lifeLineDao;

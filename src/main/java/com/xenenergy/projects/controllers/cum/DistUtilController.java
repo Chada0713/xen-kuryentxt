@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.cum.DistUtil;
 import com.xenenergy.projects.services.impl.cum.DistUtilServiceImpl;
+import com.xenenergy.projects.services.interfaces.cum.DistUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ public class DistUtilController {
 
     private PaginationProperty property;
     @Autowired
-    private DistUtilServiceImpl distUtilService;
+    private DistUtilService distUtilService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

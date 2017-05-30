@@ -1,8 +1,9 @@
 package com.xenenergy.projects.services.impl.arm;
 
-import com.xenenergy.projects.dao.RouteDefinitionDao;
+import com.xenenergy.projects.dao.arm.RouteDefinitionDao;
 import com.xenenergy.projects.entities.arm.Rdm;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.RouteDefinitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class RouteDefinitionServiceImpl implements CRUDService<Rdm> {
+public class RouteDefinitionServiceImpl implements RouteDefinitionService {
 
     @Autowired
     private RouteDefinitionDao routeDefinitionDao;

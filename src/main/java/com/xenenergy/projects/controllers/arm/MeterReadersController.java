@@ -5,6 +5,7 @@ import com.xenenergy.projects.entities.arm.MeterReader;
 
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.MeterReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,7 +27,7 @@ public class MeterReadersController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private CRUDService<MeterReader> readerService;
+    private MeterReaderService readerService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

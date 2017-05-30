@@ -5,6 +5,7 @@ import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.services.impl.arm.CorelossServiceImpl;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.CorelossService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class CorelossController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    CRUDService<Coreloss> corelossService;
+    CorelossService corelossService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

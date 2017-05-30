@@ -3,6 +3,7 @@ package com.xenenergy.projects.services.impl.arm;
 import com.xenenergy.projects.dao.arm.AccountDao;
 import com.xenenergy.projects.entities.arm.Account;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,14 +14,20 @@ import java.util.List;
 
 @Service
 @Transactional
-public class AccountServiceImpl implements CRUDService<Account> {
+public class AccountServiceImpl implements AccountService {
 
 
     @Autowired
     private AccountDao accountDao;
 
+    @Autowired
     public List<Account> getAllAccounts(){
         return accountDao.findAll();
+    }
+
+    @Override
+    public Account getByOldAccountNo(String oldAccountNo) {
+        return accountDao.findByOldAccountNo(oldAccountNo);
     }
 
     @Override
@@ -47,10 +54,6 @@ public class AccountServiceImpl implements CRUDService<Account> {
     @Override
     public Account update(Account account) {
         return accountDao.save(account);
-    }
-
-    public Account getByAccountNo(String oldAccountNo) {
-        return accountDao.findByOldAccountNo(oldAccountNo);
     }
 
 }

@@ -10,6 +10,5 @@ import java.util.List;
  */
 public interface AccountService extends CRUDService<Account> {
     List<Account> getAllAccounts();
-
-    Object getByAccountNo(String oldAccountNo);
+    Account getByOldAccountNo(String oldAccountNo);
 }

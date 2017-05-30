@@ -3,7 +3,6 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.Property;
-import com.xenenergy.projects.services.impl.arm.PropertyServiceImpl;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

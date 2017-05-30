@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.AddOnChargeDao;
 import com.xenenergy.projects.entities.arm.AddOnCharge;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.AddOnChargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class AddOnChargeServiceImpl implements CRUDService<AddOnCharge>{
+public class AddOnChargeServiceImpl implements AddOnChargeService {
 
     @Autowired
     private AddOnChargeDao addOnChargeDao;

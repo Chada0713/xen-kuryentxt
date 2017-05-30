@@ -3,9 +3,8 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.entities.arm.PerKwChargeMaster;
-import com.xenenergy.projects.services.impl.arm.PerKwChargeMasterServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RateMasterServiceImpl;
 import com.xenenergy.projects.services.interfaces.arm.PerKwChargeMasterService;
+import com.xenenergy.projects.services.interfaces.arm.RateMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -34,7 +33,7 @@ public class PerKwChargeMasterController {
     private PerKwChargeMasterService perKwChargeMasterService;
 
     @Autowired
-    private RateMasterServiceImpl rateMasterService;
+    private RateMasterService rateMasterService;
 
     @RequestMapping(value = "/{cid}/per-kw-charge-master", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,

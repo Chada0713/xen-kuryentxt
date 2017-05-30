@@ -2,8 +2,6 @@ package com.xenenergy.projects.controllers.arm;
 
 import com.xenenergy.projects.entities.arm.FixedChargeDetail;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.services.impl.arm.FixedChargeDetailServiceImpl;
-import com.xenenergy.projects.services.impl.arm.FixedChargeMasterServiceImpl;
 import com.xenenergy.projects.services.interfaces.arm.FixedChargeDetailService;
 import com.xenenergy.projects.services.interfaces.arm.FixedChargeMasterService;
 import org.springframework.beans.factory.annotation.Autowired;

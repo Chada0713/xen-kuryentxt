@@ -2,7 +2,7 @@ package com.xenenergy.projects.services.impl.arm;
 
 import com.xenenergy.projects.dao.arm.MeterReaderDao;
 import com.xenenergy.projects.entities.arm.MeterReader;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.MeterReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class MeterReaderServiceImpl implements CRUDService<MeterReader> {
+public class MeterReaderServiceImpl implements MeterReaderService {
 
     @Autowired
     private MeterReaderDao meterReaderDao;

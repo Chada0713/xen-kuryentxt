@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.AddOnKwh;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.AddOnKwhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ public class AddOnKwhController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private CRUDService<AddOnKwh> addOnKwhService;
+    private AddOnKwhService addOnKwhService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

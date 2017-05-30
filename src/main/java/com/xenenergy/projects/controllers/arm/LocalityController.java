@@ -3,9 +3,7 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.Locality;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.services.impl.arm.DuAreaServiceImpl;
-import com.xenenergy.projects.services.impl.arm.LocalityServiceImpl;
-import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.DuAreaService;
 import com.xenenergy.projects.services.interfaces.arm.LocalityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +29,7 @@ public class LocalityController {
     private LocalityService localityService;
 
     @Autowired
-    private DuAreaServiceImpl duAreaService;
+    private DuAreaService duAreaService;
 
     @RequestMapping(value = "/{cid}/locality", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,

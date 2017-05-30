@@ -3,8 +3,8 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.LifeLine;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.services.impl.arm.LifeLineServiceImpl;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.LifelineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -26,7 +26,7 @@ public class LifeLineController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private CRUDService<LifeLine> lifeLineService;
+    private LifelineService lifeLineService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,

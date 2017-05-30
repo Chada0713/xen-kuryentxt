@@ -3,7 +3,9 @@ package com.xenenergy.projects.services.impl.cum;
 import com.xenenergy.projects.dao.cum.DistUtilDao;
 import com.xenenergy.projects.entities.cum.DistUtil;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.cum.DistUtilService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class DistUtilServiceImpl implements CRUDService<DistUtil> {
+public class DistUtilServiceImpl implements DistUtilService {
 
     @Autowired
     private DistUtilDao distUtilDao;

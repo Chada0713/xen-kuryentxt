@@ -28,8 +28,8 @@ public class AccountsRestController {
     }
 
    @GetMapping("/account")
-    public Object getAccountByAccountNo(@RequestParam("oldaccountno") String oldAccountNo){
-        return accountService.getByAccountNo(oldAccountNo);
+    public Account getByAccountNo(@RequestParam("oldaccountno") String oldAccountNo){
+        return accountService.getByOldAccountNo(oldAccountNo);
     }
 
     /*@RequestMapping(value = "/viewaccounts", method = RequestMethod.GET)

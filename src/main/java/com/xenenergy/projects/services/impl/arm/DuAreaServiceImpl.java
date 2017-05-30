@@ -9,9 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Service
 @Transactional
@@ -49,9 +47,7 @@ public class DuAreaServiceImpl implements DuAreaService {
 
     @Override
     public Collection<DuArea> getAll() {
-        //List<DuArea> areaEntities = new ArrayList<>();
-        //areaDao.findAll().forEach(areaEntities::add);
-        return areaDao.findAllByOrderByAreaName(); /*.forEach(areaEntities::add);*/
+        return areaDao.findAllByOrderByAreaName();
     }
 
 

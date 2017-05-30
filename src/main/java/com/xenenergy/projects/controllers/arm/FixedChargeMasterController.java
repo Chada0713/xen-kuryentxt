@@ -3,11 +3,8 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.FixedChargeMaster;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.entities.arm.RateMaster;
-import com.xenenergy.projects.services.impl.arm.FixedChargeMasterServiceImpl;
-import com.xenenergy.projects.services.impl.arm.RateMasterServiceImpl;
-import com.xenenergy.projects.services.interfaces.CRUDService;
 import com.xenenergy.projects.services.interfaces.arm.FixedChargeMasterService;
+import com.xenenergy.projects.services.interfaces.arm.RateMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -35,7 +32,7 @@ public class FixedChargeMasterController {
     private FixedChargeMasterService fixedChargeService;
 
     @Autowired
-    private CRUDService<RateMaster> rateMasterService;
+    private RateMasterService rateMasterService;
 
 
     @RequestMapping(value = "/{cid}/fixedcharge", method = RequestMethod.GET)

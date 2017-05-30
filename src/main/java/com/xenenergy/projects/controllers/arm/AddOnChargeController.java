@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.arm.AddOnCharge;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.arm.AddOnChargeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +25,7 @@ public class AddOnChargeController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
-    private CRUDService<AddOnCharge> addOnChargeService;
+    private AddOnChargeService addOnChargeService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
