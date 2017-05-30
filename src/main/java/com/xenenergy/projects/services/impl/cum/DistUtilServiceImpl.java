@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Daryll Sabate on 5/29/2017.
  */
 @Service
-@Transactional
+@Transactional("cumTransactionManager")
 public class DistUtilServiceImpl implements DistUtilService {
 
     @Autowired

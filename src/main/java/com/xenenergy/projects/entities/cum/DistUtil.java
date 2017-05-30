@@ -31,7 +31,7 @@ public class DistUtil {
     private String port;
     @Column(name = "CONTACT_NUMBER")
     private String contactNo;
-    @Column(name = "IS_ADMIN_USER")
+    @Column(name = "ID_ADMIN_USER")
     private long idAdminUser;
     @Column(name = "IS_ACTIVE")
     private String isActive;
@@ -108,19 +108,19 @@ public class DistUtil {
         this.contactNo = contactNo;
     }
 
-    public long getIdAdminUser() {
-        return idAdminUser;
-    }
-
-    public void setIdAdminUser(long idAdminUser) {
-        this.idAdminUser = idAdminUser;
-    }
-
     public String getIsActive() {
         return isActive;
     }
 
     public void setIsActive(String isActive) {
         this.isActive = isActive;
+    }
+
+    public long getIdAdminUser() {
+        return idAdminUser;
+    }
+
+    public void setIdAdminUser(long idAdminUser) {
+        this.idAdminUser = idAdminUser;
     }
 }

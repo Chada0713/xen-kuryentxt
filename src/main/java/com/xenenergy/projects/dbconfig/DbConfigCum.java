@@ -1,56 +1,73 @@
 package com.xenenergy.projects.dbconfig;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-
+import java.util.HashMap;
 
 /**
  * Created by Daryll Sabate on 5/29/2017.
  */
 @Configuration
-@EnableTransactionManagement
+@PropertySource({"classpath:config/application.properties"})
 @EnableJpaRepositories(
+        basePackages = "com.xenenergy.projects.dao.cum",
         entityManagerFactoryRef = "cumEntityManager",
-        transactionManagerRef = "cumTransactionManager",
-        basePackages = "com.xenenergy.projects.dao.cum"
+        transactionManagerRef = "cumTransactionManager"
 )
 public class DbConfigCum {
+    @Autowired
+    private Environment env;
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.cum.url")
-    public DataSourceProperties cumDataSourceProperties() {
-        return new DataSourceProperties();
+    public LocalContainerEntityManagerFactoryBean cumEntityManager() {
+        LocalContainerEntityManagerFactoryBean em
+                = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(cumDataSource());
+        em.setPackagesToScan(
+                new String[]{"com.xenenergy.projects.entities.cum"});
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        em.setJpaVendorAdapter(vendorAdapter);
+        HashMap<String, Object> properties = new HashMap<>();
+        properties.put("spring.jpa.hibernate.ddl-auto",
+                env.getProperty("spring.jpa.hibernate.ddl-auto"));
+        properties.put("spring.jpa.properties.hibernate.dialect",
+                env.getProperty("spring.jpa.properties.hibernate.dialect"));
+        em.setJpaPropertyMap(properties);
+        return em;
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.cum.url")
     public DataSource cumDataSource() {
-        return cumDataSourceProperties().initializeDataSourceBuilder().build();
+
+        DriverManagerDataSource dataSource
+                = new DriverManagerDataSource();
+        dataSource.setDriverClassName(
+                env.getProperty("spring.datasource.cum.driver-class-name"));
+        dataSource.setUrl(env.getProperty("spring.datasource.cum.url"));
+        dataSource.setUsername(env.getProperty("spring.datasource.cum.username"));
+        dataSource.setPassword(env.getProperty("spring.datasource.cum.password"));
+
+        return dataSource;
     }
 
-    @Bean(name = "cumEntityManager")
-    public LocalContainerEntityManagerFactoryBean cumEntityManagerFactory(EntityManagerFactoryBuilder builder) {
-        return builder
-                .dataSource(cumDataSource())
-                .packages("com.xenenergy.projects.entities.cum")
-                .persistenceUnit("cum")
-                .build();
-    }
+    @Bean
+    public PlatformTransactionManager cumTransactionManager() {
 
-    @Bean(name = "cumTransactionManager")
-    public PlatformTransactionManager mysqlTransactionManager(@Qualifier("cumEntityManager") EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
+        JpaTransactionManager transactionManager
+                = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(
+                cumEntityManager().getObject());
+        return transactionManager;
     }
 }
