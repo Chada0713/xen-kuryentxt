@@ -62,7 +62,7 @@
                                             <select class="form-control" th:field="*{idRoute}" id="idRoute">
                                                 <option th:each="route: ${routeList}"
                                                         th:value="${route.id}"
-                                                        th:text="${route.routeName}"
+                                                        th:text="${route.routeCode+' - '+route.routeName}"
                                                 ></option>
                                             </select>
                                         </div>

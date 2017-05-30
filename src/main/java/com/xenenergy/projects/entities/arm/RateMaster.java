@@ -1,11 +1,6 @@
 package com.xenenergy.projects.entities.arm;
 
-import org.springframework.data.domain.Page;
-
 import javax.persistence.*;
-import java.util.List;
-import java.util.Queue;
-import java.util.Set;
 
 @Entity
 @Table(name = "arm_rate_master")

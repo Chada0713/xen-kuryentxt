@@ -56,4 +56,9 @@ public class AccountServiceImpl implements AccountService {
         return accountDao.save(account);
     }
 
+    @Override
+    public List<Account> findByIdRoute(long idRoute) {
+        return accountDao.findByIdRoute(idRoute);
+    }
+
 }

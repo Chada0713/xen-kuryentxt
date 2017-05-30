@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,7 +22,7 @@ public class DuAreaServiceImpl implements DuAreaService {
 
     @Override
     public Page<DuArea> findAllPageable(Pageable pageable) {
-        return areaDao.findAll(pageable);
+        return areaDao.findAllByOrderByAreaName(pageable);
     }
 
     @Override

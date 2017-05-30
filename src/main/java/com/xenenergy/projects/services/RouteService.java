@@ -20,7 +20,8 @@ public class RouteService {
 
     public Collection<Route> getAll() {
         List<Route> routeEntities = new ArrayList<>();
-        routeDao.findAll().forEach(routeEntities::add);
+        //routeDao.findAll().forEach(routeEntities::add);
+        routeDao.findAllByOrderByRouteName().forEach(routeEntities::add);
         return routeEntities;
     }
 

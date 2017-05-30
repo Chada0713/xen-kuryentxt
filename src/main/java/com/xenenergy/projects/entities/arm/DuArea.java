@@ -18,16 +18,32 @@ public class DuArea {
     @Column(name = "AREA_NAME")
     private String areaName;
 
+    @Column(name = "COUNT_CONSUMER")
+    private int countConsumer;
+
+    @Column(name = "COUNT_ACTIVE")
+    private int countActive;
+
+    @Column(name = "COUNT_DISCONNECTED")
+    private int countDisconnected;
+
+    @Column(name = "PERCENTAGE_DISCONNECTED")
+    private double percentageDisconnected;
+
     /*@OneToOne(mappedBy = "duArea")
     private Account account;*/
 
     public DuArea() {
     }
 
-    public DuArea(long id, String areaCode, String areaName) {
+    public DuArea(long id, String areaCode, String areaName, int countConsumer, int countActive, int countDisconnected, double percentageDisconnected) {
         this.id = id;
         this.areaCode = areaCode;
         this.areaName = areaName;
+        this.countConsumer = countConsumer;
+        this.countActive = countActive;
+        this.countDisconnected = countDisconnected;
+        this.percentageDisconnected = percentageDisconnected;
     }
 
     public long getId() {
@@ -52,6 +68,38 @@ public class DuArea {
 
     public void setAreaName(String areaName) {
         this.areaName = areaName;
+    }
+
+    public int getCountConsumer() {
+        return countConsumer;
+    }
+
+    public void setCountConsumer(int countConsumer) {
+        this.countConsumer = countConsumer;
+    }
+
+    public int getCountActive() {
+        return countActive;
+    }
+
+    public void setCountActive(int countActive) {
+        this.countActive = countActive;
+    }
+
+    public int getCountDisconnected() {
+        return countDisconnected;
+    }
+
+    public void setCountDisconnected(int countDisconnected) {
+        this.countDisconnected = countDisconnected;
+    }
+
+    public double getPercentageDisconnected() {
+        return percentageDisconnected;
+    }
+
+    public void setPercentageDisconnected(double percentageDisconnected) {
+        this.percentageDisconnected = percentageDisconnected;
     }
 
     /*public Account getAccount() {

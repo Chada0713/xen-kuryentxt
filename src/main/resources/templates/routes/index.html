@@ -12,8 +12,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
                         <a th:href="@{/du-area}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong>(Area - </strong>
-                        <strong th:text="${duarea.areaName} + ')'"></strong></div>
+                        <strong>Area - </strong>
+                        <strong th:text="'('+${duarea.areaName} + ')'"></strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
@@ -70,14 +70,42 @@
                                 <thead>
                                 <tr class="info">
                                     <th>Route Code</th>
-                                    <th>route Name</th>
+                                    <th>
+                                        <div class="text-left">Route Name</div>
+                                    </th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Active Consumer</th>
+                                    <th>
+                                        <div class="text-right">Disconnected</div>
+                                    </th>
+                                    <th>
+                                        <div class="text-right">Total Consumer</div>
+                                    </th>
+                                    <th>
+                                        <div class="text-right">% Disconnected</div>
+                                    </th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="routelist : ${routelists}">
                                     <td th:text="${routelist.routeCode}"></td>
-                                    <td th:text="${routelist.routeName}"></td>
+                                    <td>
+                                        <div class="text-left" th:text="${routelist.routeName}"></div>
+                                    </td>
+                                    <td th:text="${routelist.startSequence}"></td>
+                                    <td th:text="${routelist.endSequence}"></td>
+                                    <td th:text="${routelist.countActive}"></td>
+                                    <td>
+                                        <div class="text-right" th:text="${routelist.countDisconnected}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right" th:text="${routelist.countConsumer}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(routelist.percentageDisconnected,1,2)}+'%'"></div>
+                                    </td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='routes/delete/'+${routelist.id},

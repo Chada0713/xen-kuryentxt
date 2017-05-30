@@ -13,4 +13,5 @@ import java.util.List;
 public interface AccountService extends CRUDService<Account> {
     List<Account> getAllAccounts();
     Account getByOldAccountNo(String oldAccountNo);
+    List<Account> findByIdRoute(long idRoute);
 }

@@ -13,4 +13,5 @@ import java.util.List;
 public interface RouteDao extends CrudRepository<Route, Long>{
     List<Route> findByIdArea(long idArea);
     List<Route> findByIdAreaOrderByRouteName(long idArea);
+    List<Route> findAllByOrderByRouteName();
 }

@@ -3,7 +3,6 @@ package com.xenenergy.projects.controllers.arm;
 import com.xenenergy.projects.entities.arm.Coreloss;
 import com.xenenergy.projects.entities.arm.Pager;
 import com.xenenergy.projects.entities.arm.PaginationProperty;
-import com.xenenergy.projects.services.impl.arm.CorelossServiceImpl;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import com.xenenergy.projects.services.interfaces.arm.CorelossService;
 import org.springframework.beans.factory.annotation.Autowired;
