@@ -27,18 +27,16 @@ public class RouteDefinitionController {
 
     @Autowired
     private RouteDefinitionService definitionService;
-    @Autowired
-    private ReadersService readersService;
-
-    @RequestMapping(method = RequestMethod.GET)
+    @Autowired@RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("rdm/index");
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<Rdm> rdms = definitionService.findAllPageable(new PageRequest(evalPage, evalPageSize));
+        Page<Rdm> rdms = definitionService.findAllByOrderByIdDesc(new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(rdms.getTotalPages(), rdms.getNumber(), property.BUTTONS_TO_SHOW);
+        /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
 
         modelAndView.addObject("rdmlists", rdms);
         modelAndView.addObject("selectedPageSize", evalPageSize);
@@ -46,6 +44,9 @@ public class RouteDefinitionController {
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }
+    private ReadersService readersService;
+
+
 
     @GetMapping("/add")
     public String addForm(Model model) {

@@ -2,6 +2,8 @@ package com.xenenergy.projects.services.interfaces.arm;
 
 import com.xenenergy.projects.entities.arm.Account;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -14,4 +16,5 @@ public interface AccountService extends CRUDService<Account> {
     List<Account> getAllAccounts();
     Account getByOldAccountNo(String oldAccountNo);
     List<Account> findByIdRoute(long idRoute);
+    Page<Account> findByIdRoute(long idRoute, Pageable pageable);
 }

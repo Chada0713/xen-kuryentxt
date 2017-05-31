@@ -229,7 +229,7 @@ $(document).ready(function () {
                 console.log(result);
                 $('#idRoute').empty();
                 $.each(result, function (index, value) {
-                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeName));
+                    $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeCode+' - '+value.routeName));
                     $('#idRoute').trigger("chosen:updated");
                 });
             },

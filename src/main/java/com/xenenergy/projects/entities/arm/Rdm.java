@@ -12,6 +12,8 @@ public class Rdm {
     @Id
     @Column(name = "ID")
     private long id;
+    @Column(name = "TS")
+    private String ts;
     @Column(name = "RDM_NAME")
     private String rdmName;
     @Column(name = "ID_READER")
@@ -39,5 +41,13 @@ public class Rdm {
 
     public void setIdReader(int idReader) {
         this.idReader = idReader;
+    }
+
+    public String getTs() {
+        return ts;
+    }
+
+    public void setTs(String ts) {
+        this.ts = ts;
     }
 }

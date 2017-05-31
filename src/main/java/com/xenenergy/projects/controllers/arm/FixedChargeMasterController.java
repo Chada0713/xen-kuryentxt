@@ -92,7 +92,7 @@ public class FixedChargeMasterController {
         return "redirect:/ratemaster/"+cid+"/fixedcharge";
     }
 
-    @PostMapping("/{cid}/fixedcharge/update")
+        @PostMapping("/{cid}/fixedcharge/update")
     public String update(@PathVariable("cid") long cid, @ModelAttribute("fixedcharge") FixedChargeMaster fixedChargeMaster,
                          final RedirectAttributes redirectAttributes){
         if(fixedChargeService.update(fixedChargeMaster)!=null){

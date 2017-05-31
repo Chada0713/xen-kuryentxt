@@ -32,7 +32,7 @@ public class AccountsRestController {
         return accountService.getByOldAccountNo(oldAccountNo);
     }
 
-    @RequestMapping(value = "/viewaccounts?idRoute={idRoute}", method = RequestMethod.GET)
+    @GetMapping("/viewaccounts/{idRoute}")
     public List<Account> findAccountsByIdRoute(@PathVariable("idRoute") long idRoute){
         return accountService.findByIdRoute(idRoute);
     }

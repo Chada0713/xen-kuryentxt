@@ -1,0 +1,105 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Device Upload Master</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative"><strong>Device Uplaod Master</strong></div>
+                    <div class="panel-body">
+                        <div th:if="!${#lists.isEmpty(dumLists)}">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr class="info">
+                                    <th>ID</th>
+                                    <th>Upload Start</th>
+                                    <th>Upload End</th>
+                                    <th>No. of Bills</th>
+                                    <th>Is Processed</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="dumlist : ${dumLists}">
+                                    <td th:text="${dumlist.idDevice}"></td>
+                                    <td th:text="${dumlist.uploadStartTs}"></td>
+                                    <td th:text="${dumlist.uploadEndTs}"></td>
+                                    <td th:text="${dumlist.noOfBills}"></td>
+                                    <td>
+                                        <div th:switch="${dumlist.isProcessed}">
+                                               <span th:case="'Y'" class="fa-stack green">
+                                                   <i class="glyphicon glyphicon-ok"></i></span>
+                                            <span th:case="*" class="fa-stack red">
+                                                   <i class="glyphicon glyphicon-remove"></i></span>
+                                        </div>
+                                    </td>
+                                    <!--<td>
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                           th:attr="data-url='device/delete/'+${dumlist.id},
+                                         data-message='Are you sure you want to delete ' +${dumlist.id},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" data-th-href="@{/device/edit/{id}(id=${dumlist.id})}">
+                         <span class="fa-stack">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </span>
+                                        </a>
+                                    </td>-->
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${#lists.isEmpty(dumLists)}">
+                            No Record Found
+                        </div>
+                        <div class="row">
+                            <div th:if="${dumLists.totalPages == 0}"
+                                 class="text-center alert alert-danger alert-dismissible" role="alert">
+                                <strong>No Record Found!</strong>
+                            </div>
+                            <div th:if="${dumLists.totalPages &gt;= 1}">
+                                <div class="form-group col-md-12 pagination-centered">
+                                    <ul class="pagination pull-right">
+                                        <li th:class="${dumLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                        </li>
+                                        <li th:class="${dumLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.number})}">Previous</a>
+                                        </li>
+                                        <li th:class="${dumLists.number == (page - 1)} ? 'active pointer-disabled'"
+                                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                            <a class="pageLink"
+                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:text="${page}"></a>
+                                        </li>
+                                        <li th:class="${dumLists.number + 1 == dumLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.number + 2})}">Next</a>
+                                        </li>
+                                        <li th:class="${dumLists.number + 1 == dumLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.totalPages})}">Last</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -8,9 +8,6 @@ $(document).ready( function () {
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],
-        "columnDefs": [
-            { className: "dt-body-right", "targets": [ 5 ] }
-        ],
         "aoColumns": [
             { "mData": "seqNo" },
             { "mData": "routeCode" },
@@ -55,15 +52,13 @@ $(document).ready( function () {
 });
 
 $(document).ready( function () {
-    //noinspection JSAnnotator
-    var table = $('#viewAccountsTable').DataTable({
-        "bProcessing": true,
-        "bServerSide": true,
-        "sAjaxSource": "api/viewaccounts",
-        "fnServerParams":function ( aoData ) {
-            aoData.push( { "name": "idRoute", "value": $('#idRoute').val() } );
-        },
-        "bServerSide": true,
+    /*$('#viewId').click(function(){
+        var id = $('#idRoute').val();
+        alert(id);
+        //do something
+    }),*/
+    var table = $('#viewaccountsTable').DataTable({
+        "sAjaxSource": "api/viewaccounts/" + id,
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],
@@ -71,7 +66,7 @@ $(document).ready( function () {
             { "mData": "seqNo" },
             { "mData": "routeCode" },
             { "mData": "accountName" },
-            { "mData": "oldAccountNo"},
+            { "mData": "oldAccountNo" },
             { "mData": "meterNo" },
             { "mData": "curRdg" },
         ],

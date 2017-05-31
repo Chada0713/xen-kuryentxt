@@ -61,4 +61,10 @@ public class AccountServiceImpl implements AccountService {
         return accountDao.findByIdRoute(idRoute);
     }
 
+    @Override
+    public Page<Account> findByIdRoute(long idRoute, Pageable pageable) {
+        return accountDao.findByIdRoute(idRoute, pageable);
+    }
+
+
 }

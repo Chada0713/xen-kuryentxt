@@ -42,4 +42,15 @@ public class RouteDefinitionServiceImpl implements RouteDefinitionService {
     public Rdm update(Rdm rdm) {
         return routeDefinitionDao.save(rdm);
     }
+
+
+    @Override
+    public Page<Rdm> findAllByOrderByIdDesc(Pageable pageable) {
+        return routeDefinitionDao.findAllByOrderByIdDesc(pageable);
+    }
+
+    @Override
+    public Page<Rdm> findByRdmNameAndIdContaining(String value) {
+        return null;
+    }
 }
