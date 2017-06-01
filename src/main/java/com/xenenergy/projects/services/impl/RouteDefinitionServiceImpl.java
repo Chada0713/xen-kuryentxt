@@ -49,7 +49,8 @@ public class RouteDefinitionServiceImpl implements RouteDefinitionService {
     }
 
     @Override
-    public Page<Rdm> findByRdmNameAndIdContaining(String value) {
-        return null;
+    public Page<Rdm> findByRdmNameOrIdContaining(String value, Pageable pageable) {
+        return routeDefinitionDao.findByRdmNameOrIdContainingOrderByIdDesc(value, pageable);
     }
+
 }

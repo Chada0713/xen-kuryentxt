@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -22,6 +19,7 @@ import java.util.Optional;
  * Created by xesi on 31/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/rdm")
 public class ViewAccountsController {
 
@@ -36,22 +34,34 @@ public class ViewAccountsController {
     @Autowired
     private RdmService rdmService;
 
-    @RequestMapping(value = "/{cid}/rdmdetails/{id}/route/{rid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @PathVariable("id") long id,
-                                  @PathVariable("rid") long rid,@RequestParam("pageSize") Optional<Integer> pageSize,
+                                  @PathVariable("rid") long rid,
+                                  @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
+                                  @RequestParam(value = "searchStr") Optional<String> searchStr,
+                                  @RequestParam(value = "searchStr") Optional<Integer> searchStrInt,
+                                  @RequestParam("pageSize") Optional<Integer> pageSize,
                                   @RequestParam("page") Optional<Integer> page) {
-        ModelAndView modelAndView = new ModelAndView("viewaccounts/index");
+        String search = "";
+        int searchInt = 0;
+        if(searchStr.isPresent()){
+            search = searchStr.get();
+        }
+        if(searchStrInt.isPresent() || !searchStrInt.equals(null)){
+            searchInt = searchStrInt.get();
+        }
 
+        ModelAndView modelAndView = new ModelAndView("viewaccounts/index");
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<Account> accountList = accountService.findByIdRoute(rid,
+        Page<Account> accountList = accountService.findByRouteCodeSeqNo(rid, sseq, eseq, search, searchInt,
                 new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(accountList.getTotalPages(), accountList.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("accountLists", accountList);
+        modelAndView.addObject("account", new Account());
         modelAndView.addObject("rdmDeltail", rdmDetailService.getById(id));
-        modelAndView.addObject("rdm", rdmDetailService.getById(id));
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);

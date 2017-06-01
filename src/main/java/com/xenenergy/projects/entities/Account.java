@@ -52,7 +52,7 @@ public class Account {
     @Column(name = "PREV01_READING")
     private Long prev01Reading;
     @Column(name = "CURRENT_READING")
-    private int curRdg = 0;
+    private int curRdg;
     @Column(name = "ID_RATE_MASTER")
     private long idRateMaster;
     @Column(name = "IS_SENIOR_CITIZEN")

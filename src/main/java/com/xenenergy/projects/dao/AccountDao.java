@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +14,13 @@ import java.util.List;
 public interface AccountDao extends JpaRepository<Account, Long> {
     Account findByOldAccountNo(String oldAccountNo);
     List<Account> findByIdRoute(long idRoute);
-    Page<Account> findByIdRoute(long idRoute, Pageable pageable);
-    /*@Query("select a, b.areaCode from Account a, DuArea b where a.oldAccountNo = ?1 and a.idArea = b.id")
-    Account findByOldAccountNo(String oldAccountNo);*/
+
+    @Query("select count(id) from Account where isSeniorCitizen = 'Y'")
+    int findCountOfSenior();
+
+    @Query("select count(id) from Account")
+    int findCountOfId();
+
+    @Query("select a from Account a where a.idRoute = ?1 and a.seqNo >= ?2 and a.seqNo <= ?3 and (a.accountName like %?4% or a.seqNo like %?5%)")
+    Page<Account> findByRouteCodeSeqNo(long routeCode, int startSeq, int endSeq, String searchStr, int searchInt, Pageable pageable);
 }

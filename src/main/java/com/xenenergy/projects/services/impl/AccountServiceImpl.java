@@ -61,9 +61,17 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Page<Account> findByIdRoute(long idRoute, Pageable pageable) {
-        return accountDao.findByIdRoute(idRoute, pageable);
+    public int findCountOfSenior() {
+        return accountDao.findCountOfSenior();
     }
 
+    @Override
+    public int findCountOfId() {
+        return accountDao.findCountOfId();
+    }
 
+    @Override
+    public Page<Account> findByRouteCodeSeqNo(long routeCode, int startSeq, int endSeq, String searchStr, int searchInt, Pageable pageable) {
+        return accountDao.findByRouteCodeSeqNo(routeCode, startSeq, endSeq, searchStr, searchInt, pageable);
+    }
 }

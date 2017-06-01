@@ -77,6 +77,7 @@
                                     <th>Route Name</th>
                                     <th>Start Sequence</th>
                                     <th>End Sequence</th>
+                                    <th>Consumer Count</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -87,7 +88,8 @@
                                         <!--<input type="hidden" id="idRoute" th:value="${rdmdetailList.idRoute}"/> &lt;!&ndash;@{/Kuryentxt/api/viewaccounts/{idRoute}(idRoute=${rdmdetailList.idRoute})}&ndash;&gt;
                                         <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}(cid=${rdmdetailList.idRdm}, id=${rdmdetailList.id}, rid=${rdmdetailList.idRoute})}" data-value="${rdmdetailList.idRoute}" id="viewId">View</a>
                                         &nbsp;&nbsp;&nbsp;-->
-                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}(cid=${rdmdetailList.idRdm}, id=${rdmdetailList.id}, rid=${rdmdetailList.idRoute})}">View Account</a>
+                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}(cid=${rdmdetailList.idRdm}, id=${rdmdetailList.id}, rid=${rdmdetailList.idRoute}, sseq=${rdmdetailList.startSequence}, eseq=${rdmdetailList.endSequence})}">
+                                            View Account</a>
                                     </td>
                                     <td>
                                         <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
@@ -101,6 +103,7 @@
 
                                     <td th:text="${rdmdetailList.startSequence}"></td>
                                     <td th:text="${rdmdetailList.endSequence}"></td>
+                                    <td th:text="${rdmdetailList.consumerCount}"></td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='rdmdetails/delete/'+${rdmdetailList.id},

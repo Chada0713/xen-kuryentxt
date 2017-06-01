@@ -13,6 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface RouteDefinitionService extends CRUDService<Rdm> {
     Page<Rdm> findAllByOrderByIdDesc(Pageable pageable);
 
-    @Query("select a from Rdm a where a.rdmName like %?1% or a.id like %?1%")
-    Page<Rdm> findByRdmNameAndIdContaining(String value);
+    @Query("select a from Rdm a where a.rdmName like %?1% or a.id like %?1% order by a.id desc")
+    Page<Rdm> findByRdmNameOrIdContaining(String value, Pageable pageable);
 }

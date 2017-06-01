@@ -22,16 +22,19 @@ public class RdmDetail {
     private int startSequence;
     @Column(name = "END_SEQUENCE", updatable = true, nullable = true)
     private int endSequence;
+    @Column(name = "CONSUMER_COUNT")
+    private int consumerCount;
 
     public RdmDetail() {
     }
 
-    public RdmDetail(long id, Long idRdm, long idRoute, int startSequence, int endSequence) {
+    public RdmDetail(long id, Long idRdm, long idRoute, int startSequence, int endSequence, int consumerCount) {
         this.id = id;
         this.idRdm = idRdm;
         this.idRoute = idRoute;
         this.startSequence = startSequence;
         this.endSequence = endSequence;
+        this.consumerCount = consumerCount;
     }
 
     public long getId() {
@@ -72,5 +75,13 @@ public class RdmDetail {
 
     public void setEndSequence(int endSequence) {
         this.endSequence = endSequence;
+    }
+
+    public int getConsumerCount() {
+        return consumerCount;
+    }
+
+    public void setConsumerCount(int consumerCount) {
+        this.consumerCount = consumerCount;
     }
 }
