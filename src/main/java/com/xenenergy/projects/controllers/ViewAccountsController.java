@@ -6,6 +6,7 @@ import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.services.RdmService;
 import com.xenenergy.projects.services.interfaces.AccountService;
 import com.xenenergy.projects.services.interfaces.RdmDetailService;
+import com.xenenergy.projects.services.interfaces.RoutesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,35 +33,30 @@ public class ViewAccountsController {
     private RdmDetailService rdmDetailService;
 
     @Autowired
-    private RdmService rdmService;
+    private RoutesService routesService;
 
     @RequestMapping(value = "/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @PathVariable("id") long id,
                                   @PathVariable("rid") long rid,
                                   @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
                                   @RequestParam(value = "searchStr") Optional<String> searchStr,
-                                  @RequestParam(value = "searchStr") Optional<Integer> searchStrInt,
                                   @RequestParam("pageSize") Optional<Integer> pageSize,
                                   @RequestParam("page") Optional<Integer> page) {
         String search = "";
-        int searchInt = 0;
         if(searchStr.isPresent()){
-            search = searchStr.get();
+            search = searchStr.get().toString();
         }
-        if(searchStrInt.isPresent() || !searchStrInt.equals(null)){
-            searchInt = searchStrInt.get();
-        }
-
         ModelAndView modelAndView = new ModelAndView("viewaccounts/index");
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<Account> accountList = accountService.findByRouteCodeSeqNo(rid, sseq, eseq, search, searchInt,
+        Page<Account> accountList = accountService.findByRouteCodeSeqNo(rid, sseq, eseq, search,
                 new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(accountList.getTotalPages(), accountList.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("accountLists", accountList);
         modelAndView.addObject("account", new Account());
+        modelAndView.addObject("route", routesService.getById(rid));
         modelAndView.addObject("rdmDeltail", rdmDetailService.getById(id));
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);

@@ -12,12 +12,11 @@
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
                         <a th:href="@{/rdm/{cid}/rdmdetails(cid=${rdmDeltail.idRdm})}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong>Account - </strong>
-                        <strong th:text="'('+${rdmDeltail.idRoute} + ')'"></strong>
+                        <strong th:text="'RDM: ' + ${rdmDeltail.idRdm} + ' ROUTE: ' + ${route.routeCode} + ' START SEQ: ' + ${rdmDeltail.startSequence} + ' END SEQ: ' + ${rdmDeltail.endSequence} + ' (' + ${route.routeName} + ')'"></strong>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <form class="form-horizontal" th:action="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq(cid=${rdmDeltail.idRdm}, id=${rdmDeltail.id}, sseq=${rdmdetailList.startSequence}, eseq=${rdmdetailList.endSequence}, rid=${rdmDeltail.idRoute})}"
+                            <form class="form-horizontal" th:action="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}(cid=${rdmDeltail.idRdm}, id=${rdmDeltail.id}, sseq=${rdmDeltail.startSequence}, eseq=${rdmDeltail.endSequence}, rid=${rdmDeltail.idRoute})}"
                                   th:object="${account}"
                                   method="get">
                                 <div class="col-lg-3 col-md-3 col-sm-3">

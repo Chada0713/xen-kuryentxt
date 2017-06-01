@@ -24,6 +24,6 @@ public interface AccountService extends CRUDService<Account> {
     @Query("select count(id) from Account")
     int findCountOfId();
 
-    @Query("select a from Account a where a.idRoute = ?1 and a.seqNo >= ?2 and a.seqNo <= ?3 and (a.seqNo like %?5%)")
-    Page<Account> findByRouteCodeSeqNo(long routeCode, int startSeq, int endSeq, String searchStr, int searchInt, Pageable pageable);
+    @Query("select a from Account a where a.idRoute = ?1 and a.seqNo >= ?2 and a.seqNo <= ?3 and (cast(a.seqNo as string) like %?4% or a.accountName like %?4%)")
+    Page<Account> findByRouteCodeSeqNo(long routeCode, int startSeq, int endSeq, String searchStr, Pageable pageable);
 }

@@ -17,6 +17,7 @@
                                 <thead>
                                 <tr class="info">
                                     <th>ID</th>
+                                    <th>Device ID</th>
                                     <th>Upload Start</th>
                                     <th>Upload End</th>
                                     <th>No. of Bills</th>
@@ -26,6 +27,7 @@
                                 <tbody>
                                 <tr th:each="dumlist : ${dumLists}">
                                     <td th:text="${dumlist.id}"></td>
+                                    <td th:text="${dumlist.idDevice}"></td>
                                     <td th:text="${dumlist.uploadStartTs}"></td>
                                     <td th:text="${dumlist.uploadEndTs}"></td>
                                     <td th:text="${dumlist.noOfBills}"></td>

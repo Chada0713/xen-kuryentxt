@@ -17,6 +17,7 @@ $(document).ready( function () {
                     return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";
             }},
             { "mData": "meterNo" },
+            { "mData": "prev01Reading" },
             { "mData": "curRdg" },
         ],
         dom: "<'row'<'col-sm-12'f>>" +
@@ -50,13 +51,14 @@ $(document).ready( function () {
         "sPaginationType": "full_numbers"
     })
 });
+/*
 
 $(document).ready( function () {
-    /*$('#viewId').click(function(){
+    /!*$('#viewId').click(function(){
         var id = $('#idRoute').val();
         alert(id);
         //do something
-    }),*/
+    }),*!/
     var table = $('#viewaccountsTable').DataTable({
         "sAjaxSource": "api/viewaccounts/" + id,
         "sAjaxDataProp": "",
@@ -76,4 +78,4 @@ $(document).ready( function () {
         "lengthMenu": [20],
         "sPaginationType": "full_numbers"
     })
-});
+});*/
