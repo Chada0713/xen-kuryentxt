@@ -1,6 +1,5 @@
 package com.xenenergy.projects.services.interfaces;
 
-import com.xenenergy.projects.entities.arm.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -17,5 +16,4 @@ public interface CRUDService<T> {
     T insert(T t);
 
     T update(T t);
-
 }

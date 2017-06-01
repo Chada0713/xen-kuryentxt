@@ -50,6 +50,11 @@ body {
     border-top: 1px solid #808080;
 }
 
+.content-footer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .alert {
     padding: 7px !important;
 }

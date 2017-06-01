@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services;
 
-import com.xenenergy.projects.dao.arm.dependence.RouteDao;
-import com.xenenergy.projects.entities.arm.Route;
+import com.xenenergy.projects.dao.dependence.RouteDao;
+import com.xenenergy.projects.entities.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.xenenergy.projects.services;
 
-import com.xenenergy.projects.dao.arm.dependence.RdmDao;
-import com.xenenergy.projects.entities.arm.Rdm;
+import com.xenenergy.projects.dao.dependence.RdmDao;
+import com.xenenergy.projects.entities.Rdm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
