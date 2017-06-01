@@ -20,6 +20,7 @@ import java.util.Optional;
  * Created by xenuser on 5/15/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/du-area")
 public class LocalityController {
 

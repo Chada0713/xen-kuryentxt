@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Created by xesi on 19/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/ratemaster")
 public class FixedChargeDetailController {
     private PaginationProperty property = new PaginationProperty();

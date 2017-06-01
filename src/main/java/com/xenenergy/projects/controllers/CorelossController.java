@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
@@ -18,6 +19,7 @@ import java.util.Optional;
  * Created by xesi on 16/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/coreloss")
 public class CorelossController {
     private PaginationProperty property = new PaginationProperty();

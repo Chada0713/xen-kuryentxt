@@ -20,6 +20,7 @@ import java.util.Optional;
  * Created by xenuser on 5/11/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/readers")
 public class MeterReadersController {
 

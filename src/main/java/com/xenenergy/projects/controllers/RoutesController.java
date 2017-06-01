@@ -20,6 +20,7 @@ import java.util.Optional;
  * Created by xesi on 26/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/du-area")
 public class RoutesController {
     private PaginationProperty property = new PaginationProperty();

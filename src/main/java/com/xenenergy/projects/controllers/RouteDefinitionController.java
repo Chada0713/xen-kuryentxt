@@ -6,6 +6,7 @@ import com.xenenergy.projects.entities.Rdm;
 import com.xenenergy.projects.services.ReadersService;
 import com.xenenergy.projects.services.interfaces.RouteDefinitionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -20,31 +21,40 @@ import java.util.Optional;
  * Created by xenuser on 5/10/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/rdm")
 public class RouteDefinitionController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
     private RouteDefinitionService definitionService;
-    @Autowired@RequestMapping(method = RequestMethod.GET)
-    public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
+
+    @Autowired
+    private ReadersService readersService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ModelAndView showPersonsPage(@RequestParam(value = "searchStr") Optional<String> searchStr,
+                                        @RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
+        String search = "";
+        if(searchStr.isPresent()){
+            search = searchStr.get();
+        }
         ModelAndView modelAndView = new ModelAndView("rdm/index");
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<Rdm> rdms = definitionService.findAllByOrderByIdDesc(new PageRequest(evalPage, evalPageSize));
+        Page<Rdm> rdms = definitionService.findByRdmNameOrIdContaining(search, new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(rdms.getTotalPages(), rdms.getNumber(), property.BUTTONS_TO_SHOW);
         /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
 
         modelAndView.addObject("rdmlists", rdms);
+        modelAndView.addObject("rdm", new Rdm());
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }
-    private ReadersService readersService;
-
 
 
     @GetMapping("/add")
@@ -94,7 +104,7 @@ public class RouteDefinitionController {
         } else {
             redirectAttributes.addFlashAttribute("edit", "unsuccess");
         }
-
         return "redirect:/rdm";
     }
+
 }

@@ -24,6 +24,7 @@ import java.util.Optional;
  * Created by xesi on 18/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/ratemaster")
 public class FixedChargeMasterController {
     private PaginationProperty property = new PaginationProperty();

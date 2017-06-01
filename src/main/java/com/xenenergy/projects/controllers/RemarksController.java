@@ -19,6 +19,7 @@ import java.util.Optional;
  * Created by Daryll on 5/10/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/remarks")
 public class RemarksController {
 

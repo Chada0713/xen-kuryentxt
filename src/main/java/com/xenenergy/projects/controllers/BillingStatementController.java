@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -27,6 +28,7 @@ import java.util.*;
  * Created by xenuser on 5/17/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/reports")
 public class BillingStatementController {
     @Autowired

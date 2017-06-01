@@ -24,6 +24,7 @@ import java.util.Optional;
  * Created by xenuser on 5/18/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/ratemaster")
 public class PerKwChargeMasterController {
 

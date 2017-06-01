@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("cut-off")
 public class CutoffMasterController {
     private PaginationProperty property = new PaginationProperty();

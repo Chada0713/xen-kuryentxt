@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.Pager;
 import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.entities.SeniorCitizen;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -23,12 +24,16 @@ import java.util.Optional;
  * Created by xesi on 16/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/seniorcitizen")
 public class SeniorCitizenController {
     private PaginationProperty property = new PaginationProperty();
 
     @Autowired
     private CRUDService<SeniorCitizen> seniorCitizenService;
+
+    @Autowired
+    private AccountService accountService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
@@ -46,6 +51,8 @@ public class SeniorCitizenController {
         Pager pager = new Pager(seniorCitizen.getTotalPages(), seniorCitizen.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("seniorCitizenLists", seniorCitizen);
+        modelAndView.addObject("countOfSenior", accountService.findCountOfSenior());
+        modelAndView.addObject("countOfId", accountService.findCountOfId());
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);

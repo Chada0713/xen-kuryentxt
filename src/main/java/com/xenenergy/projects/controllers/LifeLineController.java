@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/lifeline")
 public class LifeLineController {
     private PaginationProperty property = new PaginationProperty();

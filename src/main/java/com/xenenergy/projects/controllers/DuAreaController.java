@@ -19,6 +19,7 @@ import java.util.Optional;
  * Created by xenuser on 5/10/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/du-area")
 public class DuAreaController {
     private PaginationProperty property = new PaginationProperty();

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * Created by Daryll Sabate on 5/19/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/ratemaster")
 public class PerKwChargeDetailController {
 

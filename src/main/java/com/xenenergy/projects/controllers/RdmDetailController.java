@@ -26,6 +26,7 @@ import java.util.Optional;
  * Created by xesi on 22/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/rdm")
 public class RdmDetailController {
 

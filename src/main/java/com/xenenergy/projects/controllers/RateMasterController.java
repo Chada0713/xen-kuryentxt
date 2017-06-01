@@ -19,6 +19,7 @@ import java.util.Optional;
  * Created by xesi on 15/05/2017.
  */
 @Controller
+@SessionAttributes("caller")
 @RequestMapping("/ratemaster")
 
 public class RateMasterController {
