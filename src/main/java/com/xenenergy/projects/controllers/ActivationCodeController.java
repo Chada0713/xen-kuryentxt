@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@SessionAttributes("caller")
+@SessionAttributes(value = {"caller", "ducode"})
 @RequestMapping("/activation-code")
 public class ActivationCodeController {
 
