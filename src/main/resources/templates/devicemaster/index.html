@@ -16,6 +16,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
+                                    <th></th>
                                     <th>ID</th>
                                     <th>Device ID</th>
                                     <th>Upload Start</th>
@@ -26,10 +27,13 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="dumlist : ${dumLists}">
+                                    <td>
+                                        <a href="#" data-th-href="@{/devicemaster/{cid}/details(cid=${dumlist.id})}">View Details</a>
+                                    </td>
                                     <td th:text="${dumlist.id}"></td>
                                     <td th:text="${dumlist.idDevice}"></td>
-                                    <td th:text="${dumlist.uploadStartTs}"></td>
-                                    <td th:text="${dumlist.uploadEndTs}"></td>
+                                    <td th:text="${#dates.format(dumlist.uploadStartTs, 'yyyy-MM-dd HH:mm')}"></td>
+                                    <td th:text="${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${dumlist.noOfBills}"></td>
                                     <td>
                                         <div th:switch="${dumlist.isProcessed}">

@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by xesi on 31/05/2017.
@@ -18,9 +19,9 @@ public class DeviceUploadMaster {
     @Column(name = "ID_DEVICE")
     private long idDevice;
     @Column(name = "UPLOAD_START_TS")
-    private String uploadStartTs;
+    private Date uploadStartTs;
     @Column(name = "UPLOAD_END_TS")
-    private String uploadEndTs;
+    private Date uploadEndTs;
     @Column(name = "NO_OF_BILLS")
     private int noOfBills;
     @Column(name = "IS_PROCESSED")
@@ -29,7 +30,7 @@ public class DeviceUploadMaster {
     public DeviceUploadMaster() {
     }
 
-    public DeviceUploadMaster(long id, long idDevice, String uploadStartTs, String uploadEndTs, int noOfBills, String isProcessed) {
+    public DeviceUploadMaster(long id, long idDevice, Date uploadStartTs, Date uploadEndTs, int noOfBills, String isProcessed) {
         this.id = id;
         this.idDevice = idDevice;
         this.uploadStartTs = uploadStartTs;
@@ -54,19 +55,19 @@ public class DeviceUploadMaster {
         this.idDevice = idDevice;
     }
 
-    public String getUploadStartTs() {
+    public Date getUploadStartTs() {
         return uploadStartTs;
     }
 
-    public void setUploadStartTs(String uploadStartTs) {
+    public void setUploadStartTs(Date uploadStartTs) {
         this.uploadStartTs = uploadStartTs;
     }
 
-    public String getUploadEndTs() {
+    public Date getUploadEndTs() {
         return uploadEndTs;
     }
 
-    public void setUploadEndTs(String uploadEndTs) {
+    public void setUploadEndTs(Date uploadEndTs) {
         this.uploadEndTs = uploadEndTs;
     }
 
