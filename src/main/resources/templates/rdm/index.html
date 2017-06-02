@@ -10,7 +10,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="table-responsive">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center panel-relative"><strong>Route Definition Master</strong></div>
+                    <div class="panel-heading text-center panel-relative"><strong>Route Definition Master - RDM</strong></div>
                     <div class="panel-body">
                         <div class="row">
                             <form class="form-horizontal"
@@ -81,7 +81,7 @@
                                     <!-- <th>ID</th>-->
                                     <th></th>
                                     <th>ID</th>
-                                    <th>Date</th>
+                                    <th>Date Created</th>
                                     <th>Name</th>
                                     <th>Action</th>
                                 </tr>
@@ -94,7 +94,7 @@
                                             Manage Routes</a>
                                     </td>
                                     <td th:text="${rdmlist.id}"></td>
-                                    <td th:text="${rdmlist.ts}"></td>
+                                    <td th:text="${#dates.format(rdmlist.ts, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${rdmlist.rdmName}"></td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"

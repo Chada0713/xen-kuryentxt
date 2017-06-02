@@ -3,6 +3,7 @@ package com.xenenergy.projects.services.impl;
 import com.xenenergy.projects.dao.DeviceUploadDetailDao;
 import com.xenenergy.projects.entities.DeviceUploadDetail;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.DeviceUploadDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,10 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class DeviceUploadDetailServiceImpl implements CRUDService<DeviceUploadDetail> {
+public class DeviceUploadDetailServiceImpl implements DeviceUploadDetailService {
 
     @Autowired
     private DeviceUploadDetailDao deviceUploadDetailDao;
+
 
     @Override
     public Page<DeviceUploadDetail> findAllPageable(Pageable pageable) {
@@ -43,5 +45,10 @@ public class DeviceUploadDetailServiceImpl implements CRUDService<DeviceUploadDe
     @Override
     public DeviceUploadDetail update(DeviceUploadDetail deviceUploadDetail) {
         return deviceUploadDetailDao.save(deviceUploadDetail);
+    }
+
+    @Override
+    public Page<DeviceUploadDetail> findAllByIdMasterOrderByIdDesc(long idMaster, Pageable pageable) {
+        return deviceUploadDetailDao.findAllByIdMasterOrderByIdDesc(idMaster, pageable);
     }
 }

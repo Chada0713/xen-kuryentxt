@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by xesi on 01/06/2017.
@@ -16,7 +17,7 @@ public class DeviceUploadDetail {
     @Column(name = "ID")
     private long id;
     @Column(name = "TS")
-    private String ts;
+    private Date ts;
     @Column(name = "ID_MASTER")
     private long idMaster;
     @Column(name = "BILL_NO")
@@ -32,11 +33,11 @@ public class DeviceUploadDetail {
         this.id = id;
     }
 
-    public String getTs() {
+    public Date getTs() {
         return ts;
     }
 
-    public void setTs(String ts) {
+    public void setTs(Date ts) {
         this.ts = ts;
     }
 

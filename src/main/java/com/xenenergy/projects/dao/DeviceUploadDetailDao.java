@@ -1,6 +1,8 @@
 package com.xenenergy.projects.dao;
 
 import com.xenenergy.projects.entities.DeviceUploadDetail;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,4 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface DeviceUploadDetailDao extends PagingAndSortingRepository<DeviceUploadDetail, Long> {
+    Page<DeviceUploadDetail> findAllByIdMasterOrderByIdDesc(long idMaster, Pageable pageable);
 }

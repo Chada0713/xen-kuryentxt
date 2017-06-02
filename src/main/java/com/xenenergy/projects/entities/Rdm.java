@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "arm_route_definition_master")
@@ -13,7 +14,7 @@ public class Rdm {
     @Column(name = "ID")
     private long id;
     @Column(name = "TS")
-    private String ts;
+    private Date ts;
     @Column(name = "RDM_NAME")
     private String rdmName;
     @Column(name = "ID_READER")
@@ -43,11 +44,11 @@ public class Rdm {
         this.idReader = idReader;
     }
 
-    public String getTs() {
+    public Date getTs() {
         return ts;
     }
 
-    public void setTs(String ts) {
+    public void setTs(Date ts) {
         this.ts = ts;
     }
 }
