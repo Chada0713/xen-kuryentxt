@@ -20,10 +20,7 @@ public class DuServiceImpl implements DuService {
     @Autowired
     private DuDao duDao;
 
-    public List<Du> getDU() {
-        return duDao.findAll();
 
-    }
 
     @Override
     public Page<Du> findAllPageable(Pageable pageable) {
@@ -48,5 +45,10 @@ public class DuServiceImpl implements DuService {
     @Override
     public Du update(Du du) {
         return null;
+    }
+
+    @Override
+    public List<Du> getDU() {
+        return duDao.findAll();
     }
 }
