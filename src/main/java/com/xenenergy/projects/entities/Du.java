@@ -15,6 +15,8 @@ public class Du {
     @Id
     @Column(name = "ID")
     private long id;
+    @Column(name = "DU_CODE")
+    private String duCode;
     @Column(name = "DU_NAME")
     private String duName;
     @Column(name = "ADDRLN1")
@@ -32,6 +34,14 @@ public class Du {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getDuCode() {
+        return duCode;
+    }
+
+    public void setDuCode(String duCode) {
+        this.duCode = duCode;
     }
 
     public String getDuName() {
