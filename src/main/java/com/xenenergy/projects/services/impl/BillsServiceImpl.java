@@ -56,4 +56,9 @@ public class BillsServiceImpl implements BillsService {
     public List<Bills> getAllBills() {
         return billsDao.findAll();
     }
+
+    @Override
+    public Bills findByBillNo(String billno) {
+        return billsDao.findByBillNo(billno);
+    }
 }

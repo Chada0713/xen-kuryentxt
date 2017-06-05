@@ -37,7 +37,10 @@ $(document).ready( function () {
         "order": [[ 0, "asc" ]],
         "aoColumns": [
             { "mData": "runDate" },
-            { "mData": "billNo" },
+            { "mData": "billNo",
+                render: function (data) {
+                    return "<a href='bills/viewbill?billno="+data+"'>" + data + "</a>";
+            }},
             { "mData": "oldAcctNo" },
             { "mData": "accountName" },
             { "mData": "meterNo" },

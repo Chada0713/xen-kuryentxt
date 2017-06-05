@@ -12,4 +12,5 @@ import java.util.List;
 public interface BillsService extends CRUDService<Bills> {
     int countBills(String dateFrom, String dateTo);
     List<Bills> getAllBills();
+    Bills findByBillNo(String billno);
 }
