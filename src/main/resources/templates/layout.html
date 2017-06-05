@@ -42,7 +42,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a th:href="@{/}" class="btn btn-danger">Logout</a>
+                    <span th:if="${caller} == 'live'"> <a th:href="@{http://xenenergy.com.ph/}" class="btn btn-danger">Logout</a></span>
+                    <span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>
                 </div>
             </div>
         </div>

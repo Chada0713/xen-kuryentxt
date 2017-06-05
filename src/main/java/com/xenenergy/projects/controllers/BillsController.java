@@ -3,15 +3,18 @@ package com.xenenergy.projects.controllers;
 import com.xenenergy.projects.entities.*;
 import com.xenenergy.projects.services.impl.DuServiceImpl;
 import com.xenenergy.projects.services.interfaces.*;
+import org.apache.commons.lang3.text.WordUtils;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -45,7 +48,8 @@ public class BillsController {
     @GetMapping("/viewbill")
     public String showbillForm(@RequestParam("billno") String billno, Model model){
         /*Bill Header*/
-        model.addAttribute("bill", billsService.findByBillNo(billno));
+        Bills bill = billsService.findByBillNo(billno);
+        model.addAttribute("bill", bill);
 
         List<ChargeGroupDetails> chargeGroupDetailsList = new ArrayList<>();
         for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billno)){
@@ -80,10 +84,19 @@ public class BillsController {
         logger.info(celebration.format(formatter));
 
         assertTrue(celebration.isAfter(superBowlXLV));*/
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd,yyyy");
+        Calendar c = Calendar.getInstance();
+        c.setTime(bill.getDueDate()); // Now use today date.
+        c.add(Calendar.DATE, 10); // Adding 5 days
+        model.addAttribute("discDate",sdf.format(c.getTime()));
 
         model.addAttribute("billgroupLists", chargeGroupDetailsList);
         model.addAttribute("du", duList);
-        model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
+        Account account = accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo());
+
+        model.addAttribute("account", WordUtils.capitalizeFully(account.getAccountName()));
+        model.addAttribute("address1", WordUtils.capitalizeFully(account.getAddressLn1()));
+        model.addAttribute("address2", WordUtils.capitalizeFully(account.getAddressLn2()));
         return "bills/viewbill";
     }
 }

@@ -18,15 +18,22 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-outside">
                                     <tr>
-                                        <td><strong th:text="${du.duCode}"></strong></td>
+                                        <td>
+                                            <div class="text-left">  <img style="max-height:25px; margin-top: -5px;" class="" th:src="@{/ext/logo.png}"/> <strong th:text="${du.duCode}"></strong></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td th:text="${du.duName}"></td>
+                                        <td>
+                                            <div class="text-left" th:text="${du.duName}"></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td th:text="${du.addressLn1} + ' ' + ${du.addressLn2}"></td>
+                                        <td>
+                                            <div class="text-left"
+                                                 th:text="${du.addressLn1} + ' ' + ${du.addressLn2}"></div>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -40,10 +47,10 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td th:text="${account.accountName}"></td>
+                                        <td th:text="${account}"></td>
                                     </tr>
                                     <tr>
-                                        <td th:text="${account.addressLn1} + ' ' + ${account.addressLn2}"></td>
+                                        <td th:text="${address1} + ' ' + ${address2}"></td>
                                     </tr>
                                 </table>
                             </div>
@@ -70,7 +77,7 @@
 
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                <table class="table table-condensed">
+                                <table class="table">
                                     <tr class="info">
                                         <td colspan="2">
                                             <div class="centering text-center"><strong>METER INFORMATION</strong></div>
@@ -140,7 +147,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <div  class="text-left">
+                                            <div class="text-left">
                                                 <strong>TOTAL CONSUMPTION</strong>
                                             </div>
                                         </td>
@@ -151,7 +158,15 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td colspan="2">
+                                            <hr/>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td colspan="2"><strong>DISCONNECTION DATE</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><strong th:text="${discDate}"></strong></td>
                                     </tr>
                                     <!--<tr>
                                         <td colspan="2" th:if="${#dates.day(bill.dueDate)+10} <= 31"
@@ -172,12 +187,17 @@
                                         </div>
                                         <div th:if="${billgroupList.chargeGroupName} == null">
                                             <tr>
-                                                <td>  <div class="text-left" th:text="${billgroupList.chargeName}"></div></td>
-                                                <td th:if="${billgroupList.chargeGroupName} == null">
-                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeAmount, 1, 4)}"></div>
+                                                <td>
+                                                    <div class="text-left" th:text="${billgroupList.chargeName}"></div>
                                                 </td>
                                                 <td th:if="${billgroupList.chargeGroupName} == null">
-                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeTotal, 1, 2)}"></div></td>
+                                                    <div class="text-right"
+                                                         th:text="${#numbers.formatDecimal(billgroupList.chargeAmount, 1, 4)}"></div>
+                                                </td>
+                                                <td th:if="${billgroupList.chargeGroupName} == null">
+                                                    <div class="text-right"
+                                                         th:text="${#numbers.formatDecimal(billgroupList.chargeTotal, 1, 2)}"></div>
+                                                </td>
                                             </tr>
                                         </div>
                                     </div>
@@ -194,9 +214,10 @@
                                             <td colspan="2">
                                                 <strong class="pull-left">Total Amount Due</strong>
                                             </td>
-                                            <td>
+                                            <td  class="pull-right">
                                                 <strong class="pull-right" th:text="${bill.totalAmountDue}"></strong>
                                             </td>
+
                                         </tr>
                                     </div>
                                 </table>

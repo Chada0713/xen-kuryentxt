@@ -167,4 +167,8 @@ body {
     #no-more-tables td:before {
         content: attr(data-title);
     }
+
+    .table-outside{
+        border: 1px solid red !important;
+    }
 }
