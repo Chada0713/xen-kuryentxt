@@ -3,6 +3,7 @@ package com.xenenergy.projects.services.impl;
 import com.xenenergy.projects.dao.PropertyDao;
 import com.xenenergy.projects.entities.Property;
 import com.xenenergy.projects.services.interfaces.CRUDService;
+import com.xenenergy.projects.services.interfaces.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class PropertyServiceImpl implements CRUDService<Property> {
+public class PropertyServiceImpl implements PropertyService {
 
     @Autowired
     private PropertyDao propertyDao;
@@ -45,4 +46,8 @@ public class PropertyServiceImpl implements CRUDService<Property> {
         return propertyDao.save(area);
     }
 
+    @Override
+    public Property findByPropertyName(String propertyName) {
+        return propertyDao.findByPropertyName(propertyName);
+    }
 }

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 4.7.0  -->
+<!-- 2017-06-08T16:34:09 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BillReports" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8466ca8b-941f-40a1-b16b-1c611b583535">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="Parameter1" class="net.sf.jasperreports.engine.JRBeanCollectionDataSource">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="duCode" class="java.lang.String"/>
+	<field name="duName" class="java.lang.String"/>
+	<field name="addrLn1" class="java.lang.String"/>
+	<field name="addrLn2" class="java.lang.String"/>
+	<field name="oldAcctNo" class="java.lang.String"/>
+	<field name="accountName" class="java.lang.String"/>
+	<field name="addressLn1" class="java.lang.String"/>
+	<field name="addressLn2" class="java.lang.String"/>
+	<field name="consumerType" class="java.lang.String"/>
+	<field name="periodFrom" class="java.lang.String"/>
+	<field name="periodTo" class="java.lang.String"/>
+	<field name="dueDate" class="java.lang.String"/>
+	<field name="meterNo" class="java.lang.String"/>
+	<field name="currentReading" class="java.lang.String"/>
+	<field name="previousReading" class="java.lang.String"/>
+	<field name="consumption" class="java.lang.String"/>
+	<field name="multiplier" class="java.lang.String"/>
+	<field name="coreloss" class="java.lang.String"/>
+	<field name="addOnKwhTotal" class="java.lang.String"/>
+	<field name="totalConsumption" class="java.lang.String"/>
+	<field name="totalOfMultiplierCon" class="java.lang.String"/>
+	<field name="disconnectionDate" class="java.lang.String"/>
+	<field name="test" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="113" splitType="Stretch">
+			<frame>
+				<reportElement x="10" y="10" width="270" height="90" uuid="f884d64a-6285-4df7-a2b9-6c2b4b32dad6"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textField isBlankWhenNull="true">
+					<reportElement x="10" y="29" width="250" height="19" uuid="3512f83a-04ca-43f2-abf8-2f716c475072"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{duName}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="10" y="9" width="250" height="20" uuid="1e3811ff-2637-4d8f-8730-f6ffda5e9b47"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{duCode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="48" width="250" height="32" uuid="f46de959-76e9-4e8c-bb7d-11883c1e7309"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{addrLn1} + " "+ $F{addrLn2}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="280" y="10" width="270" height="90" uuid="8c85b15d-ea25-4ed2-aaa9-c47d342cacc2"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textField>
+					<reportElement x="10" y="10" width="254" height="20" uuid="11ec721d-38cc-4edd-8976-79eccc2eddce"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA["Statement of Account No. " + $F{oldAcctNo}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="10" y="29" width="254" height="20" uuid="b1f27cb0-1f02-4853-8a6c-79b6531fdec2"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{accountName}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="49" width="254" height="31" uuid="8884c513-ac3b-4471-8709-e8b773d7e955"/>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$F{addressLn1} + " " + $F{addressLn2}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="62" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="10" y="30" width="130" height="20" uuid="e1f6566e-45f6-4816-9122-c24ba8dad4b4"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consumerType}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="140" y="30" width="140" height="20" uuid="27634e03-1513-4739-b889-2c640f6eff15"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodFrom}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="280" y="30" width="140" height="20" uuid="f8b92e7f-fd17-420d-9698-453295abf373"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periodTo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="30" width="130" height="20" uuid="e1795d08-fdd1-49ec-ab0c-6b7a92401bf9"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dueDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="10" width="130" height="20" uuid="ba252f15-e9fa-4ff3-965f-fdc274df7479"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="10" width="130" height="20" uuid="7648d40e-ca60-40bd-b71d-deb2d57acce1"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consumer Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="10" width="140" height="20" uuid="7f9e0059-0da4-459d-bf31-10f25e471677"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Billing Period From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="10" width="140" height="20" uuid="d058a604-aead-4cc7-be22-a38dcf199b42"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Billing Period To]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="528" splitType="Stretch">
+			<frame>
+				<reportElement x="10" y="10" width="540" height="500" uuid="21839077-db71-428a-bb36-f7013a7fb963"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<frame>
+					<reportElement x="11" y="1" width="200" height="269" uuid="f6046878-b396-43a8-ad92-c6afa7d5d8bf"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<staticText>
+						<reportElement x="0" y="0" width="200" height="19" uuid="cf458d50-fb5d-4168-8bfe-39f825d198b9"/>
+						<box>
+							<pen lineWidth="1.0" lineStyle="Solid"/>
+						</box>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font isBold="true"/>
+						</textElement>
+						<text><![CDATA[METER INFORMATION]]></text>
+					</staticText>
+					<staticText>
+						<reportElement x="10" y="21" width="91" height="18" uuid="4a388e3a-9050-437e-aa3c-fe47ebe7b21f"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[METER NO :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="21" width="79" height="18" uuid="7fd8466f-18c1-4ca2-9f5c-417e0b7d0de3"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{meterNo}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="41" width="91" height="18" uuid="a18954ee-45e3-4fdb-8297-21725920700c"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[PRESENT :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="41" width="79" height="18" uuid="2c1b465e-415d-49fe-9941-4b0ae698ed74"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{currentReading}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="61" width="91" height="18" uuid="a4f95069-5781-4569-8dc6-76ffae12d5e9"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[PREVIOUS :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="61" width="79" height="18" uuid="dd50a8de-d4d6-47ea-8835-0192d80de4ff"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{previousReading}]]></textFieldExpression>
+					</textField>
+					<line>
+						<reportElement x="10" y="80" width="180" height="1" uuid="8011cdeb-0449-4316-8140-8cdccb0cda78"/>
+					</line>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="82" width="79" height="18" uuid="1d364bcc-5795-4732-a4c1-06a7a53a8b67"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{consumption}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="102" width="91" height="18" uuid="5e351268-09e2-4443-a3fa-9bdf7bd3c31f"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[MULTIPLIER :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="102" width="79" height="18" uuid="c7505033-fa7d-43e1-9c5a-b61fb1562b08"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{multiplier}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="121" width="91" height="18" uuid="5a5c680a-2964-4358-81a9-1b8bb5fbeec3"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[TOTAL :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="121" width="79" height="18" uuid="3458f349-fa48-48f1-a753-5e14212ddc6c"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{totalOfMultiplierCon}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="141" width="91" height="18" uuid="08611e31-2d5c-4837-ad8b-fd0d73c6365c"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[CORELOSS :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="141" width="79" height="18" uuid="03498533-d7dc-4bc8-9eca-2d4cb101b7ba"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{coreloss}]]></textFieldExpression>
+					</textField>
+					<staticText>
+						<reportElement x="10" y="161" width="91" height="18" uuid="9d7b60d0-481f-4ef1-ab82-51043e5a27f4"/>
+						<textElement textAlignment="Left" verticalAlignment="Middle"/>
+						<text><![CDATA[ADD ON :]]></text>
+					</staticText>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="161" width="79" height="18" uuid="c2e6b99b-195c-4684-ba61-c81376633d82"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{addOnKwhTotal}]]></textFieldExpression>
+					</textField>
+					<line>
+						<reportElement x="11" y="181" width="180" height="1" uuid="7cb56eda-9a6d-477c-8ccd-9b2ecb15d084"/>
+					</line>
+					<textField isBlankWhenNull="true">
+						<reportElement x="101" y="183" width="79" height="18" uuid="1316a9ea-ec8e-4f83-9647-5e958b6ed831"/>
+						<textElement textAlignment="Right" verticalAlignment="Middle"/>
+						<textFieldExpression><![CDATA[$F{totalConsumption}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<staticText>
+					<reportElement x="11" y="211" width="200" height="18" uuid="4fa017d5-36a1-4c32-9439-72b55a694c9f"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[DISCONNECTION DATE]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="11" y="230" width="200" height="20" uuid="48a6289e-bd6b-4952-994d-43539d75d973"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Solid"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{disconnectionDate}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="10" y="271" width="200" height="208" uuid="d0464695-84b1-48a4-990f-9b4d483ecf16"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Service will be disconnected without
+prior notice if not paid within
+disconnection date.
+
+
+Verification in your meter
+reading/billing statement will be
+entertained within 5 days from
+receipt thereof.]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+</jasperReport>

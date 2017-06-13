@@ -19,6 +19,8 @@ public class Rdm {
     private String rdmName;
     @Column(name = "ID_READER")
     private int idReader;
+    @Column(name = "CONSUMER_COUNT")
+    private int consumerCount;
 
     public long getId() {
         return id;
@@ -42,6 +44,14 @@ public class Rdm {
 
     public void setIdReader(int idReader) {
         this.idReader = idReader;
+    }
+
+    public int getConsumerCount() {
+        return consumerCount;
+    }
+
+    public void setConsumerCount(int consumerCount) {
+        this.consumerCount = consumerCount;
     }
 
     public Date getTs() {

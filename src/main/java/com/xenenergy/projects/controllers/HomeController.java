@@ -14,19 +14,19 @@ import java.util.Optional;
  * Created by xenuser on 5/18/2017.
  */
 @Controller
-@SessionAttributes(value = {"caller", "ducode"})
+@SessionAttributes(value = {"caller"}) //, "ducode"
 @RequestMapping("/")
 public class HomeController {
 
-    @Value("${kuryentxt.du-code}")
-    private String ducode;
+    /*@Value("${kuryentxt.du-code}")
+    private String ducode;*/
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @RequestParam Optional<String> caller) {
         if (caller.isPresent()) {
             model.addAttribute("caller", caller.get());
         }
-        model.addAttribute("ducode", ducode);
+        //model.addAttribute("ducode", ducode);
         return "index";
     }
 }

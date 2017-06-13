@@ -83,4 +83,6 @@ public class BillChargeGroup {
     public void setIsUploaded(String isUploaded) {
         this.isUploaded = isUploaded;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.xenenergy.projects.controllers.restapi;
 
 import com.xenenergy.projects.entities.Account;
+import com.xenenergy.projects.services.impl.AccountServiceImpl;
 import com.xenenergy.projects.services.interfaces.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.List;
 public class AccountsRestController {
 
     @Autowired
-    private AccountService accountService;
+    private AccountServiceImpl accountService;
 
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
     public List<Account> getAllAccounts() {

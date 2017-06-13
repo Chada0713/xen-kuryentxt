@@ -81,8 +81,10 @@
                                     <!-- <th>ID</th>-->
                                     <th></th>
                                     <th>ID</th>
-                                    <th>Date Created</th>
+                                    <th>Date and Time Created</th>
                                     <th>Name</th>
+                                    <th>Reader Name</th>
+                                    <th>Consumer Count</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -92,10 +94,16 @@
                                     <td>
                                         <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails(cid=${rdmlist.id})}">
                                             Manage Routes</a>
+                                        <!--data-toggle="popover" title="Popover title" data-content="asdf"-->
                                     </td>
                                     <td th:text="${rdmlist.id}"></td>
                                     <td th:text="${#dates.format(rdmlist.ts, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${rdmlist.rdmName}"></td>
+                                    <td>
+                                        <span th:each="mr : ${meterReader}" th:if="${mr.id} == ${rdmlist.idReader}"
+                                              th:text="${mr.readersName}"></span>
+                                    </td>
+                                    <td th:text="${rdmlist.consumerCount}"></td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='rdm/delete/'+${rdmlist.id},

@@ -69,6 +69,7 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
+                                    <th></th>
                                     <th>Route Code</th>
                                     <th>
                                         <div class="text-left">Route Name</div>
@@ -90,6 +91,10 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="routelist : ${routelists}">
+                                    <td>
+                                        <a href="#" data-th-href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}(cid=${duarea.id}, id=${routelist.id}, sseq=${routelist.startSequence}, eseq=${routelist.endSequence})}">
+                                            View Accounts</a>
+                                    </td>
                                     <td th:text="${routelist.routeCode}"></td>
                                     <td>
                                         <div class="text-left" th:text="${routelist.routeName}"></div>

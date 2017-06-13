@@ -11,6 +11,9 @@ import java.util.List;
 public class ChargeGroupDetails {
 
     String chargeGroupName;
+    double chargeSum;
+    double chargeTotalgroup;
+
     String chargeName;
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     double chargeAmount = 0.0000;;
@@ -23,6 +26,22 @@ public class ChargeGroupDetails {
 
     public void setChargeGroupName(String chargeGroupName) {
         this.chargeGroupName = chargeGroupName;
+    }
+
+    public double getChargeSum() {
+        return chargeSum;
+    }
+
+    public void setChargeSum(double chargeSum) {
+        this.chargeSum = chargeSum;
+    }
+
+    public double getChargeTotalgroup() {
+        return chargeTotalgroup;
+    }
+
+    public void setChargeTotalgroup(double chargeTotalgroup) {
+        this.chargeTotalgroup = chargeTotalgroup;
     }
 
     public String getChargeName() {
@@ -48,4 +67,5 @@ public class ChargeGroupDetails {
     public void setChargeTotal(double chargeTotal) {
         this.chargeTotal = chargeTotal;
     }
+
 }

@@ -18,6 +18,8 @@ public class DeviceUploadMaster {
     private long id;
     @Column(name = "ID_DEVICE")
     private long idDevice;
+    @Column(name = "ID_READER")
+    private long idReader;
     @Column(name = "UPLOAD_START_TS")
     private Date uploadStartTs;
     @Column(name = "UPLOAD_END_TS")
@@ -30,9 +32,10 @@ public class DeviceUploadMaster {
     public DeviceUploadMaster() {
     }
 
-    public DeviceUploadMaster(long id, long idDevice, Date uploadStartTs, Date uploadEndTs, int noOfBills, String isProcessed) {
+    public DeviceUploadMaster(long id, long idDevice, long idReader, Date uploadStartTs, Date uploadEndTs, int noOfBills, String isProcessed) {
         this.id = id;
         this.idDevice = idDevice;
+        this.idReader = idReader;
         this.uploadStartTs = uploadStartTs;
         this.uploadEndTs = uploadEndTs;
         this.noOfBills = noOfBills;
@@ -53,6 +56,14 @@ public class DeviceUploadMaster {
 
     public void setIdDevice(long idDevice) {
         this.idDevice = idDevice;
+    }
+
+    public long getIdReader() {
+        return idReader;
+    }
+
+    public void setIdReader(long idReader) {
+        this.idReader = idReader;
     }
 
     public Date getUploadStartTs() {

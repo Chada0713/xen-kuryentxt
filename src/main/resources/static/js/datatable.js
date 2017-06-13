@@ -9,13 +9,13 @@ $(document).ready( function () {
         responsive: true,
         "order": [[ 0, "asc" ]],
         "aoColumns": [
-            { "mData": "seqNo" },
-            { "mData": "routeCode" },
-            { "mData": "accountName" },
             { "mData": "oldAccountNo",
                 render: function ( data, type, row, meta ) {
                     return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";
-            }},
+                }},
+            { "mData": "seqNo" },
+            { "mData": "routeCode" },
+            { "mData": "accountName" },
             { "mData": "meterNo" },
             { "mData": "prev01Reading" },
             { "mData": "curRdg" },

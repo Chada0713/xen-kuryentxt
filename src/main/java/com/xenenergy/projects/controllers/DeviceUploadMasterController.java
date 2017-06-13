@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.DeviceUploadMaster;
 import com.xenenergy.projects.entities.Pager;
 import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.services.interfaces.DeviceUploadMasterService;
+import com.xenenergy.projects.services.interfaces.MeterReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +29,9 @@ public class DeviceUploadMasterController {
     @Autowired
     private DeviceUploadMasterService deviceUploadMasterService;
 
+    @Autowired
+    private MeterReaderService meterReaderService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
@@ -40,6 +44,7 @@ public class DeviceUploadMasterController {
         /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
 
         modelAndView.addObject("dumLists", dum);
+        modelAndView.addObject("meterReader", meterReaderService.findAll());
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);

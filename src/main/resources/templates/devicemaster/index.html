@@ -22,6 +22,7 @@
                                     <th>Upload Start</th>
                                     <th>Upload End</th>
                                     <th>No. of Bills</th>
+                                    <th>Reader Name</th>
                                     <th>Is Processed</th>
                                 </tr>
                                 </thead>
@@ -35,6 +36,10 @@
                                     <td th:text="${#dates.format(dumlist.uploadStartTs, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td th:text="${dumlist.noOfBills}"></td>
+                                    <td>
+                                        <span th:each="mr : ${meterReader}" th:if="${mr.id} == ${dumlist.idReader}"
+                                        th:text="${mr.readersName}"></span>
+                                    </td>
                                     <td>
                                         <div th:switch="${dumlist.isProcessed}">
                                                <span th:case="'Y'" class="fa-stack green">

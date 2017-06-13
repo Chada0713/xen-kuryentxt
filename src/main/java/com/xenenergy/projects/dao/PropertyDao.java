@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface PropertyDao extends PagingAndSortingRepository<Property, Long> {
     /* Uncomment this if you want to display the record in desc order*/
    // List<Property> findAllByOrderByIdDesc();
+    Property findByPropertyName(String propertyName);
 }

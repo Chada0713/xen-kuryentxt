@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.Pager;
 import com.xenenergy.projects.entities.PaginationProperty;
 import com.xenenergy.projects.entities.Rdm;
 import com.xenenergy.projects.services.ReadersService;
+import com.xenenergy.projects.services.interfaces.MeterReaderService;
 import com.xenenergy.projects.services.interfaces.RouteDefinitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
@@ -32,6 +33,9 @@ public class RouteDefinitionController {
     @Autowired
     private ReadersService readersService;
 
+    @Autowired
+    private MeterReaderService meterReaderService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam(value = "searchStr") Optional<String> searchStr,
                                         @RequestParam("pageSize") Optional<Integer> pageSize,
@@ -50,6 +54,7 @@ public class RouteDefinitionController {
 
         modelAndView.addObject("rdmlists", rdms);
         modelAndView.addObject("rdm", new Rdm());
+        modelAndView.addObject("meterReader", meterReaderService.findAll());
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);

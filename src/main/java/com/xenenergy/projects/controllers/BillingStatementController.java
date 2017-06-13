@@ -18,10 +18,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.*;
 
 /**
@@ -69,9 +66,10 @@ public class BillingStatementController {
         statementModel.setCurDate(dateFormat.format(date));
         double totalbills =
                 Double.parseDouble(Integer.toString(billsCount)) * 1.00;
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        String finalAmount = formatter.format(totalbills);
-        statementModel.setTotalBill(finalAmount);
+        /*NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String finalAmount = formatter.format(totalbills);*/
+        DecimalFormat df = new DecimalFormat("#.00");
+        statementModel.setTotalBill("Php " + df.format(totalbills));
         statementModel.setDescription("Reading from " + periodFrm + " to " + periodTo);
         statementModel.setLogoPath("static/images/xesi_logo.png");
         statementModel.setSignatoryPath("static/images/signatory.png");

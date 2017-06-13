@@ -22,7 +22,7 @@ public class Account {
     @Column(name = "ROUTE_CODE")
     private String routeCode;
     @Column(name = "ACCOUNT_NO")
-    private long accountNo;
+    private String accountNo;
     @Column(name = "OLD_ACCOUNT_NO")
     private String oldAccountNo;
     @Column(name = "SEQUENCE_NO")
@@ -65,7 +65,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(long id, String dateRecCreated, String timeRecCreated, long idArea, long idRdm, long idRoute, String routeCode, long accountNo, String oldAccountNo, int seqNo, int oldSequenceNo, String meterNo, int meterMultiplier, String serialNo, String lastName, String firstName, String mi, String accountName, String addressLn1, String addressLn2, Long prev02Reading, Long prev01Reading, int curRdg, long idRateMaster, String isSeniorCitizen, String isPrivate, String isDownloaded) {
+    public Account(long id, String dateRecCreated, String timeRecCreated, long idArea, long idRdm, long idRoute, String routeCode, String accountNo, String oldAccountNo, int seqNo, int oldSequenceNo, String meterNo, int meterMultiplier, String serialNo, String lastName, String firstName, String mi, String accountName, String addressLn1, String addressLn2, Long prev02Reading, Long prev01Reading, int curRdg, long idRateMaster, String isSeniorCitizen, String isPrivate, String isDownloaded) {
         this.id = id;
         this.dateRecCreated = dateRecCreated;
         this.timeRecCreated = timeRecCreated;
@@ -151,11 +151,11 @@ public class Account {
         this.routeCode = routeCode;
     }
 
-    public long getAccountNo() {
+    public String getAccountNo() {
         return accountNo;
     }
 
-    public void setAccountNo(long accountNo) {
+    public void setAccountNo(String accountNo) {
         this.accountNo = accountNo;
     }
 

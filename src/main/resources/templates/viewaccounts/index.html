@@ -11,12 +11,12 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
-                        <a th:href="@{/rdm/{cid}/rdmdetails(cid=${rdmDeltail.idRdm})}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
-                        <strong th:text="'RDM: ' + ${rdmDeltail.idRdm} + ' ROUTE: ' + ${route.routeCode} + ' START SEQ: ' + ${rdmDeltail.startSequence} + ' END SEQ: ' + ${rdmDeltail.endSequence} + ' (' + ${route.routeName} + ')'"></strong>
+                        <a th:href="${prevPageUrl}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong th:text="${headerDetail}"></strong>
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <form class="form-horizontal" th:action="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}(cid=${rdmDeltail.idRdm}, id=${rdmDeltail.id}, sseq=${rdmDeltail.startSequence}, eseq=${rdmDeltail.endSequence}, rid=${rdmDeltail.idRoute})}"
+                            <form class="form-horizontal" th:action="${forSearchUrl}"
                                   th:object="${account}"
                                   method="get">
                                 <div class="col-lg-3 col-md-3 col-sm-3">
@@ -61,7 +61,7 @@
                                  class="text-center alert alert-danger alert-dismissible" role="alert">
                                 <strong>No Record Found!</strong>
                             </div>
-                            <div th:if="${accountLists.totalPages &gt;= 1}">
+                            <!--<div th:if="${accountLists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
                                     <ul class="pagination pull-right">
                                         <li th:class="${accountLists.number == 0} ? disabled">
@@ -88,7 +88,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

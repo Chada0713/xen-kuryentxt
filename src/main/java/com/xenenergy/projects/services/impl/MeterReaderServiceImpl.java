@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xenuser on 5/11/2017.
  */
@@ -44,5 +46,10 @@ public class MeterReaderServiceImpl implements MeterReaderService {
     @Override
     public MeterReader update(MeterReader reader) {
         return meterReaderDao.save(reader);
+    }
+
+    @Override
+    public List<MeterReader> findAll() {
+        return meterReaderDao.findAll();
     }
 }
