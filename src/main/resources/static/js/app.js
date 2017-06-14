@@ -246,6 +246,7 @@ $(document).ready(function () {
         //$('#url').text($url);
         $("#deleteBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
         var infoModal = $('#url');
+        //alert($param);
         $.ajax({
             type: "GET",
             url:  $url,
@@ -291,10 +292,10 @@ $(document).ready(function () {
     });
 
     /*For Popover*/
-    /*$(document).ready(function(){
+    $(document).ready(function(){
         $('[data-toggle="popover"]').popover({
             placement : 'right',
             trigger: 'hover'
         });
-    });*/
+    });
 });

@@ -1,7 +1,5 @@
 package com.xenenergy.projects.entities;
 
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +20,7 @@ public class Bills {
     @Column(name = "OLD_ACCT_NO") private String oldAcctNo;
     @Column(name = "ID_ROUTE") private long idRoute;
     @Column(name = "ROUTE_CODE") private String routeCode;
-    @Column(name = "SEQUENCE_NO") private int sequentNo;
+    @Column(name = "SEQUENCE_NO") private int sequenceNo;
     @Column(name = "ACCOUNT_NAME") private String accountName;
     @Column(name = "METER_NO") private String meterNo;
     @Column(name = "ACCOUNT_NO") private String accountNo;
@@ -48,14 +46,14 @@ public class Bills {
     public Bills() {
     }
 
-    public Bills(long id, String runDate, String billNo, String oldAcctNo, long idRoute, String routeCode, int sequentNo, String accountName, String meterNo, String accountNo, String consumerType, int currentReading, int previousReading, int consumption, int multiplier, int coreloss, int addOnKwhTotal, int totalConsumption, Date periodFrom, Date periodTo, String billingMo, Double currentBill, Double totalAmountDue, String reader, long deviceId, Date dueDate, String remarks, String isUploaded) {
+    public Bills(long id, String runDate, String billNo, String oldAcctNo, long idRoute, String routeCode, int sequenceNo, String accountName, String meterNo, String accountNo, String consumerType, int currentReading, int previousReading, int consumption, int multiplier, int coreloss, int addOnKwhTotal, int totalConsumption, Date periodFrom, Date periodTo, String billingMo, Double currentBill, Double totalAmountDue, String reader, long deviceId, Date dueDate, String remarks, String isUploaded) {
         this.id = id;
         this.runDate = runDate;
         this.billNo = billNo;
         this.oldAcctNo = oldAcctNo;
         this.idRoute = idRoute;
         this.routeCode = routeCode;
-        this.sequentNo = sequentNo;
+        this.sequenceNo = sequenceNo;
         this.accountName = accountName;
         this.meterNo = meterNo;
         this.accountNo = accountNo;
@@ -127,12 +125,12 @@ public class Bills {
         this.routeCode = routeCode;
     }
 
-    public int getSequentNo() {
-        return sequentNo;
+    public int getSequenceNo() {
+        return sequenceNo;
     }
 
-    public void setSequentNo(int sequentNo) {
-        this.sequentNo = sequentNo;
+    public void setSequenceNo(int sequenceNo) {
+        this.sequenceNo = sequenceNo;
     }
 
     public String getAccountName() {

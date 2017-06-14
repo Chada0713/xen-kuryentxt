@@ -11,8 +11,12 @@ $(document).ready( function () {
         "aoColumns": [
             { "mData": "oldAccountNo",
                 render: function ( data, type, row, meta ) {
-                    return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";
-                }},
+                    /*return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";*/
+                    return "<a href='#' data-toggle='popover' " +
+                        "data-content='"+ "<a href="+'#'+" data-url="+'/Kuryentxt/api/account'+" data-param="+data+" data-target="+'#viewaccount'+" data-toggle="+'modal'+"> View Account </a><br/> " +
+                        "<a href="+'bills/viewbill?oldaccountno='+data+"> View Bill </a>"
+                        +"'>" + data + "</a>";
+            }},
             { "mData": "seqNo" },
             { "mData": "routeCode" },
             { "mData": "accountName" },
@@ -20,6 +24,12 @@ $(document).ready( function () {
             { "mData": "prev01Reading" },
             { "mData": "curRdg" },
         ],
+        drawCallback: function() {
+            $('[data-toggle="popover"]').popover({html:true});
+            $('[data-toggle="popover"]').on('click', function (e) {
+                $('[data-toggle="popover"]').not(this).popover('hide');
+            });
+        },
         dom: "<'row'<'col-sm-12'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-4'i><'col-sm-8'p>>",
@@ -27,6 +37,8 @@ $(document).ready( function () {
         "sPaginationType": "full_numbers"
     })
 });
+
+
 
 /*Bills Report Table*/
 $(document).ready( function () {

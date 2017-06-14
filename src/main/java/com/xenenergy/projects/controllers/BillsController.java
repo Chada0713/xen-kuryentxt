@@ -20,6 +20,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -28,7 +29,7 @@ import java.util.*;
  */
 @Controller
 @SessionAttributes("caller")
-@RequestMapping("/bills")
+@RequestMapping("")
 public class BillsController {
 
     @Autowired
@@ -49,14 +50,17 @@ public class BillsController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private BillAddOnChargeService billAddOnChargeService;
+
     private InputStream reportStream;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/bills", method = RequestMethod.GET)
     public String getBills(){
         return "bills/index";
     }
 
-    @GetMapping("/viewbill")
+    @GetMapping("/bills/viewbill")
     public String showbillForm(@RequestParam("billno") String billno, Model model){
         /*Bill Header*/
         Bills bill = billsService.findByBillNo(billno);
@@ -78,24 +82,12 @@ public class BillsController {
             }
         }
 
-        /*List<Du> duModels = duService.getDU();
-        Du duList = new Du();
-        for (Du duModel : duModels) {
-            duList.setDuCode(duModel.getDuCode());
-            duList.setDuName(duModel.getDuName());
-            duList.setAddressLn1(duModel.getAddressLn1());
-            duList.setAddressLn2(duModel.getAddressLn2());
-            duList.setContactPerson(duModel.getContactPerson());
-        }*/
-
         String[] du = new String[7];
         du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
         du[1] = propertyService.findByPropertyName("DU_NAME").getPropertyValue();
         du[2] = propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue();
         du[3] = propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue();
         du[4] = propertyService.findByPropertyName("DU_VAT_NO").getPropertyValue();
-
-
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
         Calendar c = Calendar.getInstance();
@@ -106,12 +98,16 @@ public class BillsController {
         model.addAttribute("billgroupLists", chargeGroupDetailsList);
         model.addAttribute("du", du);
         model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
+        model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
         return "bills/viewbill";
     }
 
-    @RequestMapping(value = "bill-report", method = RequestMethod.GET)
+    @RequestMapping(value = "/bills/bill-report", method = RequestMethod.GET)
     public void generateBill(@RequestParam("billNo") String billNo, HttpServletResponse response) throws Exception {
         ServletOutputStream servletOutputStream = response.getOutputStream();
+        DecimalFormat myFormatter = new DecimalFormat("0.0000");
+        DecimalFormat myFormatter2 = new DecimalFormat("0.00");
+
         reportStream = BillingStatementController.class.getClassLoader().getResourceAsStream("static/jasper/BillReports.jasper");
 
         Account account = accountService.getByOldAccountNo(billsService.findByBillNo(billNo).getOldAcctNo());
@@ -136,11 +132,15 @@ public class BillsController {
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
 
         Bills bill = billsService.findByBillNo(billNo);
+        billReportModel.setBillNo(bill.getBillNo());
         billReportModel.setConsumerType(bill.getConsumerType());
         billReportModel.setPeriodFrom(sdf.format(bill.getPeriodFrom()));
         billReportModel.setPeriodTo(sdf.format(bill.getPeriodTo()));
         billReportModel.setDueDate(sdf.format(bill.getDueDate()));
         billReportModel.setMeterNo(bill.getMeterNo());
+        billReportModel.setAccountNo(bill.getAccountNo());
+        billReportModel.setRouteCode(bill.getRouteCode());
+        billReportModel.setSequenceNo(Integer.toString(bill.getSequenceNo()));
         billReportModel.setCurrentReading(String.valueOf(bill.getCurrentReading()));
         billReportModel.setPreviousReading(String.valueOf(bill.getPreviousReading()));
         billReportModel.setConsumption(String.valueOf(bill.getConsumption()));
@@ -149,37 +149,39 @@ public class BillsController {
         billReportModel.setCoreloss(String.valueOf(bill.getCoreloss()));
         billReportModel.setAddOnKwhTotal(String.valueOf(bill.getAddOnKwhTotal()));
         billReportModel.setTotalConsumption(String.valueOf(bill.getTotalConsumption()));
+        billReportModel.setCurrentBill(Double.toString(bill.getCurrentBill()));
+        billReportModel.setTotalAmountDue(Double.toString(bill.getTotalAmountDue()));
 
-        Calendar c = Calendar.getInstance();
-        c.setTime(bill.getDueDate()); // Now use today date.
-        c.add(Calendar.DATE, 10); // Adding 5 days
-        billReportModel.setDisconnectionDate(sdf.format(c.getTime()));
-
-        List<String> t = new ArrayList<>();
-
-        List<ChargeGroupDetails> chargeGroupDetailsList = new ArrayList<>();
-        for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billNo)){
-            ChargeGroupDetails chargeGroup = new ChargeGroupDetails();
-            chargeGroup.setChargeGroupName(billChargeGroupList.getChargeGroupName());
-
-            // Test
-            t.add(billChargeGroupList.getChargeGroupName());
-
-            chargeGroup.setChargeSum(billChargeGroupList.getChargeSum());
-            chargeGroup.setChargeTotalgroup(billChargeGroupList.getChargeTotal());
-            chargeGroupDetailsList.add(chargeGroup);
-            for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billNo)){
-                ChargeGroupDetails chargeDetails = new ChargeGroupDetails();
-                chargeDetails.setChargeName(billChargeDetailList.getChargeName());
-                chargeDetails.setChargeAmount(billChargeDetailList.getChargeAmount());
-                chargeDetails.setChargeTotal(billChargeDetailList.getChargeTotal());
-                chargeGroupDetailsList.add(chargeDetails);
+        String addOnC = "", addOnVal = "";
+        if(!billAddOnChargeService.findByBillNo(billNo).isEmpty()){
+            billReportModel.setAddOnChargeHeader("ADD ON CHARGE");
+            for(BillAddOnCharge billAddOnChargeList : billAddOnChargeService.findByBillNo(billNo)){
+                addOnC += billAddOnChargeList.getAddOnCharge() + System.lineSeparator();
+                addOnVal += myFormatter2.format(billAddOnChargeList.getValueCharge()) + System.lineSeparator();
             }
+            billReportModel.setAddOnCharge(addOnC);
+            billReportModel.setValueCharge(addOnVal);
         }
 
-        billReportModel.setTest(t);
+        Calendar c = Calendar.getInstance();
+        c.setTime(bill.getDueDate());
+        c.add(Calendar.DATE, 10);
+        billReportModel.setDisconnectionDate(sdf.format(c.getTime()));
 
-        billReportModel.setChargeGroupDetailsList(chargeGroupDetailsList);
+        String chargeN = "", chargeA = "", chargeT = "";
+        for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billNo)){
+            chargeN=chargeN+billChargeGroupList.getChargeGroupName().toUpperCase() + System.lineSeparator();
+            chargeA=chargeA+myFormatter.format(billChargeGroupList.getChargeSum()) + System.lineSeparator();
+            chargeT=chargeT+myFormatter2.format(billChargeGroupList.getChargeTotal()) + System.lineSeparator();
+            for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billNo)){
+                chargeN=chargeN+"    "+billChargeDetailList.getChargeName() + System.lineSeparator();
+                chargeA=chargeA+"    "+myFormatter.format(billChargeDetailList.getChargeAmount()) + System.lineSeparator();
+                chargeT=chargeT+"    "+myFormatter2.format(billChargeDetailList.getChargeTotal()) + System.lineSeparator();
+            }
+        }
+        billReportModel.setChargeName(chargeN);
+        billReportModel.setChargeAmount(chargeA);
+        billReportModel.setChargeTotal(chargeT);
 
         billReportModelList.add(billReportModel);
 
@@ -204,4 +206,11 @@ public class BillsController {
             response.getOutputStream().print(stringWriter.toString());
         }
     }
+
+    /*By Old_Account_No*/
+    /*@GetMapping("/bills/viewbill")
+    public String showbillFormAcct(@RequestParam("oldaccountno") String oldaccountno, Model model){
+        Bills bills
+        return "bills/viewbill";
+    }*/
 }

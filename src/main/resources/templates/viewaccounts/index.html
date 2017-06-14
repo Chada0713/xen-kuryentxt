@@ -61,9 +61,9 @@
                                  class="text-center alert alert-danger alert-dismissible" role="alert">
                                 <strong>No Record Found!</strong>
                             </div>
-                            <!--<div th:if="${accountLists.totalPages &gt;= 1}">
+                            <div th:if="${accountLists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
-                                    <ul class="pagination pull-right">
+                                    <ul class="pagination pull-right" th:if="${whatView} == 'rdm'">
                                         <li th:class="${accountLists.number == 0} ? disabled">
                                             <a class="pageLink"
                                                th:href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}/(cid=${rdmDeltail.idRdm}, id=${rdmDeltail.id}, rid=${rdmDeltail.idRoute}, sseq=${rdmDeltail.startSequence}, eseq=${rdmDeltail.endSequence}, pageSize=${selectedPageSize}, page=1)}">First</a>
@@ -87,8 +87,33 @@
                                                th:href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}/(cid=${rdmDeltail.idRdm}, id=${rdmDeltail.id}, rid=${rdmDeltail.idRoute}, sseq=${rdmDeltail.startSequence}, eseq=${rdmDeltail.endSequence}, pageSize=${selectedPageSize}, page=${accountLists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
+
+                                    <ul class="pagination pull-right" th:if="${whatView} == 'area'">
+                                        <li th:class="${accountLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}/(cid=${route.idArea}, id=${route.id}, sseq=${route.startSequence}, eseq=${route.endSequence}, pageSize=${selectedPageSize}, page=1)}">First</a>
+                                        </li>
+                                        <li th:class="${accountLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}/(cid=${route.idArea}, id=${route.id}, sseq=${route.startSequence}, eseq=${route.endSequence}, pageSize=${selectedPageSize}, page=${accountLists.number})}">Previous</a>
+                                        </li>
+                                        <li th:class="${accountLists.number == (page - 1)} ? 'active pointer-disabled'"
+                                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                            <a class="pageLink"
+                                               th:href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}/(cid=${route.idArea}, id=${route.id}, sseq=${route.startSequence}, eseq=${route.endSequence}, pageSize=${selectedPageSize}, page=${page})}"
+                                               th:text="${page}"></a>
+                                        </li>
+                                        <li th:class="${accountLists.number + 1 == accountLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}/(cid=${route.idArea}, id=${route.id}, sseq=${route.startSequence}, eseq=${route.endSequence}, pageSize=${selectedPageSize}, page=${accountLists.number + 2})}">Next</a>
+                                        </li>
+                                        <li th:class="${accountLists.number + 1 == accountLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}/(cid=${route.idArea}, id=${route.id}, sseq=${route.startSequence}, eseq=${route.endSequence}, pageSize=${selectedPageSize}, page=${accountLists.totalPages})}">Last</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </div>-->
+                            </div>
                         </div>
                     </div>
                 </div>

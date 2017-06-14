@@ -8,10 +8,12 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
@@ -38,8 +40,14 @@ public class BillingStatementController {
     private InputStream reportStream;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String loadSurveyPg() {
-        return "bills/reports";
+    public ModelAndView loadSurveyPg() {
+        ModelAndView modelAndView = new ModelAndView("bills/reports");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date()); // Now use today date.
+        c.add(Calendar.DATE, -30); // Adding 5 days
+        modelAndView.addObject("date", sdf.format(c.getTime()));
+        return modelAndView;
     }
 
     @RequestMapping(value = "/bill-statement", method = RequestMethod.GET)

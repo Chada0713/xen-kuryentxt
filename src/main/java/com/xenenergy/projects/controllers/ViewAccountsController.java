@@ -64,6 +64,7 @@ public class ViewAccountsController {
                 " START SEQ: " + rdmDetail.getStartSequence() + " END SEQ: " + rdmDetail.getEndSequence() + " (" + route.getRouteName() + ")");
         modelAndView.addObject("forSearchUrl", "/Kuryentxt/rdm/"+Long.toString(cid)+"/rdmdetails/"+Long.toString(rdmDetail.getId())+"/route/" + Long.toString(rdmDetail.getIdRoute()) + "/startseq/" +
                 Integer.toString(rdmDetail.getStartSequence()) + "/endseq/" + Integer.toString(rdmDetail.getEndSequence()));
+        modelAndView.addObject("whatView", "rdm");
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
@@ -98,6 +99,7 @@ public class ViewAccountsController {
                 " START SEQ: " + route.getStartSequence() + " END SEQ: " + route.getEndSequence() + " (" + route.getRouteName() + ")");
         modelAndView.addObject("forSearchUrl", "/Kuryentxt/du-area/"+cid+"/routes/" + route.getId() + "/startseq/" +
                 route.getStartSequence() + "/endseq/" + route.getEndSequence());
+        modelAndView.addObject("whatView", "area");
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);

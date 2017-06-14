@@ -8,16 +8,39 @@ import java.util.List;
  */
 public class BillReportModel {
 
-    private List<ChargeGroupDetails> chargeGroupDetailsList;
-    List<String> test = new ArrayList<>();
-
-    public List<String> getTest() {
+    private String test;
+    public String getTest() {
         return test;
     }
-
-    public void setTest(List<String> test) {
+    public void setTest(String test) {
         this.test = test;
     }
+
+    private String chargeName;
+    public String getChargeName() {
+        return chargeName;
+    }
+    public void setChargeName(String chargeName) {
+        this.chargeName = chargeName;
+    }
+
+    private String chargeAmount;
+    public String getChargeAmount() {
+        return chargeAmount;
+    }
+    public void setChargeAmount(String chargeAmount) {
+        this.chargeAmount = chargeAmount;
+    }
+
+    private String chargeTotal;
+    public String getChargeTotal() {
+        return chargeTotal;
+    }
+    public void setChargeTotal(String chargeTotal) {
+        this.chargeTotal = chargeTotal;
+    }
+
+    private String billNo;
 
     private String duCode;
     private String duName;
@@ -36,6 +59,9 @@ public class BillReportModel {
     private String periodTo;
     private String dueDate;
     private String meterNo;
+    private String accountNo;
+    private String routeCode;
+    private String sequenceNo;
     private String currentReading;
     private String previousReading;
     private String consumption;
@@ -46,6 +72,21 @@ public class BillReportModel {
     private String totalConsumption;
 
     private String disconnectionDate;
+
+    private String currentBill;
+    private String totalAmountDue;
+
+    private String addOnChargeHeader;
+    private String addOnCharge;
+    private String valueCharge;
+
+    public String getBillNo() {
+        return billNo;
+    }
+
+    public void setBillNo(String billNo) {
+        this.billNo = billNo;
+    }
 
     public String getDuCode() {
         return duCode;
@@ -167,6 +208,30 @@ public class BillReportModel {
         this.meterNo = meterNo;
     }
 
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public String getRouteCode() {
+        return routeCode;
+    }
+
+    public void setRouteCode(String routeCode) {
+        this.routeCode = routeCode;
+    }
+
+    public String getSequenceNo() {
+        return sequenceNo;
+    }
+
+    public void setSequenceNo(String sequenceNo) {
+        this.sequenceNo = sequenceNo;
+    }
+
     public String getCurrentReading() {
         return currentReading;
     }
@@ -239,11 +304,43 @@ public class BillReportModel {
         this.disconnectionDate = disconnectionDate;
     }
 
-    public List<ChargeGroupDetails> getChargeGroupDetailsList() {
-        return chargeGroupDetailsList;
+    public String getCurrentBill() {
+        return currentBill;
     }
 
-    public void setChargeGroupDetailsList(List<ChargeGroupDetails> chargeGroupDetailsList) {
-        this.chargeGroupDetailsList = chargeGroupDetailsList;
+    public void setCurrentBill(String currentBill) {
+        this.currentBill = currentBill;
+    }
+
+    public String getTotalAmountDue() {
+        return totalAmountDue;
+    }
+
+    public void setTotalAmountDue(String totalAmountDue) {
+        this.totalAmountDue = totalAmountDue;
+    }
+
+    public String getAddOnChargeHeader() {
+        return addOnChargeHeader;
+    }
+
+    public void setAddOnChargeHeader(String addOnChargeHeader) {
+        this.addOnChargeHeader = addOnChargeHeader;
+    }
+
+    public String getAddOnCharge() {
+        return addOnCharge;
+    }
+
+    public void setAddOnCharge(String addOnCharge) {
+        this.addOnCharge = addOnCharge;
+    }
+
+    public String getValueCharge() {
+        return valueCharge;
+    }
+
+    public void setValueCharge(String valueCharge) {
+        this.valueCharge = valueCharge;
     }
 }

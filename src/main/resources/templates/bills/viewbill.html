@@ -135,7 +135,7 @@
                                             <div class="text-left">SEQUENCE NUMBER :</div>
                                         </td>
                                         <td>
-                                            <div class="text-right" th:text="${bill.sequentNo}"></div>
+                                            <div class="text-right" th:text="${bill.sequenceNo}"></div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -241,6 +241,25 @@
                                                 </td>
                                                 <td th:if="${billgroupList.chargeGroupName} == null">
                                                     <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeTotal, 1, 2)}"></div></td>
+                                            </tr>
+                                        </div>
+                                    </div>
+                                    <div th:if="!${#lists.isEmpty(billAddOnChargeLists)}">
+                                        <tr class="info">
+                                            <td colspan="3">
+                                                <div class="text-left">
+                                                    <strong>Add On Charge</strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <div th:each="billAddOnChargeList : ${billAddOnChargeLists}">
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="text-left" th:text="${billAddOnChargeList.addOnCharge}"></div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billAddOnChargeList.valueCharge, 1, 4)}"></div>
+                                                </td>
                                             </tr>
                                         </div>
                                     </div>
