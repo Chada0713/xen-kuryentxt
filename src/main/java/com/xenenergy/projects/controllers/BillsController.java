@@ -99,6 +99,7 @@ public class BillsController {
         model.addAttribute("du", du);
         model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
         model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
+        model.addAttribute("backButton", "/Kuryentxt/bills");
         return "bills/viewbill";
     }
 
@@ -208,9 +209,55 @@ public class BillsController {
     }
 
     /*By Old_Account_No*/
-    /*@GetMapping("/bills/viewbill")
-    public String showbillFormAcct(@RequestParam("oldaccountno") String oldaccountno, Model model){
-        Bills bills
+    //@GetMapping("/bills/viewbillbyaccountno")
+    @RequestMapping(value = "/bills/viewbillbyaccountno", method = RequestMethod.GET)
+    public String showbillFormAcct(@RequestParam("oldaccountno") String oldacctno, Model model){
+        List<Bills> billsList = billsService.findByOldAcctNo(oldacctno);
+        if(!billsList.isEmpty()){
+            String billno = "";
+            Bills bills = new Bills();
+            for(Bills bill : billsList){
+                billno = bill.getBillNo();
+                bills = bill;
+            }
+            model.addAttribute("bill", bills);
+
+            List<ChargeGroupDetails> chargeGroupDetailsList = new ArrayList<>();
+            for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billno)){
+                ChargeGroupDetails chargeGroup = new ChargeGroupDetails();
+                chargeGroup.setChargeGroupName(billChargeGroupList.getChargeGroupName());
+                chargeGroup.setChargeSum(billChargeGroupList.getChargeSum());
+                chargeGroup.setChargeTotalgroup(billChargeGroupList.getChargeTotal());
+                chargeGroupDetailsList.add(chargeGroup);
+                for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billno)){
+                    ChargeGroupDetails chargeDetails = new ChargeGroupDetails();
+                    chargeDetails.setChargeName(billChargeDetailList.getChargeName());
+                    chargeDetails.setChargeAmount(billChargeDetailList.getChargeAmount());
+                    chargeDetails.setChargeTotal(billChargeDetailList.getChargeTotal());
+                    chargeGroupDetailsList.add(chargeDetails);
+                }
+            }
+
+            String[] du = new String[7];
+            du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
+            du[1] = propertyService.findByPropertyName("DU_NAME").getPropertyValue();
+            du[2] = propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue();
+            du[3] = propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue();
+            du[4] = propertyService.findByPropertyName("DU_VAT_NO").getPropertyValue();
+
+            SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
+            Calendar c = Calendar.getInstance();
+            c.setTime(bills.getDueDate()); // Now use today date.
+            c.add(Calendar.DATE, 10); // Adding 5 days
+            model.addAttribute("discDate",sdf.format(c.getTime()));
+
+            model.addAttribute("billgroupLists", chargeGroupDetailsList);
+            model.addAttribute("du", du);
+            model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
+            model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
+        }
+        model.addAttribute("backButton", "/Kuryentxt/accounts");
+
         return "bills/viewbill";
-    }*/
+    }
 }

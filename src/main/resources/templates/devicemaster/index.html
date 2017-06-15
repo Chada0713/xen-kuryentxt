@@ -58,7 +58,7 @@
                                             </span>
                                         </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#" data-th-href="@{/device/edit/{id}(id=${dumlist.id})}">
+                                        <a href="#" data-th-href="@{/devicemaster/edit/{id}(id=${dumlist.id})}">
                          <span class="fa-stack">
                             <i class="glyphicon glyphicon-edit"></i>
                         </span>
@@ -81,25 +81,25 @@
                                     <ul class="pagination pull-right">
                                         <li th:class="${dumLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/devicemaster/(pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
                                         <li th:class="${dumLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.number})}">Previous</a>
+                                               th:href="@{/devicemaster/(pageSize=${selectedPageSize}, page=${dumLists.number})}">Previous</a>
                                         </li>
                                         <li th:class="${dumLists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/devicemaster/(pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
                                         <li th:class="${dumLists.number + 1 == dumLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.number + 2})}">Next</a>
+                                               th:href="@{/devicemaster/(pageSize=${selectedPageSize}, page=${dumLists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${dumLists.number + 1 == dumLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dumLists.totalPages})}">Last</a>
+                                               th:href="@{/devicemaster/(pageSize=${selectedPageSize}, page=${dumLists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>

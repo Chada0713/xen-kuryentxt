@@ -11,287 +11,293 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
-                        <a th:href="@{/bills}"><i
+                        <a th:href="${backButton}"><i
                                 class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
                         <strong>View Bill</strong>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <form class="form-horizontal" role="form" th:action="@{/bills/bill-report}">
-                                    <input type="hidden" class="form-control" id="billNo" name="billNo"
-                                           th:field="${bill.billNo}"/>
-                                    <button type="submit" class="btn btn-primary pull-right" id="print">Print</button>
-                                </form>
+                        <div th:if="!${#lists.isEmpty(bill)}">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <form class="form-horizontal" role="form" th:action="@{/bills/bill-report}">
+                                        <input type="hidden" class="form-control" id="billNo" name="billNo"
+                                               th:field="${bill.billNo}"/>
+                                        <button type="submit" class="btn btn-primary pull-right" id="print">Print</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                        &nbsp;
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td rowspan="5">
-                                            <img class="img-responsive center-block" alt="Responsive image" th:src="@{/images/zameco2.png}"/>
-                                            <!--style="max-width:180px; margin-top: -9px;" -->
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong th:text="${du[0]}"></strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${du[1]}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${du[2]} + ' ' + ${du[3]}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${du[4]}"></td>
-                                    </tr>
-                                </table>
+                            &nbsp;
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td rowspan="5">
+                                                <img class="img-responsive center-block" alt="Responsive image" th:src="@{/images/zameco2.png}"/>
+                                                <!--style="max-width:180px; margin-top: -9px;" -->
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong th:text="${du[0]}"></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${du[1]}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${du[2]} + ' ' + ${du[3]}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${du[4]}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>
+                                                <strong>Statement of Account No. </strong>
+                                                <strong th:text="${bill.billNo}"></strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${account.accountName}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${account.addressLn1}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${account.addressLn2}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
 
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td>
-                                            <strong>Statement of Account No. </strong>
-                                            <strong th:text="${bill.billNo}"></strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${account.accountName}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${account.addressLn1}"></td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${account.addressLn2}"></td>
-                                    </tr>
-                                </table>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>Consumer Type</td>
+                                            <td>Billing Period From</td>
+                                            <td>Billing Period To</td>
+                                            <td>Payment Due Date</td>
+                                        </tr>
+                                        <tr>
+                                            <td th:text="${bill.consumerType}"></td>
+                                            <td th:text="${#dates.format(bill.periodFrom, 'yyyy-MM-dd')}"></td>
+                                            <td th:text="${#dates.format(bill.periodTo, 'yyyy-MM-dd')}"></td>
+                                            <td th:text="${#dates.format(bill.dueDate, 'yyyy-MM-dd')}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td>Consumer Type</td>
-                                        <td>Billing Period From</td>
-                                        <td>Billing Period To</td>
-                                        <td>Payment Due Date</td>
-                                    </tr>
-                                    <tr>
-                                        <td th:text="${bill.consumerType}"></td>
-                                        <td th:text="${#dates.format(bill.periodFrom, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${#dates.format(bill.periodTo, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${#dates.format(bill.dueDate, 'yyyy-MM-dd')}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <table class="table table-condensed">
-                                    <tr class="info">
-                                        <td colspan="2">
-                                            <div class="centering text-center"><strong>METER INFORMATION</strong></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">METER NO. :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.meterNo}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">ACCOUNT NO. :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.accountNo}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">OLD ACCOUNT NO. :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.oldAcctNo}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">ROUTE CODE :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.routeCode}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">SEQUENCE NUMBER :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.sequenceNo}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">PRESENT :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.currentReading}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">PREVIOUS :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.previousReading}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="text-right" th:text="${bill.consumption}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">MULTIPLIER :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.multiplier}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">TOTAL :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.consumption} * ${bill.multiplier}">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">CORELOSS :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.coreloss}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="text-left">ADD ON :</div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${bill.addOnKwhTotal}"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div  class="text-left">
-                                                <strong>TOTAL CONSUMPTION</strong>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right">
-                                                <strong th:text="${bill.totalConsumption}"></strong>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2"><strong>DISCONNECTION DATE</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" th:text=" ${discDate}"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <table class="table table-striped table-hover">
-                                    <div th:each="billgroupList : ${billgroupLists}">
-                                        <div th:if="${billgroupList.chargeGroupName} != null">
-                                            <tr class="info">
-                                                <td>
-                                                    <strong th:text="${billgroupList.chargeGroupName}"
-                                                            class="pull-left"></strong>
-                                                </td>
-                                                <td>
-                                                    <div class="text-right">
-                                                        <strong th:text="${#numbers.formatDecimal(billgroupList.chargeSum, 1, 4)}"></strong>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="text-right">
-                                                        <strong th:text="${#numbers.formatDecimal(billgroupList.chargeTotalgroup, 1, 2)}"></strong>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </div>
-                                        <div th:if="${billgroupList.chargeGroupName} == null">
-                                            <tr>
-                                                <td>  <div class="text-left" th:text="${billgroupList.chargeName}"></div></td>
-                                                <td th:if="${billgroupList.chargeGroupName} == null">
-                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeAmount, 1, 4)}"></div>
-                                                </td>
-                                                <td th:if="${billgroupList.chargeGroupName} == null">
-                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeTotal, 1, 2)}"></div></td>
-                                            </tr>
-                                        </div>
-                                    </div>
-                                    <div th:if="!${#lists.isEmpty(billAddOnChargeLists)}">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <table class="table table-condensed">
                                         <tr class="info">
-                                            <td colspan="3">
-                                                <div class="text-left">
-                                                    <strong>Add On Charge</strong>
+                                            <td colspan="2">
+                                                <div class="centering text-center"><strong>METER INFORMATION</strong></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">METER NO. :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.meterNo}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">ACCOUNT NO. :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.accountNo}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">OLD ACCOUNT NO. :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.oldAcctNo}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">ROUTE CODE :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.routeCode}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">SEQUENCE NUMBER :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.sequenceNo}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">PRESENT :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.currentReading}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">PREVIOUS :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.previousReading}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div class="text-right" th:text="${bill.consumption}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">MULTIPLIER :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.multiplier}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">TOTAL :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.consumption} * ${bill.multiplier}">
                                                 </div>
                                             </td>
                                         </tr>
-                                        <div th:each="billAddOnChargeList : ${billAddOnChargeLists}">
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">CORELOSS :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.coreloss}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="text-left">ADD ON :</div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right" th:text="${bill.addOnKwhTotal}"></div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div  class="text-left">
+                                                    <strong>TOTAL CONSUMPTION</strong>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="text-right">
+                                                    <strong th:text="${bill.totalConsumption}"></strong>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><strong>DISCONNECTION DATE</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" th:text=" ${discDate}"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <table class="table table-striped table-hover">
+                                        <div th:each="billgroupList : ${billgroupLists}">
+                                            <div th:if="${billgroupList.chargeGroupName} != null">
+                                                <tr class="info">
+                                                    <td>
+                                                        <strong th:text="${billgroupList.chargeGroupName}"
+                                                                class="pull-left"></strong>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <strong th:text="${#numbers.formatDecimal(billgroupList.chargeSum, 1, 4)}"></strong>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <strong th:text="${#numbers.formatDecimal(billgroupList.chargeTotalgroup, 1, 2)}"></strong>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </div>
+                                            <div th:if="${billgroupList.chargeGroupName} == null">
+                                                <tr>
+                                                    <td>  <div class="text-left" th:text="${billgroupList.chargeName}"></div></td>
+                                                    <td th:if="${billgroupList.chargeGroupName} == null">
+                                                        <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeAmount, 1, 4)}"></div>
+                                                    </td>
+                                                    <td th:if="${billgroupList.chargeGroupName} == null">
+                                                        <div class="text-right" th:text="${#numbers.formatDecimal(billgroupList.chargeTotal, 1, 2)}"></div></td>
+                                                </tr>
+                                            </div>
+                                        </div>
+                                        <div th:if="!${#lists.isEmpty(billAddOnChargeLists)}">
+                                            <tr class="info">
+                                                <td colspan="3">
+                                                    <div class="text-left">
+                                                        <strong>Add On Charge</strong>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <div th:each="billAddOnChargeList : ${billAddOnChargeLists}">
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="text-left" th:text="${billAddOnChargeList.addOnCharge}"></div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right" th:text="${#numbers.formatDecimal(billAddOnChargeList.valueCharge, 1, 4)}"></div>
+                                                    </td>
+                                                </tr>
+                                            </div>
+                                        </div>
+                                        <div>
                                             <tr>
                                                 <td colspan="2">
-                                                    <div class="text-left" th:text="${billAddOnChargeList.addOnCharge}"></div>
+                                                    <strong class="pull-left">Current Due Amount</strong>
                                                 </td>
                                                 <td>
-                                                    <div class="text-right" th:text="${#numbers.formatDecimal(billAddOnChargeList.valueCharge, 1, 4)}"></div>
+                                                    <strong class="pull-right" th:text="${bill.currentBill}"></strong>
+                                                </td>
+                                            </tr>
+                                            <tr class="info">
+                                                <td colspan="2">
+                                                    <strong class="pull-left">Total Amount Due</strong>
+                                                </td>
+                                                <td>
+                                                    <strong class="pull-right" th:text="'Php ' + ${bill.totalAmountDue}"></strong>
                                                 </td>
                                             </tr>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <tr>
-                                            <td colspan="2">
-                                                <strong class="pull-left">Current Due Amount</strong>
-                                            </td>
-                                            <td>
-                                                <strong class="pull-right" th:text="${bill.currentBill}"></strong>
-                                            </td>
-                                        </tr>
-                                        <tr class="info">
-                                            <td colspan="2">
-                                                <strong class="pull-left">Total Amount Due</strong>
-                                            </td>
-                                            <td>
-                                                <strong class="pull-right" th:text="'Php ' + ${bill.totalAmountDue}"></strong>
-                                            </td>
-                                        </tr>
-                                    </div>
-                                </table>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <form class="form-horizontal" role="form" th:action="@{/bills/bill-report}">
+                                        <input type="hidden" class="form-control" id="billNo" name="billNo"
+                                               th:field="${bill.billNo}"/>
+                                        <button type="submit" class="btn btn-primary pull-right" id="print">Print</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <form class="form-horizontal" role="form" th:action="@{/bills/bill-report}">
-                                    <input type="hidden" class="form-control" id="billNo" name="billNo"
-                                           th:field="${bill.billNo}"/>
-                                    <button type="submit" class="btn btn-primary pull-right" id="print">Print</button>
-                                </form>
-                            </div>
+                        <div th:if="${#lists.isEmpty(bill)}"
+                             class="text-center alert alert-danger alert-dismissible" role="alert">
+                            <strong>No Record Found</strong>
                         </div>
                     </div>
                 </div>
