@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xesi on 22/05/2017.
  */
@@ -49,4 +51,10 @@ public class RdmDetailServiceImpl implements RdmDetailService {
     public Page<RdmDetail> findAllByIdRdm(long idRdm, Pageable pageable){
         return rdmDetailDao.findByIdRdm(idRdm, pageable);
     }
+
+    @Override
+    public List<RdmDetail> findAllByIdRdm(long idRdm) {
+        return rdmDetailDao.findAllByIdRdm(idRdm);
+    }
+
 }

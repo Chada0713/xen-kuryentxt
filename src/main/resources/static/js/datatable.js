@@ -4,6 +4,7 @@
 $(document).ready( function () {
     //noinspection JSAnnotator
     var table = $('#accountsTable').DataTable({
+        "bDeferRender": true,
         "sAjaxSource": "api/accounts",
         "sAjaxDataProp": "",
         responsive: true,
@@ -43,6 +44,7 @@ $(document).ready( function () {
 /*Bills Report Table*/
 $(document).ready( function () {
     var table = $('#billsTable').DataTable({
+        "bDeferRender": true,
         "sAjaxSource": "api/bills",
         "sAjaxDataProp": "",
         responsive: true,

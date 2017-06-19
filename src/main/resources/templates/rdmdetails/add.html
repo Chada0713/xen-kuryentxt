@@ -32,7 +32,7 @@
                                             <select class="form-control" id="idArea">
                                                 <option th:each="area: ${areaList}"
                                                         th:value="${area.id}"
-                                                        th:text="${area.areaName}"
+                                                        th:text="${area.areaCode} +' - '+ ${area.areaName}"
                                                 ></option>
                                             </select>
                                         </div>

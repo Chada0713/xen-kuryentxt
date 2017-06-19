@@ -23,4 +23,5 @@ public interface AccountDao extends JpaRepository<Account, Long> {
 
     @Query("select a from Account a where a.idRoute = ?1 and a.seqNo >= ?2 and a.seqNo <= ?3 and (cast(a.seqNo as string) like %?4% or a.accountName like %?4%)")
     Page<Account> findByRouteCodeSeqNo(long routeCode, int startSeq, int endSeq, String searchStr, Pageable pageable);
+
 }

@@ -254,6 +254,7 @@ $(document).ready(function () {
             data: {"oldaccountno": $param},
             success: function (result) {   /*<ul><li>id: '+result.id+'</li><li>seqNo: '+result.seqNo+'</li></ul>*/
                 console.log(result);
+                //alert(result);
                 var ip='', sc='', dowload='';
                 if(result.isDownloaded == "Y"){ dowload = "Yes" } else if (result.isDownloaded == "N"){ dowload = "No" }
                 if(result.isSeniorCitizen == "Y"){ cs = "Yes"; } else if(result.isSeniorCitizen == "N"){ cs = "No" }
@@ -291,11 +292,36 @@ $(document).ready(function () {
         });
     });
 
-    /*For Popover*/
-    $(document).ready(function(){
-        $('[data-toggle="popover"]').popover({
-            placement : 'right',
-            trigger: 'hover'
-        });
+    /*For Popover RDM Details*/
+    $('[data-toggle="popover"]').popover({
+        trigger: "manual" ,
+        html: true,
+        animation:false,
+        content: function(){
+            var idrdm = $(this).attr('data-param');
+            //alert(idrdm);
+            //return "<iframe src='/Kuryentxt/rdm/"+idrdm+"/details' style='border: none' overflow='auto'  position='absolute' height='100%' width='800px' overflow='hidden'></iframe>";
+            return $('<div>').load('/Kuryentxt/rdm/'+idrdm+'/details', function(html) {
+                parser = new DOMParser();
+                doc = parser.parseFromString(html, "text/html");
+                return doc.querySelector('body').outerHTML;
+            })
+        }
+    })
+        .on("mouseenter", function () {
+            $(this).popover("show");
+
+            $(".popover").on("mouseleave", function () {
+                $(this).popover('hide');
+            });
+        }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide");
+            }
+        }, 300);
     });
 });
+
+

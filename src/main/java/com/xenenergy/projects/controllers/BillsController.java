@@ -21,6 +21,7 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -61,7 +62,7 @@ public class BillsController {
     }
 
     @GetMapping("/bills/viewbill")
-    public String showbillForm(@RequestParam("billno") String billno, Model model){
+    public String showbillForm(@RequestParam("billno") String billno, Model model) throws Exception {
         /*Bill Header*/
         Bills bill = billsService.findByBillNo(billno);
         model.addAttribute("bill", bill);
@@ -94,6 +95,8 @@ public class BillsController {
         c.setTime(bill.getDueDate()); // Now use today date.
         c.add(Calendar.DATE, 10); // Adding 5 days
         model.addAttribute("discDate",sdf.format(c.getTime()));
+        Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(bill.getRunDate());
+        model.addAttribute("runDate", sdf.format(runDate));
 
         model.addAttribute("billgroupLists", chargeGroupDetailsList);
         model.addAttribute("du", du);
@@ -168,6 +171,8 @@ public class BillsController {
         c.setTime(bill.getDueDate());
         c.add(Calendar.DATE, 10);
         billReportModel.setDisconnectionDate(sdf.format(c.getTime()));
+        Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(bill.getRunDate());
+        billReportModel.setRunDate(sdf.format(runDate));
 
         String chargeN = "", chargeA = "", chargeT = "";
         for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billNo)){
@@ -211,7 +216,7 @@ public class BillsController {
     /*By Old_Account_No*/
     //@GetMapping("/bills/viewbillbyaccountno")
     @RequestMapping(value = "/bills/viewbillbyaccountno", method = RequestMethod.GET)
-    public String showbillFormAcct(@RequestParam("oldaccountno") String oldacctno, Model model){
+    public String showbillFormAcct(@RequestParam("oldaccountno") String oldacctno, Model model) throws Exception {
         List<Bills> billsList = billsService.findByOldAcctNo(oldacctno);
         if(!billsList.isEmpty()){
             String billno = "";
@@ -250,6 +255,8 @@ public class BillsController {
             c.setTime(bills.getDueDate()); // Now use today date.
             c.add(Calendar.DATE, 10); // Adding 5 days
             model.addAttribute("discDate",sdf.format(c.getTime()));
+            Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(bills.getRunDate());
+            model.addAttribute("runDate", sdf.format(runDate));
 
             model.addAttribute("billgroupLists", chargeGroupDetailsList);
             model.addAttribute("du", du);

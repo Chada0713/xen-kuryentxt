@@ -92,9 +92,10 @@
                                 <tr th:each="rdmlist : ${rdmlists}">
                                     <!-- <td th:text="${rdmlist.id}"></td>-->
                                     <td>
-                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails(cid=${rdmlist.id})}" >
+                                        <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails(cid=${rdmlist.id})}"
+                                           data-toggle="popover" title="" th:attr="data-param=${rdmlist.id}" > <!---->
                                             Manage Routes</a>
-                                        <!--data-toggle="popover" title="Popover title" data-content="asdf"-->
+                                        <!--th:attr="data-param=${rdmlist.id}"-->
                                     </td>
                                     <td th:text="${rdmlist.id}"></td>
                                     <td th:text="${#dates.format(rdmlist.ts, 'yyyy-MM-dd HH:mm')}"></td>

@@ -211,6 +211,12 @@
                                         <tr>
                                             <td colspan="2" th:text=" ${discDate}"></td>
                                         </tr>
+                                        <tr>
+                                            <td colspan="2"><strong>BILL RUN DATE</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" th:text=" ${#dates.format(runDate, 'MMMM dd, yyyy')}"></td>
+                                        </tr>
                                     </table>
                                 </div>
                                 <div class="col-lg-8 col-md-8 col-sm-8">
@@ -302,7 +308,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

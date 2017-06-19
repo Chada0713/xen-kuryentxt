@@ -80,6 +80,8 @@ public class BillReportModel {
     private String addOnCharge;
     private String valueCharge;
 
+    private String runDate;
+
     public String getBillNo() {
         return billNo;
     }
@@ -342,5 +344,13 @@ public class BillReportModel {
 
     public void setValueCharge(String valueCharge) {
         this.valueCharge = valueCharge;
+    }
+
+    public String getRunDate() {
+        return runDate;
+    }
+
+    public void setRunDate(String runDate) {
+        this.runDate = runDate;
     }
 }

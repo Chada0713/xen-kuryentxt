@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -124,5 +125,18 @@ public class RdmDetailController {
             redirectAttributes.addFlashAttribute("edit", "unsuccess");
         }
         return "redirect:/rdm/"+cid+"/rdmdetails";
+    }
+
+    @RequestMapping(value = "/{cid}/details", method = RequestMethod.GET)
+    public ModelAndView showDetails(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                    @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("rdm/details");
+
+        List<RdmDetail> rdmDetailList = rdmDetailService.findAllByIdRdm(cid);
+
+        modelAndView.addObject("rdmDetailLists", rdmDetailList);
+        modelAndView.addObject("rdm", routeDefinitionService.getById(cid));
+        modelAndView.addObject("route", routeService.getAll());
+        return modelAndView;
     }
 }

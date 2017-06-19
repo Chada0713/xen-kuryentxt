@@ -19,7 +19,7 @@
                            role="button" aria-haspopup="false" aria-expanded="false">Masterlist Management <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu  dropdown-menu-left">
-                            <li><a href="/Kuryentxt/rdm">Route Management</a></li>
+                            <li><a href="/Kuryentxt/rdm">Routes</a></li>
                             <li><a href="/Kuryentxt/accounts">Accounts</a></li>
                             <li class="divider"></li>
                             <li><a href="/Kuryentxt/du-area">Area</a></li>
@@ -50,7 +50,8 @@
                             <li><a href="/Kuryentxt/coreloss">Coreloss</a></li>
                             <li><a href="/Kuryentxt/addoncharge">Add-on Charges</a></li>
                             <li><a href="/Kuryentxt/addonkwh">Add-on Kwh</a></li>
-                            <li><a href="/Kuryentxt/devicemaster">Read and Bill Upload</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Kuryentxt/devicemaster">Bills</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -63,7 +64,7 @@
                             <li><a href="/Kuryentxt/dbeventmonitor">DB Event Monitor</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown" th:if="${caller} == 'live'">
+                    <!--<li class="dropdown" th:if="${caller} == 'live'">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="false" aria-expanded="false">
                             <img style="max-height:25px; margin-top: -5px;" class="" th:src="@{/ext/logo.png}"/>
@@ -71,7 +72,7 @@
                         <ul class="dropdown-menu dropdown-menu-left">
                             <li><a href="#" data-target="#logout" data-toggle="modal">Logout</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li class="dropdown" th:if="${caller} != 'live'">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="false" aria-expanded="false">
@@ -79,6 +80,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left">
                             <li><a href="#" data-target="#logout" data-toggle="modal">Logout</a></li>
+                            <li><a href="/Kuryentxt/settings">Settings</a></li>
                         </ul>
                     </li>
                 </ul>
