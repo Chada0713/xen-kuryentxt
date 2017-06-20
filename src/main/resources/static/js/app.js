@@ -219,7 +219,7 @@ $(document).ready(function () {
     });
 
     /* Cascading Dropdown*/
-    $("#idArea").change(function () {
+    $("#idArea").change(function () { //
         $.ajax({
             type: "GET",
             url: "/Kuryentxt/api/route",
@@ -307,9 +307,8 @@ $(document).ready(function () {
                 return doc.querySelector('body').outerHTML;
             })
         }
-    })
-        .on("mouseenter", function () {
-            $(this).popover("show")
+    }).on("mouseenter", function () {
+            $(this).popover("show");
 
             $(".popover").on("mouseleave", function () {
                 $(this).popover('hide');
@@ -322,6 +321,8 @@ $(document).ready(function () {
             }
         }, 300);
     });
+
+    $('#tableTab a:first').tab('show');
 });
 
 

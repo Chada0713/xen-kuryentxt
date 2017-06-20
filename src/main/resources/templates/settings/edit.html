@@ -11,6 +11,7 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/settings}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
                         <strong>Settings</strong>
                     </div>
                     <div class="panel-body">
@@ -39,9 +40,29 @@
                                           id="settings_form">
                                         <div th:each="duProperty, stat : ${duproperties.properties}">
                                             <div class="form-group">
-                                                <label for="id" th:text="${duProperty.propertyName}"
-                                                       class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">
-                                                    </label>
+                                                <div th:switch="${duProperty.propertyName}">
+                                                    <p th:case="DU_CODE">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Code</label>
+                                                    </p>
+                                                    <p th:case="DU_ADDRESSLN1">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Address Line 1</label>
+                                                    </p>
+                                                    <p th:case="DU_ADDRESSLN2">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Address Line 2</label>
+                                                    </p>
+                                                    <p th:case="DU_CONTACT_NO">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Contact No.</label>
+                                                    </p>
+                                                    <p th:case="DU_CONTACT_PERSON">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Contact Person</label>
+                                                    </p>
+                                                    <p th:case="DU_VAT_NO">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Vat Reg.</label>
+                                                    </p>
+                                                    <p th:case="DU_NAME">
+                                                        <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Name</label>
+                                                    </p>
+                                                </div>
                                                 <div class="col-lg-8 col-md-10 col-sm-10 col-xs-10">
                                                     <input type="hidden" class="form-control" id="id"
                                                            th:name="|properties[${stat.index}].id|"

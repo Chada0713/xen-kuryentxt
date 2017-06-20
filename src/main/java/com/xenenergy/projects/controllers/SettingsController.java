@@ -1,5 +1,6 @@
 package com.xenenergy.projects.controllers;
 
+import com.sun.tracing.dtrace.ModuleAttributes;
 import com.xenenergy.projects.entities.Property;
 import com.xenenergy.projects.entities.PropertyWrapper;
 import com.xenenergy.projects.services.interfaces.PropertyService;
@@ -9,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,7 +28,45 @@ public class SettingsController {
     public String showbillForm(Model model){
         PropertyWrapper duProperty = new PropertyWrapper();
         duProperty.setProperties(propertyService.getAllDuProperty());
+        List<String> t = new ArrayList<>();
+
+        List<Property> propertyList = new ArrayList<>();
+        int i = 0;
+        String tag = "";
+
+        if(propertyService.findByPropertyName("DU_CODE") == null){
+            t.add("DU_CODE");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_NAME") == null){
+            t.add("DU_NAME");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_VAT_NO") == null){
+            t.add("DU_VAT_NO");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_CONTACT_PERSON") == null){
+            t.add("DU_CONTACT_PERSON");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_CONTACT_NO") == null){
+            t.add("DU_CONTACT_NO");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_ADDRESSLN1") == null){
+            t.add("DU_ADDRESSLN1");
+            i+=1;
+        }if(propertyService.findByPropertyName("DU_ADDRESSLN2") == null){
+            t.add("DU_ADDRESSLN2");
+            i+=1;
+        }
+
+        if(i > 0){
+            tag = "true";
+        }
+
+        duProperty.setPropertyName(t);
+
+        t.forEach(System.out::println);
+
         model.addAttribute("duproperties", duProperty);
+        model.addAttribute("tag", tag);
         return "settings/index";
     }
 
@@ -42,7 +83,6 @@ public class SettingsController {
                          final RedirectAttributes redirectAttributes){
         System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
         for(Property property : duproperties.getProperties()){
-            //System.out.println("Property Value >> " + property.getPropertyValue());
             if(propertyService.update(property) != null){
                 redirectAttributes.addFlashAttribute("edit", "success");
             }else{
@@ -50,6 +90,25 @@ public class SettingsController {
             }
         }
         System.out.println("--");
+        return "redirect:/settings";
+    }
+
+    @GetMapping("settings/add")
+    public String addForm(Model model){
+        model.addAttribute("duproperties", new Property());
+        //System.out.println("duPropertyName >> " + duproperties.getPropertyName());
+        //System.out.println(duproperties.getPropertyName() != null ? duproperties.getPropertyName().size() : "null list");
+        return "settings/add";
+    }
+
+    @PostMapping("settings/create")
+    public String save(Property property, final RedirectAttributes redirectAttributes){
+        if (propertyService.insert(property) != null) {
+            redirectAttributes.addFlashAttribute("save", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("save", "unsuccess");
+        }
+
         return "redirect:/settings";
     }
 }
