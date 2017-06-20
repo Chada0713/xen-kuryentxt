@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xenuser on 5/4/2017.
  */
@@ -49,5 +51,20 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public Property findByPropertyName(String propertyName) {
         return propertyDao.findByPropertyName(propertyName);
+    }
+
+    @Override
+    public List<Property> findAllByOrderByIdDesc() {
+        return propertyDao.findAllByOrderByIdDesc();
+    }
+
+    @Override
+    public Property updatePropertyValue(String propertyValue, long id) {
+        return propertyDao.updatePropertyValue(propertyValue, id);
+    }
+
+    @Override
+    public List<Property> getAllDuProperty() {
+        return propertyDao.getAllDuProperty();
     }
 }

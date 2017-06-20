@@ -309,7 +309,7 @@ $(document).ready(function () {
         }
     })
         .on("mouseenter", function () {
-            $(this).popover("show");
+            $(this).popover("show")
 
             $(".popover").on("mouseleave", function () {
                 $(this).popover('hide');

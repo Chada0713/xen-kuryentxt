@@ -44,9 +44,14 @@ public class BillingStatementController {
         ModelAndView modelAndView = new ModelAndView("bills/reports");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
-        c.setTime(new Date()); // Now use today date.
-        c.add(Calendar.DATE, -30); // Adding 5 days
+        c.setTime(new Date());
+        c.add(Calendar.DATE, -30);
+
+        Calendar currentDate = Calendar.getInstance();
+        currentDate.setTime(new Date()); // Now use today date.
+
         modelAndView.addObject("date", sdf.format(c.getTime()));
+        modelAndView.addObject("currentDate", sdf.format(currentDate.getTime()));
         return modelAndView;
     }
 
