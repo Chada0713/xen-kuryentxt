@@ -70,29 +70,25 @@ $(document).ready( function () {
 });
 /*
 
+ /*Coreloss Table*/
 $(document).ready( function () {
-    /!*$('#viewId').click(function(){
-        var id = $('#idRoute').val();
-        alert(id);
-        //do something
-    }),*!/
-    var table = $('#viewaccountsTable').DataTable({
-        "sAjaxSource": "api/viewaccounts/" + id,
+    var table = $('#corelossTable').DataTable({
+        "bDeferRender": true,
+        "sAjaxSource": "api/coreloss",
         "sAjaxDataProp": "",
         responsive: true,
         "order": [[ 0, "asc" ]],
         "aoColumns": [
-            { "mData": "seqNo" },
-            { "mData": "routeCode" },
-            { "mData": "accountName" },
-            { "mData": "oldAccountNo" },
-            { "mData": "meterNo" },
-            { "mData": "curRdg" },
+            { "mData": "service_Period_End" },
+            { "mData": "account_No" },
+            { "mData": "corelossKwh" },
+            { "mData": "corelossLimitKwh" },
         ],
-        dom: "<'row'<'col-sm-12'f>>" +
+        dom: "<'row'<'col-sm-12'b>>" +
+        "<'row'<'col-sm-12'f>>" +
         "<'row'<'col-sm-12'tr>>" +
         "<'row'<'col-sm-4'i><'col-sm-8'p>>",
         "lengthMenu": [20],
-        "sPaginationType": "full_numbers"
+        "sPaginationType": "full_numbers",
     })
-});*/
+});

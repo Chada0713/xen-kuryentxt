@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xesi on 16/05/2017.
  */
@@ -19,6 +21,10 @@ public class CorelossServiceImpl implements CorelossService {
     @Autowired
     private CorelossDao corelossDao;
 
+    @Autowired
+    public List<Coreloss> getAllRecords(){
+        return corelossDao.findAll();
+    }
 
     @Override
     public Page<Coreloss> findAllPageable(Pageable pageable) {
@@ -45,4 +51,6 @@ public class CorelossServiceImpl implements CorelossService {
     public Coreloss update(Coreloss coreloss) {
         return corelossDao.save(coreloss);
     }
+
+
 }
