@@ -4,6 +4,7 @@ import com.xenenergy.projects.entities.BillingStatementModel;
 import com.xenenergy.projects.entities.Du;
 import com.xenenergy.projects.services.interfaces.BillsService;
 import com.xenenergy.projects.services.interfaces.DuService;
+import com.xenenergy.projects.services.interfaces.PropertyService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,9 @@ public class BillingStatementController {
     private BillsService billsService;
     private InputStream reportStream;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView loadSurveyPg() {
         ModelAndView modelAndView = new ModelAndView("bills/reports");
@@ -64,14 +68,21 @@ public class BillingStatementController {
         reportStream = BillingStatementController.class.getClassLoader().getResourceAsStream("static/jasper/BillingStatement.jasper");
         List<BillingStatementModel> statementModels = new ArrayList<>();
         BillingStatementModel statementModel = new BillingStatementModel();
-        List<Du> duModels = duService.getDU();
+        /*List<Du> duModels = duService.getDU();
         for (Du duModel : duModels) {
             statementModel.setDuName(duModel.getDuName());
             statementModel.setAddressLine1(duModel.getAddressLn1());
             statementModel.setAddressLine2(duModel.getAddressLn2());
             statementModel.setContactPerson(duModel.getContactPerson());
             statementModel.setContactNo(duModel.getContactNumber());
-        }
+        }*/
+
+        statementModel.setDuName(propertyService.findByPropertyName("DU_NAME").getPropertyValue());
+        statementModel.setAddressLine1(propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue());
+        statementModel.setAddressLine2(propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue());
+        statementModel.setContactPerson(propertyService.findByPropertyName("DU_CONTACT_PERSON").getPropertyValue());
+        statementModel.setContactNo(propertyService.findByPropertyName("DU_CONTACT_NO").getPropertyValue());
+
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         int billsCount = billsService.countBills(periodFrm, periodTo);

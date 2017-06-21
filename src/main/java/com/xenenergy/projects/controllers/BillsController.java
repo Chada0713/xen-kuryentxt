@@ -119,7 +119,7 @@ public class BillsController {
         List<BillReportModel> billReportModelList = new ArrayList<>();
         BillReportModel billReportModel = new BillReportModel();
 
-        List<Du> duModels = duService.getDU();
+        /*List<Du> duModels = duService.getDU();
         for (Du duModel : duModels) {
             billReportModel.setDuCode(duModel.getDuCode());
             billReportModel.setDuName(duModel.getDuName());
@@ -127,11 +127,19 @@ public class BillsController {
             billReportModel.setAddrLn2(duModel.getAddressLn2());
             billReportModel.setContactPerson(duModel.getContactPerson());
             billReportModel.setContactNumber(duModel.getContactNumber());
-        }
+        }*/
         billReportModel.setOldAcctNo(account.getOldAccountNo());
         billReportModel.setAccountName(account.getAccountName());
         billReportModel.setAddressLn1(account.getAddressLn1());
         billReportModel.setAddressLn2(account.getAddressLn2());
+
+        //[] du = new String[7];
+        billReportModel.setDuCode(propertyService.findByPropertyName("DU_CODE").getPropertyValue());
+        billReportModel.setDuName(propertyService.findByPropertyName("DU_NAME").getPropertyValue());
+        billReportModel.setAddrLn1(propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue());
+        billReportModel.setAddrLn2(propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue());
+        billReportModel.setContactPerson(propertyService.findByPropertyName("DU_CONTACT_PERSON").getPropertyValue());
+        billReportModel.setContactNumber(propertyService.findByPropertyName("DU_CONTACT_NO").getPropertyValue());
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
 
