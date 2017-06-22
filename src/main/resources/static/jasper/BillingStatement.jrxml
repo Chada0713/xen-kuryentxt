@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 4.7.0  -->
-<!-- 2017-06-08T09:46:29 -->
+<!-- 2017-06-22T12:02:49 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BillingStatement" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="efd0141d-5816-4caa-8ef6-c7b1eab5dcd0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
@@ -143,6 +143,8 @@
 	<field name="totalBill" class="java.lang.String"/>
 	<field name="curDate" class="java.lang.String"/>
 	<field name="contactPerson" class="java.lang.String"/>
+	<field name="logoPath" class="java.lang.String"/>
+	<field name="signatoryPath" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -157,7 +159,7 @@
 			</staticText>
 			<image>
 				<reportElement x="27" y="75" width="88" height="35" uuid="8d785dcf-2060-4437-ab84-5711f4aa0e9c"/>
-				<imageExpression><![CDATA["C:\\images\\web\\xesi_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{logoPath}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="377" y="53" width="76" height="14" uuid="8efcf5c7-4241-4967-98ed-e01039ee464a"/>
@@ -356,7 +358,7 @@
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Table Dataset 1" uuid="7ef9be3a-83cf-4de1-aad8-35794ee19aba">
+					<datasetRun subDataset="Table Dataset 1" uuid="e54b9f56-e703-4044-b365-6c2941338d6c">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="59" uuid="b586287b-6ce7-4fb1-bf93-ede1b8148417">
@@ -469,7 +471,7 @@
 					<property name="com.jaspersoft.studio.table.style.detail" value="Table 2_TD"/>
 				</reportElement>
 				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-					<datasetRun subDataset="Table Dataset 1" uuid="1111ca79-b611-4482-90f5-ef19a19ebb0c">
+					<datasetRun subDataset="Table Dataset 1" uuid="f8ec6882-486e-4f65-bdaa-9843139eb422">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource()]]></dataSourceExpression>
 					</datasetRun>
 					<jr:column width="270" uuid="9bd3d2c7-2ace-4cca-aed8-4b26d5e7337f">
@@ -523,7 +525,7 @@ Xen Energy System Inc.]]></text>
 			</line>
 			<image scaleImage="RealSize" hAlign="Center" vAlign="Middle">
 				<reportElement x="50" y="227" width="186" height="28" uuid="a7a90436-8181-444c-852b-35050c31ab83"/>
-				<imageExpression><![CDATA["C:\\images\\web\\signatory.png"]]></imageExpression>
+				<imageExpression><![CDATA[$F{signatoryPath}]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement x="356" y="279" width="156" height="20" uuid="88ac42dc-503e-4234-91ab-6f3991cc362a"/>

@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Route Definition Details</title>
-    <object th:replace="styles :: styles"></object>
 </head>
 <body>
 <div class="row">
@@ -14,6 +13,7 @@
                         <table class="table table-striped table-hover">
                             <thead>
                             <tr class="info">
+                                <th>ID</th>
                                 <th>Route Code</th>
                                 <th>Route Name</th>
                                 <th>Start Sequence</th>
@@ -23,15 +23,15 @@
                             </thead>
                             <tbody>
                             <tr th:each="rdmdetailList : ${rdmDetailLists}">
+                                <td th:text="${rdmdetailList.id}"></td>
                                 <td>
-                    <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
-                          th:text="${route.routeCode}"></span>
+                                    <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
+                                          th:text="${route.routeCode}"></span>
                                 </td>
                                 <td>
-                    <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
-                          th:text="${route.routeName}"></span>
+                                    <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
+                                          th:text="${route.routeName}"></span>
                                 </td>
-
                                 <td th:text="${rdmdetailList.startSequence}"></td>
                                 <td th:text="${rdmdetailList.endSequence}"></td>
                                 <td th:text="${rdmdetailList.consumerCount}"></td>

@@ -76,7 +76,7 @@ public class BillsController {
             chargeGroupDetailsList.add(chargeGroup);
             for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billno)){
                 ChargeGroupDetails chargeDetails = new ChargeGroupDetails();
-                chargeDetails.setChargeName(billChargeDetailList.getChargeName());
+                chargeDetails.setChargeName(billChargeDetailList.getChargeLongName());
                 chargeDetails.setChargeAmount(billChargeDetailList.getChargeAmount());
                 chargeDetails.setChargeTotal(billChargeDetailList.getChargeTotal());
                 chargeGroupDetailsList.add(chargeDetails);
@@ -84,11 +84,25 @@ public class BillsController {
         }
 
         String[] du = new String[7];
-        du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
-        du[1] = propertyService.findByPropertyName("DU_NAME").getPropertyValue();
-        du[2] = propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue();
-        du[3] = propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue();
-        du[4] = propertyService.findByPropertyName("DU_VAT_NO").getPropertyValue();
+        if(propertyService.findByPropertyName("DU_CODE") != null){
+            du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
+        }
+        if(propertyService.findByPropertyName("DU_NAME") != null){
+            du[1] = propertyService.findByPropertyName("DU_NAME").getPropertyValue();
+        }
+        if(propertyService.findByPropertyName("DU_ADDRESSLN1") != null){
+            du[2] = propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue();
+        }else{
+            du[2] = "";
+        }
+        if(propertyService.findByPropertyName("DU_ADDRESSLN2") != null){
+            du[3] = propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue();
+        }else{
+            du[3] = "";
+        }
+        if(propertyService.findByPropertyName("DU_VAT_NO") != null){
+            du[4] = propertyService.findByPropertyName("DU_VAT_NO").getPropertyValue();
+        }
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
         Calendar c = Calendar.getInstance();
@@ -188,7 +202,7 @@ public class BillsController {
             chargeA=chargeA+myFormatter.format(billChargeGroupList.getChargeSum()) + System.lineSeparator();
             chargeT=chargeT+myFormatter2.format(billChargeGroupList.getChargeTotal()) + System.lineSeparator();
             for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billNo)){
-                chargeN=chargeN+"    "+billChargeDetailList.getChargeName() + System.lineSeparator();
+                chargeN=chargeN+"    "+billChargeDetailList.getChargeLongName() + System.lineSeparator();
                 chargeA=chargeA+"    "+myFormatter.format(billChargeDetailList.getChargeAmount()) + System.lineSeparator();
                 chargeT=chargeT+"    "+myFormatter2.format(billChargeDetailList.getChargeTotal()) + System.lineSeparator();
             }

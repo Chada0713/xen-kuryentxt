@@ -73,6 +73,7 @@
                                 <thead>
                                 <tr class="info">
                                     <th></th>
+                                    <th>ID</th>
                                     <th>Route Code</th>
                                     <th>Route Name</th>
                                     <th>Start Sequence</th>
@@ -91,6 +92,7 @@
                                         <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}(cid=${rdmdetailList.idRdm}, id=${rdmdetailList.id}, rid=${rdmdetailList.idRoute}, sseq=${rdmdetailList.startSequence}, eseq=${rdmdetailList.endSequence})}">
                                             View Accounts</a>
                                     </td>
+                                    <td th:text="${rdmdetailList.id}"></td>
                                     <td>
                                         <span th:each="route : ${route}" th:if="${route.id} == ${rdmdetailList.idRoute}"
                                               th:text="${route.routeCode}"></span>

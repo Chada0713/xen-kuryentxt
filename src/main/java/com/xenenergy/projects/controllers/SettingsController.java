@@ -62,9 +62,7 @@ public class SettingsController {
         }
 
         duProperty.setPropertyName(t);
-
-        t.forEach(System.out::println);
-
+        //t.forEach(System.out::println);
         model.addAttribute("duproperties", duProperty);
         model.addAttribute("tag", tag);
         return "settings/index";
@@ -81,7 +79,7 @@ public class SettingsController {
     @PostMapping("settings/update")
     public String update(@ModelAttribute("duproperties") PropertyWrapper duproperties,
                          final RedirectAttributes redirectAttributes){
-        System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
+        //System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
         for(Property property : duproperties.getProperties()){
             if(propertyService.update(property) != null){
                 redirectAttributes.addFlashAttribute("edit", "success");

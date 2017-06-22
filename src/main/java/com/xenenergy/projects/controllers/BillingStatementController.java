@@ -97,17 +97,21 @@ public class BillingStatementController {
         statementModel.setDescription("Reading from " + periodFrm + " to " + periodTo);
         statementModel.setLogoPath("static/images/xesi_logo.png");
         statementModel.setSignatoryPath("static/images/signatory.png");
+        System.out.println("statementModel >> " + statementModel.getAddressLine1() + " " +
+                statementModel.getAddressLine2() + " " + statementModel.getBillsCount() + " " +
+                statementModel.getContactNo() + " " + statementModel.getContactPerson() + " " +
+                statementModel.getCurDate() + " " + statementModel.getDescription() + " " +
+                statementModel.getDuName() + " " + statementModel.getTotalBill());
         statementModels.add(statementModel);
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-            params.put("SUBREPORT_DIR", request.getSession().getServletContext()
+            /*params.put("SUBREPORT_DIR", request.getSession().getServletContext()
                     .getRealPath("/") + "static\\jasper\\");
             params.put("IMAGE_DIR", request.getSession().getServletContext()
-                    .getRealPath("/") + "static\\images\\");
+                    .getRealPath("/") + "static\\images\\");*/
 
             JRDataSource billingStatement = new JRBeanCollectionDataSource(statementModels);
-            JasperRunManager.runReportToPdfStream(reportStream,
-                    servletOutputStream, params, billingStatement);
+            JasperRunManager.runReportToPdfStream(reportStream, servletOutputStream, params, billingStatement);
             response.setContentType("application/pdf");
             servletOutputStream.flush();
             servletOutputStream.close();

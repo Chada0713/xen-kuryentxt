@@ -299,16 +299,10 @@ $(document).ready(function () {
         animation:false,
         content: function(){
             var idrdm = $(this).attr('data-param');
-            //alert(idrdm);
-            //return "<iframe src='/Kuryentxt/rdm/"+idrdm+"/details' style='border: none' overflow='auto'  position='absolute' height='100%' width='800px' overflow='hidden'></iframe>";
-            return $('<div>').load('/Kuryentxt/rdm/'+idrdm+'/details', function(html) {
-                parser = new DOMParser();
-                doc = parser.parseFromString(html, "text/html");
-                return doc.querySelector('body').outerHTML;
-            })
+            return $("<div style='max-width:600px'>").load('/Kuryentxt/rdm/'+idrdm+'/details')
         }
     }).on("mouseenter", function () {
-            $(this).popover("show");
+            $(this).popover("show").data("bs.popover").tip().css({"max-width":"1000px"});
 
             $(".popover").on("mouseleave", function () {
                 $(this).popover('hide');
