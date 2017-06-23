@@ -8,6 +8,7 @@ import com.xenenergy.projects.services.interfaces.PropertyService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.*;
 import java.util.*;
 
@@ -95,8 +98,9 @@ public class BillingStatementController {
         DecimalFormat df = new DecimalFormat("#.00");
         statementModel.setTotalBill("Php " + df.format(totalbills));
         statementModel.setDescription("Reading from " + periodFrm + " to " + periodTo);
-        statementModel.setLogoPath("static/images/xesi_logo.png");
-        statementModel.setSignatoryPath("static/images/signatory.png");
+        Path path = Paths.get("C:/Kuryentxtweb/ext/");
+        statementModel.setLogoPath(path.toString() + "/xesi_logo.png");
+        statementModel.setSignatoryPath(path.toString() + "/signatory.png");
         System.out.println("statementModel >> " + statementModel.getAddressLine1() + " " +
                 statementModel.getAddressLine2() + " " + statementModel.getBillsCount() + " " +
                 statementModel.getContactNo() + " " + statementModel.getContactPerson() + " " +

@@ -42,7 +42,6 @@ public class DeviceUploadMasterController {
         Page<DeviceUploadMaster> dum = deviceUploadMasterService.findAllByOrderByIdDesc(new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(dum.getTotalPages(), dum.getNumber(), property.BUTTONS_TO_SHOW);
         /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
-
         modelAndView.addObject("dumLists", dum);
         modelAndView.addObject("meterReader", meterReaderService.findAll());
         modelAndView.addObject("selectedPageSize", evalPageSize);

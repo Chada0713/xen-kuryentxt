@@ -55,6 +55,7 @@ public class ChargeTypeController {
     public String addForm(Model model, @PathVariable("cid") long cid) {
         model.addAttribute("ratemaster", rateMasterService.getById(cid));
         model.addAttribute("chargetype", new ChargeType());
+        model.addAttribute("printOrder", chargeTypeService.findTopByPrintOrderOrderByPrintOrderDesc(cid));
         return "chargetype/add";
     }
     

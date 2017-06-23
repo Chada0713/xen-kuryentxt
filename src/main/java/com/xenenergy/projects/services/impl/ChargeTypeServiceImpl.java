@@ -57,4 +57,9 @@ public class ChargeTypeServiceImpl implements ChargeTypeService {
     public List<ChargeType> getChargeTypeById(long id) {
         return chargeTypeDao.findByIdRateMaster(id);
     }
+
+    @Override
+    public int findTopByPrintOrderOrderByPrintOrderDesc(long idRateMaster) {
+        return chargeTypeDao.findTopByPrintOrderOrderByPrintOrderDesc(idRateMaster);
+    }
 }

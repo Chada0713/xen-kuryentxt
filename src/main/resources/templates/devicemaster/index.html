@@ -33,14 +33,14 @@
                                     </td>
                                     <td th:text="${dumlist.id}"></td>
                                     <td th:text="${dumlist.idDevice}"></td>
-                                    <td><!--th:text="${#dates.format(dumlist.uploadStartTs, 'yyyy-MM-dd HH:mm')}"--></td>
+                                    <td th:text="${#dates.format(dumlist.uploadStartTs, 'yyyy-MM-dd HH:mm')}"></td>
                                     <td>
-                                        <!--<div th:if="${dumlist.uploadEndTs} == null">
-                                            0000-00-00 00:00
+                                        <div th:if="${dumlist.uploadEndTs != null}">
+                                            <div  th:text="${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}"></div>
                                         </div>
-                                        <div th:unless="${dumlist.uploadEndTs} != null">
-                                            <div th:text="${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}"></div>
-                                        </div>-->
+                                        <div th:unless="${dumlist.uploadEndTs != null}">
+                                            <div>0000-00-00 00:00:00</div>
+                                        </div>
                                     </td>
                                     <!--${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}-->
                                     <td th:text="${dumlist.noOfBills}"></td>

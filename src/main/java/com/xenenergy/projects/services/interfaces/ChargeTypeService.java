@@ -14,4 +14,5 @@ import java.util.List;
 public interface ChargeTypeService extends CRUDService<ChargeType> {
     Page<ChargeType> findAllPageable(long idRateMaster, Pageable pageable);
     List<ChargeType> getChargeTypeById(long id);
+    int findTopByPrintOrderOrderByPrintOrderDesc(long idRateMaster);
 }
