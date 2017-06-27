@@ -86,16 +86,16 @@
                                         <div class="text-left" th:text="${fixedChargeTemplateList.fixChargeName}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeTemplateList.amount}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeTemplateList.amount, 1, 4)}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeTemplateList.vatRate}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeTemplateList.vatRate, 1, 2)}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeTemplateList.vatAmt}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeTemplateList.vatAmt, 1, 4)}"></div>
                                     </td>
                                     <td>
-                                        <div class="text-right" th:text="${fixedChargeTemplateList.totalAmount}"></div>
+                                        <div class="text-right" th:text="${#numbers.formatDecimal(fixedChargeTemplateList.totalAmount, 1, 4)}"></div>
                                     </td>
                                     <td>
                                         <div th:switch="${fixedChargeTemplateList.isSubToVat}">

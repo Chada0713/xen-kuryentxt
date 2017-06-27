@@ -81,4 +81,15 @@ public class FixedChargeTemplateController {
         }
         return "redirect:/fixedchargetemplate";
     }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute("fixedChargeTemplateLists") FixedChargeTemplate fixedChargeTemplate,
+                         final RedirectAttributes redirectAttributes){
+        if(fixedChargeTemplateService.update(fixedChargeTemplate) != null){
+            redirectAttributes.addFlashAttribute("edit", "success");
+        }else{
+            redirectAttributes.addFlashAttribute("edit", "unsuccess");
+        }
+        return "redirect:/fixedchargetemplate";
+    }
 }
