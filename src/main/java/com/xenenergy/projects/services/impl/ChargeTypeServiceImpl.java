@@ -60,6 +60,10 @@ public class ChargeTypeServiceImpl implements ChargeTypeService {
 
     @Override
     public int findTopByPrintOrderOrderByPrintOrderDesc(long idRateMaster) {
-        return chargeTypeDao.findTopByPrintOrderOrderByPrintOrderDesc(idRateMaster);
+        if(chargeTypeDao.findTopByPrintOrderOrderByPrintOrderDesc(idRateMaster) != null){
+            return chargeTypeDao.findTopByPrintOrderOrderByPrintOrderDesc(idRateMaster);
+        }else{
+            return 0;
+        }
     }
 }

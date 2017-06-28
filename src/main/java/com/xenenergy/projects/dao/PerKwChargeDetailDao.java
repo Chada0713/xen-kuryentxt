@@ -2,6 +2,7 @@ package com.xenenergy.projects.dao;
 
 import com.xenenergy.projects.entities.PerKwChargeDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -24,4 +25,9 @@ public interface PerKwChargeDetailDao extends JpaRepository<PerKwChargeDetail, L
 
     @Procedure(name = "spCopyPerKWChargeTemplate")
     void copyToTemplate(@Param("idMaster") long idMaster);
+
+    @Modifying
+    @Query("delete from PerKwChargeDetail a where a.idMaster = ?1")
+    void deleteByIdMaster(long idMaster);
+
 }

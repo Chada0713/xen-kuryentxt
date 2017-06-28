@@ -22,8 +22,8 @@
                                       method="post">
 
                                     <div class="form-group">
-                                        <label for="printOrder" class="col-sm-3 control-label">Print Order</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <label for="printOrder" class="col-sm-4 control-label">Print Order</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <div th:with="result=${printOrder + 1}">
                                                 <input type="text" class="form-control"
                                                        th:value="${result}"
@@ -34,8 +34,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="fixChargeName" class="col-sm-3 control-label">Fix Charge Name</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <label for="fixChargeName" class="col-sm-4 control-label">Fix Charge Name</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <input type="text" class="form-control" th:field="*{fixChargeName}"
                                                    id="fixChargeName" name="fixChargeName"
                                                    placeholder="Fix Charge Name"/>
@@ -43,8 +43,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="fixChargeLongName" class="col-sm-3 control-label">Fix Charge Long Name</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <label for="fixChargeLongName" class="col-sm-4 control-label">Fix Charge Long Name</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <input type="text" class="form-control" th:field="*{fixChargeLongName}"
                                                    id="fixChargeLongName" name="fixChargeLongName"
                                                    placeholder="Fix Charge Long Name"/>
@@ -52,45 +52,45 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="amount" class="col-sm-3 control-label">Amnout</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control text-right"
+                                        <label for="amount" class="col-sm-4 control-label">Amnout</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{amount}"
                                                    id="amount" name="amount"
-                                                   placeholder="0.0000"/> <!--th:field="*{amount}"-->
+                                                   placeholder="0.0000" readonly="readonly"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="vatRate" class="col-sm-3 control-label">Vat Rate</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control text-right"
+                                        <label for="vatRate" class="col-sm-4 control-label">Vat Rate</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{vatRate}"
                                                    id="vatRate" name="vatRate"
-                                                   placeholder="0.00"/> <!--th:field="*{vatRate}"-->
+                                                   placeholder="0.00"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="vatAmt" class="col-sm-3 control-label">Vat Amount</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control text-right"
+                                        <label for="vatAmt" class="col-sm-4 control-label">Vat Amount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{vatAmt}"
                                                    id="vatAmt" name="vatAmt"
-                                                   placeholder="0.0000"/> <!--th:field="*{vatAmt}"-->
+                                                   placeholder="0.0000" readonly="readonly"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="totalAmount" class="col-sm-3 control-label">Total Amount</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control text-right"
+                                        <label for="totalAmount" class="col-sm-4 control-label">Total Amount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{totalAmount}"
                                                    id="totalAmount"
-                                                   placeholder="0.0000"/> <!--th:field="*{totalAmount}"-->
+                                                   placeholder="0.0000"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="isSubToVat"
-                                               class="col-sm-3 control-label">Sub to Vat</label>
-                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                               class="col-sm-4 control-label">Sub to Vat</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <select class="form-control" th:field="*{isSubToVat}" id="isSubToVat">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>

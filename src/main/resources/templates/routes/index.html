@@ -70,9 +70,57 @@
                                 <thead>
                                 <tr class="info">
                                     <th></th>
-                                    <th>Route Code</th>
                                     <th>
-                                        <div class="text-left">Route Name</div>
+                                        <div th:if="${codesort == 'nosorted'}">
+                                            Route Code&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortcodedesc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div th:if="${codesort == 'sorted'}">
+                                            Route Code&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortcodeasc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div th:if="${codesort == 'unsorted'}">
+                                            Route Code&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortcodedesc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </th>
+                                    <th>
+                                        <div th:if="${namesort == 'nosorted'}">
+                                            Route Name
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortnamedesc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div th:if="${namesort == 'sorted'}">
+                                            Route Name
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortnameasc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort-by-attributes"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div th:if="${namesort == 'unsorted'}">
+                                            Route Name
+                                            <a href="#" data-th-href="@{/du-area/{cid}/routes/sortnamedesc(cid=${duarea.id})}">
+                                                <span class="fa-stack pull-right">
+                                                    <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </th>
                                     <th>Start</th>
                                     <th>End</th>

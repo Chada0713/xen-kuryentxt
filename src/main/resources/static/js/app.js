@@ -199,6 +199,27 @@ $(function () {
     });
 });
 
+
+function loadDropDown() {
+    $.ajax({
+        type: "GET",
+        url: "/Kuryentxt/api/route",
+        dataType: 'json',
+        data: {"idarea": $("#idArea").val()},
+        success: function (result) {
+            console.log(result);
+            $('#idRoute').empty();
+            $.each(result, function (index, value) {
+                $('#idRoute').append($("<option></option>").attr("value", value.id).text(value.routeCode+' - '+value.routeName));
+                $('#idRoute').trigger("chosen:updated");
+            });
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}
+
 $(document).ready(function () {
 
     $('#genericModal').on('show.bs.modal', function (e) {
@@ -318,5 +339,4 @@ $(document).ready(function () {
 
     $('#tableTab a:first').tab('show');
 });
-
 

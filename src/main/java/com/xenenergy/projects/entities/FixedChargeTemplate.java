@@ -24,13 +24,13 @@ public class FixedChargeTemplate {
     @Column(name = "PRINT_ORDER")
     private int printOrder;
     @Column(name = "AMOUNT")
-    private double amount;
+    private double amount = 0.0000;
     @Column(name = "VAT_RATE")
-    private double vatRate;
+    private double vatRate = 0.00;
     @Column(name = "VAT_AMT")
-    private double vatAmt;
+    private double vatAmt = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
-    private double totalAmount;
+    private double totalAmount = 0.0000;
     @Column(name = "IS_SUB_TO_VAT")
     private String isSubToVat;
 

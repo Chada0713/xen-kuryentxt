@@ -18,11 +18,16 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-9 col-md-9 col-sm-9"> <!-- Save Alert Messages -->
+                            <div class="col-lg-8 col-md-8 col-sm-8"> <!-- Save Alert Messages -->
 
                                 <div th:if="${copy eq 'success'}">
                                     <div class="alert alert-success alert-dismissible" role="alert">
                                         <strong>Success!</strong> <i>Template Saved Successfully</i>.
+                                    </div>
+                                </div>
+                                <div th:if="${deleteRecords eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Records successfully deleted.
                                     </div>
                                 </div>
                                 <div th:if="${save eq 'unsuccess'}">
@@ -64,9 +69,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="text-right">
                                     <div th:if="${#lists.isEmpty(perKwChargeDetails)}">
+                                        <a href="#" class="btn btn-default disabled" role="button">Clear Template</a>
                                         <a class="btn btn-success" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='details/copytemplate',
                                            data-message='Are you sure you want to copy from per kw charge template?',
@@ -77,6 +83,11 @@
                                            role="button">Add</a>
                                     </div>
                                     <div th:if="!${#lists.isEmpty(perKwChargeDetails)}">
+                                        <a class="btn btn-success" data-target="#genericModal" data-toggle="modal"
+                                           th:attr="data-url='details/cleartemplate',
+                                           data-message='Are you sure you want to Clear all the details?',
+                                           data-title='Copy Per Kwh Charge Template', data-btn-value='Clear', data-class='btn-primary'"
+                                           role="button">Clear Template</a>
                                         <a href="#" class="btn btn-default disabled" role="button">Copy Template</a>
                                         <a class="btn btn-primary"
                                            th:href="@{/ratemaster/{cid}/per-kw-charge-master/{rid}/details/add(cid=${perKwChargeMaster.idRateMaster}, rid=${perKwChargeMaster.id})}"

@@ -16,6 +16,6 @@ public interface PropertyDao extends PagingAndSortingRepository<Property, Long> 
     @Query("update Property a set a.propertyValue = ?1 where a.id = ?2")
     Property updatePropertyValue(String propertyValue, long id);
 
-    @Query("select a from Property a where propertyName like '%DU%'")
+    @Query("select a from Property a where propertyName like 'DU%'")
     List<Property> getAllDuProperty();
 }

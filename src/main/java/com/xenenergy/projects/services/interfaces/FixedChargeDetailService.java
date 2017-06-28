@@ -14,4 +14,5 @@ public interface FixedChargeDetailService extends CRUDService<FixedChargeDetail>
     List<FixedChargeDetail> findAllByIdFixedChargeDetail(long idMaster);
     int findTopByPrintOrderOrderByPrintOrderDesc(long idMaster);
     double findSumOfAmount(long idMaster);
+    void deleteByIdMaster(long idMaster);
 }

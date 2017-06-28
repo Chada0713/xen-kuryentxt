@@ -1,14 +1,11 @@
 package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.*;
-import com.xenenergy.projects.services.impl.DuServiceImpl;
 import com.xenenergy.projects.services.interfaces.*;
 import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperRunManager;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -41,9 +35,6 @@ public class BillsController {
 
     @Autowired
     private BillChargeDetailService billChargeDetailService;
-
-    @Autowired
-    private DuService duService;
 
     @Autowired
     private PropertyService propertyService;

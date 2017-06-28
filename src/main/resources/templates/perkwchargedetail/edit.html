@@ -57,10 +57,15 @@
                                         <label for="chargeType" class="col-sm-4 control-label">Charge Type</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <select class="form-control" th:field="*{chargeType}" id="chargeType">
-                                                <option th:each="chargeType: ${chargetypes}"
+                                                <!--<option value=""></option>-->
+                                                <option value="DSM CHARGES">DSM CHARGES</option>
+                                                <option value="GOVT CHARGES">GOVT CHARGES</option>
+                                                <option value="GT CHARGES">GT CHARGES</option>
+                                                <option value="OTHER CHARGES">OTHER CHARGES</option>
+                                                <!--<option th:each="chargeType: ${chargetypes}"
                                                         th:value="${chargeType.chargeTypeCode}"
                                                         th:text="${chargeType.chargeTypeCode}"
-                                                ></option>
+                                                ></option>-->
                                             </select>
                                         </div>
                                     </div>

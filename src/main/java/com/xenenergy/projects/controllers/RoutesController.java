@@ -43,6 +43,8 @@ public class RoutesController {
 
         modelAndView.addObject("routelists", routes);
         modelAndView.addObject("duarea", duAreaService.getById(cid));
+        modelAndView.addObject("codesort", "nosorted");
+        modelAndView.addObject("namesort", "nosorted");
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
@@ -85,5 +87,89 @@ public class RoutesController {
             }
         }
         return "redirect:/du-area/"+cid+"/routes";
+    }
+
+    /*=== Sort Code Desc ===*/
+    @RequestMapping(value="/{cid}/routes/sortcodedesc", method = RequestMethod.GET)
+    public ModelAndView sortCodeDesc(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                        @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("routes/index");
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
+
+        Page<Route> routes = routesService.findByIdAreaOrderByRouteCode(cid, new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(routes.getTotalPages(), routes.getNumber(), property.BUTTONS_TO_SHOW);
+
+        modelAndView.addObject("routelists", routes);
+        modelAndView.addObject("duarea", duAreaService.getById(cid));
+        modelAndView.addObject("codesort", "sorted");
+        modelAndView.addObject("namesort", "nosorted");
+        modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
+        modelAndView.addObject("pager", pager);
+        return modelAndView;
+    }
+
+    /*=== Sort Code Asc ===*/
+    @RequestMapping(value="/{cid}/routes/sortcodeasc", method = RequestMethod.GET)
+    public ModelAndView sortCodeAsc(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                     @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("routes/index");
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
+
+        Page<Route> routes = routesService.findByIdAreaOrderByRouteCodeDesc(cid, new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(routes.getTotalPages(), routes.getNumber(), property.BUTTONS_TO_SHOW);
+
+        modelAndView.addObject("routelists", routes);
+        modelAndView.addObject("duarea", duAreaService.getById(cid));
+        modelAndView.addObject("codesort", "unsorted");
+        modelAndView.addObject("namesort", "nosorted");
+        modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
+        modelAndView.addObject("pager", pager);
+        return modelAndView;
+    }
+
+    /*=== Sort Name Desc ===*/
+    @RequestMapping(value="/{cid}/routes/sortnamedesc", method = RequestMethod.GET)
+    public ModelAndView sortNameDesc(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                     @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("routes/index");
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
+
+        Page<Route> routes = routesService.findByIdAreaOrderByRouteName(cid, new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(routes.getTotalPages(), routes.getNumber(), property.BUTTONS_TO_SHOW);
+
+        modelAndView.addObject("routelists", routes);
+        modelAndView.addObject("duarea", duAreaService.getById(cid));
+        modelAndView.addObject("namesort", "sorted");
+        modelAndView.addObject("codesort", "nosorted");
+        modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
+        modelAndView.addObject("pager", pager);
+        return modelAndView;
+    }
+
+    /*=== Sort Name Asc ===*/
+    @RequestMapping(value="/{cid}/routes/sortnameasc", method = RequestMethod.GET)
+    public ModelAndView sortNameAsc(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                    @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("routes/index");
+        int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
+        int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
+
+        Page<Route> routes = routesService.findByIdAreaOrderByRouteNameDesc(cid, new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(routes.getTotalPages(), routes.getNumber(), property.BUTTONS_TO_SHOW);
+
+        modelAndView.addObject("routelists", routes);
+        modelAndView.addObject("duarea", duAreaService.getById(cid));
+        modelAndView.addObject("namesort", "unsorted");
+        modelAndView.addObject("codesort", "nosorted");
+        modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
+        modelAndView.addObject("pager", pager);
+        return modelAndView;
     }
 }

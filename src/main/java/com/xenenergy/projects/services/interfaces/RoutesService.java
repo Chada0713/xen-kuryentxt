@@ -11,4 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface RoutesService extends CRUDService<Route> {
     Page<Route> findByIdArea(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteCode(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteCodeDesc(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteName(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteNameDesc(long idArea, Pageable pageable);
 }

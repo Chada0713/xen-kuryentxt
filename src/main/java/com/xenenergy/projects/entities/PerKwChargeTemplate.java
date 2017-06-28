@@ -18,6 +18,8 @@ public class PerKwChargeTemplate {
     private long id;
     @Column(name = "TS")
     private Date ts;
+    @Column(name = "CHARGE_TYPE")
+    private String chargeType;
     @Column(name = "PER_KW_RATE_NAME")
     private String perKwRateName;
     @Column(name = "PER_KW_RATE_LONG_NAME")
@@ -25,13 +27,15 @@ public class PerKwChargeTemplate {
     @Column(name = "PRINT_ORDER")
     private int printOrder;
     @Column(name = "AMOUNT")
-    private Double amount;
+    private Double amount = 0.0000;
     @Column(name = "VAT_RATE")
-    private Double vatRate;
+    private Double vatRate = 0.00;
     @Column(name = "VAT_AMT")
-    private Double vatAmt;
+    private Double vatAmt = 0.0000;
+    @Column(name = "FIXED_ADDTL")
+    private Double fixedAddtl = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
-    private Double totalAmount;
+    private Double totalAmount = 0.0000;
     @Column(name = "IS_SUB_TO_VAT")
     private String isSubToVat;
     @Column(name = "IS_SUB_TO_LIFELINE")
@@ -42,15 +46,17 @@ public class PerKwChargeTemplate {
     public PerKwChargeTemplate() {
     }
 
-    public PerKwChargeTemplate(long id, Date ts, String perKwRateName, String perKwRateLongName, int printOrder, Double amount, Double vatRate, Double vatAmt, Double totalAmount, String isSubToVat, String isSubToLifeline, String isSubToScDiscount) {
+    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double amount, Double vatRate, Double vatAmt, Double fixedAddtl, Double totalAmount, String isSubToVat, String isSubToLifeline, String isSubToScDiscount) {
         this.id = id;
         this.ts = ts;
+        this.chargeType = chargeType;
         this.perKwRateName = perKwRateName;
         this.perKwRateLongName = perKwRateLongName;
         this.printOrder = printOrder;
         this.amount = amount;
         this.vatRate = vatRate;
         this.vatAmt = vatAmt;
+        this.fixedAddtl = fixedAddtl;
         this.totalAmount = totalAmount;
         this.isSubToVat = isSubToVat;
         this.isSubToLifeline = isSubToLifeline;
@@ -71,6 +77,14 @@ public class PerKwChargeTemplate {
 
     public void setTs(Date ts) {
         this.ts = ts;
+    }
+
+    public String getChargeType() {
+        return chargeType;
+    }
+
+    public void setChargeType(String chargeType) {
+        this.chargeType = chargeType;
     }
 
     public String getPerKwRateName() {
@@ -119,6 +133,14 @@ public class PerKwChargeTemplate {
 
     public void setVatAmt(Double vatAmt) {
         this.vatAmt = vatAmt;
+    }
+
+    public Double getFixedAddtl() {
+        return fixedAddtl;
+    }
+
+    public void setFixedAddtl(Double fixedAddtl) {
+        this.fixedAddtl = fixedAddtl;
     }
 
     public Double getTotalAmount() {

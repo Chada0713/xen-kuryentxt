@@ -14,4 +14,5 @@ public interface PerKwChargeDetailsService extends CRUDService<PerKwChargeDetail
     List<PerKwChargeDetail> findAllPageable(long id);
     int getMaxPrintOrder(long id);
     double findSumOfTotalAmount(long id);
+    void deleteByIdMaster(long idMaster);
 }

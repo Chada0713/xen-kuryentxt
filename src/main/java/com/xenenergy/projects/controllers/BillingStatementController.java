@@ -1,16 +1,12 @@
 package com.xenenergy.projects.controllers;
 
 import com.xenenergy.projects.entities.BillingStatementModel;
-import com.xenenergy.projects.entities.Du;
 import com.xenenergy.projects.services.interfaces.BillsService;
-import com.xenenergy.projects.services.interfaces.DuService;
 import com.xenenergy.projects.services.interfaces.PropertyService;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +32,6 @@ import java.util.*;
 public class BillingStatementController {
     @Autowired
     ServletContext servletContext;
-    @Autowired
-    private DuService duService;
 
     @Autowired
     private BillsService billsService;

@@ -86,4 +86,11 @@ public class PerKwChargeDetailServiceImpl implements PerKwChargeDetailsService {
         }
         return totalAmt;
     }
+
+    @Override
+    public void deleteByIdMaster(long idMaster) {
+        perKwChargeDetailDao.deleteByIdMaster(idMaster);
+    }
+
+
 }

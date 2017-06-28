@@ -111,4 +111,13 @@ public class PerKwChargeDetailController {
         redirectAttributes.addFlashAttribute("copy", "success");
         return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
     }
+
+    @GetMapping("/{cid}/per-kw-charge-master/{rid}/details/cleartemplate")
+    public String clearTemplate(@PathVariable("cid") long cid,
+                               @PathVariable("rid") long rid,
+                               Model model, final RedirectAttributes redirectAttributes) {
+        perKwChargeDetailService.deleteByIdMaster(rid);
+        redirectAttributes.addFlashAttribute("deleteRecords", "success");
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";
+    }
 }

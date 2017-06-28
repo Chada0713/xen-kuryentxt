@@ -96,4 +96,13 @@ public class FixedChargeDetailController {
 
         return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
     }
+
+    @GetMapping("/{cid}/fixedcharge/{rid}/fixedchargedetail/cleartemplate")
+    public String clearTemplate(@PathVariable("cid") long cid,
+                               @PathVariable("rid") long rid,
+                               Model model, final RedirectAttributes redirectAttributes) {
+        fixedChargeDetailService.deleteByIdMaster(rid);
+        redirectAttributes.addFlashAttribute("clear", "success");
+        return "redirect:/ratemaster/" + cid + "/fixedcharge/" + rid + "/fixedchargedetail";
+    }
 }

@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoutesDao extends PagingAndSortingRepository<Route, Long> {
     Page<Route> findByIdAreaOrderByRouteName(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteCode(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteCodeDesc(long idArea, Pageable pageable);
+    Page<Route> findByIdAreaOrderByRouteNameDesc(long idArea, Pageable pageable);
 }

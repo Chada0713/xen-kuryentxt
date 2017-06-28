@@ -92,3 +92,37 @@ $(document).ready( function () {
         "sPaginationType": "full_numbers",
     })
 });
+
+/*Area Table*/
+$(document).ready( function () {
+    var table = $('#areaTable').DataTable({
+        "bDeferRender": true,
+        "sAjaxSource": "api/du-area",
+        "sAjaxDataProp": "",
+        responsive: true,
+        "order": [[ 0, "asc" ]],
+        "aoColumns": [
+            { "mData": "id",
+                render: function (data) {
+                    return "<a href='/Kuryentxt/du-area/" + data + "/locality'>locality</a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a href='/Kuryentxt/du-area/" + data + "/routes'>routes</a>";
+            }},
+            { "mData": "areaName" },
+            { "mData": "countActive" },
+            { "mData": "countDisconnected" },
+            { "mData": "countConsumer" },
+            { "mData": "percentageDisconnected" },
+            { "mData": "id" ,
+                render: function (data) {
+                    return "<a href='#' data-target='#genericModal' data-toggle='modal' data-url='/Kuryentxt/du-area/delete/"+ data +"' data-message='Are you sure you want to delete "+ data +"' data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'  ><span class='fa-stack'><i class='glyphicon glyphicon-trash'></i></span></a>" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+                        "<a href='/Kuryentxt/du-area/edit/" + data + "'><span class='fa-stack'><i class='glyphicon glyphicon-edit'></i></span></a>";
+            }},
+        ],
+        dom: "<'row'<'col-sm-12'f>>" +
+        "<'row'<'col-sm-12'tr>>" +
+        "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+        "lengthMenu": [20],
+        "sPaginationType": "full_numbers",
+
+    })
+});

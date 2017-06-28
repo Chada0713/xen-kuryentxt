@@ -49,4 +49,24 @@ public class RoutesServiceImpl implements RoutesService {
     public Page<Route> findByIdArea(long idArea, Pageable pageable){
         return routesDao.findByIdAreaOrderByRouteName(idArea, pageable);
     }
+
+    @Override
+    public Page<Route> findByIdAreaOrderByRouteCode(long idArea, Pageable pageable) {
+        return routesDao.findByIdAreaOrderByRouteCode(idArea, pageable);
+    }
+
+    @Override
+    public Page<Route> findByIdAreaOrderByRouteCodeDesc(long idArea, Pageable pageable) {
+        return routesDao.findByIdAreaOrderByRouteCodeDesc(idArea, pageable);
+    }
+
+    @Override
+    public Page<Route> findByIdAreaOrderByRouteName(long idArea, Pageable pageable) {
+        return routesDao.findByIdAreaOrderByRouteName(idArea, pageable);
+    }
+
+    @Override
+    public Page<Route> findByIdAreaOrderByRouteNameDesc(long idArea, Pageable pageable) {
+        return routesDao.findByIdAreaOrderByRouteNameDesc(idArea, pageable);
+    }
 }

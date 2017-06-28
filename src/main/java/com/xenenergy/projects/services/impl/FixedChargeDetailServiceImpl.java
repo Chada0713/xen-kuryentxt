@@ -86,4 +86,9 @@ public class FixedChargeDetailServiceImpl implements FixedChargeDetailService {
         }
         return sumOfAmount;
     }
+
+    @Override
+    public void deleteByIdMaster(long idMaster) {
+        fixedChargeDetailDao.deleteByIdMaster(idMaster);
+    }
 }
