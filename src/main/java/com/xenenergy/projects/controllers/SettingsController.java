@@ -27,6 +27,7 @@ public class SettingsController {
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String showbillForm(Model model){
         PropertyWrapper duProperty = new PropertyWrapper();
+        List<Property> propertyLists = propertyService.findAllByOrderById();
         duProperty.setProperties(propertyService.getAllDuProperty());
         List<String> t = new ArrayList<>();
 
@@ -62,9 +63,9 @@ public class SettingsController {
         }
 
         duProperty.setPropertyName(t);
-        //t.forEach(System.out::println);
         model.addAttribute("duproperties", duProperty);
         model.addAttribute("tag", tag);
+        model.addAttribute("propertyLists", propertyLists);
         return "settings/index";
     }
 
@@ -74,6 +75,14 @@ public class SettingsController {
         duProperty.setProperties(propertyService.getAllDuProperty());
         model.addAttribute("duproperties", duProperty);
         return "settings/edit";
+    }
+
+    @GetMapping("/settings/editall")
+    public String editAllForm(Model model){
+        PropertyWrapper duProperty = new PropertyWrapper();
+        duProperty.setProperties(propertyService.findAllByOrderById()); /*duProperty.getProperties().forEach(System.out::println);*/
+        model.addAttribute("duproperties", duProperty);
+        return "settings/editadvance";
     }
 
     @PostMapping("settings/update")
@@ -88,6 +97,20 @@ public class SettingsController {
             }
         }
         System.out.println("--");
+        return "redirect:/settings";
+    }
+
+    @PostMapping("settings/updateall")
+    public String updateAll(@ModelAttribute("duproperties") PropertyWrapper duproperties,
+                         final RedirectAttributes redirectAttributes){
+        System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
+        for(Property property : duproperties.getProperties()){
+            if(propertyService.update(property) != null){
+                redirectAttributes.addFlashAttribute("edit", "success");
+            }else{
+                redirectAttributes.addFlashAttribute("edit", "unsuccess");
+            }
+        }
         return "redirect:/settings";
     }
 

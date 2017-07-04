@@ -12,6 +12,7 @@ public interface PropertyService extends CRUDService<Property> {
     Property findByPropertyName(String propertyName);
 
     List<Property> findAllByOrderByIdDesc();
+    List<Property> findAllByOrderById();
 
     Property updatePropertyValue(String propertyValue, long id);
 

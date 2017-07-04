@@ -11,6 +11,7 @@ import java.util.List;
 public interface PropertyDao extends PagingAndSortingRepository<Property, Long> {
     /* Uncomment this if you want to display the record in desc order*/
     List<Property> findAllByOrderByIdDesc();
+    List<Property> findAllByOrderById();
     Property findByPropertyName(String propertyName);
 
     @Query("update Property a set a.propertyValue = ?1 where a.id = ?2")

@@ -35,18 +35,19 @@
 
                                 <div th:if="!${#lists.isEmpty(duproperties)}">
                                     <form class="form-horizontal" method="post" th:object="${duproperties}"
-                                          th:action="@{/settings/update}"
+                                          th:action="@{/settings/updateall}"
                                           role="form" name="settings_form"
                                           id="settings_form">
                                         <div th:each="duProperty, stat : ${duproperties.properties}">
                                             <div class="form-group">
                                                 <br/>
-                                                <div>
-                                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label"
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                                                    <label class="control-label"
                                                            for="id" th:text="${#strings.replace(duProperty.propertyName, '_', ' ').replace('DU ', '')}"></label>
                                                 </div>
-                                                <div class="col-lg-8 col-md-10 col-sm-10 col-xs-10">
+                                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                                     <input type="hidden" class="form-control" id="id"
+                                                           name="id"
                                                            th:name="|properties[${stat.index}].id|"
                                                            th:value="${duProperty.id}"/>
 

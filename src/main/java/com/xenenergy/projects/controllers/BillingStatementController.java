@@ -89,7 +89,7 @@ public class BillingStatementController {
                 Double.parseDouble(Integer.toString(billsCount)) * 1.00;
         /*NumberFormat formatter = NumberFormat.getCurrencyInstance();
         String finalAmount = formatter.format(totalbills);*/
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("#,###.00");
         statementModel.setTotalBill("Php " + df.format(totalbills));
         statementModel.setDescription("Reading from " + periodFrm + " to " + periodTo);
         Path path = Paths.get("C:/Kuryentxtweb/ext/");

@@ -59,6 +59,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public List<Property> findAllByOrderById() {
+        return propertyDao.findAllByOrderById();
+    }
+
+    @Override
     public Property updatePropertyValue(String propertyValue, long id) {
         return propertyDao.updatePropertyValue(propertyValue, id);
     }
