@@ -103,7 +103,7 @@ public class SettingsController {
     @PostMapping("settings/updateall")
     public String updateAll(@ModelAttribute("duproperties") PropertyWrapper duproperties,
                          final RedirectAttributes redirectAttributes){
-        System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
+        //System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
         for(Property property : duproperties.getProperties()){
             if(propertyService.update(property) != null){
                 redirectAttributes.addFlashAttribute("edit", "success");
@@ -117,8 +117,6 @@ public class SettingsController {
     @GetMapping("settings/add")
     public String addForm(Model model){
         model.addAttribute("duproperties", new Property());
-        //System.out.println("duPropertyName >> " + duproperties.getPropertyName());
-        //System.out.println(duproperties.getPropertyName() != null ? duproperties.getPropertyName().size() : "null list");
         return "settings/add";
     }
 

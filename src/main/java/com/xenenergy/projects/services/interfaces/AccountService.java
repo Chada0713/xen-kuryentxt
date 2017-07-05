@@ -15,6 +15,7 @@ public interface AccountService extends CRUDService<Account> {
     List<Account> getAllAccounts();
 
     Account getByOldAccountNo(String oldAccountNo);
+    Account getByAccountNo(String accountNo);
 
     List<Account> findByIdRoute(long idRoute);
 

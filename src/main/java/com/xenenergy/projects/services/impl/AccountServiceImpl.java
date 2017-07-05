@@ -30,6 +30,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account getByAccountNo(String accountNo) {
+        return accountDao.findByAccountNo(accountNo);
+    }
+
+    @Override
     public Page<Account> findAllPageable(Pageable pageable) {
         return accountDao.findAll(pageable);
     }

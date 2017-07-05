@@ -95,11 +95,6 @@ public class BillingStatementController {
         Path path = Paths.get("C:/Kuryentxtweb/ext/");
         statementModel.setLogoPath(path.toString() + "/xesi_logo.png");
         statementModel.setSignatoryPath(path.toString() + "/signatory.png");
-        System.out.println("statementModel >> " + statementModel.getAddressLine1() + " " +
-                statementModel.getAddressLine2() + " " + statementModel.getBillsCount() + " " +
-                statementModel.getContactNo() + " " + statementModel.getContactPerson() + " " +
-                statementModel.getCurDate() + " " + statementModel.getDescription() + " " +
-                statementModel.getDuName() + " " + statementModel.getTotalBill());
         statementModels.add(statementModel);
         try {
             Map<String, Object> params = new HashMap<String, Object>();

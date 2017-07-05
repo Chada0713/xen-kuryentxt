@@ -32,11 +32,29 @@
                                       method="post">
 
                                     <div class="form-group">
-                                        <label for="datepick" class="col-sm-3 control-label">Effectivity Date</label>
+                                        <label for="fromKwhUsed" class="col-sm-3 control-label">From Kwh Used</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control" th:value="${effectivity_Date}"
-                                                   id="datepick" name="effectivity_Date"
-                                                   placeholder="2017-01-01"/>
+                                            <input type="text" class="form-control"
+                                                   id="fromKwhUsed" name="fromKwhUsed"
+                                                   placeholder="0"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="toKwhUsed" class="col-sm-3 control-label">To Kwh Used</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="toKwhUsed" name="toKwhUsed"
+                                                   placeholder="0"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="discountRate" class="col-sm-3 control-label">Discount Rate</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="discountRate" name="discountRate"
+                                                   placeholder="0.0000"/>
                                         </div>
                                     </div>
 

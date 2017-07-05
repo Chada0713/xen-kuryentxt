@@ -46,25 +46,36 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="datepick" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                        <label for="fromKwhUsed" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
                                             Effectivity Date</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <input type="text" class="form-control" id="datepick"
-                                                   name="effectivity_Date" th:field="*{effectivity_Date}"
-                                                   placeholder="yyyy-MM-dd"/>
+                                            <input type="text" class="form-control" id="fromKwhUsed"
+                                                   name="fromKwhUsed" th:field="*{fromKwhUsed}"
+                                                   placeholder="0"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="is_Current" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
-                                            Current</label>
+                                        <label for="toKwhUsed" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                            Effectivity Date</label>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                            <select class="form-control" th:field="*{is_Current}" id="is_Current">
-                                                <option th:value="'Y'">Yes</option>
-                                                <option th:value="'N'">No</option>
-                                            </select>
+                                            <input type="text" class="form-control" id="toKwhUsed"
+                                                   name="toKwhUsed" th:field="*{toKwhUsed}"
+                                                   placeholder="0"/>
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="fromKwhUsed" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 control-label">
+                                            Effectivity Date</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="discountRate"
+                                                   name="discountRate" th:field="*{discountRate}"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-3 col-sm-9">

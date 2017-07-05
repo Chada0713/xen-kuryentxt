@@ -86,6 +86,7 @@
                                     <th>Name</th>
                                     <th>Reader Name</th>
                                     <th>Consumer Count</th>
+                                    <th>For Use</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -106,6 +107,14 @@
                                               th:text="${mr.readersName}"></span>
                                     </td>
                                     <td th:text="${rdmlist.consumerCount}"></td>
+                                    <td>
+                                        <div th:switch="${rdmlist.isReadyForUse}">
+                                               <span th:case="'Y'" class="fa-stack green">
+                                                   <i class="glyphicon glyphicon-ok"></i></span>
+                                            <span th:case="*" class="fa-stack red">
+                                                   <i class="glyphicon glyphicon-remove"></i></span>
+                                        </div>
+                                    </td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='rdm/delete/'+${rdmlist.id},

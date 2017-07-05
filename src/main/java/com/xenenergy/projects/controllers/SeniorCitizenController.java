@@ -1,10 +1,9 @@
 package com.xenenergy.projects.controllers;
 
-import com.xenenergy.projects.entities.Pager;
-import com.xenenergy.projects.entities.PaginationProperty;
-import com.xenenergy.projects.entities.SeniorCitizen;
+import com.xenenergy.projects.entities.*;
 import com.xenenergy.projects.services.interfaces.CRUDService;
 import com.xenenergy.projects.services.interfaces.AccountService;
+import com.xenenergy.projects.services.interfaces.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -18,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -35,6 +35,9 @@ public class SeniorCitizenController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
@@ -47,15 +50,17 @@ public class SeniorCitizenController {
         // param. decreased by 1.
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        Page<SeniorCitizen> seniorCitizen = seniorCitizenService.findAllPageable(new PageRequest(evalPage, evalPageSize));
-        Pager pager = new Pager(seniorCitizen.getTotalPages(), seniorCitizen.getNumber(), property.BUTTONS_TO_SHOW);
+        /*Page<SeniorCitizen> seniorCitizen = seniorCitizenService.findAllPageable(new PageRequest(evalPage, evalPageSize));
+        Pager pager = new Pager(seniorCitizen.getTotalPages(), seniorCitizen.getNumber(), property.BUTTONS_TO_SHOW);*/
+
+        List<Property> seniorCitizen = propertyService.getAllScProperty();
 
         modelAndView.addObject("seniorCitizenLists", seniorCitizen);
         modelAndView.addObject("countOfSenior", accountService.findCountOfSenior());
         modelAndView.addObject("countOfId", accountService.findCountOfId());
-        modelAndView.addObject("selectedPageSize", evalPageSize);
+        /*modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
-        modelAndView.addObject("pager", pager);
+        modelAndView.addObject("pager", pager);*/
         return modelAndView;
     }
 
@@ -75,7 +80,7 @@ public class SeniorCitizenController {
         return "redirect:/seniorcitizen";
     }
 
-    @GetMapping("/{operation}/{id}")
+    /*@GetMapping("/{operation}/{id}")
     public String editDeleteForm(@PathVariable("operation") String operation, @PathVariable int id,
                                  Model model, final RedirectAttributes redirectAttributes){
         if(operation.equals("delete")){
@@ -93,15 +98,27 @@ public class SeniorCitizenController {
             }
         }
         return "redirect:/seniorcitizen";
+    }*/
+
+    @GetMapping("/edit")
+    public String editForm(Model model){
+        PropertyWrapper duProperty = new PropertyWrapper();
+        duProperty.setProperties(propertyService.getAllScProperty());
+        model.addAttribute("seniorCitizenLists", duProperty);
+        return "seniorcitizen/edit";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("seniorCitizen") SeniorCitizen seniorCitizen, final RedirectAttributes redirectAttributes){
-        if(seniorCitizenService.insert(seniorCitizen) != null){
-            redirectAttributes.addFlashAttribute("edit", "success");
-        }else{
-            redirectAttributes.addFlashAttribute("edit", "unsuccess");
+    public String update(@ModelAttribute("seniorCitizenLists") PropertyWrapper seniorCitizen,
+                         final RedirectAttributes redirectAttributes){
+        for(Property property : seniorCitizen.getProperties()){
+            if(propertyService.update(property) != null){
+                redirectAttributes.addFlashAttribute("edit", "success");
+            }else{
+                redirectAttributes.addFlashAttribute("edit", "unsuccess");
+            }
         }
+
         return "redirect:/seniorcitizen";
     }
 

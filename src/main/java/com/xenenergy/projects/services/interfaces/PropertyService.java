@@ -17,4 +17,6 @@ public interface PropertyService extends CRUDService<Property> {
     Property updatePropertyValue(String propertyValue, long id);
 
     List<Property> getAllDuProperty();
+
+    List<Property> getAllScProperty();
 }

@@ -21,6 +21,8 @@ public class Rdm {
     private int idReader;
     @Column(name = "CONSUMER_COUNT")
     private int consumerCount;
+    @Column(name = "IS_READY_FOR_USE")
+    private String isReadyForUse;
 
     public long getId() {
         return id;
@@ -60,5 +62,13 @@ public class Rdm {
 
     public void setTs(Date ts) {
         this.ts = ts;
+    }
+
+    public String getIsReadyForUse() {
+        return isReadyForUse;
+    }
+
+    public void setIsReadyForUse(String isReadyForUse) {
+        this.isReadyForUse = isReadyForUse;
     }
 }

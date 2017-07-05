@@ -280,4 +280,61 @@ public class BillsController {
 
         return "bills/viewbill";
     }
+    @RequestMapping(value = "/bills/{billno}", method = RequestMethod.GET)
+    public String showBilByBillAcct(@PathVariable("billno") String billno, Model model) throws Exception {
+        Bills bill = billsService.findByBillNo(billno);
+        model.addAttribute("bill", bill);
+
+        List<ChargeGroupDetails> chargeGroupDetailsList = new ArrayList<>();
+        for(BillChargeGroup billChargeGroupList : billChargeGroupService.findByBillNo(billno)){
+            ChargeGroupDetails chargeGroup = new ChargeGroupDetails();
+            chargeGroup.setChargeGroupName(billChargeGroupList.getChargeGroupName());
+            chargeGroup.setChargeSum(billChargeGroupList.getChargeSum());
+            chargeGroup.setChargeTotalgroup(billChargeGroupList.getChargeTotal());
+            chargeGroupDetailsList.add(chargeGroup);
+            for(BillChargeDetail billChargeDetailList : billChargeDetailService.findByPrintOrderMasterAndBillNo((int)billChargeGroupList.getPrintOrder(), billno)){
+                ChargeGroupDetails chargeDetails = new ChargeGroupDetails();
+                chargeDetails.setChargeName(billChargeDetailList.getChargeLongName());
+                chargeDetails.setChargeAmount(billChargeDetailList.getChargeAmount());
+                chargeDetails.setChargeTotal(billChargeDetailList.getChargeTotal());
+                chargeGroupDetailsList.add(chargeDetails);
+            }
+        }
+
+        String[] du = new String[7];
+        if(propertyService.findByPropertyName("DU_CODE") != null){
+            du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
+        }
+        if(propertyService.findByPropertyName("DU_NAME") != null){
+            du[1] = propertyService.findByPropertyName("DU_NAME").getPropertyValue();
+        }
+        if(propertyService.findByPropertyName("DU_ADDRESSLN1") != null){
+            du[2] = propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue();
+        }else{
+            du[2] = "";
+        }
+        if(propertyService.findByPropertyName("DU_ADDRESSLN2") != null){
+            du[3] = propertyService.findByPropertyName("DU_ADDRESSLN2").getPropertyValue();
+        }else{
+            du[3] = "";
+        }
+        if(propertyService.findByPropertyName("DU_VAT_NO") != null){
+            du[4] = propertyService.findByPropertyName("DU_VAT_NO").getPropertyValue();
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy");
+        Calendar c = Calendar.getInstance();
+        c.setTime(bill.getDueDate()); // Now use today date.
+        c.add(Calendar.DATE, 10); // Adding 5 days
+        model.addAttribute("discDate",sdf.format(c.getTime()));
+        Date runDate = new SimpleDateFormat("yyyy-MM-dd").parse(bill.getRunDate());
+        model.addAttribute("runDate", sdf.format(runDate));
+
+        model.addAttribute("billgroupLists", chargeGroupDetailsList);
+        model.addAttribute("du", du);
+        model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
+        model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
+        model.addAttribute("backButton", "/Kuryentxt/accounts/account/"+accountService.getByOldAccountNo(bill.getOldAcctNo()).getAccountNo());
+        return "bills/viewaccountbill";
+    }
 }

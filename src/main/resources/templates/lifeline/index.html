@@ -68,26 +68,21 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                 <tr class="info">
-                                    <th>Effectivity Date</th>
-                                    <th>Current</th>
+                                    <th>From Kwh Used</th>
+                                    <th>To Kwh Used</th>
+                                    <th>Discount Rate</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="lifelinelist : ${lifeLineLists}">
-                                    <td th:text="${#dates.format(lifelinelist.effectivity_Date, 'yyyy-MM-dd')}"></td>
-                                    <td>
-                                        <div th:switch="${lifelinelist.is_Current}">
-                                            <span th:case="'Y'" class="fa-stack green">
-                                                <i class="glyphicon glyphicon-ok"></i></span>
-                                            <span th:case="*" class="fa-stack red">
-                                                <i class="glyphicon glyphicon-remove"></i></span>
-                                        </div>
-                                    </td>
+                                    <td th:text="${lifelinelist.fromKwhUsed}"></td>
+                                    <td th:text="${lifelinelist.toKwhUsed}"></td>
+                                    <td th:text="${#numbers.formatDecimal(lifelinelist.discountRate, 1, 4)}"></td>
                                     <td>
                                         <a href="#" data-target="#genericModal" data-toggle="modal"
                                            th:attr="data-url='lifeline/delete/'+${lifelinelist.id},
-                                           data-message='Are you sure you want to delete ' + ${#dates.format(lifelinelist.effectivity_Date, 'yyyy-MM-dd')},
+                                           data-message='Are you sure you want to delete ' + ${lifelinelist.id},
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

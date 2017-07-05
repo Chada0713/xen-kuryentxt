@@ -72,4 +72,9 @@ public class PropertyServiceImpl implements PropertyService {
     public List<Property> getAllDuProperty() {
         return propertyDao.getAllDuProperty();
     }
+
+    @Override
+    public List<Property> getAllScProperty() {
+        return propertyDao.getAllScProperty();
+    }
 }

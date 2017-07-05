@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface AccountDao extends JpaRepository<Account, Long> {
     Account findByOldAccountNo(String oldAccountNo);
+    Account findByAccountNo(String accountNo);
     List<Account> findByIdRoute(long idRoute);
 
     @Query("select count(id) from Account where isSeniorCitizen = 'Y'")

@@ -33,6 +33,11 @@ public class AccountsRestController {
         return accountService.getByOldAccountNo(oldAccountNo);
     }
 
+    @GetMapping("/byaccountno")
+    public Account getByAccount_No(@RequestParam("accountno") String accountNo){
+        return accountService.getByAccountNo(accountNo);
+    }
+
     @GetMapping("/viewaccounts/{idRoute}")
     public List<Account> findAccountsByIdRoute(@PathVariable("idRoute") long idRoute){
         return accountService.findByIdRoute(idRoute);
