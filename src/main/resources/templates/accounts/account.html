@@ -38,80 +38,67 @@
                             <strong>Account</strong></div>
                         <div class="panel-body">
                             <div th:if="${account} != null">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-bordered">
                                     <tbody>
                                     <tr>
                                         <td><div class="text-right"><strong>Account No: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.accountNo}"></div></td>
-                                        <td><div class="text-right"><strong>Serial No: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.serialNo}"></div></td>
-                                        <td><div class="text-right"><strong>Current Reading: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.curRdg}"></div></td>
+                                        <th><div class="text-right"><strong>Sequence No: </strong></div></th>
+                                        <td><div class="text-left" th:text="${account.seqNo}"></div></td>
+                                        <td><div class="text-right"><strong>Previous Reading 1: </strong></div></td>
+                                        <td><div class="text-left" th:text="${account.prev01Reading}"></div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="text-right"><strong>Old Account No: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.oldAccountNo}"></div></td>
                                         <td><div class="text-right"><strong>Route Code: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.routeCode}"></div></td>
-                                        <td><div class="text-right"><strong>Rate Master: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.idRateMaster}"></div></td>
+                                        <td><div class="text-right"><strong>Current Reading: </strong></div></td>
+                                        <td><div class="text-left" th:text="${account.curRdg}"></div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="text-right"><strong>Meter No: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.meterNo}"></div></td>
                                         <td><div class="text-right"><strong>Area: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.idArea}"></div></td>
-                                        <td><div class="text-right"><strong>Senior Citizen: </strong></div></td>
-                                        <td>
-                                            <div th:switch="${account.isSeniorCitizen}">
-                                           <span th:case="'Y'" class="fa-stack green">
-                                               <i class="glyphicon glyphicon-ok"></i></span>
-                                                                    <span th:case="*" class="fa-stack red">
-                                               <i class="glyphicon glyphicon-remove"></i></span>
-                                            </div>
-                                        </td>
+                                        <td><div class="text-right"><strong>Rate Master: </strong></div></td>
+                                        <td><div class="text-left" th:text="${account.idRateMaster}"></div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="text-right"><strong>Account Name: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.accountName}"></div></td>
                                         <td><div class="text-right"><strong>Meter Multiplier: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.meterMultiplier}"></div></td>
-                                        <td><div class="text-right"><strong>Private: </strong></div></td>
-                                        <td>
-                                            <div th:switch="${account.isPrivate}">
-                                           <span th:case="'Y'" class="fa-stack green">
-                                               <i class="glyphicon glyphicon-ok"></i></span>
-                                                                    <span th:case="*" class="fa-stack red">
-                                               <i class="glyphicon glyphicon-remove"></i></span>
-                                            </div>
-                                        </td>
+                                        <td><div class="text-right"><strong>Serial No: </strong></div></td>
+                                        <td><div class="text-left" th:text="${account.serialNo}"></div></td>
                                     </tr>
                                     <tr>
                                         <td><div class="text-right"><strong>Address: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.addressLn1} + ' ' + ${account.addressLn2}"></div></td>
                                         <td><div class="text-right"><strong>Previous Reading 2: </strong></div></td>
                                         <td><div class="text-left" th:text="${account.prev02Reading}"></div></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th><div class="text-right"><strong>Sequence No: </strong></div></th>
-                                        <td><div class="text-left" th:text="${account.seqNo}"></div></td>
-                                        <td><div class="text-right"><strong>Previous Reading 1: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.prev01Reading}"></div></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><div class="text-right"><strong>Senior Citizen: </strong></div></td>
+                                        <td>
+                                            <div th:switch="${account.isSeniorCitizen}">
+                                           <span th:case="'Y'" class="fa-stack green">
+                                               <i class="glyphicon glyphicon-ok"></i></span>
+                                                <span th:case="*" class="fa-stack red">
+                                               <i class="glyphicon glyphicon-remove"></i></span>
+                                            </div>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <br/><br/>
-                            <div th:if="!${#lists.isEmpty(bills)}"
-                                 class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <table class="table table-striped">
+                            <div th:if="!${#lists.isEmpty(bills)}"> <!--class="col-lg-4 col-md-4 col-sm-4 col-xs-4"-->
+                                <table class="table table-hover table-striped">
                                     <thead>
                                     <tr class="info">
-                                        <th>List of Bills</th>
+                                        <th>Bill No.</th>
+                                        <th>Period From</th>
+                                        <th>Period To</th>
+                                        <th>Amount Due</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -120,13 +107,17 @@
                                             <a href="#" th:href="@{/bills/{billno}(billno=${bill.billNo})}">
                                                 <span th:text="${bill.billNo}"></span></a>
                                         </td>
+                                        <td th:text="${#dates.format(bill.periodFrom, 'yyyy-MM-dd')}"></td>
+                                        <td th:text="${#dates.format(bill.periodTo, 'yyyy-MM-dd')}"></td>
+                                        <td th:text="${bill.totalAmountDue}"></td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
                             <div th:if="${#lists.isEmpty(bills)}"
-                                 class="text-center alert alert-danger alert-dismissible" role="alert">
-                                <strong>No Record Found</strong>
+                                 class="text-center alert alert-danger alert-dismissible"
+                                 role="alert"> <!--col-lg-4 col-md-4 col-sm-4 col-xs-4-->
+                                <strong>No Bills Found</strong>
                             </div>
                         </div>
                     </div>
@@ -146,8 +137,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <span th:if="${caller} == 'live'"> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
-                    <span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>
+                    <span> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
+                    <!--th:if="${caller} == 'live'" -->
+                    <!--<span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>-->
                 </div>
             </div>
         </div>
