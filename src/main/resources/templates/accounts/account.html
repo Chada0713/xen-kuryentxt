@@ -19,7 +19,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <span class="navbar-brand"><img style="max-width:180px; margin-top: -9px;" class="" th:src="@{/images/xen_logo.png}"/></span>
+                    <span class="navbar-brand"><img style="max-width:180px; margin-top: -9px;" class=""
+                                                    th:src="@{/images/xen_logo.png}"/></span>
                     <!--<a class="navbar-brand" th:href="@{/}"></a>-->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
@@ -37,47 +38,130 @@
                         <div class="panel-heading text-center panel-relative">
                             <strong>Account</strong></div>
                         <div class="panel-body">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <table class="table table-bordered"> <!--table-striped table-bordered-->
+                                    <tbody>
+                                    <tr>
+                                        <td rowspan="5">
+                                            <img class="img-responsive center-block" alt="Responsive image"
+                                                 th:src="@{/ext/viewbilllogo.png}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong th:text="${du[0]}"></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${du[1]}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${du[2]} + ' ' + ${du[3]}"></td>
+                                    </tr>
+                                    <tr>
+                                        <td th:text="${du[4]}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div th:if="${account} != null">
                                 <table class="table table-striped table-bordered">
                                     <tbody>
                                     <tr>
-                                        <td><div class="text-right"><strong>Account No: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.accountNo}"></div></td>
-                                        <th><div class="text-right"><strong>Sequence No: </strong></div></th>
-                                        <td><div class="text-left" th:text="${account.seqNo}"></div></td>
-                                        <td><div class="text-right"><strong>Previous Reading 1: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.prev01Reading}"></div></td>
+                                        <td>
+                                            <div class="text-right"><strong>Account No: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.accountNo}"></div>
+                                        </td>
+                                        <th>
+                                            <div class="text-right"><strong>Sequence No: </strong></div>
+                                        </th>
+                                        <td>
+                                            <div class="text-left" th:text="${account.seqNo}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Previous Reading 1: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.prev01Reading}"></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><div class="text-right"><strong>Old Account No: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.oldAccountNo}"></div></td>
-                                        <td><div class="text-right"><strong>Route Code: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.routeCode}"></div></td>
-                                        <td><div class="text-right"><strong>Current Reading: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.curRdg}"></div></td>
+                                        <td>
+                                            <div class="text-right"><strong>Old Account No: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.oldAccountNo}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Route Code: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.routeCode}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Current Reading: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.curRdg}"></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><div class="text-right"><strong>Meter No: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.meterNo}"></div></td>
-                                        <td><div class="text-right"><strong>Area: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.idArea}"></div></td>
-                                        <td><div class="text-right"><strong>Rate Master: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.idRateMaster}"></div></td>
+                                        <td>
+                                            <div class="text-right"><strong>Meter No: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.meterNo}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Area: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.idArea}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Rate Master: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.idRateMaster}"></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><div class="text-right"><strong>Account Name: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.accountName}"></div></td>
-                                        <td><div class="text-right"><strong>Meter Multiplier: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.meterMultiplier}"></div></td>
-                                        <td><div class="text-right"><strong>Serial No: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.serialNo}"></div></td>
+                                        <td>
+                                            <div class="text-right"><strong>Account Name: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.accountName}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Meter Multiplier: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.meterMultiplier}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Serial No: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.serialNo}"></div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td><div class="text-right"><strong>Address: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.addressLn1} + ' ' + ${account.addressLn2}"></div></td>
-                                        <td><div class="text-right"><strong>Previous Reading 2: </strong></div></td>
-                                        <td><div class="text-left" th:text="${account.prev02Reading}"></div></td>
-                                        <td><div class="text-right"><strong>Senior Citizen: </strong></div></td>
+                                        <td>
+                                            <div class="text-right"><strong>Address: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left"
+                                                 th:text="${account.addressLn1} + ' ' + ${account.addressLn2}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Previous Reading 2: </strong></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-left" th:text="${account.prev02Reading}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right"><strong>Senior Citizen: </strong></div>
+                                        </td>
                                         <td>
                                             <div th:switch="${account.isSeniorCitizen}">
                                            <span th:case="'Y'" class="fa-stack green">
@@ -98,7 +182,9 @@
                                         <th>Bill No.</th>
                                         <th>Period From</th>
                                         <th>Period To</th>
-                                        <th>Amount Due</th>
+                                        <th>
+                                            <div class="text-right">Amount Due</div>
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -109,7 +195,10 @@
                                         </td>
                                         <td th:text="${#dates.format(bill.periodFrom, 'yyyy-MM-dd')}"></td>
                                         <td th:text="${#dates.format(bill.periodTo, 'yyyy-MM-dd')}"></td>
-                                        <td th:text="${bill.totalAmountDue}"></td>
+                                        <td>
+                                            <div class="text-right"
+                                                 th:text="${#numbers.formatDecimal(bill.totalAmountDue, 1, 2)}"></div>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

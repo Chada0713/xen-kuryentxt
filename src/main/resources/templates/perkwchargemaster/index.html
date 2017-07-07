@@ -112,7 +112,7 @@
                                             <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
                                                 <a href="#" data-target="#genericModal" data-toggle="modal"
                                                    th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
-                                            data-message='Are you sure you want to delete ' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
+                                            data-message='Are you sure you want to delete?' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
                                                    data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
@@ -129,7 +129,7 @@
                                             <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
                                                 <a href="#" data-target="#genericModal" data-toggle="modal"
                                                    th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
-                                                   data-message='Are you sure you want to delete ' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
+                                                   data-message='Are you sure you want to delete?' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
                                                    data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
