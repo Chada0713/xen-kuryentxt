@@ -65,14 +65,6 @@ public class BillingStatementController {
         reportStream = BillingStatementController.class.getClassLoader().getResourceAsStream("static/jasper/BillingStatement.jasper");
         List<BillingStatementModel> statementModels = new ArrayList<>();
         BillingStatementModel statementModel = new BillingStatementModel();
-        /*List<Du> duModels = duService.getDU();
-        for (Du duModel : duModels) {
-            statementModel.setDuName(duModel.getDuName());
-            statementModel.setAddressLine1(duModel.getAddressLn1());
-            statementModel.setAddressLine2(duModel.getAddressLn2());
-            statementModel.setContactPerson(duModel.getContactPerson());
-            statementModel.setContactNo(duModel.getContactNumber());
-        }*/
 
         statementModel.setDuName(propertyService.findByPropertyName("DU_NAME").getPropertyValue());
         statementModel.setAddressLine1(propertyService.findByPropertyName("DU_ADDRESSLN1").getPropertyValue());

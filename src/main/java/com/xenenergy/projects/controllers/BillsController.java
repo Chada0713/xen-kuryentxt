@@ -124,15 +124,6 @@ public class BillsController {
         List<BillReportModel> billReportModelList = new ArrayList<>();
         BillReportModel billReportModel = new BillReportModel();
 
-        /*List<Du> duModels = duService.getDU();
-        for (Du duModel : duModels) {
-            billReportModel.setDuCode(duModel.getDuCode());
-            billReportModel.setDuName(duModel.getDuName());
-            billReportModel.setAddrLn1(duModel.getAddressLn1());
-            billReportModel.setAddrLn2(duModel.getAddressLn2());
-            billReportModel.setContactPerson(duModel.getContactPerson());
-            billReportModel.setContactNumber(duModel.getContactNumber());
-        }*/
         billReportModel.setOldAcctNo(account.getOldAccountNo());
         billReportModel.setAccountName(account.getAccountName());
         billReportModel.setAddressLn1(account.getAddressLn1());
@@ -227,7 +218,6 @@ public class BillsController {
     }
 
     /*By Old_Account_No*/
-    //@GetMapping("/bills/viewbillbyaccountno")
     @RequestMapping(value = "/bills/viewbillbyaccountno", method = RequestMethod.GET)
     public String showbillFormAcct(@RequestParam("oldaccountno") String oldacctno, Model model) throws Exception {
         List<Bills> billsList = billsService.findByOldAcctNo(oldacctno);

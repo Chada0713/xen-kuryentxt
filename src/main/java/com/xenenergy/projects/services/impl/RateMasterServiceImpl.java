@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -25,6 +27,11 @@ public class RateMasterServiceImpl implements RateMasterService {
     @Override
     public Page<RateMaster> findAllWithFixCharge(Pageable pageable){
         return rateMasterDao.findAll(pageable);
+    }
+
+    @Override
+    public List<RateMaster> findAllByOrderById() {
+        return rateMasterDao.findAllByOrderById();
     }
 
     @Override

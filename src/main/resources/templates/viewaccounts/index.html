@@ -46,7 +46,18 @@
                                     <td th:text="${accountList.seqNo}"></td>
                                     <td th:text="${accountList.routeCode}"></td>
                                     <td th:text="${accountList.accountName}"></td>
-                                    <td th:text="${accountList.oldAccountNo}"></td>
+                                    <td>
+                                        <div th:if="${whatView} == 'rdm'">
+                                            <a href="#" data-th-href="@{/accounts/oldaccountno/{oldAccountno}/{cid}/{id}/{rid}
+                                        (oldAccountno=${accountList.oldAccountNo}, cid=${cid}, id=${id}, rid=${rid})}">
+                                                <span th:text="${accountList.oldAccountNo}"></span></a>
+                                        </div>
+                                        <div th:if="${whatView} == 'area'">
+                                            <a href="#" data-th-href="@{/accounts/oldaccountno/{oldAccountno}/{cid}/{rid}
+                                        (oldAccountno=${accountList.oldAccountNo}, cid=${cid}, rid=${rid})}">
+                                                <span th:text="${accountList.oldAccountNo}"></span></a>
+                                        </div>
+                                    </td>
                                     <td th:text="${accountList.meterNo}"></td>
                                     <td th:text="${accountList.curRdg}"></td>
                                 </tr>

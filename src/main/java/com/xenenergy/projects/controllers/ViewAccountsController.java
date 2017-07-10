@@ -55,6 +55,9 @@ public class ViewAccountsController {
         Route route = routesService.getById(rid);
         RdmDetail rdmDetail = rdmDetailService.getById(id);
 
+        modelAndView.addObject("cid", cid);
+        modelAndView.addObject("id", id);
+        modelAndView.addObject("rid", rid);
         modelAndView.addObject("accountLists", accountList);
         modelAndView.addObject("account", new Account());
         modelAndView.addObject("route", route);
@@ -91,6 +94,8 @@ public class ViewAccountsController {
 
         Route route = routesService.getById(id);
 
+        modelAndView.addObject("cid", cid);
+        modelAndView.addObject("rid", id);
         modelAndView.addObject("accountLists", accountList);
         modelAndView.addObject("account", new Account());
         modelAndView.addObject("route", route);
