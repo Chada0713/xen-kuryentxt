@@ -23,8 +23,18 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" data-target="#logout" data-toggle="modal" class="glyphicon glyphicon-log-out">
-                            Logout</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="false" aria-expanded="false">
+                                <img style="max-height:25px; margin-top: -5px;" class="" th:src="@{/ext/logo.png}"/>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-left">
+                                <li><a href="#" th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumer/accountno/{accountNo}(accountNo=${account.accountNo})}">Change Password</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#" data-target="#logout" data-toggle="modal" class="glyphicon glyphicon-log-out">
+                                    Logout</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -361,8 +371,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <span th:if="${caller} == 'live'"> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
-                    <span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>
+                    <span> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
                 </div>
             </div>
         </div>

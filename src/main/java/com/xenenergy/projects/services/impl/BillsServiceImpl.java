@@ -67,4 +67,9 @@ public class BillsServiceImpl implements BillsService {
         return billsDao.findByOldAcctNo(oldAcctNo);
     }
 
+    @Override
+    public List<Bills> findByOldAcctNoErc(String oldAcctNo) {
+        return billsDao.findByOldAcctNoErc(oldAcctNo);
+    }
+
 }

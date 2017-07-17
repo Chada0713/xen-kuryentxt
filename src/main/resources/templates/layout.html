@@ -30,6 +30,26 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalDelete" role="dialog" aria-labelledby="modalDelete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 id="titleDel" class="modal-title">Kuryentxt</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="msgsDelete"></span>
+                    <input type="text" class="form-control" id="inputValue" placeholder="Type 'Yes' if you want to delete and 'No' if not"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="btn" id="btnValidate"></a>
+                    <a href="#" class="btn" id="btnSubmitDel" style="display: none;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="logout" role="dialog" aria-labelledby="logout" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -49,25 +69,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="logoutConsumer" role="dialog" aria-labelledby="logout" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 id="title" class="modal-title">Logout</h4>
-                </div>
-                <div class="modal-body">
-                    <span>Are you sure you want to logout</span>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <span th:if="${caller} == 'live'"> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
-                    <span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="viewaccount" role="dialog" aria-labelledby="copyTemplateLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -80,14 +81,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <div id="push"></div>
 </div>

@@ -3,16 +3,14 @@ package com.xenenergy.projects.controllers.restapi;
 import com.xenenergy.projects.entities.Bills;
 import com.xenenergy.projects.services.interfaces.BillsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by xesi on 17/05/2017.
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("/api/bills")
 public class BillsRestController {
@@ -28,5 +26,17 @@ public class BillsRestController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Bills getById(@PathVariable("id") long id) {
         return billsService.getById(id);
+    }
+
+    @CrossOrigin(origins = "http://localhost:85") //IP Address to change
+    @RequestMapping(value = "/ercgetbills", method = RequestMethod.GET)
+    public List<Bills> retrieveAllBills() {
+        return billsService.getAllBills();
+    }
+
+    @CrossOrigin(origins = "http://localhost:85") //IP Address to change
+    @RequestMapping(value = "/ercgetbills/{accountNo}", method = RequestMethod.GET)
+    public List<Bills> retrieveAllBillsByAccountNumber(@PathVariable("accountNo") String accountNo) {
+        return billsService.findByOldAcctNoErc(accountNo);
     }
 }

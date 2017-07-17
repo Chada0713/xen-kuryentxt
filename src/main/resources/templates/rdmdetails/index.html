@@ -106,9 +106,9 @@
                                     <td th:text="${rdmdetailList.endSequence}"></td>
                                     <td th:text="${rdmdetailList.consumerCount}"></td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='rdmdetails/delete/'+${rdmdetailList.id},
-                                          data-message='Are you sure you want to delete?' +${rdmdetailList.id},
+                                          data-message='Are you sure you want to delete ' +${rdmdetailList.id} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

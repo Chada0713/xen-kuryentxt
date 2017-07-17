@@ -19,15 +19,15 @@
                            role="button" aria-haspopup="false" aria-expanded="false">Masterlist Management <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu  dropdown-menu-left">
-                            <li><a href="/Kuryentxt/rdm">Routes</a></li>
-                            <li><a href="/Kuryentxt/accounts">Accounts</a></li>
+                            <li><a th:href="@{/rdm}">Routes</a></li>
+                            <li><a th:href="@{/accounts}">Accounts</a></li>
                             <li class="divider"></li>
-                            <li><a href="/Kuryentxt/du-area">Area</a></li>
-                            <li><a href="/Kuryentxt/cut-off">Cut-off</a></li>
-                            <li><a href="/Kuryentxt/activation-code">Device</a></li>
-                            <li><a href="/Kuryentxt/readers">Meter Readers</a></li>
-                            <li><a href="/Kuryentxt/properties">Properties</a></li>
-                            <li><a href="/Kuryentxt/remarks">Remarks</a></li>
+                            <li><a th:href="@{/du-area}">Area</a></li>
+                            <li><a th:href="@{/cut-off}">Cut-off</a></li>
+                            <li><a th:href="@{/activation-code}">Device</a></li>
+                            <li><a th:href="@{/readers}">Meter Readers</a></li>
+                            <li><a th:href="@{/properties}">Properties</a></li>
+                            <li><a th:href="@{/remarks}">Remarks</a></li>
                             <!--<li role="separator" class="divider"></li>
                            <li class="dropdown-header">Accounts</li>-->
                         </ul>
@@ -37,12 +37,12 @@
                         <span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="/Kuryentxt/ratemaster">Rate Master</a></li>
-                            <li><a href="/Kuryentxt/lifeline">Lifeline</a></li>
-                            <li><a href="/Kuryentxt/seniorcitizen">Senior Citizen</a></li>
+                            <li><a th:href="@{/ratemaster}">Rate Master</a></li>
+                            <li><a th:href="@{/lifeline}">Lifeline</a></li>
+                            <li><a th:href="@{/seniorcitizen}">Senior Citizen</a></li>
                             <li class="divider"></li>
-                            <li><a href="/Kuryentxt/perkwchargetemplate">Per KW Charge Template</a></li>
-                            <li><a href="/Kuryentxt/fixedchargetemplate">Fixed Charge Template</a></li>
+                            <li><a th:href="@{/perkwchargetemplate}">Per KW Charge Template</a></li>
+                            <li><a th:href="@{/fixedchargetemplate}">Fixed Charge Template</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
@@ -50,21 +50,21 @@
                         Transaction
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="/Kuryentxt/coreloss">Coreloss</a></li>
-                            <li><a href="/Kuryentxt/addoncharge">Add-on Charges</a></li>
-                            <li><a href="/Kuryentxt/addonkwh">Add-on Kwh</a></li>
+                            <li><a th:href="@{/coreloss}">Coreloss</a></li>
+                            <li><a th:href="@{/addoncharge}">Add-on Charges</a></li>
+                            <li><a th:href="@{/addonkwh}">Add-on Kwh</a></li>
                             <li class="divider"></li>
-                            <li><a href="/Kuryentxt/devicemaster">Bills</a></li>
+                            <li><a th:href="@{/devicemaster}">Bills</a></li>
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                             role="button" aria-haspopup="false" aria-expanded="false">Reports
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="/Kuryentxt/bills">Bills Report</a></li>
-                            <li><a href="/Kuryentxt/reports">Billing Statement</a></li>
+                            <li><a th:href="@{/bills}">Bills Report</a></li>
+                            <li><a th:href="@{/reports}">Billing Statement</a></li>
                             <li class="divider"></li>
-                            <li><a href="/Kuryentxt/dbeventmonitor">DB Event Monitor</a></li>
+                            <li><a th:href="@{/dbeventmonitor}">DB Event Monitor</a></li>
                         </ul>
                     </li>
                     <li class="dropdown" th:if="${caller} == 'live'">

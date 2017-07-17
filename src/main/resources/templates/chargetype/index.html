@@ -81,9 +81,9 @@
                                     <td th:text="${chargetypelist.chargeTypeCode}"></td>
                                     <td th:text="${chargetypelist.chargeTypeName}"></td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='charge-type/delete/'+${chargetypelist.id},
-                                            data-message='Are you sure you want to delete?' + ${chargetypelist.chargeTypeCode},
+                                            data-message='Are you sure you want to delete ' + ${chargetypelist.chargeTypeCode} + '? [Yes/No]',
                                             data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

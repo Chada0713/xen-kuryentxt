@@ -148,9 +148,9 @@
                                              th:text="${#numbers.formatDecimal(perKwChargeDetail.fixedAddtl, 1, 4)}"></div>
                                     </td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='details/delete/'+${perKwChargeDetail.id},
-                                           data-message='Are you sure you want to delete?' +${perKwChargeDetail.perKwRateName},
+                                           data-message='Are you sure you want to delete ' +${perKwChargeDetail.perKwRateName} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

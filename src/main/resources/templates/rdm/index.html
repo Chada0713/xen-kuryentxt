@@ -115,10 +115,10 @@
                                                    <i class="glyphicon glyphicon-remove"></i></span>
                                         </div>
                                     </td>
-                                    <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                    <td> <!--genericModal-->
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='rdm/delete/'+${rdmlist.id},
-                                         data-message='Are you sure you want to delete?' +${rdmlist.rdmName},
+                                         data-message='Are you sure you want to delete ' +${rdmlist.rdmName} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

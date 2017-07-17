@@ -235,9 +235,33 @@ $(document).ready(function () {
     });
 
     <!-- Form confirm (yes/ok) handler, submits form -->
-    $('#btnSubmit').find('.modal-footer #confirm').on('click', function () {
+    /*$('#btnSubmit').find('.modal-footer #confirm').on('click', function () {
         $(this).data('form').submit();
+    });*/
+
+    $('#modalDelete').on('show.bs.modal', function (e) {
+        $url = $(e.relatedTarget).attr('data-url');
+        $message = $(e.relatedTarget).attr('data-message');
+        $title = $(e.relatedTarget).attr('data-title');
+        $btnValue = $(e.relatedTarget).attr('data-btn-value');
+        $btnClass = $(e.relatedTarget).attr('data-class');
+        $('#titleDel').text($title);
+        $('#msgsDelete').text($message);
+        $("#btnSubmitDel").attr("href", $url).addClass($btnClass);
+        $("#btnSubmitDel").text($btnValue);
+        $("#btnValidate").text($btnValue).addClass($btnClass)
     });
+
+    <!-- Form confirm (yes/ok) handler, submits form -->
+    /*.find('.modal-footer')*/
+    $('#btnValidate').on('click', function () {
+        var path = $('#inputValue').val();
+        if(path == 'yes' || path == 'YES' || path == 'Yes'){
+            var href = $('#btnSubmitDel').attr('href');
+            window.location.href = href;
+        }else{ $('#modalDelete .close').click(); }
+    });
+
 
     /* Cascading Dropdown*/
     $("#idArea").change(function () { //

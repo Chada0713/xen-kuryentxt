@@ -104,9 +104,9 @@
                                     </td>
                                     <td>
                                         <div th:if="${fixedchargelist.isCurrent != 'Y' and fixedchargelist.isLocked != 'Y'}">
-                                            <a href="#" data-target="#genericModal" data-toggle="modal"
+                                            <a href="#" data-target="#modalDelete" data-toggle="modal"
                                                th:attr="data-url='fixedcharge/delete/'+${fixedchargelist.id},
-                                            data-message='Are you sure you want to delete?' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')},
+                                            data-message='Are you sure you want to delete ' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')}  + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>
@@ -121,9 +121,9 @@
                                             </a>
                                         </div>
                                         <div th:if="${fixedchargelist.isCurrent != 'Y' and fixedchargelist.isLocked == 'Y'}">
-                                            <a href="#" data-target="#genericModal" data-toggle="modal"
+                                            <a href="#" data-target="#modalDelete" data-toggle="modal"
                                                th:attr="data-url='fixedcharge/delete/'+${fixedchargelist.id},
-                                            data-message='Are you sure you want to delete?' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')},
+                                            data-message='Are you sure you want to delete?' + ${#dates.format(fixedchargelist.effectivityDate, 'yyyy-MM-dd')} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

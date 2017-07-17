@@ -20,6 +20,9 @@ public interface PropertyDao extends PagingAndSortingRepository<Property, Long> 
     @Query("select a from Property a where propertyName like 'DU%'")
     List<Property> getAllDuProperty();
 
+    @Query("select a from Property a where propertyName not like 'DU%' and propertyName not like 'SC%'")
+    List<Property> getAllNotDuProperty();
+
     @Query("select a from Property a where propertyName like 'SC%'")
     List<Property> getAllScProperty();
 }

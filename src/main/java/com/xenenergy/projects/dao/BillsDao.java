@@ -17,4 +17,6 @@ public interface BillsDao extends JpaRepository<Bills, Long>{
     Bills findByBillNo(String billno);
     @Query("select a from Bills a where a.oldAcctNo = ?1")
     List<Bills> findByOldAcctNo(String oldAcctNo);
+    @Query("select a from Bills a where a.oldAcctNo like %?1%")
+    List<Bills> findByOldAcctNoErc(String oldAcctNo);
 }

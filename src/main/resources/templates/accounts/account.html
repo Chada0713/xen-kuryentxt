@@ -33,7 +33,7 @@
                             <img style="max-height:25px; margin-top: -5px;" class="" th:src="@{/ext/logo.png}"/>
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left">
-                            <li><a href="#" th:href="@{/consumer/accountno/{accountNo}(accountNo=${account.accountNo})}">Change Password</a></li> <!--116.93.120.201-->
+                            <li><a href="#" th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumer/accountno/{accountNo}(accountNo=${account.accountNo})}">Change Password</a></li> <!--116.93.120.201-->
                             <li class="divider"></li>
                             <li><a href="#" data-target="#logout" data-toggle="modal" class="glyphicon glyphicon-log-out">
                                 Logout</a></li>
@@ -50,8 +50,6 @@
                 <div class="table-responsive">
                     <div class="panel panel-default">
                         <div class="panel-heading text-center panel-relative">
-                            <a th:href="${prevPageUrl}"><i
-                                    class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
                             <strong>Account</strong>
                         </div>
                         <div class="panel-body">
@@ -62,8 +60,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel-body">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left"> <!--table-striped table-bordered-->
                                 <table class="table table-bordered">
                                     <tbody>
@@ -87,7 +83,9 @@
                                                     <td th:text="${du[2]} + ' ' + ${du[3]}"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td th:text="${du[4]}"></td>
+                                                    <td>
+                                                        Contact No.: <span th:text="${du[4]}"></span>
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -95,10 +93,10 @@
 
                                         <td>
                                             <br/><br/>
-                                            <i><p class="text-center">Service will be disconnected without prior notice if not paid<br/>
+                                            <p class="text-center"><i><b>Service will be disconnected without prior notice if not paid<br/>
                                                 within disconnection date.<br/><br/>
                                                 Verification in your meter reading/billing statement will be entertained<br/>
-                                                within 5 days from receipt thereof.<br/></p></i>
+                                                within 5 days from receipt thereof.<br/></b></i></p>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -277,9 +275,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <span> <a th:href="@{http://xenenergy.com.ph/}" class="btn btn-danger">Logout</a></span>
-                    <!--th:if="${caller} == 'live'" -->
-                    <!--<span th:if="${caller} != 'live'"> <a th:href="@{/}" class="btn btn-danger">Logout</a></span>-->
+                    <span> <a th:href="@{http://116.93.120.201:85/KuryentxtAdmin/consumerlogin}" class="btn btn-danger">Logout</a></span>
                 </div>
             </div>
         </div>

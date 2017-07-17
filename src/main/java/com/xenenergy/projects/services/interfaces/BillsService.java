@@ -14,6 +14,7 @@ public interface BillsService extends CRUDService<Bills> {
     int countBills(String dateFrom, String dateTo);
     List<Bills> getAllBills();
     Bills findByBillNo(String billno);
-    @Query("select a from Bills a where a.oldAcctNo = ?1")
+
     List<Bills> findByOldAcctNo(String oldAcctNo);
+    List<Bills> findByOldAcctNoErc(String oldAcctNo);
 }

@@ -95,9 +95,9 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='activation-code/delete/'+${activationlist.id},
-                                            data-message='Are you sure you want to delete?' + ${activationlist.activationCode},
+                                            data-message='Are you sure you want to delete ' + ${activationlist.activationCode} + '? [Yes/No]',
                                              data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

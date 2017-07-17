@@ -81,9 +81,9 @@
                                     <td th:text="${propertylist.propertyDescription}"></td>
                                     <td th:text="${propertylist.propertyValue}"></td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='properties/delete/'+${propertylist.id},
-                                           data-message='Are you sure you want to delete?' +${propertylist.propertyName},
+                                           data-message='Are you sure you want to delete ' +${propertylist.propertyName} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

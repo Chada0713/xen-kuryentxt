@@ -27,7 +27,7 @@ public class SettingsController {
     @RequestMapping(value = "/settings", method = RequestMethod.GET)
     public String showbillForm(Model model){
         PropertyWrapper duProperty = new PropertyWrapper();
-        List<Property> propertyLists = propertyService.findAllByOrderById();
+        List<Property> propertyLists = propertyService.getAllNotDuProperty();
         duProperty.setProperties(propertyService.getAllDuProperty());
         List<String> t = new ArrayList<>();
 
@@ -80,7 +80,7 @@ public class SettingsController {
     @GetMapping("/settings/editall")
     public String editAllForm(Model model){
         PropertyWrapper duProperty = new PropertyWrapper();
-        duProperty.setProperties(propertyService.findAllByOrderById()); /*duProperty.getProperties().forEach(System.out::println);*/
+        duProperty.setProperties(propertyService.getAllNotDuProperty()); /*duProperty.getProperties().forEach(System.out::println);*/
         model.addAttribute("duproperties", duProperty);
         return "settings/editadvance";
     }

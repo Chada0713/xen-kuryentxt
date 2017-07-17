@@ -18,5 +18,7 @@ public interface PropertyService extends CRUDService<Property> {
 
     List<Property> getAllDuProperty();
 
+    List<Property> getAllNotDuProperty();
+
     List<Property> getAllScProperty();
 }

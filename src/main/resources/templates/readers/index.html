@@ -74,9 +74,9 @@
                                 <tr th:each="reader : ${readerslist}">
                                     <td th:text="${reader.readersName}"></td>
                                     <td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                        <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='/readers/delete/'+${reader.id},
-                                             data-message='Are you sure you want to delete?' +${reader.readersName},
+                                             data-message='Are you sure you want to delete ' +${reader.readersName} + '? [Yes/No]',
                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
                                              <span class="fa-stack">
                                                 <i class="glyphicon glyphicon-trash"></i>

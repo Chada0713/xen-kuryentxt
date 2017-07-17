@@ -75,6 +75,7 @@ public class AccountController {
         model.addAttribute("bills", billsList);
         model.addAttribute("du", du);
         model.addAttribute("area", duAreaService.getAll());
+        model.addAttribute("enableback", true);
         model.addAttribute("rateMasterService", rateMasterService.findAllByOrderById());
         return "accounts/account";
     }
@@ -117,7 +118,7 @@ public class AccountController {
         model.addAttribute("rateMasterService", rateMasterService.findAllByOrderById());
         model.addAttribute("prevPageUrl", "/Kuryentxt/rdm/" + Long.toString(cid) + "/rdmdetails/" + Long.toString(id) +
                 "/route/" + Long.toString(rid) + "/startseq/" + Integer.toString(rdmDetail.getStartSequence()) + "/endseq/" + Integer.toString(rdmDetail.getEndSequence()));
-        return "accounts/account";
+        return "accounts/accountdetails";
     }
 
     @RequestMapping(value = "/accounts/oldaccountno/{oldAccountno}/{cid}/{rid}", method = RequestMethod.GET)
@@ -157,6 +158,6 @@ public class AccountController {
         model.addAttribute("rateMasterService", rateMasterService.findAllByOrderById());
         model.addAttribute("prevPageUrl", "/Kuryentxt/du-area/"+cid+"/routes/" + route.getId() + "/startseq/" +
                 route.getStartSequence() + "/endseq/" + route.getEndSequence());
-        return "accounts/account";
+        return "accounts/accountdetails";
     }
 }
