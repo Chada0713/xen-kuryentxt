@@ -90,10 +90,6 @@ public class BillingStatementController {
         statementModels.add(statementModel);
         try {
             Map<String, Object> params = new HashMap<String, Object>();
-            /*params.put("SUBREPORT_DIR", request.getSession().getServletContext()
-                    .getRealPath("/") + "static\\jasper\\");
-            params.put("IMAGE_DIR", request.getSession().getServletContext()
-                    .getRealPath("/") + "static\\images\\");*/
 
             JRDataSource billingStatement = new JRBeanCollectionDataSource(statementModels);
             JasperRunManager.runReportToPdfStream(reportStream, servletOutputStream, params, billingStatement);

@@ -50,17 +50,11 @@ public class SeniorCitizenController {
         // param. decreased by 1.
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
-        /*Page<SeniorCitizen> seniorCitizen = seniorCitizenService.findAllPageable(new PageRequest(evalPage, evalPageSize));
-        Pager pager = new Pager(seniorCitizen.getTotalPages(), seniorCitizen.getNumber(), property.BUTTONS_TO_SHOW);*/
-
         List<Property> seniorCitizen = propertyService.getAllScProperty();
 
         modelAndView.addObject("seniorCitizenLists", seniorCitizen);
         modelAndView.addObject("countOfSenior", accountService.findCountOfSenior());
         modelAndView.addObject("countOfId", accountService.findCountOfId());
-        /*modelAndView.addObject("selectedPageSize", evalPageSize);
-        modelAndView.addObject("pageSizes", property.PAGE_SIZES);
-        modelAndView.addObject("pager", pager);*/
         return modelAndView;
     }
 
@@ -79,26 +73,6 @@ public class SeniorCitizenController {
         }
         return "redirect:/seniorcitizen";
     }
-
-    /*@GetMapping("/{operation}/{id}")
-    public String editDeleteForm(@PathVariable("operation") String operation, @PathVariable int id,
-                                 Model model, final RedirectAttributes redirectAttributes){
-        if(operation.equals("delete")){
-            if(seniorCitizenService.deleteById(id)){
-                redirectAttributes.addFlashAttribute("delete", "success");
-            }else{
-                redirectAttributes.addFlashAttribute("delete", "unsuccess");
-            }
-        }else if(operation.equals("edit")){
-            if(seniorCitizenService.getById(id) != null){
-                model.addAttribute("seniorCitizen", seniorCitizenService.getById(id));
-                return "seniorcitizen/edit";
-            }else{
-                redirectAttributes.addFlashAttribute("status", "notfound");
-            }
-        }
-        return "redirect:/seniorcitizen";
-    }*/
 
     @GetMapping("/edit")
     public String editForm(Model model){

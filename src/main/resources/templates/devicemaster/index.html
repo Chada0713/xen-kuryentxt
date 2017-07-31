@@ -42,7 +42,6 @@
                                             <div>0000-00-00 00:00:00</div>
                                         </div>
                                     </td>
-                                    <!--${#dates.format(dumlist.uploadEndTs, 'yyyy-MM-dd HH:mm')}-->
                                     <td th:text="${dumlist.noOfBills}"></td>
                                     <td>
                                         <span th:each="mr : ${meterReader}" th:if="${mr.id} == ${dumlist.idReader}"
@@ -56,22 +55,6 @@
                                                    <i class="glyphicon glyphicon-remove"></i></span>
                                         </div>
                                     </td>
-                                    <!--<td>
-                                        <a href="#" data-target="#genericModal" data-toggle="modal"
-                                           th:attr="data-url='device/delete/'+${dumlist.id},
-                                         data-message='Are you sure you want to delete ' +${dumlist.id},
-                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
-                                             <span class="fa-stack">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </span>
-                                        </a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="#" data-th-href="@{/devicemaster/edit/{id}(id=${dumlist.id})}">
-                         <span class="fa-stack">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </span>
-                                        </a>
-                                    </td>-->
                                 </tr>
                                 </tbody>
                             </table>

@@ -18,15 +18,12 @@ import java.util.Optional;
 @RequestMapping("/")
 public class HomeController {
 
-    /*@Value("${kuryentxt.du-code}")
-    private String ducode;*/
-
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model, @RequestParam Optional<String> caller) {
         if (caller.isPresent()) {
             model.addAttribute("caller", caller.get());
         }
-        //model.addAttribute("ducode", ducode);
+
         return "index";
     }
 }

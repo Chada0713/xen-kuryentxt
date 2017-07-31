@@ -84,10 +84,8 @@ public class AccountController {
     public String showAccountByOldAcctNo(Model model, @PathVariable("oldAccountno") String oldaccountno,
                                          @PathVariable("cid") long cid, @PathVariable("id") long id,
                                          @PathVariable("rid") long rid){
-        //System.out.println("Old Account No >>> " + accountService.getByAccountNo(accountno).getOldAccountNo());
         List<Bills> billsList = billsService.findByOldAcctNo(oldaccountno);
 
-        //System.out.println("cid >> " + cid + ", id >> " + id + ", rid >> " + rid);
         String[] du = new String[7];
         if(propertyService.findByPropertyName("DU_CODE") != null){
             du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();
@@ -124,10 +122,9 @@ public class AccountController {
     @RequestMapping(value = "/accounts/oldaccountno/{oldAccountno}/{cid}/{rid}", method = RequestMethod.GET)
     public String showAccountByOldAcctNoArea(Model model, @PathVariable("oldAccountno") String oldaccountno,
                                          @PathVariable("cid") long cid, @PathVariable("rid") long rid){
-        //System.out.println("Old Account No >>> " + accountService.getByAccountNo(accountno).getOldAccountNo());
+
         List<Bills> billsList = billsService.findByOldAcctNo(oldaccountno);
 
-        //System.out.println("cid >> " + cid + ", id >> " + id + ", rid >> " + rid);
         String[] du = new String[7];
         if(propertyService.findByPropertyName("DU_CODE") != null){
             du[0] = propertyService.findByPropertyName("DU_CODE").getPropertyValue();

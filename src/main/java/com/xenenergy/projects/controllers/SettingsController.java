@@ -80,7 +80,7 @@ public class SettingsController {
     @GetMapping("/settings/editall")
     public String editAllForm(Model model){
         PropertyWrapper duProperty = new PropertyWrapper();
-        duProperty.setProperties(propertyService.getAllNotDuProperty()); /*duProperty.getProperties().forEach(System.out::println);*/
+        duProperty.setProperties(propertyService.getAllNotDuProperty());
         model.addAttribute("duproperties", duProperty);
         return "settings/editadvance";
     }
@@ -88,7 +88,6 @@ public class SettingsController {
     @PostMapping("settings/update")
     public String update(@ModelAttribute("duproperties") PropertyWrapper duproperties,
                          final RedirectAttributes redirectAttributes){
-        //System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
         for(Property property : duproperties.getProperties()){
             if(propertyService.update(property) != null){
                 redirectAttributes.addFlashAttribute("edit", "success");
@@ -103,7 +102,6 @@ public class SettingsController {
     @PostMapping("settings/updateall")
     public String updateAll(@ModelAttribute("duproperties") PropertyWrapper duproperties,
                          final RedirectAttributes redirectAttributes){
-        //System.out.println(duproperties.getProperties() != null ? duproperties.getProperties().size() : "null list");
         for(Property property : duproperties.getProperties()){
             if(propertyService.update(property) != null){
                 redirectAttributes.addFlashAttribute("edit", "success");

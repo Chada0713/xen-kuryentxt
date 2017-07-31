@@ -199,11 +199,6 @@ $(function () {
         numberOfMonths: 1,
         dateFormat: 'yy-mm-dd',
         minDate: 0
-        /*  onSelect: function (selected) {
-         var dt = new Date(selected);
-         dt.setDate(dt.getDate() + 1);
-         $("#effectivityDate").datepicker("option", "minDate", dt);
-         }*/
     });
 });
 
@@ -242,11 +237,6 @@ $(document).ready(function () {
         $("#btnSubmit").text($btnValue);
     });
 
-    <!-- Form confirm (yes/ok) handler, submits form -->
-    /*$('#btnSubmit').find('.modal-footer #confirm').on('click', function () {
-        $(this).data('form').submit();
-    });*/
-
     $('#modalDelete').on('show.bs.modal', function (e) {
         $url = $(e.relatedTarget).attr('data-url');
         $message = $(e.relatedTarget).attr('data-message');
@@ -260,8 +250,6 @@ $(document).ready(function () {
         $("#btnValidate").text($btnValue).addClass($btnClass)
     });
 
-    <!-- Form confirm (yes/ok) handler, submits form -->
-    /*.find('.modal-footer')*/
     $('#btnValidate').on('click', function () {
         var path = $('#inputValue').val();
         if(path == 'yes' || path == 'YES' || path == 'Yes'){
@@ -295,19 +283,15 @@ $(document).ready(function () {
     $('#viewaccount').on('show.bs.modal', function (e) {
         $url = $(e.relatedTarget).attr('data-url');
         $param = $(e.relatedTarget).attr('data-param');
-        // $message = $(e.relatedTarget).attr('data-message');
-        //$('#url').text($url);
-        $("#deleteBtn").attr("href", $url); // #deleteBtn(ito po yung id ng hyperlink)
+        $("#deleteBtn").attr("href", $url);
         var infoModal = $('#url');
-        //alert($param);
         $.ajax({
             type: "GET",
             url:  $url,
             dataType: 'json',
             data: {"oldaccountno": $param},
-            success: function (result) {   /*<ul><li>id: '+result.id+'</li><li>seqNo: '+result.seqNo+'</li></ul>*/
+            success: function (result) {
                 console.log(result);
-                //alert(result);
                 var ip='', sc='', dowload='';
                 if(result.isDownloaded == "Y"){ dowload = "Yes" } else if (result.isDownloaded == "N"){ dowload = "No" }
                 if(result.isSeniorCitizen == "Y"){ cs = "Yes"; } else if(result.isSeniorCitizen == "N"){ cs = "No" }

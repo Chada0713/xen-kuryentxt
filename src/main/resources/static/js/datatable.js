@@ -12,7 +12,6 @@ $(document).ready( function () {
         "aoColumns": [
             { "mData": "oldAccountNo",
                 render: function ( data, type, row, meta ) {
-                    /*return "<a href='#' data-url='/Kuryentxt/api/account' data-param='"+data+"' data-target='#viewaccount' data-toggle='modal' >" + data + "</a>";*/
                     return "<a href='#' onclick='return false;' data-toggle='popover' " +
                         "data-content='"+ "<a href="+'#'+" data-url="+'/Kuryentxt/api/account'+" data-param="+data+" data-target="+'#viewaccount'+" data-toggle="+'modal'+"> View Account </a> " +
                         "<br/><a href="+'bills/viewbillbyaccountno?oldaccountno='+data+"> View Current Bill </a>"

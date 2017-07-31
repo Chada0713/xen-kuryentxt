@@ -50,7 +50,6 @@ public class RouteDefinitionController {
 
         Page<Rdm> rdms = definitionService.findByRdmNameOrIdContaining(search, new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(rdms.getTotalPages(), rdms.getNumber(), property.BUTTONS_TO_SHOW);
-        /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
 
         modelAndView.addObject("rdmlists", rdms);
         modelAndView.addObject("rdm", new Rdm());

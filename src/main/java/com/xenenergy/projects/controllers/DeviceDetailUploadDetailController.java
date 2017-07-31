@@ -38,7 +38,6 @@ public class DeviceDetailUploadDetailController {
 
         Page<DeviceUploadDetail> dud = deviceUploadDetailService.findAllByIdMasterOrderByIdDesc(cid, new PageRequest(evalPage, evalPageSize));
         Pager pager = new Pager(dud.getTotalPages(), dud.getNumber(), property.BUTTONS_TO_SHOW);
-        /*Page<Rdm> rdmsearch = definitionService.findByRdmNameAndIdContaining()*/
 
         modelAndView.addObject("dudLists", dud);
         modelAndView.addObject("dum", deviceUploadMasterService.getById(cid));

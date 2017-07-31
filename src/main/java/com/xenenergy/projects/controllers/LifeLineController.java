@@ -56,7 +56,6 @@ public class LifeLineController {
         return "lifeline/add";
     }
 
-    /*public String save(@Valid LifeLine lifeLine, BindingResult bindingResult, RedirectAttributes redirectAttributes){*/
     @PostMapping("/create")
     public String save(LifeLine lifeLine, RedirectAttributes redirectAttributes) {
         if (lifeLineService.insert(lifeLine) != null) {

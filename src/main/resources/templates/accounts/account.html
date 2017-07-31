@@ -6,7 +6,6 @@
     <object th:replace="styles :: styles"></object>
 </head>
 <body>
-<!--<div th:replace="accountheader :: navigator"></div>-->
 <div class="container">
     <div layout:fragment="content">
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -21,12 +20,9 @@
                     </button>
                     <span class="navbar-brand"><img style="max-width:180px; margin-top: -9px;" class=""
                                                     th:src="@{/images/xen_logo.png}"/></span>
-                    <!--<a class="navbar-brand" th:href="@{/}"></a>-->
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <!--<li><a href="#" data-target="#logout" data-toggle="modal" class="glyphicon glyphicon-log-out">
-                            Logout</a></li>-->
                         <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                            role="button" aria-haspopup="false" aria-expanded="false">
@@ -40,9 +36,7 @@
                         </ul>
                         </li>
                     </ul>
-
-
-                </div><!--/.nav-collapse -->
+                </div>
             </div>
         </nav>
         <div class="row">
@@ -60,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left"> <!--table-striped table-bordered-->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-left">
                                 <table class="table table-bordered">
                                     <tbody>
                                     <tr>
@@ -254,7 +248,7 @@
                             </div>
                             <div th:if="${#lists.isEmpty(bills)}"
                                  class="text-center alert alert-danger alert-dismissible col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                                 role="alert"> <!--col-lg-4 col-md-4 col-sm-4 col-xs-4-->
+                                 role="alert">
                                 <strong>No Bills Found</strong>
                             </div>
                         </div>

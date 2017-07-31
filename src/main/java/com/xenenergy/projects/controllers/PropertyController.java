@@ -31,9 +31,6 @@ public class PropertyController {
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("properties/index");
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
-        // Evaluate page. If requested parameter is null or less than 0 (to
-        // prevent exception), return initial size. Otherwise, return value of
-        // param. decreased by 1.
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
         Page<Property> properties = propertyService.findAllPageable(new PageRequest(evalPage, evalPageSize));

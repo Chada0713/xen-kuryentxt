@@ -92,12 +92,10 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="rdmlist : ${rdmlists}">
-                                    <!-- <td th:text="${rdmlist.id}"></td>-->
                                     <td>
                                         <a href="#" data-th-href="@{/rdm/{cid}/rdmdetails(cid=${rdmlist.id})}"
-                                           data-toggle="popover" title="" th:attr="data-param=${rdmlist.id}"> <!---->
+                                           data-toggle="popover" title="" th:attr="data-param=${rdmlist.id}">
                                             Manage Routes</a>
-                                        <!--th:attr="data-param=${rdmlist.id}"-->
                                     </td>
                                     <td th:text="${rdmlist.id}"></td>
                                     <td th:text="${#dates.format(rdmlist.ts, 'yyyy-MM-dd HH:mm')}"></td>
@@ -115,7 +113,7 @@
                                                    <i class="glyphicon glyphicon-remove"></i></span>
                                         </div>
                                     </td>
-                                    <td> <!--genericModal-->
+                                    <td>
                                         <a href="#" data-target="#modalDelete" data-toggle="modal"
                                            th:attr="data-url='rdm/delete/'+${rdmlist.id},
                                          data-message='Are you sure you want to delete ' +${rdmlist.rdmName} + '? [Yes/No]',
@@ -145,13 +143,6 @@
                             </div>
                             <div th:if="${rdmlists.totalPages &gt;= 1}">
                                 <div class="form-group col-md-12 pagination-centered">
-                                    <!-- <div class="form-group col-md-1">
-                                         <select class="form-control pagination" id="pageSizeSelect">
-                                             <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
-                                                     th:value="${pageSize}"
-                                                     th:selected="${pageSize} == ${selectedPageSize}"></option>
-                                         </select>
-                                     </div>-->
                                     <ul class="pagination pull-right">
                                         <li th:class="${rdmlists.number == 0} ? disabled">
                                             <a class="pageLink"
