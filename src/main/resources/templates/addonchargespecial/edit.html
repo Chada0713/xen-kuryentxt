@@ -1,0 +1,99 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Add On Charge Special</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/addonchargespecial}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Add On Charge Special - Edit</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Updated.
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" method="post" th:object="${addOnChargeSpecial}"
+                                      th:action="@{/addonchargespecial/update}"
+                                      role="form" name="properties_form"
+                                      id="properties_form">
+
+                                    <div class="form-group">
+                                        <div class="col-sm-10">
+                                            <input type="hidden" class="form-control" id="inputId"
+                                                   name="inputId"
+                                                   th:field="*{id}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="datepick" class="col-sm-3 control-label">Service Period End</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="datepick" name="servicePeriodEnd" th:field="*{servicePeriodEnd}"
+                                                   placeholder="2017-01-01"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="accountNo" class="col-sm-3 control-label">Account No</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="accountNo"
+                                                   name="accountNo" th:field="*{accountNo}"
+                                                   placeholder="Account No."/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="chargeName" class="col-sm-3 control-label">Charge Name</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="chargeName"
+                                                   name="chargeName" th:field="*{chargeName}"
+                                                   placeholder="Charge Namee"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="amount" class="col-sm-3 control-label">Amount</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control" id="amount"
+                                                   name="amount" th:field="*{amount}"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success pull-right">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

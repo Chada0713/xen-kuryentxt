@@ -107,6 +107,14 @@ function changePageAndSizeAddOnCharge() {
     });
 }
 $(document).ready(function () {
+    changePageAndSizeAddOnChargeSpecial();
+});
+function changePageAndSizeAddOnChargeSpecial() {
+    $('#pageSizeAddOnChargeSpecial').change(function (evt) {
+        window.location.replace("/addonchargespecial/?pageSize=" + this.value + "&page=1");
+    });
+}
+$(document).ready(function () {
     changePageAndSizeAddOnKwh();
 });
 function changePageAndSizeAddOnKwh() {
