@@ -113,20 +113,36 @@
                                                    <i class="glyphicon glyphicon-remove"></i></span>
                                         </div>
                                     </td>
-                                    <td>
+                                    <td th:if="${rdmlist.id} != '0'">
                                         <a href="#" data-target="#modalDelete" data-toggle="modal"
-                                           th:attr="data-url='rdm/delete/'+${rdmlist.id},
-                                         data-message='Are you sure you want to delete ' +${rdmlist.rdmName} + '? [Yes/No]',
-                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
-                                             <span class="fa-stack">
-                                                <i class="glyphicon glyphicon-trash"></i>
+                                            th:attr="data-url='rdm/delete/'+${rdmlist.id},
+                                            data-message='Are you sure you want to delete ' +${rdmlist.rdmName} + '? [Yes/No]',
+                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
+                                            <span class="fa-stack">
+                                            <i class="glyphicon glyphicon-trash"></i>
                                             </span>
                                         </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="#" data-th-href="@{/rdm/edit/{id}(id=${rdmlist.id})}">
-                         <span class="fa-stack">
-                            <i class="glyphicon glyphicon-edit"></i>
-                        </span>
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td th:if="${rdmlist.id} == '0'">
+                                        <a href="#" th:attr="data-url='rdm/delete/'+${rdmlist.id},
+                                            data-message='Are you sure you want to delete ' +${rdmlist.rdmName} + '? [Yes/No]',
+                                            data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'"
+                                            onclick="return false;"> <!--data-target="#modalDelete" data-toggle="modal"-->
+                                            <span class="fa-stack">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#" data-th-href="@{/rdm/edit/{id}(id=${rdmlist.id})}" onclick="return false;">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </span>
                                         </a>
                                     </td>
                                 </tr>

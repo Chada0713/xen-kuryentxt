@@ -383,7 +383,7 @@ public class BillsController {
         model.addAttribute("du", du);
         model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
         model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
-        model.addAttribute("backButton", "http://116.93.120.201:85/KuryentxtAdmin/ercportal");
-        return "bills/viewbill";
+        model.addAttribute("backButton", "http://116.93.97.197:85/KuryentxtAdmin/ercportal");
+        return "bills/viewaccountbill";
     }
 }

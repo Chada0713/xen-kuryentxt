@@ -61,11 +61,13 @@ public class Account {
     private String isPrivate;
     @Column(name = "IS_DOWNLOADED")
     private String isDownloaded;
+    @Column(name = "IS_NEW")
+    private String isNew;
 
     public Account() {
     }
 
-    public Account(long id, String dateRecCreated, String timeRecCreated, long idArea, long idRdm, long idRoute, String routeCode, String accountNo, String oldAccountNo, int seqNo, int oldSequenceNo, String meterNo, int meterMultiplier, String serialNo, String lastName, String firstName, String mi, String accountName, String addressLn1, String addressLn2, Long prev02Reading, Long prev01Reading, int curRdg, long idRateMaster, String isSeniorCitizen, String isPrivate, String isDownloaded) {
+    public Account(long id, String dateRecCreated, String timeRecCreated, long idArea, long idRdm, long idRoute, String routeCode, String accountNo, String oldAccountNo, int seqNo, int oldSequenceNo, String meterNo, int meterMultiplier, String serialNo, String lastName, String firstName, String mi, String accountName, String addressLn1, String addressLn2, Long prev02Reading, Long prev01Reading, int curRdg, long idRateMaster, String isSeniorCitizen, String isPrivate, String isDownloaded, String isNew) {
         this.id = id;
         this.dateRecCreated = dateRecCreated;
         this.timeRecCreated = timeRecCreated;
@@ -93,6 +95,7 @@ public class Account {
         this.isSeniorCitizen = isSeniorCitizen;
         this.isPrivate = isPrivate;
         this.isDownloaded = isDownloaded;
+        this.isNew = isNew;
     }
 
     public long getId() {
@@ -309,5 +312,13 @@ public class Account {
 
     public void setIsDownloaded(String isDownloaded) {
         this.isDownloaded = isDownloaded;
+    }
+
+    public String getIsNew() {
+        return isNew;
+    }
+
+    public void setIsNew(String isNew) {
+        this.isNew = isNew;
     }
 }

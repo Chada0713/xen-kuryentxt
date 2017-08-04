@@ -23,6 +23,14 @@ $(document).ready( function () {
             { "mData": "meterNo" },
             { "mData": "prev01Reading" },
             { "mData": "curRdg" },
+            { "mData": "isNew",
+                render: function (data) {
+                    if(data == "Y"){
+                        return "<span class='fa-stack green'><i class='glyphicon glyphicon-ok'></i></span>"
+                    }else{
+                        return "<span class='fa-stack red'> <i class='glyphicon glyphicon-remove'></i></span>";
+                    }
+            }},
         ],
         drawCallback: function() {
             $('[data-toggle="popover"]').popover({html:true});

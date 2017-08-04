@@ -196,25 +196,25 @@
                                     <ul class="pagination pull-right">
                                         <li th:class="${routelists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/du-area/{cid}/routes(cid=${duarea.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
                                         <li th:class="${routelists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.number})}">Previous</a>
+                                               th:href="@{/du-area/{cid}/routes(cid=${duarea.id}, pageSize=${selectedPageSize}, page=${routelists.number})}">Previous</a>
                                         </li>
                                         <li th:class="${routelists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/du-area/{cid}/routes(cid=${duarea.id}, pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
                                         <li th:class="${routelists.number + 1 == routelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.number + 2})}">Next</a>
+                                               th:href="@{/du-area/{cid}/routes(cid=${duarea.id}, pageSize=${selectedPageSize}, page=${routelists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${routelists.number + 1 == routelists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/du-area/(pageSize=${selectedPageSize}, page=${routelists.totalPages})}">Last</a>
+                                               th:href="@{/du-area/{cid}/routes(cid=${duarea.id}, pageSize=${selectedPageSize}, page=${routelists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>
