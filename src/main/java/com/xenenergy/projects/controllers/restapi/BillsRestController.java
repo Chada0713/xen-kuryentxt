@@ -28,13 +28,13 @@ public class BillsRestController {
         return billsService.getById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:85") //IP Address to change
+    @CrossOrigin(origins = "http://116.93.120.117:85") //IP Address to change
     @RequestMapping(value = "/ercgetbills", method = RequestMethod.GET)
     public List<Bills> retrieveAllBills() {
         return billsService.getAllBills();
     }
 
-    @CrossOrigin(origins = "http://localhost:85") //IP Address to change
+    @CrossOrigin(origins = "http://116.93.120.117:85") //IP Address to change - http://localhost:85
     @RequestMapping(value = "/ercgetbills/{accountNo}", method = RequestMethod.GET)
     public List<Bills> retrieveAllBillsByAccountNumber(@PathVariable("accountNo") String accountNo) {
         return billsService.findByOldAcctNoErc(accountNo);

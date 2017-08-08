@@ -31,7 +31,8 @@
                                     <div class="form-group">
                                         <label for="idReader" class="col-sm-3 control-label">Reader's Name</label>
                                         <div class="col-sm-9">
-                                            <select class="form-control" th:field="*{idReader}" id="idReader">
+                                            <select class="form-control" id="idReader"> <!--th:field="*{idReader}"-->
+                                                <option value="0" disabled="disabled" selected="selected">--- Select Reader ---</option>
                                                 <option th:each="reader: ${readers}"
                                                         th:value="${reader.id}"
                                                         th:text="${reader.readersName}"

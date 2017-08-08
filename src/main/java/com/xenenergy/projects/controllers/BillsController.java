@@ -270,6 +270,7 @@ public class BillsController {
 
         return "bills/viewbill";
     }
+
     @RequestMapping(value = "/bills/{billno}", method = RequestMethod.GET)
     public String showBilByBillAcct(@PathVariable("billno") String billno, Model model) throws Exception {
         Bills bill = billsService.findByBillNo(billno);
@@ -383,7 +384,7 @@ public class BillsController {
         model.addAttribute("du", du);
         model.addAttribute("account", accountService.getByOldAccountNo(billsService.findByBillNo(billno).getOldAcctNo()));
         model.addAttribute("billAddOnChargeLists", billAddOnChargeService.findByBillNo(billno));
-        model.addAttribute("backButton", "http://116.93.97.197:85/KuryentxtAdmin/ercportal");
+        model.addAttribute("backButton", "http://116.93.120.117:85/KuryentxtAdmin/ercportal");
         return "bills/viewaccountbill";
     }
 }

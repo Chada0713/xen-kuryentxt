@@ -297,28 +297,28 @@ $(document).ready(function () {
                 if(result.isSeniorCitizen == "Y"){ cs = "Yes"; } else if(result.isSeniorCitizen == "N"){ cs = "No" }
                 if(result.isPrivate == "Y"){ ip = "Yes"; } else if(result.isPrivate == "N"){ ip = "No" }
                 htmlData = "<table class='table table-striped'>" +
-                    "<tbody><tr><td>ID</td><td>"+ result.id +"</td></tr>" +
-                    "<tr><td>Date Rec Created</td><td>"+ result.dateRecCreated +"</td></tr>"+
-                    "<tr><td>Time Rec Created</td><td>"+ result.timeRecCreated +"</td></tr>"+
-                    "<tr><td>Area</td><td>"+ result.idArea +"</td></tr>"+
-                    "<tr><td>RDM</td><td>"+ result.idRdm +"</td></tr>"+
-                    "<tr><td>Route Name</td><td>"+ result.idRoute +"</td></tr>"+
-                    "<tr><td>Route Code</td><td>"+ result.routeCode +"</td></tr>"+
-                    "<tr><td>Account No</td><td>"+ result.accountNo +"</td></tr>"+
-                    "<tr><td>Old Account No</td><td>"+ result.oldAccountNo +"</td></tr>"+
-                    "<tr><td>Sequence No</td><td>"+ result.seqNo +"</td></tr>"+
-                    "<tr><td>Meter No.</td><td>"+ result.meterNo +"</td></tr>"+
-                    "<tr><td>Meter Multiplier</td><td>"+ result.meterMultiplier +"</td></tr>"+
-                    "<tr><td>Serial No</td><td>"+ result.serialNo +"</td></tr>"+
-                    "<tr><td>Account Name</td><td>"+ result.accountName +"</td></tr>"+
-                    "<tr><td>Address</td><td>"+ result.addressLn1 + " " + result.addressLn2 +"</td></tr>"+
-                    "<tr><td>Previous Reading 2</td><td>"+ result.prev02Reading +"</td></tr>"+
-                    "<tr><td>Previous Reading 1</td><td>"+ result.prev01Reading +"</td></tr>"+
-                    "<tr><td>Current Reading</td><td>"+ result.curRdg +"</td></tr>"+
-                    "<tr><td>Rate Master</td><td>"+ result.idRateMaster +"</td></tr>"+
-                    "<tr><td>Senior Citizen</td><td>"+ sc +"</td></tr>"+
-                    "<tr><td>Private</td><td>"+ ip +"</td></tr>"+
-                    "<tr><td>Is Downloaded</td><td>"+ dowload +"</td></tr>"+
+                    "<tbody><tr><td>ID</td><td style='font-weight:normal'>"+ result.id +"</td></tr>" +
+                    "<tr><td>Date Rec Created</td><td style='font-weight:normal'>"+ result.dateRecCreated +"</td></tr>"+
+                    "<tr><td>Time Rec Created</td><td style='font-weight:normal'>"+ result.timeRecCreated +"</td></tr>"+
+                    "<tr><td>Area</td><td style='font-weight:normal'>"+ result.idArea +"</td></tr>"+
+                    "<tr><td>RDM</td><td style='font-weight:normal'>"+ result.idRdm +"</td></tr>"+
+                    "<tr><td>Route Name</td><td style='font-weight:normal'>"+ result.idRoute +"</td></tr>"+
+                    "<tr><td>Route Code</td><td style='font-weight:normal'>"+ result.routeCode +"</td></tr>"+
+                    "<tr><td>Account No</td><td style='font-weight:normal'>"+ result.accountNo +"</td></tr>"+
+                    "<tr><td>Old Account No</td><td style='font-weight:normal'>"+ result.oldAccountNo +"</td></tr>"+
+                    "<tr><td>Sequence No</td><td style='font-weight:normal'>"+ result.seqNo +"</td></tr>"+
+                    "<tr><td>Meter No.</td><td style='font-weight:normal'>"+ result.meterNo +"</td></tr>"+
+                    "<tr><td>Meter Multiplier</td><td style='font-weight:normal'>"+ result.meterMultiplier +"</td></tr>"+
+                    "<tr><td>Serial No</td><td style='font-weight:normal'>"+ result.serialNo +"</td></tr>"+
+                    "<tr><td>Account Name</td><td style='font-weight:normal'>"+ result.accountName +"</td></tr>"+
+                    "<tr><td>Address</td><td style='font-weight:normal'>"+ result.addressLn1 + " " + result.addressLn2 +"</td></tr>"+
+                    "<tr><td>Previous Reading 2</td><td style='font-weight:normal'>"+ result.prev02Reading +"</td></tr>"+
+                    "<tr><td>Previous Reading 1</td><td style='font-weight:normal'>"+ result.prev01Reading +"</td></tr>"+
+                    "<tr><td>Current Reading</td><td style='font-weight:normal'>"+ result.curRdg +"</td></tr>"+
+                    "<tr><td>Rate Master</td><td style='font-weight:normal'>"+ result.idRateMaster +"</td></tr>"+
+                    "<tr><td>Senior Citizen</td><td style='font-weight:normal'>"+ sc +"</td></tr>"+
+                    "<tr><td>Private</td><td style='font-weight:normal'>"+ ip +"</td></tr>"+
+                    "<tr><td>Is Downloaded</td><td style='font-weight:normal'>"+ dowload +"</td></tr>"+
                     "</tbody></table>";
                 infoModal.html(htmlData);
             },
