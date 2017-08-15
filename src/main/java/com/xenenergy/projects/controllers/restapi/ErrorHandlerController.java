@@ -24,7 +24,6 @@ public class ErrorHandlerController implements ErrorController {
     @Autowired
     private ErrorAttributes errorAttributes;
 
-
     @RequestMapping(value = PATH)
     public String error(HttpServletRequest request, HttpServletResponse response, Model model) {
         // Appropriate HTTP response code (e.g. 404 or 500) is automatically set by Spring.

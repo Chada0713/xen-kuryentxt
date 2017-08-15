@@ -120,7 +120,7 @@ $(document).ready( function () {
             { "mData": "percentageDisconnected" },
             { "mData": "id" ,
                 render: function (data) {
-                    return "<a href='#' data-target='#genericModal' data-toggle='modal' data-url='/Kuryentxt/du-area/delete/"+ data +"' data-message='Are you sure you want to delete?"+ data +"' data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'  ><span class='fa-stack'><i class='glyphicon glyphicon-trash'></i></span></a>" +
+                    return "<a href='#' data-target='#modalDelete' data-toggle='modal' data-url='/Kuryentxt/du-area/delete/"+ data +"' data-message='Are you sure you want to delete "+ data +" ? [Yes/No]' data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'  ><span class='fa-stack'><i class='glyphicon glyphicon-trash'></i></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
                         "<a href='/Kuryentxt/du-area/edit/" + data + "'><span class='fa-stack'><i class='glyphicon glyphicon-edit'></i></span></a>";
             }},
