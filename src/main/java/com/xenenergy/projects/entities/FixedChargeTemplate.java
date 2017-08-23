@@ -22,7 +22,7 @@ public class FixedChargeTemplate {
     @Column(name = "FIX_CHARGE_LONG_NAME")
     private String fixChargeLongName;
     @Column(name = "PRINT_ORDER")
-    private int printOrder;
+    private int printOrder = 0;
     @Column(name = "AMOUNT")
     private double amount = 0.0000;
     @Column(name = "VAT_RATE")

@@ -46,8 +46,12 @@ public class FixedChargeTemplateController {
 
     @GetMapping("/add")
     public String addForm(Model model){
+        int printOrder = 0;
+        if(fixedChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc() != null){
+            printOrder = fixedChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc();
+        }
         model.addAttribute("fixedChargeTemplateLists", new FixedChargeTemplate());
-        model.addAttribute("printOrder", fixedChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc());
+        model.addAttribute("printOrder", printOrder);
         return "fixedchargetemplate/add";
     }
 

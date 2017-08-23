@@ -16,7 +16,7 @@ public class AddOnChargeSpecial {
     @Column(name = "ID")
     private long id;
     @Column(name = "SERVICE_PERIOD_END")
-    private Date servicePeriodEnd;
+    private String servicePeriodEnd;
     @Column(name = "ACCOUNT_NO")
     private String accountNo;
     @Column(name = "CHARGE_NAME")
@@ -27,7 +27,7 @@ public class AddOnChargeSpecial {
     public AddOnChargeSpecial() {
     }
 
-    public AddOnChargeSpecial(long id, Date servicePeriodEnd, String accountNo, String chargeName, String amount) {
+    public AddOnChargeSpecial(long id, String servicePeriodEnd, String accountNo, String chargeName, String amount) {
         this.id = id;
         this.servicePeriodEnd = servicePeriodEnd;
         this.accountNo = accountNo;
@@ -43,11 +43,11 @@ public class AddOnChargeSpecial {
         this.id = id;
     }
 
-    public Date getServicePeriodEnd() {
+    public String getServicePeriodEnd() {
         return servicePeriodEnd;
     }
 
-    public void setServicePeriodEnd(Date servicePeriodEnd) {
+    public void setServicePeriodEnd(String servicePeriodEnd) {
         this.servicePeriodEnd = servicePeriodEnd;
     }
 

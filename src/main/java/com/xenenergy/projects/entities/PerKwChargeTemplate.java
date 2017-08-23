@@ -27,15 +27,15 @@ public class PerKwChargeTemplate {
     @Column(name = "PRINT_ORDER")
     private int printOrder;
     @Column(name = "AMOUNT")
-    private Double amount = 0.0000;
+    private String amount;
     @Column(name = "VAT_RATE")
     private Double vatRate = 0.00;
     @Column(name = "VAT_AMT")
-    private Double vatAmt = 0.0000;
+    private String vatAmt; /*Double*/
     @Column(name = "FIXED_ADDTL")
     private Double fixedAddtl = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
-    private Double totalAmount = 0.0000;
+    private String totalAmount;
     @Column(name = "IS_SUB_TO_VAT")
     private String isSubToVat;
     @Column(name = "IS_SUB_TO_LIFELINE")
@@ -46,7 +46,7 @@ public class PerKwChargeTemplate {
     public PerKwChargeTemplate() {
     }
 
-    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double amount, Double vatRate, Double vatAmt, Double fixedAddtl, Double totalAmount, String isSubToVat, String isSubToLifeline, String isSubToScDiscount) {
+    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, String amount, Double vatRate, String vatAmt, Double fixedAddtl, String totalAmount, String isSubToVat, String isSubToLifeline, String isSubToScDiscount) {
         this.id = id;
         this.ts = ts;
         this.chargeType = chargeType;
@@ -111,11 +111,11 @@ public class PerKwChargeTemplate {
         this.printOrder = printOrder;
     }
 
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
@@ -127,11 +127,11 @@ public class PerKwChargeTemplate {
         this.vatRate = vatRate;
     }
 
-    public Double getVatAmt() {
+    public String getVatAmt() {
         return vatAmt;
     }
 
-    public void setVatAmt(Double vatAmt) {
+    public void setVatAmt(String vatAmt) {
         this.vatAmt = vatAmt;
     }
 
@@ -143,11 +143,11 @@ public class PerKwChargeTemplate {
         this.fixedAddtl = fixedAddtl;
     }
 
-    public Double getTotalAmount() {
+    public String getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Double totalAmount) {
+    public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
     }
 

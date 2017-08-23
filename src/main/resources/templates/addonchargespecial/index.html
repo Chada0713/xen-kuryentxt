@@ -11,6 +11,8 @@
             <div class="table-responsive">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/}"><i
+                                class="glyphicon glyphicon-home pull-left blue"></i></a>
                         <strong>Add On Charge Special</strong>
                     </div>
                     <div class="panel-body">
@@ -77,7 +79,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="addonchargelist : ${addOnChargeSpecialList}">
-                                    <td th:text="${#dates.format(addonchargelist.servicePeriodEnd, 'yyyy-MM-dd')}"></td>
+                                    <td th:text="${addonchargelist.servicePeriodEnd != null} ? ${addonchargelist.servicePeriodEnd} : ''"></td>
                                     <td th:text="${addonchargelist.accountNo}"></td>
                                     <td th:text="${addonchargelist.chargeName}"></td>
                                     <td th:text="${addonchargelist.amount}"></td>

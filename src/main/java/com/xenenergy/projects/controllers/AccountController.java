@@ -69,6 +69,13 @@ public class AccountController {
         }
         if(propertyService.findByPropertyName("DU_CONTACT_NO") != null){
             du[4] = propertyService.findByPropertyName("DU_CONTACT_NO").getPropertyValue();
+        }else{
+            du[4] = "";
+        }
+        if(propertyService.findByPropertyName("DAYS_TO_DISCONNECT") != null){
+            du[5] = propertyService.findByPropertyName("DAYS_TO_DISCONNECT").getPropertyValue();
+        }else{
+            du[5] = "0";
         }
 
         model.addAttribute("account", accountService.getByAccountNo(accountno));

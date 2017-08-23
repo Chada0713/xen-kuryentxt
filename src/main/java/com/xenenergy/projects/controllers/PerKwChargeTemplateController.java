@@ -49,8 +49,12 @@ public class PerKwChargeTemplateController {
 
     @GetMapping("/add")
     public String addForm(Model model){
+        int printOrder = 0;
+        if(perKwChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc() != null){
+            printOrder = perKwChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc();
+        }
         model.addAttribute("perKwChargeTemplateLists", new PerKwChargeTemplate());
-        model.addAttribute("printOrder", perKwChargeTemplateService.findTopByPrintOrderOrderByPrintOrderDesc());
+        model.addAttribute("printOrder", printOrder);
         return "perkwchargetemplate/add";
     }
 
