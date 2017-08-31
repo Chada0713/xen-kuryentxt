@@ -195,6 +195,19 @@ $(function () {
 });
 
 $(function () {
+    $("#coffstartDate").datepicker({
+        numberOfMonths: 1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+    $("#coffendDate").datepicker({
+        numberOfMonths: 1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 0
+    });
+});
+
+$(function () {
     $("#datepick").datepicker({
         numberOfMonths: 1,
         dateFormat: 'yy-mm-dd',

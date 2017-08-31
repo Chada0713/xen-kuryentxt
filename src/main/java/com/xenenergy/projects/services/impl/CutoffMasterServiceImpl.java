@@ -53,4 +53,9 @@ public class CutoffMasterServiceImpl implements CutoffMasterService {
         }
         return days;
     }
+
+    @Override
+    public CutoffMaster findAllByIdOrderByIdDesc(long id) {
+        return cutoffMasterDao.findAllByIdOrderById(id);
+    }
 }

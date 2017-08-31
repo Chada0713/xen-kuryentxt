@@ -68,6 +68,7 @@ public class ActivationCodeController {
             System.out.println("Has errors="+bindingResult.hasErrors());
             for (FieldError err:bindingResult.getFieldErrors()){
                 System.out.println(err.getDefaultMessage()); // Output: must be greater than or equal to 10
+
             }
             return "redirect:add";
         } else {

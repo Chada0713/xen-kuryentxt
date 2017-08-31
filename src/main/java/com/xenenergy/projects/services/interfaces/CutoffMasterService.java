@@ -11,4 +11,5 @@ import java.util.List;
 @Transactional
 public interface CutoffMasterService extends CRUDService<CutoffMaster> {
     List<Integer> getDays();
+    CutoffMaster findAllByIdOrderByIdDesc(long id);
 }
