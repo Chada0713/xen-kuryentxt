@@ -7,6 +7,7 @@ import com.xenenergy.projects.services.RdmService;
 import com.xenenergy.projects.services.ReadersService;
 import com.xenenergy.projects.services.interfaces.ActivationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -64,25 +66,29 @@ public class ActivationCodeController {
     public String save(@Valid @ModelAttribute("activationCodeObj") ActivationCode activationCodeObj,
                        BindingResult bindingResult,
                        final RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            System.out.println("Has errors="+bindingResult.hasErrors());
-            for (FieldError err:bindingResult.getFieldErrors()){
-                System.out.println(err.getDefaultMessage()); // Output: must be greater than or equal to 10
-
-            }
-            return "redirect:add";
-        } else {
-            if (activationCodeService.findActivationCode(activationCodeObj.getActivationCode()) != null) {
-                redirectAttributes.addFlashAttribute("save", "unsuccess");
+        try{
+            if (bindingResult.hasErrors()) {
+                System.out.println("Has errors="+bindingResult.hasErrors());
+                for (FieldError err:bindingResult.getFieldErrors()){
+                    System.out.println(err.getDefaultMessage()); // Output: must be greater than or equal to 10
+                }
                 return "redirect:add";
             } else {
-                if (activationCodeService.insert(activationCodeObj) != null) {
-                    redirectAttributes.addFlashAttribute("save", "success");
-                } else {
+                if (activationCodeService.findActivationCode(activationCodeObj.getActivationCode()) != null) {
                     redirectAttributes.addFlashAttribute("save", "unsuccess");
+                    return "redirect:add";
+                } else {
+                    if (activationCodeService.insert(activationCodeObj) != null) {
+                        redirectAttributes.addFlashAttribute("save", "success");
+                    } else {
+                        redirectAttributes.addFlashAttribute("save", "unsuccess");
+                    }
+                    return "redirect:/activation-code";
                 }
-                return "redirect:/activation-code";
             }
+        }catch (DataIntegrityViolationException ve){
+            redirectAttributes.addFlashAttribute("masterkey", "existing");
+            return "redirect:add";
         }
     }
 

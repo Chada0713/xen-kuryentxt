@@ -24,6 +24,12 @@
                                         <strong>Error!</strong> Activation code already exist.
                                     </div>
                                 </div>
+
+                                <div th:if="${masterkey eq 'existing'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Master Key already exist.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
