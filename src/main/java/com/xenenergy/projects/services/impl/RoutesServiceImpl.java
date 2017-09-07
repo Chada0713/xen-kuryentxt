@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xesi on 26/05/2017.
  */
@@ -68,5 +70,15 @@ public class RoutesServiceImpl implements RoutesService {
     @Override
     public Page<Route> findByIdAreaOrderByRouteNameDesc(long idArea, Pageable pageable) {
         return routesDao.findByIdAreaOrderByRouteNameDesc(idArea, pageable);
+    }
+
+    @Override
+    public List<Route> findAllByOrderById() {
+        return routesDao.findAllByOrderById();
+    }
+
+    @Override
+    public String findRouteName(long id) {
+        return routesDao.findRouteName(id);
     }
 }

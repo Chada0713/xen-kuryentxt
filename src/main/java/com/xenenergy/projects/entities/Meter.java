@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by xesi on 27/07/2017.
@@ -14,6 +15,8 @@ public class Meter {
     @Id
     @Column(name = "ID")
     private long id;
+    @Column(name = "TS")
+    private Date ts;
     @Column(name = "ID_ROUTE")
     private long idRoute;
     @Column(name = "MSN")
@@ -28,8 +31,9 @@ public class Meter {
     public Meter() {
     }
 
-    public Meter(long id, long idRoute, String msn, String dateRead, String timeRead, int reading) {
+    public Meter(long id, Date ts, long idRoute, String msn, String dateRead, String timeRead, int reading) {
         this.id = id;
+        this.ts = ts;
         this.idRoute = idRoute;
         this.msn = msn;
         this.dateRead = dateRead;
@@ -43,6 +47,14 @@ public class Meter {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getTs() {
+        return ts;
+    }
+
+    public void setTs(Date ts) {
+        this.ts = ts;
     }
 
     public long getIdRoute() {

@@ -172,4 +172,9 @@ public class RoutesController {
         modelAndView.addObject("pager", pager);
         return modelAndView;
     }
+
+    @RequestMapping(value = "/route/{id}/routename", method = RequestMethod.GET)
+    public String routeName(@PathVariable("id") long id){
+        return routesService.findRouteName(id);
+    }
 }

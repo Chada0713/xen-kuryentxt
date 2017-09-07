@@ -3,7 +3,10 @@ package com.xenenergy.projects.services.interfaces;
 import com.xenenergy.projects.entities.Route;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Daryll Sabate on 5/29/2017.
@@ -15,4 +18,8 @@ public interface RoutesService extends CRUDService<Route> {
     Page<Route> findByIdAreaOrderByRouteCodeDesc(long idArea, Pageable pageable);
     Page<Route> findByIdAreaOrderByRouteName(long idArea, Pageable pageable);
     Page<Route> findByIdAreaOrderByRouteNameDesc(long idArea, Pageable pageable);
+    List<Route> findAllByOrderById();
+
+    @Query("select routeName from Route where id = ?1")
+    String findRouteName(long id);
 }

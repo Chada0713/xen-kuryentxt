@@ -9,6 +9,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by xesi on 27/07/2017.
  */
@@ -49,4 +51,15 @@ public class MeterServiceImpl implements MeterService{
     public Page<Meter> findByIdRoute(long idRoute, Pageable pageable) {
         return meterDao.findByIdRoute(idRoute, pageable);
     }
+
+    @Override
+    public List<Meter> findAllByOrderById() {
+        return meterDao.findAllByOrderById();
+    }
+
+    @Override
+    public List<Meter> findAllByAreaId(long id) {
+        return meterDao.findAllByAreaId(id);
+    }
+
 }
