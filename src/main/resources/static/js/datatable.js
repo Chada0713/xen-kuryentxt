@@ -163,25 +163,51 @@ $(document).ready( function () {
 $(document).ready( function () {
     $("#areaMeter").on('change', function () {
         document.getElementById("areaIdRef").value = $("#areaMeter").val();
-        var table = $('#newMeterTable').DataTable({
-            "bDestroy": true,
-            "bRetreive": true,
-            "bDeferRender": true,
-            "sAjaxSource": "api/newmeter/"+$(this).val(),
-            "sAjaxDataProp": "",
-            responsive: true,
-            "order": [[ 0, "asc" ]],
-            "aoColumns": [
-                { "mData": "msn" },
-                { "mData": "idRoute" },
-                { "mData": "dateRead" },
-                { "mData": "timeRead" },
-                { "mData": "reading" },
-            ],
-            dom: "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-4'i><'col-sm-8'p>>",
-            "lengthMenu": [20],
-            "sPaginationType": "full_numbers",
-        })
+
+        if($(this).val() != '0'){
+            var table = $('#newMeterTable').DataTable({
+                "bDestroy": true,
+                "bRetreive": true,
+                "bDeferRender": true,
+                "sAjaxSource": "api/newmeter/"+$(this).val(),
+                "sAjaxDataProp": "",
+                responsive: true,
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+                    { "mData": "msn" },
+                    { "mData": "idRoute" },
+                    { "mData": "dateRead" },
+                    { "mData": "timeRead" },
+                    { "mData": "reading" },
+                ],
+                dom: "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+                "lengthMenu": [20],
+                "sPaginationType": "full_numbers",
+            })
+        } else {
+            var table = $('#newMeterTable').DataTable({
+                "bDestroy": true,
+                "bRetreive": true,
+                "bDeferRender": true,
+                "sAjaxSource": "api/newmeter",
+                "sAjaxDataProp": "",
+                responsive: true,
+                "order": [[ 0, "asc" ]],
+                "aoColumns": [
+                    { "mData": "msn" },
+                    { "mData": "idRoute" },
+                    { "mData": "dateRead" },
+                    { "mData": "timeRead" },
+                    { "mData": "reading" },
+                ],
+                dom: "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-4'i><'col-sm-8'p>>",
+                "lengthMenu": [20],
+                "sPaginationType": "full_numbers",
+            })
+        }
+
+
     });
 });
