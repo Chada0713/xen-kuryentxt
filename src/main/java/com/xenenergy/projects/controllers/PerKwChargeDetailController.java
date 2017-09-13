@@ -107,6 +107,7 @@ public class PerKwChargeDetailController {
     public String copyTemplate(@PathVariable("cid") long cid,
                                @PathVariable("rid") long rid,
                                Model model, final RedirectAttributes redirectAttributes) {
+        System.out.println("RID >> " + rid);
         perKwChargeDetailService.callCopyToTemplate(rid);
         redirectAttributes.addFlashAttribute("copy", "success");
         return "redirect:/ratemaster/" + cid + "/per-kw-charge-master/" + rid + "/details";

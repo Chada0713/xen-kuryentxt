@@ -109,9 +109,6 @@
                                     <th>
                                         <div class="text-left">Rate Long Name</div>
                                     </th>
-                                    <th>Amount</th>
-                                    <th>Vat Rate</th>
-                                    <th>Vat Amt</th>
                                     <th>Total Amt</th>
                                     <th>Fixed Addtl</th>
                                     <th>Action</th>
@@ -126,18 +123,6 @@
                                     </td>
                                     <td>
                                         <div class="text-left" th:text="${perKwChargeDetail.perKwRateLongName}"></div>
-                                    </td>
-                                    <td>
-                                        <div class="text-right"
-                                             th:text="${#numbers.formatDecimal(perKwChargeDetail.amount, 1, 4)}"></div>
-                                    </td>
-                                    <td>
-                                        <div class="text-right"
-                                             th:text="${#numbers.formatDecimal(perKwChargeDetail.vatRate, 1, 2)}"></div>
-                                    </td>
-                                    <td>
-                                        <div class="text-right"
-                                             th:text="${#numbers.formatDecimal(perKwChargeDetail.vatAmt, 1, 4)}"></div>
                                     </td>
                                     <td>
                                         <div class="text-right"
@@ -167,13 +152,12 @@
                                 </tr>
                                 <tr class="info">
                                     <td><strong>Total</strong></td>
-                                    <td colspan="6"></td>
+                                    <td colspan="5"></td>
                                     <td>
                                         <div class="text-right" th:if="${totalamount &gt; 0}">
                                             <strong th:text="${#numbers.formatDecimal(totalamount, 1, 4)}"></strong>
                                         </div>
                                     </td>
-                                    <td colspan="2"></td>
                                 </tr>
                                 </tbody>
                             </table>

@@ -32,12 +32,7 @@ public class AddOnChargeController {
     public ModelAndView showPersonsPage(@RequestParam("pageSize") Optional<Integer> pageSize,
                                         @RequestParam("page") Optional<Integer> page) {
         ModelAndView modelAndView = new ModelAndView("addoncharge/index");
-        // Evaluate page size. If requested parameter is null, return initial
-        // page size
         int evalPageSize = pageSize.orElse(property.INITIAL_PAGE_SIZE);
-        // Evaluate page. If requested parameter is null or less than 0 (to
-        // prevent exception), return initial size. Otherwise, return value of
-        // param. decreased by 1.
         int evalPage = (page.orElse(0) < 1) ? property.INITIAL_PAGE : page.get() - 1;
 
         Page<AddOnCharge> addOnCharges = addOnChargeService.findAllPageable(new PageRequest(evalPage, evalPageSize));

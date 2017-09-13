@@ -78,9 +78,6 @@
                                         <th>
                                             <div class="text-left">Rate Long Name</div>
                                         </th>
-                                        <th><div class="text-right">Amount</div></th>
-                                        <th><div class="text-right">Vat Rate</div></th>
-                                        <th><div class="text-right">Vat Amount</div></th>
                                         <th><div class="text-right">Fixed Addtl.</div></th>
                                         <th><div class="text-right">Total</div></th>
                                         <th>Action</th>
@@ -94,16 +91,6 @@
                                         </td>
                                         <td>
                                             <div class="text-left" th:text="${perKwChargeTemplateList.perKwRateLongName}"></div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right"
-                                                 th:text="${#numbers.formatDecimal(perKwChargeTemplateList.amount, 1, 4)}"></div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.vatRate, 1, 4)}"></div>
-                                        </td>
-                                        <td>
-                                            <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.vatAmt, 1, 4)}"></div>
                                         </td>
                                         <td>
                                             <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.fixedAddtl, 1, 4)}"></div>
