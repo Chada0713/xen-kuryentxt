@@ -369,11 +369,8 @@ $(document).ready(function () {
     $('#tableTab a:first').tab('show');
 });
 
-/*
 $(document).ready( function () {
-    $("#areaMeter").on('change', function () {
-        alert($("#areaMeter").val());
-        window.location="/Kuryentxt/newmeter/"+$("#areaMeter").val();
+    $('#imagePath').change( function(event) {
+        $('#logoBox').fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
     });
 });
-*/

@@ -26,41 +26,26 @@ public class PerKwChargeTemplate {
     private String perKwRateLongName;
     @Column(name = "PRINT_ORDER")
     private int printOrder;
-    @Column(name = "AMOUNT")
-    private String amount;
-    @Column(name = "VAT_RATE")
-    private Double vatRate = 0.00;
-    @Column(name = "VAT_AMT")
-    private String vatAmt; /*Double*/
     @Column(name = "FIXED_ADDTL")
     private Double fixedAddtl = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
     private String totalAmount;
-    @Column(name = "IS_SUB_TO_VAT")
-    private String isSubToVat;
     @Column(name = "IS_SUB_TO_LIFELINE")
     private String isSubToLifeline;
-    @Column(name = "IS_SUB_TO_SC_DISCOUNT")
-    private String isSubToScDiscount;
 
     public PerKwChargeTemplate() {
     }
 
-    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, String amount, Double vatRate, String vatAmt, Double fixedAddtl, String totalAmount, String isSubToVat, String isSubToLifeline, String isSubToScDiscount) {
+    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double fixedAddtl, String totalAmount, String isSubToLifeline) {
         this.id = id;
         this.ts = ts;
         this.chargeType = chargeType;
         this.perKwRateName = perKwRateName;
         this.perKwRateLongName = perKwRateLongName;
         this.printOrder = printOrder;
-        this.amount = amount;
-        this.vatRate = vatRate;
-        this.vatAmt = vatAmt;
         this.fixedAddtl = fixedAddtl;
         this.totalAmount = totalAmount;
-        this.isSubToVat = isSubToVat;
         this.isSubToLifeline = isSubToLifeline;
-        this.isSubToScDiscount = isSubToScDiscount;
     }
 
     public long getId() {
@@ -111,30 +96,6 @@ public class PerKwChargeTemplate {
         this.printOrder = printOrder;
     }
 
-    public String getAmount() {
-        return amount;
-    }
-
-    public void setAmount(String amount) {
-        this.amount = amount;
-    }
-
-    public Double getVatRate() {
-        return vatRate;
-    }
-
-    public void setVatRate(Double vatRate) {
-        this.vatRate = vatRate;
-    }
-
-    public String getVatAmt() {
-        return vatAmt;
-    }
-
-    public void setVatAmt(String vatAmt) {
-        this.vatAmt = vatAmt;
-    }
-
     public Double getFixedAddtl() {
         return fixedAddtl;
     }
@@ -151,14 +112,6 @@ public class PerKwChargeTemplate {
         this.totalAmount = totalAmount;
     }
 
-    public String getIsSubToVat() {
-        return isSubToVat;
-    }
-
-    public void setIsSubToVat(String isSubToVat) {
-        this.isSubToVat = isSubToVat;
-    }
-
     public String getIsSubToLifeline() {
         return isSubToLifeline;
     }
@@ -167,11 +120,4 @@ public class PerKwChargeTemplate {
         this.isSubToLifeline = isSubToLifeline;
     }
 
-    public String getIsSubToScDiscount() {
-        return isSubToScDiscount;
-    }
-
-    public void setIsSubToScDiscount(String isSubToScDiscount) {
-        this.isSubToScDiscount = isSubToScDiscount;
-    }
 }
