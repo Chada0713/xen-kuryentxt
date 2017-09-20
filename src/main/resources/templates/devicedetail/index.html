@@ -56,25 +56,25 @@
                                     <ul class="pagination pull-right">
                                         <li th:class="${dudLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                               th:href="@{/devicemaster/{cid}/details(cid=${cid}, pageSize=${selectedPageSize}, page=1)}">First</a>
                                         </li>
                                         <li th:class="${dudLists.number == 0} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dudLists.number})}">Previous</a>
+                                               th:href="@{/devicemaster/{cid}/details(cid=${cid}, pageSize=${selectedPageSize}, page=${dudLists.number})}">Previous</a>
                                         </li>
                                         <li th:class="${dudLists.number == (page - 1)} ? 'active pointer-disabled'"
                                             th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:href="@{/devicemaster/{cid}/details(cid=${cid}, pageSize=${selectedPageSize}, page=${page})}"
                                                th:text="${page}"></a>
                                         </li>
                                         <li th:class="${dudLists.number + 1 == dudLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dudLists.number + 2})}">Next</a>
+                                               th:href="@{/devicemaster/{cid}/details(cid=${cid}, pageSize=${selectedPageSize}, page=${dudLists.number + 2})}">Next</a>
                                         </li>
                                         <li th:class="${dudLists.number + 1 == dudLists.totalPages} ? disabled">
                                             <a class="pageLink"
-                                               th:href="@{/device/(pageSize=${selectedPageSize}, page=${dudLists.totalPages})}">Last</a>
+                                               th:href="@{/devicemaster/{cid}/details(cid=${cid}, pageSize=${selectedPageSize}, page=${dudLists.totalPages})}">Last</a>
                                         </li>
                                     </ul>
                                 </div>

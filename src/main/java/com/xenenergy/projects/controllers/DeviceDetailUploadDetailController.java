@@ -40,6 +40,7 @@ public class DeviceDetailUploadDetailController {
         Pager pager = new Pager(dud.getTotalPages(), dud.getNumber(), property.BUTTONS_TO_SHOW);
 
         modelAndView.addObject("dudLists", dud);
+        modelAndView.addObject("cid", cid);
         modelAndView.addObject("dum", deviceUploadMasterService.getById(cid));
         modelAndView.addObject("selectedPageSize", evalPageSize);
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
