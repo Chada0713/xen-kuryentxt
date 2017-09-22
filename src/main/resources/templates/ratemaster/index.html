@@ -82,9 +82,6 @@
                                 <tbody>
                                 <tr th:each="ratemasterlist : ${rateMasterLists}">
                                     <td>
-                                        <a href="#" data-th-href="@{/ratemaster/{id}/fixedcharge(id=${ratemasterlist.id})}">
-                                            fixed charge</a>
-                                        &nbsp;| &nbsp;
                                         <a href="#" data-th-href="@{/ratemaster/{id}/per-kw-charge-master(id=${ratemasterlist.id})}">per kw charge</a>
                                         &nbsp;| &nbsp;
                                         <a href="#" data-th-href="@{/ratemaster/{id}/charge-type(id=${ratemasterlist.id})}">charge types</a>
