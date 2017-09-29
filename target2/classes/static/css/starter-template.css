@@ -1,0 +1,183 @@
+html {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 20px;
+    background: #ffffff;
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 50px;
+}
+
+.content {
+    padding-top: 50px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.starter-template {
+    padding: 20px 10px;
+    text-align: center;
+}
+
+.table td, .table th {
+    text-align: center;
+}
+
+.red {
+    color: #b92c28;
+}
+
+.green {
+    color: #4cae4c;
+}
+
+.blue {
+    color: #9acfea;
+}
+
+#footer {
+    font-size: x-small;
+    position: fixed;
+    height: 50px;
+    bottom: 0;
+    padding-top: 10px;
+    width: 100%;
+    background: #F8F8F8;
+    border-top: 1px solid #808080;
+}
+
+.content-footer {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.alert {
+    padding: 7px !important;
+}
+
+.pagination-centered {
+    text-align: center;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.pointer-disabled {
+    pointer-events: none;
+}
+
+.ui-datepicker {
+    background: #ffffff;
+    width: 216px;
+    height: auto;
+    margin: 5px auto 0;
+    font: 12pt Arial, sans-serif;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+}
+
+/*Datatables layout*/
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px 25px 0 0;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 60px;
+}
+
+.right-addon input {
+    padding-right: 60px;
+}
+
+/* reponsive tables */
+@media only screen and (max-width: 800px) {
+
+    /* Force table to not be like tables anymore */
+    #no-more-tables table,
+    #no-more-tables thead,
+    #no-more-tables tbody,
+    #no-more-tables th,
+    #no-more-tables td,
+    #no-more-tables tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #no-more-tables thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #no-more-tables tr {
+        border: 1px solid #ccc;
+    }
+
+    #no-more-tables td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+    }
+
+    #no-more-tables td:before {
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    /*
+    Label the data
+    */
+    #no-more-tables td:before {
+        content: attr(data-title);
+    }
+
+    .table-outside {
+        border: 1px solid red !important;
+    }
+}
+
+#dateSelectModal .modal-dialog {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

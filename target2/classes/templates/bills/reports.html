@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html"
+      layout:decorator="layout">
+<head>
+    <title>Activation Codes</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="modal fade" id="dateSelectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="exampleModalLabel">Select Billing Period</h4>
+                        </div>
+                        <form class="form-horizontal" role="form" th:action="@{/reports/bill-statement}">
+                            <!-- Modal Body -->
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"
+                                           for="periodFrm">Start Date</label>
+                                    <div class="col-md-9 col-sm-9 inner-addon right-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                        <input type="text" class="form-control" id="periodFrm" name="periodFrm"
+                                               th:placeholder="${date}"/> <!--2017-01-01-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"
+                                           for="periodTo">End Date</label>
+                                    <div class="col-md-9 col-sm-9 inner-addon right-addon">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                        <input type="text" class="form-control" id="periodTo" name="periodTo"
+                                               th:placeholder="${currentDate}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="generate">Generate</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                        onclick="window.location='bills'">Close
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

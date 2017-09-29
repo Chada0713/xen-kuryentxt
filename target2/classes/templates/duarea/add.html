@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>DU Area</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/du-area}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>DU Area - Add</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" th:object="${duArea}"
+                                      th:action="@{/du-area/create}"
+                                      method="post">
+                                    <div class="form-group">
+                                        <label for="areaCode" class="col-sm-2 control-label">Area Code</label>
+                                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                            <input type="text" class="form-control" id="areaCode"
+                                                   th:field="*{areaCode}"
+                                                   placeholder="Area Code"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="areaName" class="col-sm-2 control-label">Area Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="areaName"
+                                                   th:field="*{areaName}"
+                                                   placeholder="Area Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group pull-right">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

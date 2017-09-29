@@ -1,0 +1,203 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Settings</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <strong> Settings </strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${tag} == 'true'">
+                                    <div class="alert alert-danger alert-dismissible col-lg-10 col-md-10 col-sm-10 col-xs-10"
+                                         role="alert">
+                                        <div th:each="propertName, stat : ${duproperties.propertyName}">
+                                            <strong th:text="${propertName}"></strong><span> is Missing! </span>
+                                        </div>
+                                    </div>
+                                    <form class="form-horizontal" method="get" th:object="${duproperties}">
+                                        <div th:each="propertName, stat : ${duproperties.propertyName}">
+                                            <input type="hidden" class="form-control" id="propertyName"
+                                                   name="propertyName"
+                                                   th:value="${propertName}"/>
+                                        </div>
+                                        <a class="btn btn-primary col-lg-1 col-md-1 col-sm-1 col-xs-1 pull-right"
+                                           th:href="@{/settings/add}"
+                                           role="button">Add</a>
+                                        <br/>
+                                    </form>
+                                </div>
+
+                                <div th:if="${edit eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Updated.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> <i>Record Not Save.</i>
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Record Saved Successfully</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-right">
+
+                            </div>-->
+                        </div>
+                        <ul class="nav nav-tabs" id="tableTab">
+                            <li><a href="#1" data-toggle="tab"><strong>General</strong></a></li>
+                            <li><a href="#2" data-toggle="tab"><strong>Advance</strong></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="1">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md- 12 col-sm-12 col-xs-12">
+                                        <div th:if="${#lists.isEmpty(duproperties)}">No Record Found</div>
+
+                                        <div th:if="!${#lists.isEmpty(duproperties)}">
+                                            <form class="form-horizontal" method="get" th:object="${duproperties}"
+                                                  id="settings_form">
+                                                <div th:each="duProperty, stat : ${duproperties.properties}">
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <div>
+                                                            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label"
+                                                                   for="id"
+                                                                   th:text="${#strings.replace(duProperty.propertyName, '_', ' ').replace('DU ', '')}"></label>
+                                                        </div>
+                                                        <!--<div th:switch="${duProperty.propertyName}">
+                                                            <p th:case="DU_CODE">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Code</label>
+                                                            </p>
+                                                            <p th:case="DU_ADDRESSLN1">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Address Line 1</label>
+                                                            </p>
+                                                            <p th:case="DU_ADDRESSLN2">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Address Line 2</label>
+                                                            </p>
+                                                            <p th:case="DU_CONTACT_NO">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Contact No.</label>
+                                                            </p>
+                                                            <p th:case="DU_CONTACT_PERSON">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Contact Person</label>
+                                                            </p>
+                                                            <p th:case="DU_VAT_NO">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Vat Reg.</label>
+                                                            </p>
+                                                            <p th:case="DU_NAME">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Name</label>
+                                                            </p>
+                                                            <p th:case="DU_INDEX">
+                                                                <label for="id" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Index</label>
+                                                            </p>
+                                                        </div>-->
+
+                                                        <div class="col-lg-8 col-md-10 col-sm-10 col-xs-10">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                   th:name="|properties[${stat.index}].id|"
+                                                                   th:value="${duProperty.id}"/>
+
+                                                            <input type="text" class="form-control" id="propertyValue"
+                                                                   name="propertyValue"
+                                                                   th:name="|properties[${stat.index}].propertyValue|"
+                                                                   th:value="${duProperty.propertyValue}"
+                                                                   readonly="readonly"/>
+
+                                                            <input type="hidden" class="form-control"
+                                                                   id="propertyDescription"
+                                                                   name="propertyDescription"
+                                                                   th:name="|properties[${stat.index}].propertyDescription|"
+                                                                   th:value="${duProperty.propertyDescription}"/>
+
+                                                            <input type="hidden" class="form-control" id="propertyName"
+                                                                   name="propertyName"
+                                                                   th:name="|properties[${stat.index}].propertyName|"
+                                                                   th:value="${duProperty.propertyName}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="text-right">
+                                                    <a class="btn btn-primary pull-right" th:href="@{/settings/edit}"
+                                                       role="button">Edit</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="2">
+                                <!--<strong>Nothing to Show yet</strong>-->
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div th:if="${#lists.isEmpty(propertyLists)}">No Record Found</div>
+
+                                        <div th:if="!${#lists.isEmpty(propertyLists)}">
+                                            <form class="form-horizontal" method="get" th:object="${propertyLists}"
+                                                  id="settings_form1">
+                                                <div th:each="propertyList : ${propertyLists}">
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                                                            <label class="control-label"
+                                                                   for="id"
+                                                                   th:text="${#strings.replace(propertyList.propertyName, '_', ' ').replace('DU ', '')}"></label>
+                                                        </div>
+                                                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                   name="id"
+                                                                   th:value="${propertyList.id}"/>
+
+                                                            <input type="text" class="form-control" id="propertyValue"
+                                                                   name="propertyValue"
+                                                                   th:value="${propertyList.propertyValue}"
+                                                                   readonly="readonly"/>
+
+                                                            <input type="hidden" class="form-control"
+                                                                   id="propertyDescription"
+                                                                   name="propertyDescription"
+                                                                   th:value="${propertyList.propertyDescription}"/>
+
+                                                            <input type="hidden" class="form-control" id="propertyName"
+                                                                   name="propertyName"
+                                                                   th:value="${propertyList.propertyName}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-right">
+                                                    <a class="btn btn-primary pull-right" th:href="@{/settings/editall}"
+                                                       role="button">Edit</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

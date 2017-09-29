@@ -1,0 +1,76 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns="http://www.w3.org/1999/html"
+      layout:decorator="layout">
+<head>
+    <title>Life Line</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/lifeline}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Lifeline - Add</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Lifeline already exist.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md- 12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" th:object="${lifeLine}"
+                                      th:action="@{/lifeline/create}"
+                                      method="post">
+
+                                    <div class="form-group">
+                                        <label for="fromKwhUsed" class="col-sm-3 control-label">From Kwh Used</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="fromKwhUsed" name="fromKwhUsed"
+                                                   placeholder="0"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="toKwhUsed" class="col-sm-3 control-label">To Kwh Used</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="toKwhUsed" name="toKwhUsed"
+                                                   placeholder="0"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="discountRate" class="col-sm-3 control-label">Discount Rate</label>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                            <input type="text" class="form-control"
+                                                   id="discountRate" name="discountRate"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success pull-right">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

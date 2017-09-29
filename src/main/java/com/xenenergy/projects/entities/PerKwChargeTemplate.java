@@ -1,5 +1,7 @@
 package com.xenenergy.projects.entities;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -27,8 +29,16 @@ public class PerKwChargeTemplate {
     @Column(name = "PRINT_ORDER")
     private int printOrder;
     @Column(name = "FIXED_ADDTL")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private Double fixedAddtl = 0.0000;
+    @Column(name = "ATL")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double adjToLifeline = 0.0000;
+    @Column(name = "ATS")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double adjToSc = 0.0000;
     @Column(name = "TOTAL_AMOUNT")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private String totalAmount;
     @Column(name = "IS_SUB_TO_LIFELINE")
     private String isSubToLifeline;
@@ -36,7 +46,7 @@ public class PerKwChargeTemplate {
     public PerKwChargeTemplate() {
     }
 
-    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double fixedAddtl, String totalAmount, String isSubToLifeline) {
+    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double fixedAddtl, double adjToLifeline, double adjToSc, String totalAmount, String isSubToLifeline) {
         this.id = id;
         this.ts = ts;
         this.chargeType = chargeType;
@@ -44,8 +54,26 @@ public class PerKwChargeTemplate {
         this.perKwRateLongName = perKwRateLongName;
         this.printOrder = printOrder;
         this.fixedAddtl = fixedAddtl;
+        this.adjToLifeline = adjToLifeline;
+        this.adjToSc = adjToSc;
         this.totalAmount = totalAmount;
         this.isSubToLifeline = isSubToLifeline;
+    }
+
+    public double getAdjToLifeline() {
+        return adjToLifeline;
+    }
+
+    public void setAdjToLifeline(double adjToLifeline) {
+        this.adjToLifeline = adjToLifeline;
+    }
+
+    public double getAdjToSc() {
+        return adjToSc;
+    }
+
+    public void setAdjToSc(double adjToSc) {
+        this.adjToSc = adjToSc;
     }
 
     public long getId() {

@@ -1,0 +1,191 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Per Kw Charge Master</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/ratemaster}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Per Kw Charge Master - </strong>
+                        <strong th:text="${rateMaster.rateName}"></strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> <i>Record Not Saved.</i>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Record Saved Successfully</i>.
+                                    </div>
+                                </div>
+                                <!-- Deletion Alert Messages -->
+                                <div th:if="${delete eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Deleted.
+                                    </div>
+                                </div>
+                                <div th:if="${delete eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Deleted Successfully.
+                                    </div>
+                                </div>
+                                <!-- Edit Alert Message -->
+                                <div th:if="${status eq 'notfound'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Invalid Record.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Edited.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                <div class="text-right">
+                                    <a class="btn btn-primary pull-right" th:href="@{per-kw-charge-master/add}"
+                                       role="button">Add</a>
+                                </div>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <div th:if="!${#lists.isEmpty(perKwChargeMasterLists)}">
+                            <div id="no-more-tables">
+                                <table class="col-md-12 table table-striped table-condensed cf">
+                                    <thead class="cf">
+                                    <tr class="info">
+                                        <th></th>
+                                        <th>Effectivity Date</th>
+                                        <th>Amount</th>
+                                        <th>Amount STL</th>
+                                        <th>Current</th>
+                                        <th>Locked</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="perKwChargeMaster : ${perKwChargeMasterLists}">
+                                        <td><a href="#"
+                                               data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/{id}/details(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                            details
+                                        </a></td>
+                                        <td data-title="Effectivity Date"
+                                            th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
+                                        <td data-title="Amount"
+                                            th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"></td>
+                                        <td data-title="Amount STL"
+                                            th:text="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"></td>
+
+                                        <td data-title="Current">
+                                            <div th:switch="${perKwChargeMaster.isCurrent}">
+                                               <span th:case="'Y'" class="fa-stack green">
+                                                   <i class="glyphicon glyphicon-ok"></i></span>
+                                                <span th:case="*" class="fa-stack red">
+                                                   <i class="glyphicon glyphicon-remove"></i></span>
+                                            </div>
+                                        </td>
+                                        <td data-title="Action">
+                                            <div th:switch="${perKwChargeMaster.isLocked}">
+                                               <span th:case="'Y'" class="fa-stack green">
+                                                   <i class="glyphicon glyphicon-ok"></i></span>
+                                                <span th:case="*" class="fa-stack red">
+                                                   <i class="glyphicon glyphicon-remove"></i></span>
+                                            </div>
+                                        </td>
+                                        <td data-title="Locked">
+                                            <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked != 'Y'}">
+                                                <a href="#" data-target="#genericModal" data-toggle="modal"
+                                                   th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
+                                            data-message='Are you sure you want to delete ' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
+                                                   data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="#"
+                                                   data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/edit/{id}(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </span>
+                                                </a>
+                                            </div>
+                                            <div th:if="${perKwChargeMaster.isCurrent != 'Y' and perKwChargeMaster.isLocked == 'Y'}">
+                                                <a href="#" data-target="#genericModal" data-toggle="modal"
+                                                   th:attr="data-url='per-kw-charge-master/delete/'+${perKwChargeMaster.id},
+                                                   data-message='Are you sure you want to delete ' +${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')},
+                                                   data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div th:if="${#lists.isEmpty(perKwChargeMasterLists)}"
+                             class="text-center alert alert-danger alert-dismissible" role="alert">
+                            <strong>No Record Found</strong>
+                        </div>
+
+                        <div class="row">
+                            <div th:if="${perKwChargeMasterLists.totalPages == 0}"
+                                 class="text-center alert alert-danger alert-dismissible" role="alert">
+                                <strong>No Record Found!</strong>
+                            </div>
+                            <div th:if="${perKwChargeMasterLists.totalPages &gt;= 1}">
+                                <div class="form-group col-md-12 pagination-centered">
+                                    <ul class="pagination pull-right">
+                                        <li th:class="${perKwChargeMasterLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id}, pageSize=${selectedPageSize}, page=1)}">First</a>
+                                        </li>
+                                        <li th:class="${perKwChargeMasterLists.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.number})}">Previous</a>
+                                        </li>
+                                        <li th:class="${perKwChargeMasterLists.number == (page - 1)} ? 'active pointer-disabled'"
+                                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                            <a class="pageLink"
+                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${page})}"
+                                               th:text="${page}"></a>
+                                        </li>
+                                        <li th:class="${perKwChargeMasterLists.number + 1 == perKwChargeMasterLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.number + 2})}">Next</a>
+                                        </li>
+                                        <li th:class="${perKwChargeMasterLists.number + 1 == perKwChargeMasterLists.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/ratemaster/{cid}/per-kw-charge-master(cid=${rateMaster.id},pageSize=${selectedPageSize}, page=${perKwChargeMasterLists.totalPages})}">Last</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

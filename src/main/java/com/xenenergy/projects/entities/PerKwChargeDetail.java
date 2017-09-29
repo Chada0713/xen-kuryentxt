@@ -36,9 +36,12 @@ public class PerKwChargeDetail {
     @Column(name = "FIXED_ADDTL")
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private double fixedAddtl = 0.0000;
-
-    public enum choices {Y, N}
-
+    @Column(name = "ATL")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double adjToLifeline = 0.0000;
+    @Column(name = "ATS")
+    @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
+    private double adjToSc = 0.0000;
     @Column(name = "IS_SUB_TO_LIFELINE")
     @Enumerated(value = EnumType.STRING)
     private choices isSubToLifeLine = choices.Y;
@@ -115,4 +118,21 @@ public class PerKwChargeDetail {
         this.isSubToLifeLine = isSubToLifeLine;
     }
 
+    public double getAdjToLifeline() {
+        return adjToLifeline;
+    }
+
+    public void setAdjToLifeline(double adjToLifeline) {
+        this.adjToLifeline = adjToLifeline;
+    }
+
+    public double getAdjToSc() {
+        return adjToSc;
+    }
+
+    public void setAdjToSc(double adjToSc) {
+        this.adjToSc = adjToSc;
+    }
+
+    public enum choices {Y, N}
 }

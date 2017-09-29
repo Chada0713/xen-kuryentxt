@@ -1,0 +1,143 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Readers</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative"><strong>Readers</strong></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> <i>Record Not Saved.</i>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Record Saved Successfully</i>.
+                                    </div>
+                                </div>
+                                <!-- Deletion Alert Messages -->
+                                <div th:if="${delete eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Deleted.
+                                    </div>
+                                </div>
+                                <div th:if="${delete eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Deleted Successfully.
+                                    </div>
+                                </div>
+                                <!-- Edit Alert Message -->
+                                <div th:if="${status eq 'notfound'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Invalid Record.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Edited.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                <div class="text-right">
+                                    <a class="btn btn-primary pull-right" th:href="@{/readers/add}"
+                                       role="button">Add</a>
+                                </div>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <div th:if="!${#lists.isEmpty(readerslist)}">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr class="info">
+                                    <th>Name</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="reader : ${readerslist}">
+                                    <td th:text="${reader.readersName}"></td>
+                                    <td>
+                                        <a href="#" data-target="#genericModal" data-toggle="modal"
+                                           th:attr="data-url='/readers/delete/'+${reader.id},
+                                             data-message='Are you sure you want to delete ' +${reader.readersName},
+                                           data-title='Delete Record', data-btn-value='Delete', data-class='btn-danger'">
+                                             <span class="fa-stack">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </span>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="#"
+                                           data-th-href="@{/readers/edit/{id}(id=${reader.id})}">
+                         <span class="fa-stack">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div th:if="${#lists.isEmpty(readerslist)}"
+                             class="text-center alert alert-danger alert-dismissible" role="alert">
+                            <strong>No Record Found</strong>
+                        </div>
+                        <div class="row">
+                            <div th:if="${readerslist.totalPages == 0}"
+                                 class="text-center alert alert-danger alert-dismissible" role="alert">
+                                <strong>No Record Found!</strong>
+                            </div>
+                            <div th:if="${readerslist.totalPages &gt;= 1}">
+                                <div class="form-group col-md-12 pagination-centered">
+
+                                    <ul class="pagination pull-right">
+                                        <li th:class="${readerslist.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/readers/(pageSize=${selectedPageSize}, page=1)}">First</a>
+                                        </li>
+                                        <li th:class="${readerslist.number == 0} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/readers/(pageSize=${selectedPageSize}, page=${readerslist.number})}">Previous</a>
+                                        </li>
+                                        <li th:class="${readerslist.number == (page - 1)} ? 'active pointer-disabled'"
+                                            th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+                                            <a class="pageLink"
+                                               th:href="@{/readers/(pageSize=${selectedPageSize}, page=${page})}"
+                                               th:text="${page}"></a>
+                                        </li>
+                                        <li th:class="${readerslist.number + 1 == readerslist.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/readers/(pageSize=${selectedPageSize}, page=${readerslist.number + 2})}">Next</a>
+                                        </li>
+                                        <li th:class="${readerslist.number + 1 == readerslist.totalPages} ? disabled">
+                                            <a class="pageLink"
+                                               th:href="@{/readers/(pageSize=${selectedPageSize}, page=${readerslist.totalPages})}">Last</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

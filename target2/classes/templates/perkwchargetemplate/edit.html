@@ -1,0 +1,179 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Per Kw Charge Template</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/perkwchargetemplate}"><i
+                                class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Per Kw Charge Template - Edit</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Updated.
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" th:object="${perKwChargeTemplateLists}"
+                                      th:action="@{/perkwchargetemplate/update}"
+                                      method="post">
+
+                                    <input type="hidden" class="form-control" th:field="*{id}"
+                                           id="id" name="id" readonly="readonly"/>
+
+                                    <div class="form-group">
+                                        <label for="printOrder" class="col-sm-4 control-label">Print Order</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control"
+                                                   th:field="*{printOrder}"
+                                                   id="printOrder" name="printOrder"
+                                                   placeholder="Print Order" readonly="readonly"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="chargeType" class="col-sm-4 control-label">Charge Type</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <select class="form-control" th:field="*{chargeType}" id="chargeType">
+                                                <option value="DSM CHARGES">DSM CHARGES</option>
+                                                <option value="GOVT CHARGES">GOVT CHARGES</option>
+                                                <option value="GT CHARGES">GT CHARGES</option>
+                                                <option value="OTHER CHARGES">OTHER CHARGES</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="perKwRateName" class="col-sm-4 control-label">Rate Name</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" th:field="*{perKwRateName}"
+                                                   id="perKwRateName" name="perKwRateName"
+                                                   placeholder="Rate Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="perKwRateLongName" class="col-sm-4 control-label">Rate Long
+                                            Name</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control" th:field="*{perKwRateLongName}"
+                                                   id="perKwRateLongName" name="perKwRateLongName"
+                                                   placeholder="Rate Long Name"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="amount" class="col-sm-4 control-label">Amount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{amount}"
+                                                   id="amount" name="amount"
+                                                   placeholder="0.0000" readonly="readonly"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="vatRate" class="col-sm-4 control-label">Vat Rate</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{vatRate}"
+                                                   id="vatRate" name="vatRate"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="vatAmt" class="col-sm-4 control-label">Vat Amount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{vatAmt}"
+                                                   id="vatAmt" name="vatAmt"
+                                                   placeholder="0.0000" readonly="readonly"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fixedAddtl" class="col-sm-4 control-label">Fixed Addtl.</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{fixedAddtl}"
+                                                   id="fixedAddtl"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="totalAmount" class="col-sm-4 control-label">Total Amount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <input type="text" class="form-control text-right" th:field="*{totalAmount}"
+                                                   id="totalAmount" name="totalAmount"
+                                                   placeholder="0.0000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="isSubToVat"
+                                               class="col-sm-4 control-label">Is Sub to Vat</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <select class="form-control" th:field="*{isSubToVat}" id="isSubToVat">
+                                                <option th:value="'Y'">Yes</option>
+                                                <option th:value="'N'">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="isSubToLifeline"
+                                               class="col-sm-4 control-label">Is Sub to Lifeline</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <select class="form-control" th:field="*{isSubToLifeline}"
+                                                    id="isSubToLifeline">
+                                                <option th:value="'Y'">Yes</option>
+                                                <option th:value="'N'">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="isSubToScDiscount"
+                                               class="col-sm-4 control-label">Is Sub to SC Discount</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <select class="form-control" th:field="*{isSubToScDiscount}"
+                                                    id="isSubToScDiscount">
+                                                <option th:value="'Y'">Yes</option>
+                                                <option th:value="'N'">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="submit" class="btn btn-success pull-right">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

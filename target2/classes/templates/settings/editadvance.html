@@ -1,0 +1,89 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Settings</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <a th:href="@{/settings}"><i class="glyphicon glyphicon-arrow-left pull-left blue"></i></a>
+                        <strong>Settings - Edit</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Updated.
+                                    </div>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md- 12 col-sm-12 col-xs-12">
+                                <div th:if="${#lists.isEmpty(duproperties)}">No Record Found</div>
+
+                                <div th:if="!${#lists.isEmpty(duproperties)}">
+                                    <form class="form-horizontal" method="post" th:object="${duproperties}"
+                                          th:action="@{/settings/updateall}"
+                                          role="form" name="settings_form"
+                                          id="settings_form">
+                                        <div th:each="duProperty, stat : ${duproperties.properties}">
+                                            <div class="form-group">
+                                                <br/>
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-right">
+                                                    <label class="control-label"
+                                                           for="id"
+                                                           th:text="${#strings.replace(duProperty.propertyName, '_', ' ').replace('DU ', '')}"></label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                                                    <input type="hidden" class="form-control" id="id"
+                                                           name="id"
+                                                           th:name="|properties[${stat.index}].id|"
+                                                           th:value="${duProperty.id}"/>
+
+                                                    <input type="text" class="form-control" id="propertyValue"
+                                                           name="propertyValue"
+                                                           th:name="|properties[${stat.index}].propertyValue|"
+                                                           th:value="${duProperty.propertyValue}"/>
+
+                                                    <input type="hidden" class="form-control" id="propertyDescription"
+                                                           name="propertyDescription"
+                                                           th:name="|properties[${stat.index}].propertyDescription|"
+                                                           th:value="${duProperty.propertyDescription}"/>
+
+                                                    <input type="hidden" class="form-control" id="propertyName"
+                                                           name="propertyName"
+                                                           th:name="|properties[${stat.index}].propertyName|"
+                                                           th:value="${duProperty.propertyName}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group pull-right">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

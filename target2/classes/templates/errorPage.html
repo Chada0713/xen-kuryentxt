@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Accounts</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="table-responsive">
+                <h1 class="text-danger">Opps!! <strong>Error</strong> <strong th:text="${errorobj.status}"></strong> -
+                    <span th:text="${errorobj.error}"></span></h1>
+                <br/>
+                <div><strong>Message: </strong>
+                    <p th:text="${errorobj.message}"></p></div>
+                <div><strong>Timestamp: </strong>
+                    <p th:text="${errorobj.timeStamp}"></p></div>
+                <div><strong>Trace: </strong>
+                    <p th:text="${errorobj.trace}"></p></div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <div class="row" align="right" style="background-color:inherit;margin-top: 30%">
+                <img th:src="@{/images/500.png}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

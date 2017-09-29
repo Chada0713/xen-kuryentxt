@@ -1,0 +1,120 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Senior Citizen</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row content">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="table-responsive">
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center panel-relative">
+                        <strong>Senior Citizen - Edit</strong>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> <!-- Save Alert Messages -->
+                                <div th:if="${save eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> <i>Record Not Saved.</i>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div th:if="${save eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Record Saved Successfully</i>.
+                                    </div>
+                                </div>
+                                <!-- Deletion Alert Messages -->
+                                <div th:if="${delete eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Deleted.
+                                    </div>
+                                </div>
+                                <div th:if="${delete eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Deleted Successfully.
+                                    </div>
+                                </div>
+                                <!-- Edit Alert Message -->
+                                <div th:if="${status eq 'notfound'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Invalid Record.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> Record Not Edited.
+                                    </div>
+                                </div>
+                                <div th:if="${edit eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> Record Updated Successfully.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="!${#lists.isEmpty(seniorCitizenLists)}">
+
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <form class="form-horizontal" method="post" th:object="${seniorCitizenLists}"
+                                      th:action="@{/seniorcitizen/update}"
+                                      role="form" id="sc_form">
+
+                                    <div th:each="seniorCitizenList, stat : ${seniorCitizenLists.properties}">
+                                        <div class="form-group">
+                                            <div>
+                                                <label class="col-sm-3 control-label"
+                                                       for="id"
+                                                       th:text="${#strings.replace(seniorCitizenList.propertyName, '_', ' ').replace('SC ', '')}"></label>
+                                            </div>
+
+                                            <div class="col-sm-9">
+                                                <input type="hidden" class="form-control" id="id"
+                                                       th:name="|properties[${stat.index}].id|"
+                                                       th:value="${seniorCitizenList.id}"/>
+
+                                                <input type="text" class="form-control" id="propertyValue"
+                                                       name="propertyValue"
+                                                       th:name="|properties[${stat.index}].propertyValue|"
+                                                       th:value="${seniorCitizenList.propertyValue}"/>
+
+                                                <input type="hidden" class="form-control" id="propertyDescription"
+                                                       name="propertyDescription"
+                                                       th:name="|properties[${stat.index}].propertyDescription|"
+                                                       th:value="${seniorCitizenList.propertyDescription}"/>
+
+                                                <input type="hidden" class="form-control" id="propertyName"
+                                                       name="propertyName"
+                                                       th:name="|properties[${stat.index}].propertyName|"
+                                                       th:value="${seniorCitizenList.propertyName}"/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group pull-right">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-success">Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+
+                        <div th:if="${#lists.isEmpty(seniorCitizenLists)}"
+                             class="text-center alert alert-danger alert-dismissible" role="alert">
+                            <strong>No Record Found</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

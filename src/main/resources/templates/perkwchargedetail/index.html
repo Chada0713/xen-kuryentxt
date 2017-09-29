@@ -110,6 +110,8 @@
                                         <div class="text-left">Rate Long Name</div>
                                     </th>
                                     <th>Total Amt</th>
+                                    <th>Adj to Lifeline</th>
+                                    <th>Adj to SC</th>
                                     <th>Fixed Addtl</th>
                                     <th>Action</th>
                                 </tr>
@@ -127,6 +129,14 @@
                                     <td>
                                         <div class="text-right"
                                              th:text="${#numbers.formatDecimal(perKwChargeDetail.totalAmt, 1, 4)}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"
+                                             th:text="${#numbers.formatDecimal(perKwChargeDetail.adjToLifeline, 1, 4)}"></div>
+                                    </td>
+                                    <td>
+                                        <div class="text-right"
+                                             th:text="${#numbers.formatDecimal(perKwChargeDetail.adjToSc, 1, 4)}"></div>
                                     </td>
                                     <td>
                                         <div class="text-right"
@@ -152,7 +162,7 @@
                                 </tr>
                                 <tr class="info">
                                     <td><strong>Total</strong></td>
-                                    <td colspan="5"></td>
+                                    <td colspan="7"></td>
                                     <td>
                                         <div class="text-right" th:if="${totalamount &gt; 0}">
                                             <strong th:text="${#numbers.formatDecimal(totalamount, 1, 4)}"></strong>
