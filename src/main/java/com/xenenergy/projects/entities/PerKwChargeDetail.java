@@ -46,6 +46,23 @@ public class PerKwChargeDetail {
     @Enumerated(value = EnumType.STRING)
     private choices isSubToLifeLine = choices.Y;
 
+    public PerKwChargeDetail() {
+    }
+
+    public PerKwChargeDetail(long id, long idMaster, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, double totalAmt, double fixedAddtl, double adjToLifeline, double adjToSc, choices isSubToLifeLine) {
+        this.id = id;
+        this.idMaster = idMaster;
+        this.chargeType = chargeType;
+        this.perKwRateName = perKwRateName;
+        this.perKwRateLongName = perKwRateLongName;
+        this.printOrder = printOrder;
+        this.totalAmt = totalAmt;
+        this.fixedAddtl = fixedAddtl;
+        this.adjToLifeline = adjToLifeline;
+        this.adjToSc = adjToSc;
+        this.isSubToLifeLine = isSubToLifeLine;
+    }
+
     public long getId() {
         return id;
     }

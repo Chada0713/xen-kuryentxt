@@ -35,13 +35,13 @@ public class ViewAccountsController {
 
     @RequestMapping(value = "/rdm/{cid}/rdmdetails/{id}/route/{rid}/startseq/{sseq}/endseq/{eseq}", method = RequestMethod.GET)
     public ModelAndView showPersonsPage(@PathVariable("cid") long cid, @PathVariable("id") long id,
-                                  @PathVariable("rid") long rid,
-                                  @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
-                                  @RequestParam(value = "searchStr") Optional<String> searchStr,
-                                  @RequestParam("pageSize") Optional<Integer> pageSize,
-                                  @RequestParam("page") Optional<Integer> page) {
+                                        @PathVariable("rid") long rid,
+                                        @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
+                                        @RequestParam(value = "searchStr") Optional<String> searchStr,
+                                        @RequestParam("pageSize") Optional<Integer> pageSize,
+                                        @RequestParam("page") Optional<Integer> page) {
         String search = "";
-        if(searchStr.isPresent()){
+        if (searchStr.isPresent()) {
             search = searchStr.get().toString();
         }
         ModelAndView modelAndView = new ModelAndView("viewaccounts/index");
@@ -54,18 +54,18 @@ public class ViewAccountsController {
 
         Route route = routesService.getById(rid);
         RdmDetail rdmDetail = rdmDetailService.getById(id);
-
+        int totalCount = accountService.countByIdRoute(rid);
         modelAndView.addObject("cid", cid);
         modelAndView.addObject("id", id);
         modelAndView.addObject("rid", rid);
+        modelAndView.addObject("accountsTotal", totalCount);
         modelAndView.addObject("accountLists", accountList);
         modelAndView.addObject("account", new Account());
         modelAndView.addObject("route", route);
         modelAndView.addObject("rdmDeltail", rdmDetail);
         modelAndView.addObject("prevPageUrl", "/Kuryentxt/rdm/" + Long.toString(cid) + "/rdmdetails");
-        modelAndView.addObject("headerDetail", "RDM: " + cid + " ROUTE: " + route.getRouteCode() +
-                " START SEQ: " + rdmDetail.getStartSequence() + " END SEQ: " + rdmDetail.getEndSequence() + " (" + route.getRouteName() + ")");
-        modelAndView.addObject("forSearchUrl", "/Kuryentxt/rdm/"+Long.toString(cid)+"/rdmdetails/"+Long.toString(rdmDetail.getId())+"/route/" + Long.toString(rdmDetail.getIdRoute()) + "/startseq/" +
+        modelAndView.addObject("headerDetail", "RDM: " + cid + " | " + route.getRouteName() + " (Total : " + totalCount + ")");
+        modelAndView.addObject("forSearchUrl", "/Kuryentxt/rdm/" + Long.toString(cid) + "/rdmdetails/" + Long.toString(rdmDetail.getId()) + "/route/" + Long.toString(rdmDetail.getIdRoute()) + "/startseq/" +
                 Integer.toString(rdmDetail.getStartSequence()) + "/endseq/" + Integer.toString(rdmDetail.getEndSequence()));
         modelAndView.addObject("whatView", "rdm");
         modelAndView.addObject("selectedPageSize", evalPageSize);
@@ -76,12 +76,12 @@ public class ViewAccountsController {
 
     @RequestMapping(value = "/du-area/{cid}/routes/{id}/startseq/{sseq}/endseq/{eseq}", method = RequestMethod.GET)
     public ModelAndView showPerRoute(@PathVariable("cid") long cid, @PathVariable("id") long id,
-                                        @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
-                                        @RequestParam(value = "searchStr") Optional<String> searchStr,
-                                        @RequestParam("pageSize") Optional<Integer> pageSize,
-                                        @RequestParam("page") Optional<Integer> page) {
+                                     @PathVariable("sseq") int sseq, @PathVariable("eseq") int eseq,
+                                     @RequestParam(value = "searchStr") Optional<String> searchStr,
+                                     @RequestParam("pageSize") Optional<Integer> pageSize,
+                                     @RequestParam("page") Optional<Integer> page) {
         String search = "";
-        if(searchStr.isPresent()){
+        if (searchStr.isPresent()) {
             search = searchStr.get().toString();
         }
         ModelAndView modelAndView = new ModelAndView("viewaccounts/index");
@@ -102,7 +102,7 @@ public class ViewAccountsController {
         modelAndView.addObject("prevPageUrl", "/Kuryentxt/du-area/" + cid + "/routes");
         modelAndView.addObject("headerDetail", "RDM: " + cid + " ROUTE: " + route.getRouteCode() +
                 " START SEQ: " + route.getStartSequence() + " END SEQ: " + route.getEndSequence() + " (" + route.getRouteName() + ")");
-        modelAndView.addObject("forSearchUrl", "/Kuryentxt/du-area/"+cid+"/routes/" + route.getId() + "/startseq/" +
+        modelAndView.addObject("forSearchUrl", "/Kuryentxt/du-area/" + cid + "/routes/" + route.getId() + "/startseq/" +
                 route.getStartSequence() + "/endseq/" + route.getEndSequence());
         modelAndView.addObject("whatView", "area");
         modelAndView.addObject("selectedPageSize", evalPageSize);

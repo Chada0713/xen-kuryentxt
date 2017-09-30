@@ -78,13 +78,14 @@
                                         <th>
                                             <div class="text-left">Rate Long Name</div>
                                         </th>
-                                        <th><div class="text-right">Fixed Addtl.</div></th>
+
                                         <th>
                                             <div class="text-right">Adj to Lifeline.</div>
                                         </th>
                                         <th>
                                             <div class="text-right">Adj to SC</div>
                                         </th>
+                                        <th><div class="text-right">Fixed Addtl.</div></th>
                                         <th><div class="text-right">Total</div></th>
                                         <th>Action</th>
                                     </tr>
@@ -99,15 +100,15 @@
                                             <div class="text-left" th:text="${perKwChargeTemplateList.perKwRateLongName}"></div>
                                         </td>
                                         <td>
-                                            <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.fixedAddtl, 1, 4)}"></div>
-                                        </td>
-                                        <td>
                                             <div class="text-right"
                                                  th:text="${#numbers.formatDecimal(perKwChargeTemplateList.adjToLifeline, 1, 4)}"></div>
                                         </td>
                                         <td>
                                             <div class="text-right"
                                                  th:text="${#numbers.formatDecimal(perKwChargeTemplateList.adjToSc, 1, 4)}"></div>
+                                        </td>
+                                        <td>
+                                            <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.fixedAddtl, 1, 4)}"></div>
                                         </td>
                                         <td>
                                             <div class="text-right" th:text="${#numbers.formatDecimal(perKwChargeTemplateList.totalAmount, 1, 4)}"></div>

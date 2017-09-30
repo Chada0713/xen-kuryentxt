@@ -1,6 +1,7 @@
 package com.xenenergy.projects.entities;
 
 import org.hibernate.annotations.ManyToAny;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -19,9 +20,11 @@ public class RdmDetail {
     @Column(name = "ID_ROUTE", updatable = true, nullable = true)
     private long idRoute;
     @Column(name = "START_SEQUENCE", updatable = true, nullable = true)
-    private int startSequence;
+    @Value("0")
+    private int startSequence = 0;
     @Column(name = "END_SEQUENCE", updatable = true, nullable = true)
-    private int endSequence;
+    @Value("99999")
+    private int endSequence = 99999;
     @Column(name = "CONSUMER_COUNT")
     private int consumerCount;
 
