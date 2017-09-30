@@ -148,4 +148,20 @@ public class PerKwChargeTemplate {
         this.isSubToLifeline = isSubToLifeline;
     }
 
+    @Override
+    public String toString() {
+        return "PerKwChargeTemplate{" +
+                "id=" + id +
+                ", ts=" + ts +
+                ", chargeType='" + chargeType + '\'' +
+                ", perKwRateName='" + perKwRateName + '\'' +
+                ", perKwRateLongName='" + perKwRateLongName + '\'' +
+                ", printOrder=" + printOrder +
+                ", fixedAddtl=" + fixedAddtl +
+                ", adjToLifeline=" + adjToLifeline +
+                ", adjToSc=" + adjToSc +
+                ", totalAmount='" + totalAmount + '\'' +
+                ", isSubToLifeline='" + isSubToLifeline + '\'' +
+                '}';
+    }
 }
