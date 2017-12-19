@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+    import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -50,6 +50,7 @@ public class PerKwChargeMasterController {
         modelAndView.addObject("perKwChargeMasterLists", perKwChargeMasterLists);
         modelAndView.addObject("rateMaster", rateMasterService.getById(cid));
         modelAndView.addObject("selectedPageSize", evalPageSize);
+        modelAndView.addObject("perkwchargemaster2", new PerKwChargeMaster());
         modelAndView.addObject("pageSizes", property.PAGE_SIZES);
         modelAndView.addObject("pager", pager);
         return modelAndView;
@@ -63,12 +64,23 @@ public class PerKwChargeMasterController {
     }
 
     @PostMapping("/{cid}/per-kw-charge-master/create")
-    public String save(@PathVariable("cid") long cid, PerKwChargeMaster perKwChargeMaster, final RedirectAttributes redirectAttributes) {
+    public String save(@PathVariable("  cid") long cid, PerKwChargeMaster perKwChargeMaster, final RedirectAttributes redirectAttributes) {
         if (perKwChargeMasterService.insert(perKwChargeMaster) != null) {
             redirectAttributes.addFlashAttribute("save", "success");
         } else {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
+        return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
+    }
+
+    @PostMapping("/{cid}/per-kw-charge-master/duplicate/{id}")
+    public String duplicate(@PathVariable("cid") int cid, @PathVariable("id") int id, @ModelAttribute("perkwchargemaster2") PerKwChargeMaster perKwChargeMaster, final RedirectAttributes redirectAttributes) {
+        if (perKwChargeMasterService.duplicateRate(id, cid, perKwChargeMaster.getEffectivityDate()) == true){
+        redirectAttributes.addFlashAttribute("duplicate", "success");
+    }
+        else
+            redirectAttributes.addFlashAttribute("duplicate", "unsuccess");
+
         return "redirect:/ratemaster/" + cid + "/per-kw-charge-master";
     }
 

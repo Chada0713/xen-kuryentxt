@@ -3,13 +3,24 @@ package com.xenenergy.projects.entities;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by xenuser on 5/18/2017.
  */
 @Entity
 @Table(name = "arm_per_kw_charge_master")
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(
+                name = "spDuplicateRate",
+                procedureName = "spDuplicateRate",
+                parameters = {
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "idRateMaster", type = Integer.class),
+                        @StoredProcedureParameter(mode = ParameterMode.IN, name = "effectivityDate", type = Date.class)
+                }
+        )})
+
 public class PerKwChargeMaster {
 
     @Id

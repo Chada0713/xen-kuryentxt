@@ -25,6 +25,12 @@ public class Route {
     private int startSequence;
     @Column(name = "END_SEQUENCE")
     private int endSequence;
+    @Column(name = "BILLING_DAY_START")
+    private int billingDayStart;
+    @Column(name = "BILLING_DAY_END")
+    private int billingDayEnd;
+    @Column(name = "DUE_DAY")
+    private int dueDay;
     @Column(name = "COUNT_CONSUMER")
     private int countConsumer;
     @Column(name = "COUNT_ACTIVE")
@@ -33,6 +39,18 @@ public class Route {
     private int countDisconnected;
     @Column(name = "PERCENTAGE_DISCONNECTED")
     private double percentageDisconnected;
+
+    public int getBillingDayStart() {  return billingDayStart; }
+
+    public void setBillingDayStart(int billingDayStart) { this.billingDayStart = billingDayStart; }
+
+    public int getBillingDayEnd() { return billingDayEnd; }
+
+    public void setBillingDayEnd(int billingDayEnd) { this.billingDayEnd = billingDayEnd; }
+
+    public int getDueDay() {   return dueDay;  }
+
+    public void setDueDay(int dueDay) { this.dueDay = dueDay; }
 
     public long getId() {
         return id;

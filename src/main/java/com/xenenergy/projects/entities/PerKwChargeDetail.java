@@ -45,11 +45,14 @@ public class PerKwChargeDetail {
     @Column(name = "IS_SUB_TO_LIFELINE")
     @Enumerated(value = EnumType.STRING)
     private choices isSubToLifeLine = choices.Y;
+    @Column(name = "IS_SUB_TO_SURCHARGE")
+    @Enumerated(value = EnumType.STRING)
+    private choices isSubToSurCharge = choices.Y;
 
     public PerKwChargeDetail() {
     }
 
-    public PerKwChargeDetail(long id, long idMaster, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, double totalAmt, double fixedAddtl, double adjToLifeline, double adjToSc, choices isSubToLifeLine) {
+    public PerKwChargeDetail(long id, long idMaster, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, double totalAmt, double fixedAddtl, double adjToLifeline, double adjToSc, choices isSubToLifeLine, choices isSubToSurCharge) {
         this.id = id;
         this.idMaster = idMaster;
         this.chargeType = chargeType;
@@ -61,6 +64,7 @@ public class PerKwChargeDetail {
         this.adjToLifeline = adjToLifeline;
         this.adjToSc = adjToSc;
         this.isSubToLifeLine = isSubToLifeLine;
+        this.isSubToSurCharge = isSubToSurCharge;
     }
 
     public long getId() {
@@ -152,4 +156,8 @@ public class PerKwChargeDetail {
     }
 
     public enum choices {Y, N}
+
+    public choices getIsSubToSurCharge() { return isSubToSurCharge; }
+
+    public void setIsSubToSurCharge(choices isSubToSurCharge) { this.isSubToSurCharge = isSubToSurCharge; }
 }

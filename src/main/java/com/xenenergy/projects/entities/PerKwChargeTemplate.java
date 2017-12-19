@@ -2,10 +2,7 @@ package com.xenenergy.projects.entities;
 
 import org.springframework.format.annotation.NumberFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -41,12 +38,17 @@ public class PerKwChargeTemplate {
     @NumberFormat(style = NumberFormat.Style.NUMBER, pattern = "#0.0000")
     private String totalAmount;
     @Column(name = "IS_SUB_TO_LIFELINE")
-    private String isSubToLifeline;
+    @Enumerated(value = EnumType.STRING)
+    private choices isSubToLifeLine = choices.Y;
+    @Column(name = "IS_SUB_TO_SURCHARGE")
+    @Enumerated(value = EnumType.STRING)
+    private choices isSubToSurCharge = choices.Y;
+
 
     public PerKwChargeTemplate() {
     }
 
-    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double fixedAddtl, double adjToLifeline, double adjToSc, String totalAmount, String isSubToLifeline) {
+    public PerKwChargeTemplate(long id, Date ts, String chargeType, String perKwRateName, String perKwRateLongName, int printOrder, Double fixedAddtl, double adjToLifeline, double adjToSc, String totalAmount, choices isSubToLifeLine, choices isSubToSurCharge) {
         this.id = id;
         this.ts = ts;
         this.chargeType = chargeType;
@@ -57,7 +59,8 @@ public class PerKwChargeTemplate {
         this.adjToLifeline = adjToLifeline;
         this.adjToSc = adjToSc;
         this.totalAmount = totalAmount;
-        this.isSubToLifeline = isSubToLifeline;
+        this.isSubToLifeLine = isSubToLifeLine;
+        this.isSubToSurCharge = isSubToSurCharge;
     }
 
     public double getAdjToLifeline() {
@@ -140,13 +143,15 @@ public class PerKwChargeTemplate {
         this.totalAmount = totalAmount;
     }
 
-    public String getIsSubToLifeline() {
-        return isSubToLifeline;
-    }
+    public enum choices {Y, N}
 
-    public void setIsSubToLifeline(String isSubToLifeline) {
-        this.isSubToLifeline = isSubToLifeline;
-    }
+    public choices getIsSubToLifeLine() { return isSubToLifeLine; }
+
+    public void setIsSubToLifeLine(choices isSubToLifeLine) { this.isSubToLifeLine = isSubToLifeLine; }
+
+    public choices getIsSubToSurCharge() { return isSubToSurCharge; }
+
+    public void setIsSubToSurCharge(choices isSubToSurCharge) { this.isSubToSurCharge = isSubToSurCharge; }
 
     @Override
     public String toString() {
@@ -161,7 +166,8 @@ public class PerKwChargeTemplate {
                 ", adjToLifeline=" + adjToLifeline +
                 ", adjToSc=" + adjToSc +
                 ", totalAmount='" + totalAmount + '\'' +
-                ", isSubToLifeline='" + isSubToLifeline + '\'' +
+                ", isSubToLifeLine='" + isSubToLifeLine + '\'' +
+                ", isSubToSurCharge='" + isSubToSurCharge + '\'' +
                 '}';
     }
 }
