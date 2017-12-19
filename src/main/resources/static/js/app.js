@@ -208,14 +208,26 @@ $(function () {
 });
 
 $(function () {
-    $("#datepick").datepicker({
-        numberOfMonths: 1,
-        dateFormat: 'yy-mm-dd',
-        minDate: 0
+    $(".datepick").datepicker({
     });
 });
+function datepickerfunction(id) {
+    $("#effectivityDate" + id).datepicker({
+        numberOfMonths: 1,
+        dateFormat: 'yy-mm-dd',
+        minDate: 1
+    });
+}
 
+function numberOfdate() {
+    var select = '';
+    for (var i=1;i<=31;i++){
+        select += '<option value=' + i + '>' + i + '</option>';
+    }
+    $('.numberOfdate').html(select);
 
+}
+window.onload=numberOfdate();
 function loadDropDown() {
     $.ajax({
         type: "GET",
@@ -249,6 +261,8 @@ $(document).ready(function () {
         $("#btnSubmit").attr("href", $url).addClass($btnClass);
         $("#btnSubmit").text($btnValue);
     });
+
+
 
     $('#modalDelete').on('show.bs.modal', function (e) {
         $url = $(e.relatedTarget).attr('data-url');
@@ -367,6 +381,32 @@ $(document).ready(function () {
     });
 
     $('#tableTab a:first').tab('show');
+
+/*For Popover routes Details*/
+$('[data-toggle="popoverRoutes"]').popover({
+    trigger: "manual" ,
+    html: true,
+    animation:false,
+    content: function(){
+        var idroutes = $(this).attr('data-param');
+        return $("<div style='max-width:600px;'>").load('/Kuryentxt/du-area/'+ idroutes +'/details')
+    }
+}).on("mouseenter", function () {
+    $(this).popover("show").data("bs.popover").tip().css({"max-width":"1000px","margin-top":"-170px"});
+
+    $(".popover").on("mouseleave", function () {
+        $(this).popover('hide');
+    });
+}).on("mouseleave", function () {
+    var _this = this;
+    setTimeout(function () {
+        if (!$(".popover:hover").length) {
+            $(_this).popover("hide");
+        }
+    }, 300);
+});
+
+$('#tableTab a:first').tab('show');
 });
 
 $(document).ready( function () {

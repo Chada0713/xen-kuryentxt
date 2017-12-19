@@ -119,8 +119,20 @@
                                         <label for="isSubToLifeline"
                                                class="col-sm-4 control-label">Is Sub to Lifeline</label>
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <select class="form-control" th:field="*{isSubToLifeline}"
+                                            <select class="form-control" th:field="*{isSubToLifeLine}"
                                                     id="isSubToLifeline">
+                                                <option th:value="'Y'">Yes</option>
+                                                <option th:value="'N'">No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="isSubToSurCharge"
+                                               class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Sub To
+                                            Surcharge</label>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                            <select class="form-control text-right" th:field="*{isSubToSurCharge}"
+                                                    id="isSubToSurCharge">
                                                 <option th:value="'Y'">Yes</option>
                                                 <option th:value="'N'">No</option>
                                             </select>

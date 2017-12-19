@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Transactional
 public interface RoutesService extends CRUDService<Route> {
+    Route getById(long idArea);
     Page<Route> findByIdArea(long idArea, Pageable pageable);
     Page<Route> findByIdAreaOrderByRouteCode(long idArea, Pageable pageable);
     Page<Route> findByIdAreaOrderByRouteCodeDesc(long idArea, Pageable pageable);

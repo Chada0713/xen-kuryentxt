@@ -16,7 +16,20 @@
                         <strong th:text="${rateMaster.rateName}"></strong></div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-lg-11 col-md-11 col-sm-11"> <!-- Save Alert Messages -->
+                            <div class="col-lg-11 col-md-11 col-sm-11">
+                                <!-- Duplicate Alert Messages -->
+                                <div th:if="${duplicate eq 'unsuccess'}">
+                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                        <strong>Error!</strong> <i>Record Not Duplicate.</i>
+                                    </div>
+                                    <br/>
+                                </div>
+                                <div th:if="${duplicate eq 'success'}">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
+                                        <strong>Success!</strong> <i>Record Duplicate Successfully</i>.
+                                    </div>
+                                </div>
+                                <!-- Save Alert Messages -->
                                 <div th:if="${save eq 'unsuccess'}">
                                     <div class="alert alert-danger alert-dismissible" role="alert">
                                         <strong>Error!</strong> <i>Record Not Saved.</i>
@@ -84,7 +97,71 @@
                                         <td><a href="#"
                                                data-th-href="@{/ratemaster/{cid}/per-kw-charge-master/{id}/details(id=${perKwChargeMaster.id}, cid=${perKwChargeMaster.idRateMaster}) }">
                                             details
-                                        </a></td>
+                                        </a>
+                                            <!-- Trigger the modal with a button -->
+                                            <a type="button"  class="" data-toggle="modal" th:attr="data-target='#' + ${perKwChargeMaster.id},onclick='datepickerfunction(' + ${perKwChargeMaster.id} + ')'" style="cursor: pointer">duplicate</a>
+
+                                            <!-- Modal -->
+                                            <div th:attr="id= ${perKwChargeMaster.id}" class="modal fade" role="dialog">
+                                                <div class="modal-dialog">
+
+                                                    <!-- Modal content-->
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title"></h4>
+                                                        </div>
+                                                        <form class="form-horizontal" method="post"
+                                                              role="form" name="properties_form"
+                                                              id="properties_form"
+                                                              th:object="${perkwchargemaster2}"
+                                                              th:action="@{/ratemaster/__${cid}__/per-kw-charge-master/duplicate/__${perKwChargeMaster.id}__}">
+                                                        <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-3 control-label">Effectivity Date</label>
+                                                                    <div class="col-sm-9"  >
+                                                                        <input type="text" th:attr="class='form-control' "
+                                                                               th:value="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"
+                                                                               th:id="'effectivityDate'+ ${perKwChargeMaster.id}" th:name="effectivityDate"
+                                                                               placeholder="Effectivity Date"/>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-sm-3 control-label">Amount</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control "
+                                                                               th:value="${#numbers.formatDecimal(perKwChargeMaster.totalAmount, 1, 4)}"
+                                                                                placeholder="Amount" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label  class="col-sm-3 control-label">Amount STL</label>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" class="form-control"
+                                                                               th:value="${#numbers.formatDecimal(perKwChargeMaster.totalAmountStl, 1, 4)}"
+                                                                               placeholder="Amount STL" />
+                                                                    </div>
+                                                                </div>
+
+
+                                                            <!--<p th:text="${perKwChargeMaster.id}"></p>-->
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-success">Duplicate</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+
+
+                                                        </div>
+                                                        </form>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td data-title="Effectivity Date"
                                             th:text="${#dates.format(perKwChargeMaster.effectivityDate, 'yyyy-MM-dd')}"></td>
                                         <td data-title="Amount"
@@ -142,6 +219,8 @@
                                 </table>
                             </div>
                         </div>
+
+
                         <div th:if="${#lists.isEmpty(perKwChargeMasterLists)}"
                              class="text-center alert alert-danger alert-dismissible" role="alert">
                             <strong>No Record Found</strong>

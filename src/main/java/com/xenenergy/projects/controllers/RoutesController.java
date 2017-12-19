@@ -173,6 +173,17 @@ public class RoutesController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/{cid}/details",method = RequestMethod.GET)
+    public ModelAndView showDetails(@PathVariable("cid") long cid, @RequestParam("pageSize") Optional<Integer> pageSize,
+                                    @RequestParam("page") Optional<Integer> page) {
+        ModelAndView modelAndView = new ModelAndView("routes/details");
+
+        Route routes = routesService.getById(cid);
+
+        modelAndView.addObject("routelists", routes);
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/route/{id}/routename", method = RequestMethod.GET)
     public String routeName(@PathVariable("id") long id){
         return routesService.findRouteName(id);
